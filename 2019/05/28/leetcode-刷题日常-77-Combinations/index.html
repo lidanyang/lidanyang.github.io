@@ -120,7 +120,7 @@
 
 
 
-  <title>leetcode 刷题日常: 72 Edit Distance | Just a blog</title>
+  <title>leetcode 刷题日常: 77 Combinations | Just a blog</title>
   
 
 
@@ -247,7 +247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/leetcode-刷题日常-72-Edit-Distance/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/leetcode-刷题日常-77-Combinations/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lidanyang">
@@ -264,7 +264,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode 刷题日常: 72 Edit Distance</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode 刷题日常: 77 Combinations</h1>
         
 
         <div class="post-meta">
@@ -276,7 +276,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T09:58:51+08:00">2019-05-28</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T16:18:29+08:00">2019-05-28</time>
             
 
             
@@ -334,27 +334,23 @@
       
 
       
-        <p>求两个单词的最短”距离”</p>
-<h1 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想:"></a>主要思想:</h1><p>word1向word2转化时，如果从前往后调整word1以靠近word2的话，那么word1的最后一个字符的处理只有如下三种情况：</p>
+        <h1 id="求所有组合"><a href="#求所有组合" class="headerlink" title="求所有组合"></a>求所有组合</h1><p>贴几个很简洁的python实现，都来自于StefanPochmann这位leetcode用户：</p>
 <ol>
-<li>word1的末尾添加一个和word2末尾相同的字符，则问题转化为求word1和word2[:-1]的最短距离；</li>
-<li>word1的末尾替换成和word2末尾相同的字符，则问题转化为求word1[:-1]和word2[:-1]的最短距离；</li>
-<li>word1的末尾删除一个字符，则问题转化为求word1[:-1]和word2的最短距离；</li>
+<li>Library - AC in 64 ms</li>
 </ol>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><ol>
-<li><p>宽度优先搜索（代码来自Accepted Solutions Runtime Distribution)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDistance</span><span class="params">(self, word1: str, word2: str)</span> -&gt; int:</span></span><br><span class="line">        heap = [(<span class="number">0</span>,word1,word2)]</span><br><span class="line">        seen = set()</span><br><span class="line">        n = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> heap:</span><br><span class="line">            dis, w1, w2 = heapq.heappop(heap)</span><br><span class="line">            <span class="keyword">if</span> w1 == w2: <span class="keyword">return</span> dis</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (w1,w2) <span class="keyword">in</span> seen:</span><br><span class="line">                seen.add((w1,w2))</span><br><span class="line">                <span class="keyword">while</span> w1 <span class="keyword">and</span> w2 <span class="keyword">and</span> w1[<span class="number">-1</span>]==w2[<span class="number">-1</span>]:</span><br><span class="line">                    w1 = w1[:<span class="number">-1</span>]</span><br><span class="line">                    w2 = w2[:<span class="number">-1</span>]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment">#delete 删除</span></span><br><span class="line">                    heapq.heappush(heap,(dis+<span class="number">1</span>,w1[:<span class="number">-1</span>],w2))</span><br><span class="line">                    <span class="keyword">if</span> w2:</span><br><span class="line">                        <span class="comment">#insert 插入</span></span><br><span class="line">                        heapq.heappush(heap,(dis+<span class="number">1</span>,w1,w2[:<span class="number">-1</span>]))</span><br><span class="line">                    <span class="keyword">if</span> w1 <span class="keyword">and</span> w2:</span><br><span class="line">                        <span class="comment">#replace 替换</span></span><br><span class="line">                        heapq.heappush(heap,(dis+<span class="number">1</span>,w1[:<span class="number">-1</span>],w2[:<span class="number">-1</span>]))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>动态规划</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDistance</span><span class="params">(self, word1: str, word2: str)</span> -&gt; int:</span></span><br><span class="line">        WL1 = len(word1)</span><br><span class="line">        WL2 = len(word2)</span><br><span class="line">        dp = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(WL1 + <span class="number">1</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> range(WL2 + <span class="number">1</span>)]</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(WL1 + <span class="number">1</span>):</span><br><span class="line">            dp[<span class="number">0</span>][i] = i</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(WL2 + <span class="number">1</span>):</span><br><span class="line">            dp[i][<span class="number">0</span>] = i</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, WL2 + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, WL1 + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> word2[i - <span class="number">1</span>] == word1[j - <span class="number">1</span>]:</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j] = min(dp[i - <span class="number">1</span>][j - <span class="number">1</span>], dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]) + <span class="number">1</span></span><br><span class="line">        <span class="comment"># print(dp)</span></span><br><span class="line">        <span class="keyword">return</span> dp[WL2][WL1]</span><br></pre></td></tr></table></figure>
-</li>
+<p>First the obvious solution - Python already provides this functionality and it’s not forbidden, so let’s take advantage of it.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> combinations</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combine</span><span class="params">(self, n, k)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> list(combinations(range(<span class="number">1</span>, n+<span class="number">1</span>), k))</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>Recursive - AC in 76 ms</li>
 </ol>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li>用宽度优先的速度比动态规划明显要快；</li>
-<li>我最初的想法是先求最长公共子串，然后调整word1中公共子串之外的部分，然而这需要知道最长公共子串的具体位置，不好实现就pass了（懒）；</li>
-<li>为什么找最短要按这个步骤？或者说为什么以循环对word1最后一个字符加删改的方式搜索下去，如果遇到word2那么搜索的深度就是最短距离？严格的数学证明并没有看到，可能只是凭感觉或者说是直觉，觉得照这个步骤来搜索就是最短距离，但是还是感觉心里不踏实，接受程度60%，待以后看到更清晰的解释；</li>
-<li>貌似很多程序都是凭感觉写出来的，不需要深究为什么，记住就行了，程序员并不需要成为数学家，只需要成为玄学家！</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combine</span><span class="params">(self, n, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> [[]]</span><br><span class="line">        <span class="keyword">return</span> [pre + [i] <span class="keyword">for</span> i <span class="keyword">in</span> range(k, n+<span class="number">1</span>) <span class="keyword">for</span> pre <span class="keyword">in</span> self.combine(i<span class="number">-1</span>, k<span class="number">-1</span>)]</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>Iterative - AC in 76 ms</li>
 </ol>
+<p>And here’s an iterative one.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combine</span><span class="params">(self, n, k)</span>:</span></span><br><span class="line">        combs = [[]]</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(k):</span><br><span class="line">            combs = [[i] + c <span class="keyword">for</span> c <span class="keyword">in</span> combs <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, c[<span class="number">0</span>] <span class="keyword">if</span> c <span class="keyword">else</span> n+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">return</span> combs</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>Reduce - AC in 76 ms</li>
+</ol>
+<p>Same as that iterative one, but using reduce instead of a loop:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">combine</span><span class="params">(self, n, k)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> reduce(<span class="keyword">lambda</span> C, _: [[i]+c <span class="keyword">for</span> c <span class="keyword">in</span> C <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, c[<span class="number">0</span>] <span class="keyword">if</span> c <span class="keyword">else</span> n+<span class="number">1</span>)],</span><br><span class="line">                  range(k), [[]])</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -372,9 +368,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+            <a href="/tags/backtrack/" rel="tag"># backtrack</a>
           
-            <a href="/tags/dp/" rel="tag"># dp</a>
+            <a href="/tags/recursive/" rel="tag"># recursive</a>
           
         </div>
       
@@ -387,15 +383,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/28/leetcode-刷题日常-142-Linked-List-Cycle-II/" rel="next" title="leetcode 刷题日常: 142 Linked List Cycle II">
+                <i class="fa fa-chevron-left"></i> leetcode 刷题日常: 142 Linked List Cycle II
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/28/leetcode-刷题日常-142-Linked-List-Cycle-II/" rel="prev" title="leetcode 刷题日常: 142 Linked List Cycle II">
-                leetcode 刷题日常: 142 Linked List Cycle II <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -527,7 +523,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主要思想"><span class="nav-number">1.</span> <span class="nav-text">主要思想:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#求所有组合"><span class="nav-number">1.</span> <span class="nav-text">求所有组合</span></a></li></ol></div>
             
 
           </div>
