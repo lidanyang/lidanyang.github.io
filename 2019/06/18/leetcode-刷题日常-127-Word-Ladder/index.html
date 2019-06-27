@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="标签">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/tags/">
+
+
+
+
+
+  <title>127. Word Ladder | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/18/leetcode-刷题日常-127-Word-Ladder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">127. Word Ladder</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-18T11:38:00+08:00">2019-06-18</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">127. Word Ladder</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given two words (<em>beginWord</em> and <em>endWord</em>), and a dictionary’s word list, find the length of shortest transformation sequence from <em>beginWord</em> to <em>endWord</em>, such that:</p>
+<ol>
+<li>Only one letter can be changed at a time.</li>
+<li>Each transformed word must exist in the word list. Note that <em>beginWord</em> is <em>not</em> a transformed word.</li>
+</ol>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Return 0 if there is no such transformation sequence.</li>
+<li>All words have the same length.</li>
+<li>All words contain only lowercase alphabetic characters.</li>
+<li>You may assume no duplicates in the word list.</li>
+<li>You may assume <em>beginWord</em> and <em>endWord</em> are non-empty and are not the same.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">beginWord = &quot;hit&quot;,</span><br><span class="line">endWord = &quot;cog&quot;,</span><br><span class="line">wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</span><br><span class="line"></span><br><span class="line">Output: 5</span><br><span class="line"></span><br><span class="line">Explanation: As one shortest transformation is &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;,</span><br><span class="line">return its length 5.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">beginWord = &quot;hit&quot;</span><br><span class="line">endWord = &quot;cog&quot;</span><br><span class="line">wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]</span><br><span class="line"></span><br><span class="line">Output: 0</span><br><span class="line"></span><br><span class="line">Explanation: The endWord &quot;cog&quot; is not in wordList, therefore no possible transformation.</span><br></pre></td></tr></table></figure>
+<h1>分析</h1>
+<p>  如果将每个单词看成图中的一个结点，将只差一个字母的两个单词看成两个相邻接的结点，则问题可转化为用宽度优先搜索求图中两点最短路径的问题。如下图：<br>
+<img src="https://leetcode.com/problems/word-ladder/Figures/127/Word_Ladder_1.png" alt="avatar"></p>
+<p>  为了找到每个结点的邻接节点，可以将每个单词中每个字母依次分别替换成*，然后以替换后的单词为key，原单词为value建立一个dict，比如dog就对应d*g,*og,do*三个key。单词dog的所有邻接单词都在dict[d*g],dict[*og],dict[do*]这三个列表中，记得还要用visited数组标志单词有没有被遍历过，防止死循环爆栈。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord, endWord, wordList)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type beginWord: str</span></span><br><span class="line"><span class="string">        :type endWord: str</span></span><br><span class="line"><span class="string">        :type wordList: List[str]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordList <span class="keyword">or</span> <span class="keyword">not</span> endWord <span class="keyword">or</span> <span class="keyword">not</span> beginWord <span class="keyword">or</span> <span class="keyword">not</span> wordList:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Since all words are of same length.</span></span><br><span class="line">        L = len(beginWord)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Dictionary to hold combination of words that can be formed,</span></span><br><span class="line">        <span class="comment"># from any given word. By changing one letter at a time.</span></span><br><span class="line">        all_combo_dict = defaultdict(list)</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> wordList:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">                <span class="comment"># Key is the generic word</span></span><br><span class="line">                <span class="comment"># Value is a list of words which have the same intermediate generic word.</span></span><br><span class="line">                all_combo_dict[word[:i] + <span class="string">"*"</span> + word[i+<span class="number">1</span>:]].append(word)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Queue for BFS</span></span><br><span class="line">        queue = [(beginWord, <span class="number">1</span>)]</span><br><span class="line">        <span class="comment"># Visited to make sure we don't repeat processing same word.</span></span><br><span class="line">        visited = &#123;beginWord: <span class="literal">True</span>&#125;</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            current_word, level = queue.pop(<span class="number">0</span>)      </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">                <span class="comment"># Intermediate words for current word</span></span><br><span class="line">                intermediate_word = current_word[:i] + <span class="string">"*"</span> + current_word[i+<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">                <span class="comment"># Next states are all the words which share the same intermediate state.</span></span><br><span class="line">                <span class="keyword">for</span> word <span class="keyword">in</span> all_combo_dict[intermediate_word]:</span><br><span class="line">                    <span class="comment"># If at any point if we find what we are looking for</span></span><br><span class="line">                    <span class="comment"># i.e. the end word - we can return with the answer.</span></span><br><span class="line">                    <span class="keyword">if</span> word == endWord:</span><br><span class="line">                        <span class="keyword">return</span> level + <span class="number">1</span></span><br><span class="line">                    <span class="comment"># Otherwise, add it to the BFS Queue. Also mark it visited</span></span><br><span class="line">                    <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        visited[word] = <span class="literal">True</span></span><br><span class="line">                        queue.append((word, level + <span class="number">1</span>))</span><br><span class="line">                all_combo_dict[intermediate_word] = []</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>  上述解法可以通过用双向BFS缩小一半搜索空间来进行优化，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.length = <span class="number">0</span></span><br><span class="line">        <span class="comment"># Dictionary to hold combination of words that can be formed,</span></span><br><span class="line">        <span class="comment"># from any given word. By changing one letter at a time.</span></span><br><span class="line">        self.all_combo_dict = defaultdict(list)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitWordNode</span><span class="params">(self, queue, visited, others_visited)</span>:</span></span><br><span class="line">        current_word, level = queue.pop(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.length):</span><br><span class="line">            <span class="comment"># Intermediate words for current word</span></span><br><span class="line">            intermediate_word = current_word[:i] + <span class="string">"*"</span> + current_word[i+<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Next states are all the words which share the same intermediate state.</span></span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> self.all_combo_dict[intermediate_word]:</span><br><span class="line">                <span class="comment"># If the intermediate state/word has already been visited from the</span></span><br><span class="line">                <span class="comment"># other parallel traversal this means we have found the answer.</span></span><br><span class="line">                <span class="keyword">if</span> word <span class="keyword">in</span> others_visited:</span><br><span class="line">                    <span class="keyword">return</span> level + others_visited[word]</span><br><span class="line">                <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                    <span class="comment"># Save the level as the value of the dictionary, to save number of hops.</span></span><br><span class="line">                    visited[word] = level + <span class="number">1</span></span><br><span class="line">                    queue.append((word, level + <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord, endWord, wordList)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type beginWord: str</span></span><br><span class="line"><span class="string">        :type endWord: str</span></span><br><span class="line"><span class="string">        :type wordList: List[str]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordList <span class="keyword">or</span> <span class="keyword">not</span> endWord <span class="keyword">or</span> <span class="keyword">not</span> beginWord <span class="keyword">or</span> <span class="keyword">not</span> wordList:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Since all words are of same length.</span></span><br><span class="line">        self.length = len(beginWord)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> wordList:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(self.length):</span><br><span class="line">                <span class="comment"># Key is the generic word</span></span><br><span class="line">                <span class="comment"># Value is a list of words which have the same intermediate generic word.</span></span><br><span class="line">                self.all_combo_dict[word[:i] + <span class="string">"*"</span> + word[i+<span class="number">1</span>:]].append(word)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Queues for birdirectional BFS</span></span><br><span class="line">        queue_begin = [(beginWord, <span class="number">1</span>)] <span class="comment"># BFS starting from beginWord</span></span><br><span class="line">        queue_end = [(endWord, <span class="number">1</span>)] <span class="comment"># BFS starting from endWord</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Visited to make sure we don't repeat processing same word</span></span><br><span class="line">        visited_begin = &#123;beginWord: <span class="number">1</span>&#125;</span><br><span class="line">        visited_end = &#123;endWord: <span class="number">1</span>&#125;</span><br><span class="line">        ans = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># We do a birdirectional search starting one pointer from begin</span></span><br><span class="line">        <span class="comment"># word and one pointer from end word. Hopping one by one.</span></span><br><span class="line">        <span class="keyword">while</span> queue_begin <span class="keyword">and</span> queue_end:</span><br><span class="line"></span><br><span class="line">            <span class="comment"># One hop from begin word</span></span><br><span class="line">            ans = self.visitWordNode(queue_begin, visited_begin, visited_end)</span><br><span class="line">            <span class="keyword">if</span> ans:</span><br><span class="line">                <span class="keyword">return</span> ans</span><br><span class="line">            <span class="comment"># One hop from end word</span></span><br><span class="line">            ans = self.visitWordNode(queue_end, visited_end, visited_begin)</span><br><span class="line">            <span class="keyword">if</span> ans:</span><br><span class="line">                <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h1>扩展：C语言实现</h1>
+<ol>
+<li>Hash桶查找字符串 + 基于链表的队列</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> container_of(ptr, type, member) \</span></span><br><span class="line">    ((type *)((<span class="keyword">char</span> *)(ptr) - (<span class="keyword">size_t</span>)&amp;(((type *)<span class="number">0</span>)-&gt;member)))</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_entry(ptr, type, member) \</span></span><br><span class="line">    container_of(ptr, type, member)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_first_entry(ptr, type, field) list_entry((ptr)-&gt;next, type, field)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_last_entry(ptr, type, field) list_entry((ptr)-&gt;prev, type, field)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_for_each(p, head) \</span></span><br><span class="line">    <span class="keyword">for</span> (p = (head)-&gt;next; p != (head); p = p-&gt;next)</span><br><span class="line">    </span><br><span class="line"><span class="comment">//删除元素时用这个，防止删除pos后，pos-&gt;next指向undefined state</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_for_each_safe(p, n, head) \</span></span><br><span class="line">    <span class="keyword">for</span> (p = (head)-&gt;next, n = p-&gt;next; p != (head); p = n, n = p-&gt;next)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> hlist_for_each(pos, head) \</span></span><br><span class="line">    <span class="keyword">for</span> (pos = (head)-&gt;first; pos; pos = pos-&gt;next)</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除元素时用这个，防止删除pos后，pos-&gt;next指向undefined state</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> hlist_for_each_safe(pos, n, head) \</span></span><br><span class="line">    <span class="keyword">for</span> (pos = (head)-&gt;first; pos &amp;&amp; (&#123; n = pos-&gt;next; <span class="literal">true</span>; &#125;); pos = n)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hlist_node</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hlist_head</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">hlist_node</span> *<span class="title">first</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hlist_node</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">hlist_node</span> *<span class="title">next</span>, **<span class="title">pprev</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">INIT_HLIST_HEAD</span><span class="params">(struct hlist_head *h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    h-&gt;first = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hlist_add_head</span><span class="params">(struct hlist_node *n, struct hlist_head *h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (h-&gt;first != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        h-&gt;first-&gt;pprev = &amp;n-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    n-&gt;next = h-&gt;first;</span><br><span class="line">    n-&gt;pprev = &amp;h-&gt;first;</span><br><span class="line">    h-&gt;first = n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> *<span class="title">next</span>, *<span class="title">prev</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">INIT_LIST_HEAD</span><span class="params">(struct list_head *<span class="built_in">list</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">list</span>-&gt;next = <span class="built_in">list</span>-&gt;prev = <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">list_empty</span><span class="params">(<span class="keyword">const</span> struct list_head *head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (head-&gt;next == head);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> __list_add(struct list_head *<span class="keyword">new</span>, struct list_head *prev, struct list_head *next)</span><br><span class="line">&#123;</span><br><span class="line">    next-&gt;prev = <span class="keyword">new</span>;</span><br><span class="line">    <span class="keyword">new</span>-&gt;next = next;</span><br><span class="line">    <span class="keyword">new</span>-&gt;prev = prev;</span><br><span class="line">    prev-&gt;next = <span class="keyword">new</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">list_add</span><span class="params">(struct list_head *_new, struct list_head *head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __list_add(_new, head, head-&gt;next);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">list_add_tail</span><span class="params">(struct list_head *_new, struct list_head *head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __list_add(_new, head-&gt;prev, head);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> __list_del(struct list_head *entry)</span><br><span class="line">&#123;</span><br><span class="line">    entry-&gt;next-&gt;prev = entry-&gt;prev;</span><br><span class="line">    entry-&gt;prev-&gt;next = entry-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">list_del</span><span class="params">(struct list_head *entry)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __list_del(entry);</span><br><span class="line">    entry-&gt;next = entry-&gt;prev = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">word_node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> step;</span><br><span class="line">    <span class="keyword">char</span> *word;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">hlist_node</span> <span class="title">node</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">link</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取字符串的Hash值，size为word_list_size，每个单词对应一个桶</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BKDRHash</span><span class="params">(<span class="keyword">char</span> *str, <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> seed = <span class="number">131</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> hash = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (*str != <span class="string">'\0'</span>) &#123;</span><br><span class="line">        hash = hash * seed + (*str++);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hash % size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//hlist查找函数，用来根据字符串的值快速查找某个word_node结点</span></span><br><span class="line"><span class="function">struct word_node *<span class="title">find</span><span class="params">(<span class="keyword">char</span> *word, struct hlist_head *hhead, <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">hlist_node</span> *<span class="title">p</span>;</span></span><br><span class="line">    <span class="keyword">int</span> hash = BKDRHash(word, size);</span><br><span class="line">    hlist_for_each(p, &amp;hhead[hash]) &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">word_node</span> *<span class="title">node</span> = <span class="title">list_entry</span>(<span class="title">p</span>, <span class="title">struct</span> <span class="title">word_node</span>, <span class="title">node</span>);</span></span><br><span class="line">        <span class="keyword">if</span> (node-&gt;step == <span class="number">0</span> &amp;&amp; !<span class="built_in">strcmp</span>(node-&gt;word, word)) &#123;</span><br><span class="line">            <span class="keyword">return</span> node;</span><br><span class="line">        &#125;<span class="comment">//node-&gt;step为0代表还未遍历到这个结点，node-&gt;step == 0这个判断很关键，防止死循环，比如hit-&gt;hot-&gt;hit-&gt;hot-&gt;......</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(<span class="keyword">char</span>* begin_word, <span class="keyword">char</span>* end_word, <span class="keyword">char</span>** word_list, <span class="keyword">int</span> word_list_size)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, len = <span class="built_in">strlen</span>(begin_word);</span><br><span class="line">    <span class="keyword">char</span> *word = <span class="built_in">malloc</span>(len + <span class="number">1</span>);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">queue</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">word_node</span> *<span class="title">node</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//内核hash链表hlist和链表list的用法都是先malloc头结点或者定义头结点变量，然后init头结点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">hlist_head</span> *<span class="title">hhead</span> = <span class="title">malloc</span>(<span class="title">word_list_size</span> * <span class="title">sizeof</span>(*<span class="title">hhead</span>));</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; word_list_size; i++) &#123;</span><br><span class="line">        INIT_HLIST_HEAD(hhead + i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; word_list_size; i++) &#123;</span><br><span class="line">        node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(*node));</span><br><span class="line">        node-&gt;word = word_list[i];</span><br><span class="line">        node-&gt;step = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> hash = BKDRHash(word_list[i], word_list_size);</span><br><span class="line">        hlist_add_head(&amp;node-&gt;node, &amp;hhead[hash]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    INIT_LIST_HEAD(&amp;<span class="built_in">queue</span>);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">word_node</span> *<span class="title">first</span> = <span class="title">malloc</span>(<span class="title">sizeof</span>(*<span class="title">node</span>));</span></span><br><span class="line">    first-&gt;word = begin_word;</span><br><span class="line">    first-&gt;step = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">strcmp</span>(first-&gt;word, end_word)) &#123;</span><br><span class="line">        <span class="built_in">strcpy</span>(word, first-&gt;word);</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> c;</span><br><span class="line">            <span class="keyword">char</span> o = word[i];</span><br><span class="line">            <span class="keyword">for</span> (c = <span class="string">'a'</span>; c &lt;= <span class="string">'z'</span>; c++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (c == o) <span class="keyword">continue</span>;</span><br><span class="line">                word[i] = c;</span><br><span class="line">                node = find(word, hhead, word_list_size);</span><br><span class="line">                <span class="keyword">if</span> (node != <span class="literal">NULL</span>) &#123;</span><br><span class="line">                    list_add_tail(&amp;node-&gt;link, &amp;<span class="built_in">queue</span>);<span class="comment">//入队</span></span><br><span class="line">                    node-&gt;step = first-&gt;step + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            word[i] = o;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (list_empty(&amp;<span class="built_in">queue</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            first = list_first_entry(&amp;<span class="built_in">queue</span>, struct word_node, link);</span><br><span class="line">            list_del(&amp;first-&gt;link);<span class="comment">//出队</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> first-&gt;step;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>字典树查找字符串 + 基于链表的队列</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TriNode</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TriNode</span>** <span class="title">link</span>;</span></span><br><span class="line">    <span class="keyword">bool</span> isword;<span class="comment">//标记单词是否属于字典树</span></span><br><span class="line">&#125;;<span class="comment">//字典树结点</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">QNode</span> &#123;</span></span><br><span class="line">    <span class="keyword">char</span>* item;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">QNode</span>* <span class="title">prev</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">QNode</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;;<span class="comment">//链队列结点</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">QNode</span> *<span class="title">head</span>, *<span class="title">tail</span>;</span></span><br><span class="line"><span class="function">struct QNode* <span class="title">qinit</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">qput</span><span class="params">(struct QNode*, <span class="keyword">char</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">qget</span><span class="params">(struct QNode *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">qempty</span><span class="params">(struct QNode*)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">struct TriNode* <span class="title">createTri</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">struct TriNode* <span class="title">buildDict</span><span class="params">(<span class="keyword">char</span>**, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">searchDict</span><span class="params">(struct TriNode *, <span class="keyword">char</span> *)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(<span class="keyword">char</span> * beginWord, <span class="keyword">char</span> * endWord, <span class="keyword">char</span> ** wordList, <span class="keyword">int</span> wordListSize)</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TriNode</span>* <span class="title">root</span>=<span class="title">buildDict</span>(<span class="title">wordList</span>, <span class="title">wordListSize</span>);</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">QNode</span>* <span class="title">q</span>=<span class="title">qinit</span>();</span></span><br><span class="line">    <span class="keyword">char</span> dummy;</span><br><span class="line">    <span class="keyword">char</span> *cur;</span><br><span class="line">    <span class="keyword">int</span> steps=<span class="number">1</span>;</span><br><span class="line">    qput(q, beginWord);</span><br><span class="line">    qput(q, &amp;dummy);<span class="comment">//dummy用来区分搜索深度,dummy之前到head的结点是step,dummy之后到tail的结点是step+1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (!qempty(q)) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((cur=qget(q)) == &amp;dummy) &#123;</span><br><span class="line">            steps++;<span class="comment">//增加搜索深度</span></span><br><span class="line">            qput(q, &amp;dummy);</span><br><span class="line">            <span class="keyword">continue</span>;           </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//保证代码到此处cur的深度为steps</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">strcmp</span>(cur, endWord)==<span class="number">0</span>) <span class="keyword">return</span> steps;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> len = <span class="built_in">strlen</span>(cur);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> c=cur[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">char</span> d=j+<span class="string">'a'</span>;</span><br><span class="line">                <span class="keyword">if</span> (c!=d) &#123;</span><br><span class="line">                    cur[i]=d;</span><br><span class="line">                    <span class="keyword">if</span> (searchDict(root, cur)) &#123;<span class="comment">//找到单词之后就从字典树中删除单词</span></span><br><span class="line">                        <span class="keyword">char</span> *s=(<span class="keyword">char</span>*)<span class="built_in">malloc</span>(len+<span class="number">1</span>);</span><br><span class="line">                        <span class="built_in">strcpy</span>(s,cur);                   </span><br><span class="line">                        qput(q,s);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;       </span><br><span class="line">            &#125;</span><br><span class="line">            cur[i]=c; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cur != beginWord)</span><br><span class="line">            <span class="built_in">free</span>(cur);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">struct TriNode* <span class="title">buildDict</span><span class="params">(<span class="keyword">char</span>** dict, <span class="keyword">int</span> dlen)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TriNode</span>* <span class="title">root</span>=<span class="title">createTri</span>();</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; dlen; i++) &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">TriNode</span>* <span class="title">node</span>=<span class="title">root</span>;</span></span><br><span class="line">        <span class="keyword">char</span> *word=dict[i];</span><br><span class="line">        <span class="keyword">int</span> len=<span class="built_in">strlen</span>(word);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">            <span class="keyword">int</span> k=word[j]-<span class="string">'a'</span>;</span><br><span class="line">            <span class="keyword">if</span> (node-&gt;link[k] == <span class="literal">NULL</span>) &#123;</span><br><span class="line">                node-&gt;link[k]=createTri();</span><br><span class="line">            &#125;</span><br><span class="line">            node=node-&gt;link[k];</span><br><span class="line">        &#125;</span><br><span class="line">        node-&gt;isword=<span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">struct TriNode* <span class="title">createTri</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TriNode</span>* <span class="title">node</span>=(<span class="title">struct</span> <span class="title">TriNode</span>*)<span class="title">calloc</span>(1, <span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">TriNode</span>));</span></span><br><span class="line">    node-&gt;link=(struct TriNode**)<span class="built_in">calloc</span>(<span class="number">26</span>, <span class="keyword">sizeof</span>(struct TriNode*));</span><br><span class="line">    node-&gt;isword=<span class="literal">false</span>;<span class="comment">//root结点代表空字符串</span></span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">searchDict</span><span class="params">(struct TriNode *root, <span class="keyword">char</span> *word)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len=<span class="built_in">strlen</span>(word);</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TriNode</span> *<span class="title">node</span>=<span class="title">root</span>;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> k = word[i] - <span class="string">'a'</span>;</span><br><span class="line">        <span class="keyword">if</span> (node-&gt;link[k] == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        node=node-&gt;link[k];       </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (node-&gt;isword == <span class="literal">false</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    node-&gt;isword=<span class="literal">false</span>;<span class="comment">//从字典树中删除该单词</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">struct QNode* <span class="title">qinit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    head=(struct QNode*)<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="keyword">sizeof</span>(struct QNode));</span><br><span class="line">    tail=(struct QNode*)<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="keyword">sizeof</span>(struct QNode));</span><br><span class="line">    head-&gt;next=tail;</span><br><span class="line">    head-&gt;prev=tail;</span><br><span class="line">    tail-&gt;next=head;</span><br><span class="line">    tail-&gt;prev=head;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">qput</span><span class="params">(struct QNode* q, <span class="keyword">char</span> * item)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">QNode</span> *<span class="title">t</span>=(<span class="title">struct</span> <span class="title">QNode</span> *)<span class="title">calloc</span>(1, <span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">QNode</span>));</span>   </span><br><span class="line">    t-&gt;item=item;</span><br><span class="line">    t-&gt;next=tail;</span><br><span class="line">    t-&gt;prev=tail-&gt;prev;</span><br><span class="line">    tail-&gt;prev-&gt;next=t;</span><br><span class="line">    tail-&gt;prev=t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">qget</span><span class="params">(struct QNode *q)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">QNode</span> *<span class="title">t</span>=<span class="title">head</span>-&gt;<span class="title">next</span>;</span></span><br><span class="line">    t-&gt;next-&gt;prev=t-&gt;prev;</span><br><span class="line">    t-&gt;prev-&gt;next=t-&gt;next;</span><br><span class="line">    <span class="keyword">char</span> *c=t-&gt;item;</span><br><span class="line">    <span class="built_in">free</span>(t);</span><br><span class="line">    <span class="keyword">return</span> c;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">qempty</span><span class="params">(struct QNode* q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> head-&gt;next-&gt;next-&gt;next==head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>小结</li>
+</ol>
+<p>  C语言的解法关键在于怎么高效查找字符串和实现队列。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/BFS/" rel="tag"><i class="fa fa-tag"></i> BFS</a>
+          
+            <a href="/tags/graph/" rel="tag"><i class="fa fa-tag"></i> graph</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/18/leetcode-刷题日常-123-Best-Time-to-Buy-and-Sell-Stock-III/" rel="next" title="123. Best Time to Buy and Sell Stock III">
+                <i class="fa fa-chevron-left"></i> 123. Best Time to Buy and Sell Stock III
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/18/leetcode-刷题日常-126-Word-Ladder-II/" rel="prev" title="126. Word Ladder II">
+                126. Word Ladder II <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">扩展：C语言实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

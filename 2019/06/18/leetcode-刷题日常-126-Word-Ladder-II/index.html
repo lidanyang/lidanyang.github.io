@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="标签">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/tags/">
+
+
+
+
+
+  <title>126. Word Ladder II | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/18/leetcode-刷题日常-126-Word-Ladder-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">126. Word Ladder II</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-18T22:19:00+08:00">2019-06-18</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/word-ladder-ii/" target="_blank" rel="noopener">126. Word Ladder II</a></p>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given two words (<em>beginWord</em> and <em>endWord</em>), and a dictionary’s word list, find all shortest transformation sequence(s) from <em>beginWord</em> to <em>endWord</em>, such that:</p>
+<ol>
+<li>Only one letter can be changed at a time</li>
+<li>Each transformed word must exist in the word list. Note that <em>beginWord</em> is <em>not</em> a transformed word.</li>
+</ol>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Return an empty list if there is no such transformation sequence.</li>
+<li>All words have the same length.</li>
+<li>All words contain only lowercase alphabetic characters.</li>
+<li>You may assume no duplicates in the word list.</li>
+<li>You may assume <em>beginWord</em> and <em>endWord</em> are non-empty and are not the same.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">beginWord = &quot;hit&quot;,</span><br><span class="line">endWord = &quot;cog&quot;,</span><br><span class="line">wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [&quot;hit&quot;,&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;cog&quot;],</span><br><span class="line">  [&quot;hit&quot;,&quot;hot&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">beginWord = &quot;hit&quot;</span><br><span class="line">endWord = &quot;cog&quot;</span><br><span class="line">wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]</span><br><span class="line"></span><br><span class="line">Output: []</span><br><span class="line"></span><br><span class="line">Explanation: The endWord &quot;cog&quot; is not in wordList, therefore no possible transformation.</span><br></pre></td></tr></table></figure>
+<h1>分析</h1>
+<p>不多说，直接给解法。</p>
+<h2 id="bfs-dfs"><a class="header-anchor" href="#bfs-dfs">¶</a>BFS+DFS</h2>
+<p>  上一题的BFS可以求出endWord到beginWord的最短距离，同时也求出了<strong>所有单词到beginWord的最短距离</strong>。该题想要找到到endWord的所有最短路径，那么每条最短路径上每个单词到beginWord都必须是最短路径，沿着最短路径到beginWord的距离也是<strong>最短距离</strong>，并且顺着最短路径由beginWord到每个单词结点的最短距离都是按顺序依次递增1的，这就限制了DFS的搜索顺序必须是按照BFS深度递增的顺序来搜索。BFS的同时可以记录每个单词对应的BFS序，那么DFS搜索的时候可以直接搜索序刚好比当前单词大1的单词。代码如下：</p>
+<h3 id="300ms实现-我自己写的"><a class="header-anchor" href="#300ms实现-我自己写的">¶</a>300ms实现 我自己写的</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> Queue</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findLadders</span><span class="params">(self, beginWord: str, endWord: str, wordList: List[str])</span> -&gt; List[List[str]]:</span></span><br><span class="line">        L = len(beginWord)</span><br><span class="line">        </span><br><span class="line">        all_combo_dict = collections.defaultdict(list)</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> wordList:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">                all_combo_dict[word[:i] + <span class="string">"*"</span> + word[i+<span class="number">1</span>:]].append(word)</span><br><span class="line">                </span><br><span class="line">        visited = &#123;beginWord:<span class="number">1</span>&#125;</span><br><span class="line">        mindistance = len(wordList) + <span class="number">1</span></span><br><span class="line">        q = Queue()</span><br><span class="line">        q.put((beginWord, <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> q.empty():</span><br><span class="line">            cur, level= q.get()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">                intermediate = cur[:i] + <span class="string">"*"</span> + cur[i+<span class="number">1</span>:]</span><br><span class="line">                <span class="keyword">for</span> word <span class="keyword">in</span> all_combo_dict[intermediate]:</span><br><span class="line">                    <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        visited[word] = level + <span class="number">1</span></span><br><span class="line">                        q.put((word, level + <span class="number">1</span>))</span><br><span class="line">                        <span class="keyword">if</span> word == endWord:</span><br><span class="line">                            mindistance = level + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> mindistance == len(wordList) + <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(path)</span>:</span></span><br><span class="line">            beginWord = path[<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">if</span> visited[beginWord] == mindistance: </span><br><span class="line">                <span class="keyword">if</span> beginWord == endWord:</span><br><span class="line">                    res.append(path)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">                intermediate = beginWord[:i] + <span class="string">"*"</span> + beginWord[i+<span class="number">1</span>:]</span><br><span class="line">                <span class="keyword">for</span> word <span class="keyword">in</span> all_combo_dict[intermediate]:</span><br><span class="line">                    <span class="keyword">if</span> visited[word] == visited[beginWord] + <span class="number">1</span>:</span><br><span class="line">                        DFS(path + [word])                </span><br><span class="line">        res = []</span><br><span class="line">        DFS([beginWord])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h3 id="128ms实现"><a class="header-anchor" href="#128ms实现">¶</a>128ms实现</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findLadders</span><span class="params">(self, beginWord: str, endWord: str, wordList: List[str])</span> -&gt; List[List[str]]:</span></span><br><span class="line">        start, end, dict = beginWord, endWord, set(wordList)</span><br><span class="line">        dict.update([start])</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># build indexes</span></span><br><span class="line">        key_to_words = self.build_indexes(dict)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># bfs end to start search, calculate the distance to the end from each word</span></span><br><span class="line">        distance = self.bfs(end, start, key_to_words)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># dfs to search for all the shorted paths</span></span><br><span class="line">        results, path = [], [start]</span><br><span class="line">        self.dfs(start, end, key_to_words, distance, path, results)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> results</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 记录intermediate字典，比如dog对应的key是d*g,do*,*og</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build_indexes</span><span class="params">(self, dict)</span>:</span></span><br><span class="line">        key_to_words = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> dict:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">                key = word[:i] + <span class="string">"%"</span> + word[i + <span class="number">1</span>:]</span><br><span class="line">                <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> key_to_words:</span><br><span class="line">                    key_to_words[key] = set([word])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    key_to_words[key].add(word)</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> key_to_words</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 从endWord开始搜索，搜索空间重心靠近endWord，这样可以避免一开始就搜索很多无效路径，命中率更高，此处需要注意！</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bfs</span><span class="params">(self, end, start, key_to_words)</span>:</span></span><br><span class="line">        queue, distance = deque([end]), &#123;end : <span class="number">0</span>&#125;</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            word = queue.popleft()</span><br><span class="line">            <span class="keyword">if</span> word == start:</span><br><span class="line">                <span class="keyword">return</span> distance</span><br><span class="line">            <span class="keyword">for</span> next_word <span class="keyword">in</span> self.get_next_words(word, key_to_words):</span><br><span class="line">                <span class="keyword">if</span> next_word <span class="keyword">in</span> distance:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                queue.append(next_word)</span><br><span class="line">                distance[next_word] = distance[word] + <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> distance</span><br><span class="line">                </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_next_words</span><span class="params">(self, word, key_to_words)</span>:</span></span><br><span class="line">        next_words = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">            key = word[:i] + <span class="string">"%"</span> + word[i + <span class="number">1</span>:]</span><br><span class="line">            <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> key_to_words:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            next_words.extend(list(key_to_words[key]))</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> next_words</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, word, end, key_to_words, distance, path, results)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> word == end:</span><br><span class="line">            results.append(list(path))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> next_word <span class="keyword">in</span> self.get_next_words(word, key_to_words):</span><br><span class="line">            <span class="keyword">if</span> next_word <span class="keyword">not</span> <span class="keyword">in</span> distance:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> distance[next_word] != distance[word] - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            path.append(next_word)</span><br><span class="line">            self.dfs(next_word, end, key_to_words, distance, path, results)</span><br><span class="line">            path.pop()</span><br></pre></td></tr></table></figure>
+<h3 id="108ms-实现-单向bfs"><a class="header-anchor" href="#108ms-实现-单向bfs">¶</a>108ms 实现（单向BFS）</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findLadders</span><span class="params">(self, beginWord: str, endWord: str, wordList: List[str])</span> -&gt; List[List[str]]:</span></span><br><span class="line">        neighbors = collections.defaultdict(list)</span><br><span class="line">        <span class="keyword">for</span> w <span class="keyword">in</span> wordList:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(w)):</span><br><span class="line">                placeholder = w[:i] + <span class="string">'_'</span> + w[i+<span class="number">1</span>:]</span><br><span class="line">                neighbors[placeholder].append(w)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># bfs + build tree</span></span><br><span class="line">        tree = collections.defaultdict(set)//记录每个已访问结点，并且将后继结点加入字典值中</span><br><span class="line">        cur_layer = &#123;beginWord&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> cur_layer <span class="keyword">and</span> <span class="keyword">not</span> endWord <span class="keyword">in</span> cur_layer:</span><br><span class="line">            next_layer = collections.defaultdict(set)</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> cur_layer:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">                    placeholder = word[:i] + <span class="string">'_'</span> + word[i+<span class="number">1</span>:]</span><br><span class="line">                    <span class="keyword">for</span> neigh <span class="keyword">in</span> neighbors[placeholder]:</span><br><span class="line">                        <span class="keyword">if</span> <span class="keyword">not</span> neigh <span class="keyword">in</span> tree:</span><br><span class="line">                            next_layer[neigh].add(word)</span><br><span class="line">                            </span><br><span class="line">            tree.update(next_layer) <span class="comment"># 这条语句位置很重要，意味着结点可能被重复遍历</span></span><br><span class="line">            cur_layer = next_layer</span><br><span class="line">            </span><br><span class="line">        <span class="comment"># dfs</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(source, dest)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> source == dest:</span><br><span class="line">                <span class="keyword">return</span> [[source]]</span><br><span class="line">            <span class="keyword">return</span> [pre_path + [dest] <span class="keyword">for</span> parent <span class="keyword">in</span> tree[dest] <span class="keyword">for</span> pre_path <span class="keyword">in</span> dfs(source, parent)]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> dfs(beginWord, endWord)</span><br></pre></td></tr></table></figure>
+<h2 id="双向搜索-parent-son字典回溯路径"><a class="header-anchor" href="#双向搜索-parent-son字典回溯路径">¶</a>双向搜索+parent/son字典回溯路径</h2>
+<p>  这个是在submission里看到的一个64ms的解法，思路是从backward = {endWord}和forward = {beginWord}分别开始搜索，将所有相邻节点形成next_forward作为下一次搜索开始的forward集合，同时为了减慢搜索空间增加的速度，每次搜索都比较backward和forward的大小，小的那个集合重新当做forward，大的重新当做backward。在搜索的过程中，用parents字典记录每个节点的前驱节点，便于最后由endWord回溯路径。代码如下：</p>
+<h3 id="双向bfs搜索-反向回溯"><a class="header-anchor" href="#双向bfs搜索-反向回溯">¶</a>双向BFS搜索，反向回溯</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findLadders</span><span class="params">(self, beginWord, endWord, wordList)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type beginWord: str</span></span><br><span class="line"><span class="string">        :type endWord: str</span></span><br><span class="line"><span class="string">        :type wordList: List[str]</span></span><br><span class="line"><span class="string">        :rtype: List[List[str]]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordList <span class="keyword">or</span> <span class="keyword">not</span> endWord <span class="keyword">or</span> <span class="keyword">not</span> beginWord:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        wordList = set(wordList)</span><br><span class="line">        forward, backward = &#123;beginWord&#125;, &#123;endWord&#125;</span><br><span class="line">        direction = <span class="number">1</span></span><br><span class="line">        parents = defaultdict(set)</span><br><span class="line">        <span class="keyword">while</span> forward <span class="keyword">and</span> backward:</span><br><span class="line">            <span class="keyword">if</span> len(forward) &gt; len(backward):</span><br><span class="line">                forward, backward = backward, forward</span><br><span class="line">                <span class="comment"># We need to trace the direction in order to distinguish the parents</span></span><br><span class="line">                direction *= <span class="number">-1</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># The new set of words which will be forward in the next iteration</span></span><br><span class="line">            next_foward = set()</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># Because all words in forward will be modified by one character</span></span><br><span class="line">            wordList -= forward</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> forward:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">                    first, second = word[:i], word[i+<span class="number">1</span>:]</span><br><span class="line">                    <span class="keyword">for</span> ch <span class="keyword">in</span> string.ascii_lowercase:</span><br><span class="line">                        combined_word = first + ch + second</span><br><span class="line">                        <span class="keyword">if</span> combined_word <span class="keyword">in</span> wordList:</span><br><span class="line">                            next_foward.add(combined_word)</span><br><span class="line">                            <span class="comment"># Because at the last part, we find parents by indexing dictionary from endWord</span></span><br><span class="line">                            <span class="comment"># So when direction == 1, the combined_word is the key</span></span><br><span class="line">                            <span class="comment"># otherwise, the combined_word should be the value of dictionary.</span></span><br><span class="line">                            <span class="keyword">if</span> direction == <span class="number">1</span>:</span><br><span class="line">                                parents[combined_word].add(word)</span><br><span class="line">                            <span class="keyword">else</span>:</span><br><span class="line">                                parents[word].add(combined_word)</span><br><span class="line">                                </span><br><span class="line">            <span class="comment"># next_foward and backward are always in different direction,</span></span><br><span class="line">            <span class="comment"># so if they have common elements we find a path.</span></span><br><span class="line">            <span class="comment"># We check and return this function inside is because this problem finds the all shortest paths</span></span><br><span class="line">            <span class="keyword">if</span> next_foward &amp; backward:</span><br><span class="line">                <span class="comment"># Starting from the endWord, we find its parent and append to results</span></span><br><span class="line">                <span class="comment"># And do this until we reach the beginWord</span></span><br><span class="line">                results = [[endWord]]</span><br><span class="line">                <span class="keyword">while</span> results[<span class="number">0</span>][<span class="number">0</span>] != beginWord:</span><br><span class="line">                    results = [ [parent] + result <span class="keyword">for</span> result <span class="keyword">in</span> results <span class="keyword">for</span> parent <span class="keyword">in</span> parents[result[<span class="number">0</span>]] ]</span><br><span class="line">                <span class="keyword">return</span> results</span><br><span class="line">            forward = next_foward</span><br><span class="line">        <span class="keyword">return</span> []</span><br></pre></td></tr></table></figure>
+<h3 id="双向bfs搜索-正向回溯"><a class="header-anchor" href="#双向bfs搜索-正向回溯">¶</a>双向BFS搜索，正向回溯</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> List <span class="comment"># 该模块作用即参数列表中冒号后面的部分，如wordList: List[str]，检查参数合法性</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findLadders</span><span class="params">(self, beginWord: str, endWord: str, wordList: List[str])</span> -&gt; List[List[str]]:</span></span><br><span class="line"></span><br><span class="line">        tree, wordSet, n = collections.defaultdict(set), set(wordList), len(beginWord)</span><br><span class="line">        <span class="keyword">if</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordSet:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">        found, fq, bq, nq, isForward = <span class="literal">False</span>, &#123;beginWord&#125;, &#123;endWord&#125;, set(), <span class="literal">True</span></span><br><span class="line">        <span class="keyword">while</span> fq <span class="keyword">and</span> <span class="keyword">not</span> found:</span><br><span class="line">            wordSet -= fq</span><br><span class="line">            <span class="keyword">for</span> curWord <span class="keyword">in</span> fq:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(len(curWord)):</span><br><span class="line">                    <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">'abcdefghijklmnopqrstuvwxyz'</span>:</span><br><span class="line">                        nextWord = curWord[:i] + c + curWord[i + <span class="number">1</span>:]</span><br><span class="line">                        <span class="keyword">if</span> nextWord <span class="keyword">in</span> wordSet:</span><br><span class="line">                            <span class="keyword">if</span> nextWord <span class="keyword">in</span> bq:</span><br><span class="line">                                found = <span class="literal">True</span></span><br><span class="line">                            <span class="keyword">else</span>:</span><br><span class="line">                                nq.add(nextWord)</span><br><span class="line">                            tree[curWord].add(nextWord) <span class="keyword">if</span> isForward <span class="keyword">else</span> tree[nextWord].add(curWord) <span class="comment"># 将后继结点加入当前结点的字典值</span></span><br><span class="line">            fq.clear()</span><br><span class="line">            fq, nq = nq, fq <span class="comment"># 此处很巧妙，将fq清空当做下一次的nq用，从而省去了重新分配和初始化nq的时间</span></span><br><span class="line">            <span class="keyword">if</span> len(fq) &gt; len(bq):</span><br><span class="line">                fq, bq, isForward = bq, fq, <span class="keyword">not</span> isForward</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">bt</span><span class="params">(word)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> word == endWord:</span><br><span class="line">                <span class="keyword">return</span> [[word]]</span><br><span class="line"></span><br><span class="line">            res = []</span><br><span class="line">            <span class="keyword">for</span> nextWord <span class="keyword">in</span> tree[word]:</span><br><span class="line">                results = bt(nextWord)</span><br><span class="line">                <span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">                    result.insert(<span class="number">0</span>, word)</span><br><span class="line">                    res.append(result)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">return</span> bt(beginWord)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/BFS/" rel="tag"><i class="fa fa-tag"></i> BFS</a>
+          
+            <a href="/tags/DFS/" rel="tag"><i class="fa fa-tag"></i> DFS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/18/leetcode-刷题日常-127-Word-Ladder/" rel="next" title="127. Word Ladder">
+                <i class="fa fa-chevron-left"></i> 127. Word Ladder
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/19/leetcode-刷题日常-130-Surrounded-Regions/" rel="prev" title="130. Surrounded Regions">
+                130. Surrounded Regions <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bfs-dfs"><span class="nav-number">2.1.</span> <span class="nav-text">¶BFS+DFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#300ms实现-我自己写的"><span class="nav-number">2.1.1.</span> <span class="nav-text">¶300ms实现 我自己写的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#128ms实现"><span class="nav-number">2.1.2.</span> <span class="nav-text">¶128ms实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#108ms-实现-单向bfs"><span class="nav-number">2.1.3.</span> <span class="nav-text">¶108ms 实现（单向BFS）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双向搜索-parent-son字典回溯路径"><span class="nav-number">2.2.</span> <span class="nav-text">¶双向搜索+parent/son字典回溯路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双向bfs搜索-反向回溯"><span class="nav-number">2.2.1.</span> <span class="nav-text">¶双向BFS搜索，反向回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向bfs搜索-正向回溯"><span class="nav-number">2.2.2.</span> <span class="nav-text">¶双向BFS搜索，正向回溯</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
