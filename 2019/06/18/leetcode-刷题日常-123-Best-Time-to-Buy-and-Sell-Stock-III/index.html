@@ -351,7 +351,7 @@
 <ul>
 <li>dp[k][i]表示到价格i为止，允许最多k次交易时的最大利润，则递推公式为:</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[k][i]=max(dp[k][i-1], prices[i]-prices[j]+dp[k-1][j])，j的范围为[0, i]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[k][i]=max(dp[k][i-1], prices[i]-prices[j]+dp[k-1][j])，j的范围为[0, i]</span><br><span class="line">注：dp[k][i-1]为不包含价格i的k次交易，prices[i]-prices[j]+dp[k-1][j]代表包含价格i的k次交易</span><br></pre></td></tr></table></figure>
 <ul>
 <li>local[i][j]为在到达第i天时最多可进行j次交易并且最后一次交易在最后一天卖出的最大利润，此为局部最优。然后我们定义global[i][j]为在到达第i天时最多可进行j次交易的最大利润，此为全局最优。递推式为：</li>
 </ul>
@@ -498,7 +498,7 @@ sell[j] = max(sell[j],buy[j]+prices[i]);//在第i点处进行第j次卖出交易
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
