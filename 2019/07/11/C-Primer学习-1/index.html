@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>C++ Primer学习笔记：第2章 变量和基本类型 | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/11/C-Primer学习-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ Primer学习笔记：第2章 变量和基本类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-11T13:56:00+08:00">2019-07-11</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>复合类型
+<ul>
+<li>声明语句=基本数据类型+（类型修饰符）声明符</li>
+<li>类型修饰符是声明符的一部分，所以要声明多个指针变量要在每个变量名前面加*符号</li>
+</ul>
+</li>
+<li>关于引用和指针
+<ul>
+<li>引用必须被初始化，绑定到初始值，之后一直不能改变</li>
+<li><strong>引用并非对象</strong>，所以不能定义引用的引用</li>
+<li>引用只能绑定在左值上，即可以取地址的值（非字面值或者表达式计算结果）</li>
+<li>引用不是对象，没有实际地址，所以不能定义指向引用的指针</li>
+<li><a href="https://blog.csdn.net/williamgavin/article/details/78825170" target="_blank" rel="noopener">关于“指针指向紧邻对象所占空间的下一个位置”的理解</a></li>
+<li><code>int &amp;*p</code>与<code>int *&amp; p</code>
+<ul>
+<li>假设p是一个指向int的指针，则指向指针的引用<code>int *&amp;r = p</code>。而<code>int &amp;*p；</code>是不正确的，它创建的是引用的指针。阅读复合类型声明时，要从右到左解读修饰符。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>const限定符
+<ul>
+<li>const对象默认情况下只在文件内有效，多个文件中可以同时定义同名的const变量（一般此时const对象值是常量表达式，编译过程中替换值）</li>
+<li>想在文件间共享const对象，必须定义和声明前都加上extern（一般此时const对象值不是常量表达式，可能要运行时才知道其值）</li>
+<li>初始化const的引用可以用任意表达式作为初始值，只要改值能转化为引用的类型，比如字面量，非常量对象，甚至是一个一般表达式（const引用可以用任意值初始化是指针类型必须和所指对象类型一致的例外情况之一，另外一种好像是面对对象的多态）</li>
+<li>顶层const和底层const
+<ul>
+<li>顶层const：指针本身是个常量</li>
+<li>底层const：指针所指对象是一个常量</li>
+<li>对象拷贝，顶层const不受什么影响，底层const需要拷入拷出对象都是底层const或者可以转换（非常量可以转换成常量，反之不行）</li>
+</ul>
+</li>
+<li>一个对象（或表达式）是不是常量表达式是由它的数据类型和初始值共同决定的，比如<code>const int sz = get_size()、int staff = 27</code>都不是常量表达式</li>
+<li>constexpr类型
+<ul>
+<li>将变量声明为constexpr以便由编译器验证变量是否是常量表达式</li>
+<li>constexpr函数，是编译时即可计算结果的函数，constexpr函数可以给constexpr变量赋初始值</li>
+<li>声明constexpr时用到的类型必须有所限制。这些类型统称为字面值类型（literal type）
+<ul>
+<li>算数类型、引用、指针是字面值类型。constexpr int a = 0；//算数类型int是字面值类型；</li>
+<li>某些类也是字面值类型，这些类叫做字面值常量类假设类Debug是字面值常量类。那么：constexpr Debug debug(args)；//生成一个constexpr对象-debug；</li>
+</ul>
+</li>
+<li>constexpr指针初始值必须是nullptr或者0，或者是存储于某个固定地址中的对象</li>
+<li><code>constexpr int *q = nullptr</code>是顶层const，<code>const int *p = nullptr</code>是底层const</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>类型处理
+<ul>
+<li>类型别名
+<ul>
+<li>由两种方法定义类型别名
+<ul>
+<li><code>typedef double wages;</code></li>
+<li><code>using SI = Sales_item;</code></li>
+</ul>
+</li>
+<li>指针，常量和类型别名
+<ul>
+<li>如果<code>typedef char *pstring;</code>，则<code>const pstring cstr = 0</code>中cstr是指向字符的常量指针，而不是指向常量字符的指针。<code>const char *cstr</code>这种理解是错的，它的基本数据类型是const char，而<code>const pstring cstr = 0</code>中的基本数据类型是const pstring</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>auto说明符
+<ul>
+<li>
+<p>auto说明符声明多个变量时，这些变量的基本数据类型必须相同。如<code>auto i = 0, *p = &amp;i</code>合法，而<code>auto sz = 0, pi = 3.14</code>不合法</p>
+</li>
+<li>
+<p>auto定义的变量<strong>必须有初始值</strong></p>
+</li>
+<li>
+<p>auto不能识别顶层const，能识别底层const，要让auto推断出顶层const，需要在auto前加上const，如<code>const auto f = ci</code></p>
+</li>
+<li>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto &amp;h = 42;//非常量引用不能绑定字面值</span><br><span class="line">auto &amp;g = ci;//g是整型常量引用，绑定到ci</span><br><span class="line">const auto &amp;j = 42;//可以为常量引用绑定字面值</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>设置一个类型为auto的引用时，初始值中的顶层常量属性仍然保留</p>
+</li>
+<li>
+<p><a href="https://segmentfault.com/q/1010000002568358" target="_blank" rel="noopener">如果给初始值绑定一个引用，则此时的常量就不是顶层常量了</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">top-level const : const 修饰的是自身。</span><br><span class="line">low-level const : const 修饰的是别人。</span><br><span class="line">            </span><br><span class="line">            POD(Plain Old Data)，类对象都只能是&quot;自身&quot;</span><br><span class="line">            指针可以是自身(指针本身)，可以是别人(指向别人)。</span><br><span class="line">            引用没有自身，只能是别人。(引用是别名)</span><br><span class="line">       </span><br><span class="line">const int ci = 0;</span><br><span class="line">auto &amp;r1 = ci; 发生了什么？</span><br><span class="line">                从 top-level const 降成 low-level const.</span><br><span class="line">                top-level const 的特质(自身无法修改)依然保留。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>decltype类型指示符</p>
+<ul>
+<li>decltype处理顶层const和引用的方式与auto有些许不同。</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const int ci = 0, &amp;cj = ci;</span><br><span class="line">decltype(ci) x = 0;//x的类型是const int</span><br><span class="line">decltype(cj) y = x;//y的类型是const int &amp;，绑定到x上</span><br><span class="line">decltype(cj) z;//错误，引用必须初始化</span><br></pre></td></tr></table></figure>
+<ul>
+<li>引用在decltype中使用时，此时并不是其所指对象的同义词。如<code>decltype(ci)</code>和<code>decltype(cj)</code>代表的类型不同</li>
+<li>decltype使用的表达式不是一个变量，则decltype返回表达式结果对应的类型</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i = 42, *p = &amp;i, &amp;r = i;</span><br><span class="line">decltype(r+0) b; // b是未初始化的int类型</span><br><span class="line">decltype(*p) c; // 错误，c是int&amp;类型，必须初始化</span><br><span class="line">decltype(r) d; // 错误，d是int的引用类型，引用必须初始化</span><br></pre></td></tr></table></figure>
+<ul>
+<li>decltype与auto的另一个重要区别是，decltype和表达式形式密切相关</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">decltype((i)) d;//错误，d是int&amp;类型，必须初始化</span><br><span class="line">decltype(i) e;//正确，e是未初始化的int类型</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>decltype((variable))</code>的结果永远是引用，而<code>decltype(variable)</code>的结果只有当variable本身就是引用时才是一个引用。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-Primer/" rel="tag"><i class="fa fa-tag"></i> C++ Primer</a>
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/11/python面向对象学习/" rel="next" title="python学习20190711">
+                <i class="fa fa-chevron-left"></i> python学习20190711
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/12/C-Primer学习笔记：第3章-字符串、向量和数组/" rel="prev" title="C++ Primer学习笔记：第3章 字符串、向量和数组">
+                C++ Primer学习笔记：第3章 字符串、向量和数组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

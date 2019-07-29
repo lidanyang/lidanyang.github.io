@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>C++ Primer学习笔记：第4章 表达式 | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/C-Primer学习笔记：第4章-表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ Primer学习笔记：第4章 表达式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-12T19:15:00+08:00">2019-07-12</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>4.1 基础</h1>
+<ul>
+<li>
+<p>4.1.1 基本概念</p>
+<ul>
+<li>组合运算符和运算对象
+<ul>
+<li>优先级、结合律、求值顺序</li>
+</ul>
+</li>
+<li>运算对象转换</li>
+<li>运算符重载
+<ul>
+<li>运算对象个数，优先级和结合律无法改变</li>
+</ul>
+</li>
+<li>左值和右值
+<ul>
+<li>当一个对象被用作右值的时候，用的是对象的值（内容）；当对象被用作左值时，用的是对象的身份（内存中的位置）</li>
+<li>在需要右值的地方可以用左值代替，但是不能把右值当成左值（位置）使用。当一个左值被当成右值使用时，实际使用的是它的内容。</li>
+<li>内置解引用运算符、下标运算符、迭代器解引用运算符、string和vector下标运算符的求值结果都是左值</li>
+<li>内置类型和迭代器的递增递减运算符作用于左值对象，其前置版的结果亦是左值</li>
+<li>如果表达式求值结果是左值，decltype作用于该表达式（不是变量）得到一个引用类型。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4.1.2 优先级与结合律</p>
+<ul>
+<li>结合律：从右到左，还是从左到右</li>
+<li>优先级：乘法和除法的优先级相同且都高于加法优先级</li>
+<li>括号无视优先级和结合律</li>
+</ul>
+</li>
+<li>
+<p>4.1.3 求值顺序</p>
+<ul>
+<li>只有4种运算符明确规定了运算对象的求值顺序（&amp;&amp; 、|| 、?:和,）</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">结合律和优先级确定的是运算符的运算对象是谁，但并没有规定算的顺序。2+3*4+5它的结合性是(2+(3*4))+5，但是不代表3*4是最先计算的，它的计算次序是未知的，未定义的。比如3*4-&gt;2+3*4-&gt;2+3*4+5以及2-&gt;3*4-&gt;2+3*4-&gt;2+3*4+5和5-&gt;3*4-&gt;2+3*4-&gt;2+3*4+5这些次序都是有可能的。虽然它们的计算次序不同，但是对最终结果是没有影响的。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>求值顺序、优先级、结合律</p>
+<ul>
+<li>运算对象的求值顺序与优先级和结合律无关</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">比如f()+g()*h()+j()，如果f,g,h,j会改变同一对象，则是错误表达式，会产生未定义行为</span><br></pre></td></tr></table></figure>
+<ul>
+<li>两个处理复合表达式的原则
+<ul>
+<li>拿不准的时候用括号</li>
+<li>如果改变了某个运算对象的值，在表达式的其他地方不要再使用这个运算符。改变运算对象的子表达式本身就是另外一个子表达式的运算对象时，该规则无效。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>4.2 算术运算符</h1>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>一元正号</td>
+<td>+ expr</td>
+</tr>
+<tr>
+<td>-</td>
+<td>一元负号</td>
+<td>- expr</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘法</td>
+<td>expr*expr</td>
+</tr>
+<tr>
+<td>/</td>
+<td>除法</td>
+<td>expr/expr</td>
+</tr>
+<tr>
+<td>%</td>
+<td>求余</td>
+<td>expr%expr</td>
+</tr>
+<tr>
+<td>+</td>
+<td>加法</td>
+<td>expr+expr</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减法</td>
+<td>expr-expr</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>以上表格运算符均为左结合律</li>
+<li>除法运算，结果为负值时向0取整</li>
+<li>根据取余运算定义，如果m，n是整数且n非0，则表达式（m/n）*n+m%n的结果与m相等。即如果m%n不等于0，则其符号与m相同。除了-m导致溢出的情况，其他时候(-m)/n和m/(-n)都等于-(m/n)，m%(-n)等于m%n，(-m)%n等于-(m%n)</li>
+</ul>
+<h1>4.3 逻辑和关系运算符</h1>
+<table>
+<thead>
+<tr>
+<th>结合律</th>
+<th>运算符</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>右</td>
+<td>!</td>
+<td>逻辑非</td>
+<td>!expr</td>
+</tr>
+<tr>
+<td>左</td>
+<td>&lt;</td>
+<td>小于</td>
+<td>expr&lt;expr</td>
+</tr>
+<tr>
+<td>左</td>
+<td>&lt;=</td>
+<td>小于等于</td>
+<td>expr&lt;=expr</td>
+</tr>
+<tr>
+<td>左</td>
+<td>&gt;</td>
+<td>大于</td>
+<td>expr&gt;expr</td>
+</tr>
+<tr>
+<td>左</td>
+<td>&gt;=</td>
+<td>大于等于</td>
+<td>expr&gt;=expr</td>
+</tr>
+<tr>
+<td>左</td>
+<td>==</td>
+<td>相等</td>
+<td>expr==expr</td>
+</tr>
+<tr>
+<td>左</td>
+<td>!=</td>
+<td>不相等</td>
+<td>expr!=expr</td>
+</tr>
+<tr>
+<td>左</td>
+<td>&amp;&amp;</td>
+<td>逻辑与</td>
+<td>expr&amp;&amp;expr</td>
+</tr>
+<tr>
+<td>左</td>
+<td>||</td>
+<td>逻辑或</td>
+<td>expr||expr</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>关系运算符作用于算术或指针类型，逻辑运算符作用于能转换成布尔值的类型</li>
+<li>逻辑与和逻辑或
+<ul>
+<li>短路求值</li>
+</ul>
+</li>
+<li>逻辑非</li>
+<li>关系运算符
+<ul>
+<li>不要连写，如i &lt; j &lt; k</li>
+</ul>
+</li>
+<li>相等性测试与布尔字面值
+<ul>
+<li><code>if(val==true)</code>是有问题的写法，因为比较之前会将true转换成val类型，则代码可以改写成`if(val==1)</li>
+<li>进行比较运算时，除非比较的对象是布尔类型，否则不要使用布尔字面值true和false作为运算对象</li>
+</ul>
+</li>
+</ul>
+<h1>4.4 赋值运算符</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">初始值列表赋值时，如果左侧对象是内置类型，则初值列表最多只能包含一个值，而且该值即使转换其空间也不应该大于目标类型空间。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>赋值运算满足右结合律</li>
+<li>赋值运算符优先级较低
+<ul>
+<li>条件语句中的赋值部分应该加上括号</li>
+</ul>
+</li>
+<li>切勿混淆相等运算符和赋值运算符</li>
+<li>复合赋值运算符(如+=,-=,…)
+<ul>
+<li>和对应的非复合赋值表达式的区别在于左侧对象的求值次数:复合运算符只求值一次，普通运算符求值两次</li>
+</ul>
+</li>
+</ul>
+<h1>4.5 递增递减运算符</h1>
+<ul>
+<li>除非必须，否则不用递增递减运算符的后置版本</li>
+<li>在一条语句中混用解引用和递增</li>
+<li>运算对象可按任意顺序求值，如<code>*beg = toupper(*beg++)</code>将产生未定义的行为</li>
+</ul>
+<h1>4.6 成员访问运算符</h1>
+<ul>
+<li>
+<p>解引用运算符优先级低于点运算符，如<code>*p.size()</code>等价于<code>*(p.size())</code></p>
+</li>
+<li>
+<p><strong>箭头运算符作用于一个指针类型的运算对象，结果是一个左值；</strong></p>
+</li>
+<li>
+<p>点运算符分两种情况</p>
+<ul>
+<li>
+<p>如果成员所属对象是左值，则结果是左值；</p>
+</li>
+<li>
+<p>反之，如果成员所属对象是右值，则结果是右值；</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    A() = <span class="keyword">default</span>;</span><br><span class="line">    A(<span class="keyword">int</span> m): n(m) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">A <span class="title">st</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">    A* pst = &amp;st;</span><br><span class="line">     </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; st.n &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//输出5，st是左值，在该表达式执行完毕后依然存在</span></span><br><span class="line">    st.n = <span class="number">6</span>;               <span class="comment">//合法，可以对左值赋值</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; pst-&gt;n &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//输出6，pst是左值，在该表达式执行完毕后依然存在</span></span><br><span class="line">    pst-&gt;n = <span class="number">7</span>;             <span class="comment">//合法，可以对左值赋值</span></span><br><span class="line"> </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; A(<span class="number">8</span>).n &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//输出8，A(8)是右值，在该表达式执行完毕后被销毁</span></span><br><span class="line">    A(<span class="number">8</span>).n = <span class="number">9</span>;             <span class="comment">//非法，不能对右值赋值</span></span><br><span class="line">    pst = &amp;(A(<span class="number">8</span>));          <span class="comment">//非法，不能取右值的地址</span></span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//因为指针所指的对象一定是一个左值，所以使用-&gt;返回的成员也一定是左值。而对右值对象调用成员调用运算符（.）是合法行为，但是这个被调用的成员在对象被销毁时也一并被销毁，所以整个成员也是右值。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1>4.7 条件运算符(?:)</h1>
+<ul>
+<li>当条件运算符两个表达式都是左值或者能转换成同一种左值类型时，则运算的结果是左值；否则运算结果是右值</li>
+</ul>
+<blockquote>
+<p>关于“能转换成同一种左值类型时，则运算的结果是左值”的问题:</p>
+<p>I read this post to get an overview of the type and value category returned from the conditional operator: <a href="https://stackoverflow.com/questions/8535226/return-type-of-ternary-conditional-operator" target="_blank" rel="noopener">Return type of ‘?:’ (ternary conditional operator)</a></p>
+<p>That answers pretty much my question, except the phrasing in C++ Primer to describe the same thing confuses me slightly.</p>
+<p>“That result of the conditional operator is an lvalue if both expressions are lvalues <strong>or if they convert to a common lvalue type</strong>. Otherwise the result is an rvalue.”</p>
+<p>The bolded bit throws me off. This would suggest to me that, for instance</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">&gt; </span><br><span class="line">&gt;     <span class="keyword">int</span> y = <span class="number">2</span>;</span><br><span class="line">&gt;     <span class="keyword">char</span> z = <span class="number">3</span>;</span><br><span class="line">&gt; </span><br><span class="line">&gt;     ((<span class="number">50</span>&lt;<span class="number">60</span>) ? y : z) = <span class="number">3</span>;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>would be fine, because y and z can be both converted to int (well, z would be the one converted) which is an lvalue type (right?), thus the conditional operator would give an lvalue as its value category. This codedoes not compile however, because it actually gives out an rvalue. Can anyone provide an example of the exceptional case mentioned by the bolded bit, so I can understand what point it’s trying to make?</p>
+<p>My understanding seems to be that: If the expression are lvalues of the same type, then an lvalue of that type is returned. Otherwise an rvalue (of some compiler-determined type) is returned.</p>
+<p>解答:</p>
+<p>If <code>z</code> is converted to <code>int</code>, the lvalue-to-rvalue conversion has already been applied, and the result is a prvalue, not an lvalue.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; int a = 10;</span><br><span class="line">&gt; (long)a = 1;//非法，因为a发生了左值到右值(lvalue-to-rvalue)的类型转换，(long)a是右值</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>One example of <code>?:</code> where the two operands have different types, but the result is an lvalue, is when one is <code>const</code>-qualified and the other isn’t:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">const</span> <span class="keyword">int</span> &amp;<span class="title">f</span><span class="params">(<span class="keyword">bool</span> a, <span class="keyword">int</span> &amp;b, <span class="keyword">const</span> <span class="keyword">int</span> &amp;c)</span> </span>&#123;</span><br><span class="line">&gt;   <span class="comment">// b has type int, c has type const int, the result is an lvalue of type const int</span></span><br><span class="line">&gt;   <span class="keyword">return</span> a ? b : c;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>Another example is where one is a class with a custom conversion operator:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="class"><span class="keyword">struct</span> <span class="title">S</span> &#123;</span></span><br><span class="line">&gt;   <span class="keyword">operator</span> <span class="keyword">int</span>&amp;();</span><br><span class="line">&gt; &#125;;</span><br><span class="line">&gt; <span class="function"><span class="keyword">int</span> &amp;<span class="title">f</span><span class="params">(<span class="keyword">bool</span> a, <span class="keyword">int</span> &amp;b, S &amp;c)</span> </span>&#123;</span><br><span class="line">&gt;   <span class="comment">// b has type int, c has type S, the result is an lvalue of type int</span></span><br><span class="line">&gt;   <span class="comment">// if a is false, c's conversion operator is called</span></span><br><span class="line">&gt;   <span class="keyword">return</span> a ? b : c;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li>
+<p>嵌套条件运算符</p>
+<ul>
+<li>右结合律</li>
+<li>条件运算的嵌套最好别超过两到三层。</li>
+</ul>
+</li>
+<li>
+<p>在输出表达式中使用条件运算符</p>
+<ul>
+<li>
+<p>条件运算符的优先级非常低，因此当一条长表达式中嵌套了条件运算子表达式时，通常需要加上括号。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; ((grade &lt; <span class="number">60</span>) ? <span class="string">"fail"</span> : <span class="string">"pass"</span>);<span class="comment">//输出pass或fail</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; (grade &lt; <span class="number">60</span>) ? <span class="string">"fail"</span> : <span class="string">"pass"</span>;<span class="comment">//输出1或者0</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; grade &lt; <span class="number">60</span> ? <span class="string">"fail"</span> : <span class="string">"pass"</span>;<span class="comment">//错误，师徒比较cout和60</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1>4.8 位运算符</h1>
+<ul>
+<li>位运算符（左结合律）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>~</td>
+<td>位求反</td>
+<td>~expr</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>左移</td>
+<td>expr1&lt;&lt;expr2</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>右移</td>
+<td>expr1&gt;&gt;expr2</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>位与</td>
+<td>expr&amp;expr</td>
+</tr>
+<tr>
+<td>^</td>
+<td>位异或</td>
+<td>expr^expr</td>
+</tr>
+<tr>
+<td>|</td>
+<td>位或</td>
+<td>expr|expr</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>移位运算符
+<ul>
+<li>运算对象如果是“小整型”，则它的值会被自动提升成较大整型</li>
+<li>左侧运算对象按照右侧的要求移动位数，然后将经过移动的（可能进行了类型提升）左侧运算对象的拷贝作为求值结果。其中右侧运算对象一定不能为负，而且值必须严格小于结果的位数。</li>
+<li>左移右侧插入0</li>
+<li>右移根据有无符号和具体环境</li>
+</ul>
+</li>
+<li>位求反运算符
+<ul>
+<li>char类型首先提升成int类型，然后逐位求反</li>
+</ul>
+</li>
+<li>位与、位或、位异或运算符</li>
+<li>使用位运算符
+<ul>
+<li>unsigned long在任何机器上都至少有32位</li>
+</ul>
+</li>
+<li>移位运算符（IO运算符）满足左结合律
+<ul>
+<li>移位运算符优先级不高不低，介于中间：比算术运算符优先级低，但是比关系运算符、赋值运算符和条件运算符要高</li>
+</ul>
+</li>
+</ul>
+<h1>4.9 sizeof运算符</h1>
+<ul>
+<li>形式
+<ul>
+<li><code>sizeof (type)</code></li>
+<li><code>sizeof expr</code></li>
+</ul>
+</li>
+<li>sizeof满足右结合律并且和*解引用运算符优先级一样，所以以下两者等价
+<ul>
+<li><code>sizeof *p</code></li>
+<li><code>sizeof(*p)</code></li>
+</ul>
+</li>
+<li>C++11允许使用作用域运算符获取类成员大小
+<ul>
+<li>sizeof运算符的结果部分依赖于其作用的类型</li>
+<li>引用类型返回被引用对象的空间的大小</li>
+<li>对指针执行sizeof运算返回的是指针所占的空间的大小</li>
+<li>对指针解引用执行sizeof运算，返回其指向的对象的所占空间大小。</li>
+<li>对指针解引用执行sizeof运算，不需要其指向对象有效，只要有类型即可。</li>
+<li>对数组进行sizeof运算，返回的是数组的大小，也就是相当于对数组的所有元素执行一次sizeof 并且相加！</li>
+<li>对string和vector对象进行sizeof运算只返回该类型固定部分的大小，不会计算对象元素占用多少空间</li>
+</ul>
+</li>
+<li>sizeof返回值是常量表达式，可以用sizeof结果声明数组的维数</li>
+</ul>
+<h1>4.10 运算符</h1>
+<ul>
+<li>逗号运算符和逻辑与，逻辑或，条件运算符一样，也规定了运算对象的求值顺序</li>
+<li>逗号运算符的真正结果是右侧表达式的值。右侧对象如果是左值，则最终结果也是左值</li>
+</ul>
+<h1>4.11 类型转换</h1>
+<ul>
+<li>
+<p>何时转换</p>
+<ul>
+<li>在大多数表达式中，比int小的首先提升为较大整数类型</li>
+<li><strong>在条件中</strong>，非布尔值转换成布尔</li>
+<li>初始化时，初始值转换为变量的类型；赋值语句右侧转为左侧的类型</li>
+<li>算术或关系的运算对象需要转换成同一种类型</li>
+<li>函数调用也会发生转换</li>
+</ul>
+</li>
+<li>
+<p>4.11.1 算术转换</p>
+<ul>
+<li>
+<p>整型提升</p>
+</li>
+<li>
+<p>char类型提升成int，unsigned int，long，unsigned long、long long和unsigned long long中最小的一种类型</p>
+</li>
+<li>
+<p>无符号类型运算对象</p>
+<ul>
+<li>首先，整型提升。如果类型匹配（同为有符号或无符号），则小类型转为大类型</li>
+<li>如果一个是有符号，一个无符号，无符号类型不小于有符号类型，则有符号转换成无符号的类型。如unsigned int和int，int转换成unsigned int</li>
+<li>如果有符号大于无符号类型，此时依赖于机器。如果无符号<strong>所有值都能存在有符号类型中</strong>，则无符号转成有符号的类型；否则有符号转换成无符号类型。如long和unsigned int，大小相同，则long转为unsigned int；否则，unsigned int转为long</li>
+</ul>
+</li>
+<li>
+<p>4.11.2 其它隐式类型转换</p>
+<ul>
+<li>数组转换成指针
+<ul>
+<li>当数组用作decltype的参数，或者取地址符、sizeof和typeid的运算对象时，不会发生转换</li>
+<li>初始化一个数组的引用时，也不会发生转换</li>
+</ul>
+</li>
+<li>指针转换
+<ul>
+<li>常量整数值0或字面值nullptr能转换成任意指针类型</li>
+<li>指向任意非常量的指针可以转换成void*</li>
+<li>指向任意对象的指针可以转换成const void*</li>
+</ul>
+</li>
+<li>转换成bool类型
+<ul>
+<li>如果指针或算术类型的值为0，转换结果为false，否则为true</li>
+</ul>
+</li>
+<li>转换成常量
+<ul>
+<li>允许将指向非常量类型的指针转换成指向相应的常量类型指针，反过来不行</li>
+</ul>
+</li>
+<li>类类型的转换
+<ul>
+<li>类类型能定义由编译器自动执行的转换，不过编译器每次只能执行一种类类型的转换</li>
+<li>istream类对象向bool值转换时，读入成功，则转成true；读入失败，转成false</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4.11.3 显示转换</p>
+<ul>
+<li>
+<p>命名的强制转换</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast-name&lt;type&gt;(expression);<span class="comment">//type是目标类型，expression是要转换的值，cast-name是static_cast、dynamic_cast、const_cast和reinterpret_cast中的一种，用来指定执行的转换类型</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>static_cast</p>
+<ul>
+<li>
+<p>任何具有明确定义的类型转换，只要不包含底层const，都可以使用static_cast。如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 进行强制类型转换以便执行浮点数除法</span></span><br><span class="line"><span class="keyword">double</span> slope = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(j) / i;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>const_cast</p>
+<ul>
+<li>
+<p>const_cast<strong>只能改变运算对象的底层const</strong>。对于将常量对象转换成非常量对象的行为，我们一般称为“<strong>去掉cosnt性质</strong>”。例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *pc;</span><br><span class="line"><span class="keyword">char</span> *p = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(pc);  <span class="comment">// 正确：但是通过p写值是未定义的行为</span></span><br><span class="line"><span class="comment">// 一旦去掉某个对象的const性质，编译器就不再阻止我们对该对象进行写操作了</span></span><br><span class="line"><span class="comment">//如果对象本身不是一个常量，使用强制类型转换获得写权限是合法的行为</span></span><br><span class="line"><span class="comment">//如果对象是一个常量，再使用const_cast执行写操作就会产生未定义的后果</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>const_cast只能也只有const_cast能用来改变表达式的常量属性，不能用const_cast改变变量类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *cp;</span><br><span class="line"> <span class="keyword">char</span> *q = <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span> *&gt;(cp);   <span class="comment">// 错误：static_cast不能转换掉const性质</span></span><br><span class="line"><span class="keyword">static_cast</span>&lt;<span class="built_in">string</span>&gt;(cp);     <span class="comment">// 正确：字符串字面值转换成stirng类型    </span></span><br><span class="line"><span class="keyword">const_cast</span>&lt;<span class="built_in">string</span>&gt;(cp);    <span class="comment">// 错误：const_cast只能改变常量属性</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>reinterpret_cast</p>
+<ul>
+<li>reinterpret_cast 通常为运算对象的位模式提供较低层次上的<strong>重新解释</strong>。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ip;</span><br><span class="line"><span class="keyword">char</span> *pc = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">char</span>*&gt;(ip);  <span class="comment">// 我们必须牢记pc所指真实对象是一个int而非字符</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>旧式的强制类型转换：</p>
+</li>
+</ul>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *pc = (<span class="keyword">char</span> *) ip;    <span class="comment">// ip是指向整数的指针</span></span><br><span class="line"><span class="comment">// 效果与使用reinterpret_cast一样</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-Primer/" rel="tag"><i class="fa fa-tag"></i> C++ Primer</a>
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/12/C-Primer学习笔记：第3章-字符串、向量和数组/" rel="next" title="C++ Primer学习笔记：第3章 字符串、向量和数组">
+                <i class="fa fa-chevron-left"></i> C++ Primer学习笔记：第3章 字符串、向量和数组
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/13/C-Primer学习笔记：第5章-语句/" rel="prev" title="C++ Primer学习笔记：第5章 语句">
+                C++ Primer学习笔记：第5章 语句 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">4.1 基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">4.2 算术运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">4.3 逻辑和关系运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">4.4 赋值运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">4.5 递增递减运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">4.6 成员访问运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">4.7 条件运算符(?:)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">4.8 位运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">4.9 sizeof运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">4.10 运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">11.</span> <span class="nav-text">4.11 类型转换</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

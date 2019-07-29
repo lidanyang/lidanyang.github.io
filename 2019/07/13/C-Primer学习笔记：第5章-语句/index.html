@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>C++ Primer学习笔记：第5章 语句 | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/C-Primer学习笔记：第5章-语句/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ Primer学习笔记：第5章 语句</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T19:36:00+08:00">2019-07-13</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++ </span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>5.1 简单语句</h1>
+<ul>
+<li>空语句</li>
+<li>别漏写分号，也别多写分号</li>
+<li>复合语句（块）</li>
+</ul>
+<h1>5.2 语句作用域</h1>
+<blockquote>
+<p>这一节有什么意义？</p>
+</blockquote>
+<h1>5.3 条件语句</h1>
+<h2 id="5-3-1-if语句"><a class="header-anchor" href="#5-3-1-if语句">¶</a>5.3.1 if语句</h2>
+<ul>
+<li>
+<p>使用if else语句</p>
+</li>
+<li>
+<p>嵌套if语句</p>
+</li>
+<li>
+<p>注意使用花括号</p>
+</li>
+<li>
+<p>悬垂else（dangling else）</p>
+<ul>
+<li>else与离它最近的尚未匹配的if匹配</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (grade % <span class="number">10</span> &gt;= <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">if</span> (grade % <span class="number">10</span> &gt; <span class="number">7</span>)</span><br><span class="line">        lettergrade += <span class="string">'+'</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    lettergrade += <span class="string">'-'</span>;</span><br><span class="line"><span class="comment">//上述代码的执行过程和缩进格式不相符，其执行过程实际上等价于如下形式</span></span><br><span class="line"><span class="keyword">if</span> (grade % <span class="number">10</span> &gt;= <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">if</span> (grade % <span class="number">10</span> &gt; <span class="number">7</span>)</span><br><span class="line">        lettergrade += <span class="string">'+'</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        lettergrade += <span class="string">'-'</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用花括号控制执行路径</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-3-2-switch语句"><a class="header-anchor" href="#5-3-2-switch语句">¶</a>5.3.2 switch语句</h2>
+<ul>
+<li>
+<p>case关键字和它对应的值一起被称为case标签。case标签必须是整型常量表达式</p>
+</li>
+<li>
+<p>switch内部控制流</p>
+<ul>
+<li>
+<p>case标签匹配成功，将从该标签开始往后顺序执行所有case分支，除非程序显示中断这一过程，否则直到switch结尾才会停下来</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (ch)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'a'</span>:<span class="keyword">case</span> <span class="string">'e'</span>:<span class="keyword">case</span> <span class="string">'i'</span>:<span class="keyword">case</span> <span class="string">'o'</span>:<span class="keyword">case</span> <span class="string">'u'</span>:</span><br><span class="line">        ++vowelCnt;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>漏写break容易引发缺陷</p>
+</li>
+<li>
+<p>default标签</p>
+<ul>
+<li>没有任何一个case标签匹配上的时候，程序会执行紧跟于default之后的语句</li>
+<li>如果switch结构以一个空的default标签作为结束，则该default标签后面必须跟上一条空语句或者空块</li>
+</ul>
+</li>
+<li>
+<p>switch内部的变量定义</p>
+<ul>
+<li>
+<p>如果在某处一个带有初值的变量位于作用域之外，在另一处该变量位于作用域之内，则从前一处跳转到后一处的行为是非法行为（也就是<strong>跳过带有显示或隐式初始化的变量的声明</strong>）</p>
+</li>
+<li>
+<p>不允许跨过变量的初始化语句直接跳转到该变量作用域内的另一个位置</p>
+</li>
+<li>
+<p>如果要为某个case分支定义并初始化一个变量，应该把变量定义在块内，从而确保后面的所有case都在变量的作用域之外</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="literal">true</span>:</span><br><span class="line">	<span class="comment">//因为程序的执行流程可能绕开下面的初始化语句，所以该switch语句不合法</span></span><br><span class="line">	<span class="built_in">string</span> file_name;<span class="comment">//错误：控制流绕过一个隐式初始化的变量</span></span><br><span class="line">	<span class="keyword">int</span> ival = <span class="number">0</span>;<span class="comment">//错误：控制流绕过一个显示初始化的变量</span></span><br><span class="line">	<span class="keyword">int</span> jval;<span class="comment">//正确：因为jval没有初始化</span></span><br><span class="line">	<span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="literal">false</span>:</span><br><span class="line">	<span class="comment">//正确：jval虽然在作用域内，但是它没有被初始化</span></span><br><span class="line">	jval = next_num();<span class="comment">//正确：给jval赋一个值</span></span><br><span class="line">	<span class="keyword">if</span> (file_name.empty())<span class="comment">//file_name在作用域内，但是没有被初始化</span></span><br><span class="line">        <span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1>5.4 迭代语句</h1>
+<h2 id="5-4-1-while语句"><a class="header-anchor" href="#5-4-1-while语句">¶</a>5.4.1 while语句</h2>
+<ul>
+<li>定义在while条件部分或者while循环体内的变量每次迭代都经历从创建到销毁的过程</li>
+<li>使用while循环的场合
+<ul>
+<li>不确定要迭代多少次</li>
+<li>循环后想访问循环控制变量</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-4-2-传统for语句"><a class="header-anchor" href="#5-4-2-传统for语句">¶</a>5.4.2 传统for语句</h2>
+<ul>
+<li>
+<p>传统for的执行流程</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(initializer;condition;expression) </span><br><span class="line">	statement</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<div id="flowchart-0" class="flow-chart"></div>
+<ul>
+<li>for语句头中的多重声明
+<ul>
+<li>init-statement可以定义多个对象，但是只能有一条声明语句，所有变量的基础类型必须相同</li>
+</ul>
+</li>
+<li>省略for语句头中的某些部分
+<ul>
+<li>可以省略任何一个或者全部</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-4-3-范围for语句"><a class="header-anchor" href="#5-4-3-范围for语句">¶</a>5.4.3 范围for语句</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//for(declaration : expression)</span></span><br><span class="line"><span class="comment">//	statement;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> &amp;r : v)</span><br><span class="line">    r *= <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="5-4-4-do-while语句"><a class="header-anchor" href="#5-4-4-do-while语句">¶</a>5.4.4 do while语句</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//do</span></span><br><span class="line"><span class="comment">//	statement</span></span><br><span class="line"><span class="comment">//while (condition);</span></span><br><span class="line"><span class="comment">//condition使用的变量必须定义在循环体之外</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//不允许在条件部分定义变量</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    mumble(foo);</span><br><span class="line">&#125; <span class="keyword">while</span> (<span class="keyword">int</span> foo = get_foo());<span class="comment">//错误：将变量声明放在了do的条件部分</span></span><br></pre></td></tr></table></figure>
+<h1>5.5 跳转语句</h1>
+<h2 id="5-5-1-break语句"><a class="header-anchor" href="#5-5-1-break语句">¶</a>5.5.1 break语句</h2>
+<h2 id="5-5-2-continue语句"><a class="header-anchor" href="#5-5-2-continue语句">¶</a>5.5.2 continue语句</h2>
+<ul>
+<li>只有switch语句嵌套在迭代语句内部，才能在switch里使用continue</li>
+<li>continue中断迭代，对于while或者do while来说，继续判断条件的值；对于传统的for循环，继续执行for语句头的expression；对于范围for来说，使用序列中的下一个元素初始化循环控制变量</li>
+</ul>
+<h2 id="5-5-3-goto语句"><a class="header-anchor" href="#5-5-3-goto语句">¶</a>5.5.3 goto语句</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">goto</span> label;</span><br><span class="line"></span><br><span class="line">label: statement</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>//goto语句的作用是从goto语句无条件跳转到<strong>同一函数内</strong>的另一条语句</p>
+</li>
+<li>
+<p>标签标示符独立于变量或其他标示符的名字，所以可以和程序中其他实体的标示符用同一个名字而不会互相干扰</p>
+</li>
+<li>
+<p>goto语句和label语句必须在同一个函数之内</p>
+</li>
+<li>
+<p>和switch类似，goto也不能将控制权从变量的作用域之外转移到作用域之内</p>
+</li>
+<li>
+<p>向后跳过一个已经执行的定义是合法的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">begin:</span><br><span class="line">	<span class="keyword">int</span> sz = get_size();</span><br><span class="line">	<span class="keyword">if</span> (sz &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">goto</span> begin;<span class="comment">//goto执行后销毁sz，sz会重新定义和初始化</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1>5.6 try语句块和异常处理</h1>
+<blockquote>
+<p>异常处理机制为程序中异常检测和异常处理两部分的协作提供支持</p>
+</blockquote>
+<h2 id="5-6-1-throw表达式"><a class="header-anchor" href="#5-6-1-throw表达式">¶</a>5.6.1 throw表达式</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (item1.isbn() != item2.isbn())</span><br><span class="line">	<span class="keyword">throw</span> runtime_error(<span class="string">"Data must refer to same ISBN"</span>);</span><br><span class="line"><span class="comment">//抛出异常将终止当前函数，并把控制权转移给能处理该异常的代码</span></span><br><span class="line"><span class="comment">//runtime_error定义在stdexcept中</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-6-2-try语句块"><a class="header-anchor" href="#5-6-2-try语句块">¶</a>5.6.2 try语句块</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	program-statements</span><br><span class="line">&#125; <span class="keyword">catch</span> (exception-declaration) &#123;</span><br><span class="line">    handler-statements</span><br><span class="line">&#125; <span class="keyword">catch</span> (exception-declaration) &#123;</span><br><span class="line">    handler-statements</span><br><span class="line">&#125;<span class="comment">//...</span></span><br><span class="line"><span class="comment">//catch括号中是一个（可能未命名的）对象的声明，称作异常声明</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; item1 &gt;&gt; item2) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//执行添加两个Sales_item对象的代码</span></span><br><span class="line">        <span class="comment">//如果添加失败，抛出runtime_error异常</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (runtime_error err) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; err.what()<span class="comment">//what函数返回初始化具体对象时所用的string对象的副本，是一个C风格的字符串(const char *)，what函数没有参数，每个标准库异常类都定义了what函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数在寻找处理代码的过程中退出
+<ul>
+<li>沿着程序执行路径逐层回退，直到找到适当类型的catch子句为止</li>
+<li>如果没有找到匹配的catch子句，则转到名为terminate的标准库函数，此函数的行为与系统有关，一般情况下，执行此函数将导致程序非正常退出。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-6-3-标准异常"><a class="header-anchor" href="#5-6-3-标准异常">¶</a>5.6.3 标准异常</h2>
+<ul>
+<li>C++标准库定义了一组类，用于报告标准库函数遇到的问题。这些异常类可以在用户编写的程序中使用。
+<ul>
+<li>exception 头文件定义了最通用的异常类 exception。它只报告异常的发生，不提供任何额外信息</li>
+</ul>
+</li>
+<li>stdexcept 头文件定义了几种常用的异常类
+<ul>
+<li>new 头文件定义了 bad_alloc 异常类型</li>
+<li>type_info 头文件定义了 bad_cast 异常类型</li>
+</ul>
+</li>
+<li>我们只能以默认初始化的方式初始化 exception、bad_alloc 和 bad_cast 对象，不允许为它们提供初始值</li>
+<li>其他异常类型的行为则恰好相反：应该使用 string 对象或者 C 风格字符串初始化这些类型的对象，但是不允许使用默认初始化的方式</li>
+<li>what 函数返回的 C 风格字符串的内容与其他异常对象的类型有关。如果异常类型有一个字符串初始值，则 what 返回该字符串。对于其他无初始值的异常类型来说，what 返回的内容也由编译器决定<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: Start
+ed=>end: End
+cond1=>condition: condition
+init=>operation: initializer
+statement=>operation: statement
+expr=>operation: expression
+st->init
+init->cond1
+cond1(no)->ed
+cond1(yes)->statement
+statement->expr
+expr->cond1</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-Primer/" rel="tag"><i class="fa fa-tag"></i> C++ Primer</a>
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/12/C-Primer学习笔记：第4章-表达式/" rel="next" title="C++ Primer学习笔记：第4章 表达式">
+                <i class="fa fa-chevron-left"></i> C++ Primer学习笔记：第4章 表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">5.1 简单语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">5.2 语句作用域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">5.3 条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-1-if语句"><span class="nav-number">3.1.</span> <span class="nav-text">¶5.3.1 if语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-2-switch语句"><span class="nav-number">3.2.</span> <span class="nav-text">¶5.3.2 switch语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">5.4 迭代语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-1-while语句"><span class="nav-number">4.1.</span> <span class="nav-text">¶5.4.1 while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-2-传统for语句"><span class="nav-number">4.2.</span> <span class="nav-text">¶5.4.2 传统for语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-3-范围for语句"><span class="nav-number">4.3.</span> <span class="nav-text">¶5.4.3 范围for语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-4-do-while语句"><span class="nav-number">4.4.</span> <span class="nav-text">¶5.4.4 do while语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">5.5 跳转语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-1-break语句"><span class="nav-number">5.1.</span> <span class="nav-text">¶5.5.1 break语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-2-continue语句"><span class="nav-number">5.2.</span> <span class="nav-text">¶5.5.2 continue语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-3-goto语句"><span class="nav-number">5.3.</span> <span class="nav-text">¶5.5.3 goto语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">5.6 try语句块和异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-1-throw表达式"><span class="nav-number">6.1.</span> <span class="nav-text">¶5.6.1 throw表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-2-try语句块"><span class="nav-number">6.2.</span> <span class="nav-text">¶5.6.2 try语句块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-3-标准异常"><span class="nav-number">6.3.</span> <span class="nav-text">¶5.6.3 标准异常</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
