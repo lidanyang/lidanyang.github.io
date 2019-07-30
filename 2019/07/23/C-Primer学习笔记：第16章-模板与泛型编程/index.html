@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>C++ Primer学习笔记：第16章 模板与泛型编程 | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/23/C-Primer学习笔记：第16章-模板与泛型编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ Primer学习笔记：第16章 模板与泛型编程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-23T11:36:00+08:00">2019-07-23</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>16.1 定义模板</h1>
+<h2 id="16-1-1-函数模板"><a class="header-anchor" href="#16-1-1-函数模板">¶</a>16.1.1 函数模板</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> T &amp;v1, <span class="keyword">const</span> T &amp;v2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(v1 &lt; v2) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(v2 &lt; v1) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//模板参数列表&lt;typename T&gt;不能为空</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>实例化函数模板</p>
+</li>
+<li>
+<p>模板类型参数</p>
+<ul>
+<li>类型参数前必须使用关键字class或typename</li>
+<li>typename和class含义相同，可以互换使用</li>
+</ul>
+</li>
+<li>
+<p>非类型模板参数</p>
+<ul>
+<li>一个非类型参数表示一个值而非一个类型，通过特定类型名而非关键字class或typename来指定非类型参数</li>
+<li>非类型模板参数使用的模板形参必须是常量表达式</li>
+<li>一个非类型参数可以是整型，或者是一个指向对象或函数类型的指针或左值引用
+<ul>
+<li>绑定到非类型整型参数的实参必须是一个常量表达式</li>
+<li>绑定到指针或引用非类型参数的实参必须具有静态生存期。不能用普通（非static）局部变量或动态对象作为指针或引用非类型模板参数的实参。指针参数也可以用nullptr或一个值为0的<strong>常量表达式</strong>来实例化</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">unsigned</span> N, <span class="keyword">unsigned</span> M&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> (&amp;p1)[N], <span class="keyword">const</span> <span class="keyword">char</span> (&amp;p2)[M])</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">strcmp</span>(p1, p2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//compare("hi", "mom")会实例化出int compare(const char (&amp;p1)[3], const char (&amp;p2)[4])</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>inline和constexpr模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">inline</span> T <span class="title">min</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)</span></span>;</span><br><span class="line"><span class="comment">//错误</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function">T <span class="title">min</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编写类型无关的代码</p>
+<ul>
+<li>
+<p>模板中的函数参数是const的引用（处理不能拷贝的类型）</p>
+</li>
+<li>
+<p>函数体中的条件判断仅使用&lt;比较运算（不需要同时支持&gt;）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> T &amp;v1, <span class="keyword">const</span> T &amp;v2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(less&lt;T&gt;()(v1, v2)) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(less&lt;T&gt;()(v2, v1)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>模板编译</p>
+<ul>
+<li>编译器只有在我们使用模板时才会生成代码</li>
+<li>函数模板和类模板成员函数的定义通常放在头文件中。与非模板代码不同，模板头文件既包括声明也包括定义。</li>
+<li>模板包含两种名字
+<ul>
+<li>不依赖于模板参数的名字（提供者保证）</li>
+<li>依赖于模板参数的名字（用户保证）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>大多数编译错误在实例化期间报告</p>
+<p>编译器三个阶段报错</p>
+<ul>
+<li>编译模板本身时，发现语法错误</li>
+<li>编译遇到模板使用时，对于函数模板调用检查实参数目是否正确、参数类型是否匹配、对于类模板可以检查是否提供了正确数目的模板实参</li>
+<li>模板实例化时，发现类型相关的错误，这些错误依赖于编译器如何管理实例化，可能在链接时才报告</li>
+</ul>
+<blockquote>
+<p>保证传递给模板的实参支持所要求的的操作，以及这些操作在模板中能正确工作，是调用者的责任</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="16-1-2-类模板"><a class="header-anchor" href="#16-1-2-类模板">¶</a>16.1.2 类模板</h2>
+<blockquote>
+<p>为了使用类模板必须在模板名后的尖括号中提供额外信息，来代替模板参数的模板实参列表</p>
+</blockquote>
+<ul>
+<li>
+<p>定义类模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">Blob</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">typedef</span> T value_type;</span><br><span class="line">    ...</span><br><span class="line">    Blob(<span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;T&gt; il);</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>实例化类模板</p>
+<p>实例化出的类之间没有关联</p>
+</li>
+<li>
+<p>模板作用域中引用模板类型</p>
+<p>类模板的名字不是一个类型名，实例化的类型应该包含模板参数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">Blob</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&gt; data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>类模板的成员函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="comment">//模板形参</span></span><br><span class="line">ret-type Blob&lt;T&gt;::member-name(parm-<span class="built_in">list</span>) <span class="comment">//模板实参</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>check和元素访问成员</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> Blob&lt;T&gt;::check(size_type i, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;msg) <span class="keyword">const</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i &gt;= data-&gt;size())</span><br><span class="line">		<span class="keyword">throw</span> <span class="built_in">std</span>::out_of_range(msg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Blob中下标运算符和back函数的定义</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Blob构造函数</p>
+</li>
+<li>
+<p>类模板成员函数的实例化</p>
+<p>对于一个实例化了的类模板，成员函数只有用到才会被实例化。<strong>这一特性使得即使某种类型不能完全符合模板操作的要求，仍能用该类型实例化类</strong></p>
+</li>
+<li>
+<p>在类代码内简化模板类名的使用</p>
+<p>当处于一个类模板作用域中时，编译器处理模板自身引用时就好像我们已经提供了与模板参数匹配的实参一样</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">BlobPtr</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ...</span><br><span class="line">    BlobPtr&amp; <span class="keyword">operator</span>++();<span class="comment">//等价于BlobPtr&lt;T&gt;&amp; operator++();</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在类模板外使用类模板名</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">BlobPtr&lt;T&gt; BlobPtr&lt;T&gt;::<span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line">    BlobPtr ret = *<span class="keyword">this</span>; <span class="comment">//等价于BlobPtr&lt;T&gt; ret = *this</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在类模板作用域内，可以直接使用模板名而不必指定模板实参</p>
+</blockquote>
+</li>
+<li>
+<p>类模板和友元</p>
+<p>类与友元各自是否是模板是相互无关的</p>
+</li>
+<li>
+<p>一对一友好关系</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="class"><span class="keyword">class</span> <span class="title">BlobPtr</span>;</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="class"><span class="keyword">class</span> <span class="title">Blob</span>;</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line">			<span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> Blob&lt;T&gt;&amp;， <span class="keyword">const</span> Blob&lt;T&gt;&amp;);</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>&gt; <span class="class"><span class="keyword">class</span> <span class="title">Blob</span>&#123;</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">BlobPtr</span>&lt;T&gt;;</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>==&lt;T&gt;(<span class="keyword">const</span> Blob&lt;T&gt;&amp;， <span class="keyword">const</span> Blob&lt;T&gt;&amp;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>通用和特定的模板友好关系</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">Pal</span>;</span><span class="comment">//前置友元，在将模板的一个特定实例声明为友元时用到</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> &#123;</span><span class="comment">//普通类</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Pal</span>&lt;C&gt;;</span></span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Pal2</span>;</span><span class="comment">//所有实例都是友元，这种情况无需前置声明</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">C2</span> &#123;</span><span class="comment">//类模板</span></span><br><span class="line">  	<span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Pal</span>&lt;T&gt;;</span><span class="comment">//相同实例化的Pal声明为友元，Pal模板声明必须在作用域之内</span></span><br><span class="line">  	<span class="keyword">template</span> &lt;<span class="keyword">typename</span> X&gt; <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Pal2</span>;</span><span class="comment">//Pal2的所有实例都是C2的每个实例的友元</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Pal3</span>;</span><span class="comment">//Pal3是非模板类，是所有C2实例的友元，不需要Pal3的前置声明</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>令模板自己的类型参数称为友元</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Type&gt; <span class="class"><span class="keyword">class</span> <span class="title">Bar</span> &#123;</span></span><br><span class="line"><span class="keyword">friend</span> Type;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//如Sales_data将成为Bar&lt;Sales_data&gt;的友元</span></span><br><span class="line"><span class="comment">//内置类型来实例化Bar也是可以的，允许这种与内置类型的友好关系，以便我们能用内置类型实例化Bar这样的类</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>模板类型别名</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> Blob&lt;<span class="built_in">string</span>&gt; StrBlob;</span><br><span class="line"></span><br><span class="line"><span class="comment">//新标准允许为类模板定义一个类型别名</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> twin = pair&lt;T, T&gt;;</span><br><span class="line">twin&lt;<span class="built_in">string</span>&gt; authors;<span class="comment">//authors是一个pair&lt;string, string&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//一个类型模板别名是一族类的别名</span></span><br><span class="line">twin&lt;<span class="keyword">int</span>&gt; win_loss;<span class="comment">//pair&lt;int, int&gt;</span></span><br><span class="line">twin&lt;<span class="keyword">double</span>&gt; area;<span class="comment">//pair&lt;double, double&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//可以固定一个或多个模板参数</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> partNo = pair&lt;T, <span class="keyword">unsigned</span>&gt;;</span><br><span class="line">partNo&lt;<span class="built_in">string</span>&gt; books; <span class="comment">//pair&lt;string, unsigned&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>类模板的static成员</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">std</span>::<span class="keyword">size_t</span> count() &#123; <span class="keyword">return</span> ctr; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">std</span>::<span class="keyword">size_t</span> ctr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实例化static成员Foo&lt;string&gt;::ctr和Foor&lt;string&gt;::count</span></span><br><span class="line">Foo&lt;<span class="built_in">string</span>&gt; fs;</span><br><span class="line"><span class="comment">//三个成员共享Foo&lt;int&gt;::ctr和Foor&lt;int&gt;::count成员</span></span><br><span class="line">Foo&lt;<span class="keyword">int</span>&gt; fi, fi2, fi3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">size_t</span> Foo&lt;T&gt;::ctr = <span class="number">0</span>;<span class="comment">//定义并初始化ctr</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//为了通过类来直接访问static成员，必须引用一个特定的实例</span></span><br><span class="line">Foo&lt;<span class="keyword">int</span>&gt; fi;</span><br><span class="line"><span class="keyword">auto</span> ct = Foo&lt;<span class="keyword">int</span>&gt;::count();</span><br><span class="line">ct = fi.count();</span><br><span class="line">ct = Foo::count();<span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="16-1-3-模板参数"><a class="header-anchor" href="#16-1-3-模板参数">¶</a>16.1.3 模板参数</h2>
+<ul>
+<li>
+<p>模板参数与作用域</p>
+<ul>
+<li>模板参数遵循普通的作用域规则</li>
+<li>模板参数会隐藏外层作用域中声明的相同名字</li>
+<li>模板内不能重用模板参数名</li>
+<li>一个模板参数名在一个特定模板参数列表中只能出现一次</li>
+</ul>
+</li>
+<li>
+<p>模板声明</p>
+<p>一个特定文件所需要的所有模板的声明通常一起放置在文件开始位置，出现于任何使用这些模板的代码之前</p>
+</li>
+<li>
+<p>使用类的类型成员</p>
+<p>当我们希望通知编译器一个名字表示类型时，必须使用关键字typename，而不能使用class</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">T::size_type * p<span class="comment">//需要知道正在定义一个名字是p的变量，还是一个名为size_type的成员和名为p的成员相乘</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//默认情况下，C++语言假定通过作用域运算符访问的名字不是类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> T::<span class="function">value_type <span class="title">top</span><span class="params">(<span class="keyword">const</span> T&amp; c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!c.empty())</span><br><span class="line">        <span class="keyword">return</span> c.back();</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">typename</span> T::value_type();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>默认模板实参</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> F = less&lt;T&gt;&gt;<span class="comment">//默认模板实参</span></span><br><span class="line"><span class="keyword">int</span> compare(<span class="keyword">const</span> T &amp;v1, <span class="keyword">const</span> T &amp;v2, F f = F())&#123;<span class="comment">//默认函数实参</span></span><br><span class="line">	<span class="keyword">if</span> (f(v1, v2)) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">if</span> (f(v2, v1)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> i = compare(<span class="number">0</span>, <span class="number">42</span>); <span class="comment">//使用less；i为-1</span></span><br><span class="line">Sales_data item1(cin), item2(cin);</span><br><span class="line"><span class="keyword">bool</span> j = compare(item1, item2, compareIsbn);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>模板默认实参与类模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span> = <span class="title">int</span>&gt; <span class="title">class</span> <span class="title">Numbers</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Numbers(T v = <span class="number">0</span>): val(v) &#123; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T val;</span><br><span class="line">&#125;;</span><br><span class="line">Numbers&lt;<span class="keyword">long</span> <span class="keyword">double</span>&gt; lots_of_precision;</span><br><span class="line">Numbers&lt;&gt; average_precision;<span class="comment">//空&lt;&gt;表示我们希望使用默认类型</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="16-1-4-成员模板"><a class="header-anchor" href="#16-1-4-成员模板">¶</a>16.1.4 成员模板</h2>
+<blockquote>
+<p>一个类可以包含本身是模板的成员函数，这种成员被称为成员模板。成员模板不能是虚函数。</p>
+</blockquote>
+<ul>
+<li>
+<p>普通（非模板）类的成员模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DebugDelete</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    DebugDelete(<span class="built_in">std</span>::ostream &amp;s = <span class="built_in">std</span>::<span class="built_in">cerr</span>) : os(s) &#123; &#125;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(T *p)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">        os &lt;&lt; <span class="string">"deleting unique_ptr"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; <span class="keyword">delete</span> p;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::ostream &amp;os;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>, DebugDelete&gt; p(<span class="keyword">new</span> <span class="keyword">int</span>, DebugDelete());</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>类模板的成员模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">Blob</span> &#123;</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> It&gt; Blob(It b, It e);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;<span class="comment">//为Blob定义构造函数，接收两个迭代器。此构造函数有自己的模板类型参数It，作为两个函数参数的类型。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> It&gt;</span><br><span class="line">	Blob&lt;T&gt;::Blob(It b, It e):</span><br><span class="line">			data(<span class="built_in">std</span>::make_shared&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&gt;(b, e)) &#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>实例化与成员模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt; vi = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">const</span> <span class="keyword">char</span> *&gt; w = &#123;<span class="string">"now"</span>, <span class="string">"is"</span>, <span class="string">"the"</span>, <span class="string">"time"</span>&#125;;</span><br><span class="line">Blob&lt;<span class="keyword">int</span>&gt; a1(begin(ia), end(ia)); <span class="comment">// Blob&lt;int&gt;::Blob(int *, int *);</span></span><br><span class="line">Blob&lt;<span class="keyword">int</span>&gt; a2(vi.begin(), vi.end());</span><br><span class="line">Blob&lt;<span class="keyword">int</span>&gt; a3(w.begin(), w.end());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="16-1-5-控制实例化"><a class="header-anchor" href="#16-1-5-控制实例化">¶</a>16.1.5 控制实例化</h2>
+<blockquote>
+<p>两个或多个独立编译的源文件使用了相同的模板，并提供了相同的模板参数时，每个文件中就都会有该模板的一个实例。多个文件中实例化相同模板额外开销很严重，可以通过显示实例化避免这种开销。</p>
+</blockquote>
+<p>显示实例化形式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">template</span> declaration; <span class="comment">//实例化声明</span></span><br><span class="line"><span class="keyword">template</span> declaration; <span class="comment">//实例化定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//declaration是一个类或函数声明</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">Blob</span>&lt;string&gt;;</span> <span class="comment">//声明</span></span><br><span class="line"><span class="function"><span class="keyword">template</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp;, <span class="keyword">const</span> <span class="keyword">int</span>&amp;)</span></span>; <span class="comment">//定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//由于编译器在使用一个模板时自动对其实例化，所以extern声明必须出现在任何使用此实例化版本的代码之前</span></span><br><span class="line"><span class="comment">//对于一个给定的实例化版本，可能有多个extern声明，但必须只有一个定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Application.cc</span></span><br><span class="line"><span class="comment">//这些模板类型必须在程序其他位置进行实例化</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">Blob</span>&lt;string&gt;;</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp;, <span class="keyword">const</span> <span class="keyword">int</span>&amp;)</span></span>;</span><br><span class="line">Blob&lt;<span class="built_in">string</span>&gt; sa1, sa2;<span class="comment">//在其他位置实例化</span></span><br><span class="line"><span class="comment">//Blob&lt;int&gt;及其构造函数在本文件中实例化</span></span><br><span class="line">Blob&lt;<span class="keyword">int</span>&gt; a1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line">Blob&lt;<span class="keyword">int</span>&gt; a2(a1);</span><br><span class="line"><span class="keyword">int</span> i = compare(a1[<span class="number">0</span>], a2[<span class="number">0</span>]);<span class="comment">//其他位置实例化</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//templateBuild.cc</span></span><br><span class="line"><span class="function"><span class="keyword">template</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp;, <span class="keyword">const</span> <span class="keyword">int</span>&amp;)</span></span>;</span><br><span class="line"><span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">Blob</span>&lt;string&gt;;</span><span class="comment">//实例化类模板所有成员</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>实例化定义会实例化所有成员</p>
+<p>在一个类模板的实例化定义中，所用类型必须能用于模板的所有成员</p>
+</li>
+</ul>
+<h2 id="16-1-6-效率与灵活性"><a class="header-anchor" href="#16-1-6-效率与灵活性">¶</a>16.1.6 效率与灵活性</h2>
+<blockquote>
+<p>shared_ptr和unique_ptr之间的不同：</p>
+<p>1.前者给予共享指针所有权的能力，后者独占指针；</p>
+<p>2.前者在创建时或者reset指针时传递给它一个可调用对象即可，后者必须在定义时以显示模板实参的形式提供删除器类型；前者重载删除器更为方便，后者避免间接调用删除器的运行时开销；</p>
+<p>重载删除器策略上的差异可能对性能有重要影响。</p>
+</blockquote>
+<ul>
+<li>运行时绑定删除器
+<ul>
+<li>shared_ptr删除器必须保存为一个指针或一个封装了指针的类（如function），不是将删除器直接保存为一个成员，因为删除器类型到运行时才会知道；</li>
+<li><code>del?del(p):delete p;//del(p)运行时转到del的地址</code>，调用删除器需要一次运行时的跳转操作；</li>
+</ul>
+</li>
+<li>编译时绑定删除器
+<ul>
+<li>删除器可以直接保存在unique_ptr对象中；</li>
+<li><code>del(p);//无运行时额外开销</code>，避免了间接调用删除器的运行时开销；</li>
+</ul>
+</li>
+</ul>
+<h1>16.2 模板实参推断</h1>
+<h2 id="16-2-1-类型转换与模板类型参数"><a class="header-anchor" href="#16-2-1-类型转换与模板类型参数">¶</a>16.2.1 类型转换与模板类型参数</h2>
+<p>  将实参传递给带模板类型的函数的形参时，能够自动应用的类型转换<strong>只有</strong>const转换以及数组或函数到指针的转换：</p>
+<ol>
+<li>
+<p>const转换：将一个<strong>非const对象的引用或指针</strong>传递给一个<strong>const的引用或指针</strong>形参</p>
+</li>
+<li>
+<p>数组或函数指针的转换：如果函数形参不是引用类型，则可以对数组或函数类型的实参应用正常的指针转换</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function">T <span class="title">fref</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)</span></span>;<span class="comment">//引用</span></span><br><span class="line">fref(a, b);<span class="comment">//错误：数组类型不匹配</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>
+<p>使用相同模板参数类型的函数形参</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//compare接受两个const T&amp;参数</span></span><br><span class="line"><span class="keyword">long</span> lng;</span><br><span class="line">compare(lng, <span class="number">1024</span>); <span class="comment">//错误，不能实例化compare(long, int)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>正常类型转换用于普通函数的实参</p>
+<p>如果函数参数类型不是模板参数，则对实参进行正常的类型转换</p>
+</li>
+</ul>
+<h2 id="16-2-2-函数模板显式实参"><a class="header-anchor" href="#16-2-2-函数模板显式实参">¶</a>16.2.2 函数模板显式实参</h2>
+<blockquote>
+<p>某些情况下编译器无法推断出模板实参的类型。其他一些情况下，我们希望允许用户控制模板实例化。当函数返回类型与参数列表中任何类型都不同时，这两种情况最常出现。</p>
+</blockquote>
+<ul>
+<li>
+<p>指定显示模板实参</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span>  T3&gt;</span><br><span class="line"><span class="function">T1 <span class="title">sum</span><span class="params">(T2, T3)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//为T1提供一个显示模板实参</span></span><br><span class="line"><span class="keyword">auto</span> val3 = sum&lt;<span class="keyword">long</span> <span class="keyword">long</span> &gt;(i, lng);<span class="comment">//long long sum(int, long);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//显示模板实参按从左向右的顺序和对应的模板参数匹配；只有尾部的显示模板实参才可以忽略，前提是它可以从函数参数推断出来</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span>  T3&gt;</span><br><span class="line"><span class="function">T3 <span class="title">alternative_sum</span><span class="params">(T2, T1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> val3 = alternative_sum&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(i, lng);<span class="comment">//错误</span></span><br><span class="line"><span class="keyword">auto</span> val2 = alternative_sum&lt;<span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">int</span>, <span class="keyword">long</span>&gt;(i, lng);<span class="comment">//正确</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>正常类型转换应用于显示指定的实参</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对于模板类型参数已经显示指定了的函数实参，也进行正常的类型转换</span></span><br><span class="line"><span class="keyword">long</span> lng;</span><br><span class="line">compare(lng, <span class="number">1024</span>);</span><br><span class="line">compare&lt;<span class="keyword">long</span>&gt;(lng, <span class="number">1024</span>);</span><br><span class="line">compare&lt;<span class="keyword">int</span>&gt;(lng, <span class="number">1024</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="16-2-3-尾置返回类型与类型转换"><a class="header-anchor" href="#16-2-3-尾置返回类型与类型转换">¶</a>16.2.3 尾置返回类型与类型转换</h2>
+<p>有一些情况下，要求指定显示模板实参会增加用户负担</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> It&gt;</span><br><span class="line">??? &amp;fcn(It beg, It end)&#123;</span><br><span class="line">    <span class="keyword">return</span> *beg;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以用decltype获取返回类型，但是在遇到函数的参数列表之前，beg都不存在</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//尾置返回允许我们在参数列表之后声明返回类型</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> It&gt;</span><br><span class="line">auto fcn(It beg, It end) -&gt; decltype(*beg)&#123;</span><br><span class="line">    <span class="keyword">return</span> *beg;<span class="comment">//返回序列中一个元素的引用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>进行类型转换的标准库模板类</p>
+<ul>
+<li>
+<p>标准库的类型转换模板remove_reference、remove_pointer、add_pointer、make_signed、make_unsigned、remove_extent、remove_all_extents、add_const、add_lvalue_reference、add_rvalue_reference</p>
+</li>
+<li>
+<p>组合使用remove_reference、尾置返回以及decltype，可以在函数中返回元素值的拷贝</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> It&gt;</span><br><span class="line">auto fcn2(It beg, It end) -&gt;</span><br><span class="line">    <span class="keyword">typename</span> remove_reference&lt;<span class="keyword">decltype</span>(*beg)&gt;::type&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">return</span> *beg;<span class="comment">//返回元素的拷贝</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="16-2-4-函数指针和实参推断"><a class="header-anchor" href="#16-2-4-函数指针和实参推断">¶</a>16.2.4 函数指针和实参推断</h2>
+<ul>
+<li>
+<p>用函数模板初始化函数指针或为函数指针赋值，编译器使用指针的类型推断模板实参</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)</span></span>;</span><br><span class="line"><span class="comment">//pf1指向int compare(const int&amp;, const int&amp;)</span></span><br><span class="line"><span class="keyword">int</span> (*pf1)(<span class="keyword">const</span> <span class="keyword">int</span>&amp;, <span class="keyword">const</span> <span class="keyword">int</span>&amp;) = compare;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>当参数是一个函数模板实例的地址时，程序上下文必须满足：对每个模板参数，能唯一确定其类型或值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>(*)(<span class="keyword">const</span> <span class="built_in">string</span>&amp;, <span class="keyword">const</span> <span class="built_in">string</span>&amp;))</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>(*)(<span class="keyword">const</span> <span class="keyword">int</span>&amp;, <span class="keyword">const</span> <span class="keyword">int</span>&amp;))</span></span>;</span><br><span class="line">func(compare);<span class="comment">//错误，使用compare的哪个实例？</span></span><br><span class="line"></span><br><span class="line">func(compare&lt;<span class="keyword">int</span>&gt;);<span class="comment">//正确</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="16-2-5-模板实参推断和引用"><a class="header-anchor" href="#16-2-5-模板实参推断和引用">¶</a>16.2.5 模板实参推断和引用</h2>
+<blockquote>
+<p>template <typename t> void f(T &amp;p);</typename></p>
+<p>编译器会应用正常的引用绑定规则；const是底层的，不是顶层的</p>
+</blockquote>
+<ul>
+<li>
+<p>从左值引用函数参数推断类型</p>
+<ul>
+<li>
+<p>模板类型参数是一个普通的（左值）引用时，只能传递一个左值。若实参是const 的， 则T将会被推断为 const类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">(T&amp;)</span></span>;   <span class="comment">// 实参必须是一个左值</span></span><br><span class="line"></span><br><span class="line">f1(i);   <span class="comment">// i 是一个 int; T 是 int</span></span><br><span class="line">f1(ci);  <span class="comment">// ci 是一个 const int； T 是 const int</span></span><br><span class="line">f1(<span class="number">43</span>);  <span class="comment">// 错误：传递给一个&amp;参数的实参必须是一个左值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>如果类型参数是 const T&amp;， 那么可以传递给他任何类型的实参（一个对象，临时对象或一个字面值常量）。当 const 是函数参数本身时，T不会是一个 const 类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">f2</span><span class="params">(<span class="keyword">const</span> T&amp;)</span></span>;   <span class="comment">// 任意类型</span></span><br><span class="line"><span class="comment">// f2 中参数是 cosnt &amp;; 实参中的const 是无关的</span></span><br><span class="line">f1(i);   <span class="comment">// i 是一个 int; T 是 int</span></span><br><span class="line">f1(ci);  <span class="comment">// ci 是一个 const int； T 是 int</span></span><br><span class="line">f1(<span class="number">43</span>);  <span class="comment">// 一个const &amp;参数可以绑定到右值; T 是 int</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>从右值引用函数参数推断类型</p>
+<p>在实际中，模板参数的右值引用通常用于两种情况：模板转发其实参 或者 模板被重载。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">f3</span><span class="params">(T&amp;&amp;)</span></span>;  </span><br><span class="line"></span><br><span class="line">f3(<span class="number">43</span>);  <span class="comment">// 实参是一个 int 类型的右值； 模板参数 T 是 int </span></span><br><span class="line">f3(i); <span class="comment">// 实参是一个 int 类型的左值； 模板参数 T 是 int&amp;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>引用折叠和右值引用参数</p>
+<ul>
+<li>两个例外规则
+<ul>
+<li>当我们将一个左值传递给右值引用参数时，且此右值引用指向模板类型参数(T&amp;&amp;)时，编译器推断模板类型参数为左值引用类型而非左值。</li>
+<li>当我们间接创建一个引用的引用，如类型别名或模板参数，则这些引用形成了折叠：
+<ul>
+<li>T&amp; &amp;，T&amp; &amp;&amp;，T&amp;&amp; &amp;折叠为T&amp;</li>
+<li>T&amp;&amp; &amp;&amp;折叠为T&amp;&amp;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>所以如果一个函数参数是指向模板参数类型的右值引用，则可以传递给它任意类型的实参。如果将一个左值传递给这样的参数，则函数参数被实例化为了一个普通的左值引用。</li>
+</ul>
+</li>
+<li>
+<p>编写接受右值引用参数的模板函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">f3</span><span class="params">(T&amp;&amp; val)</span></span>&#123;</span><br><span class="line">    T t = val;<span class="comment">//拷贝还是绑定一个引用</span></span><br><span class="line">    t = fcn(t);<span class="comment">//赋值只改变t还是即改变t又改变val</span></span><br><span class="line">    <span class="keyword">if</span>(val == t) &#123; <span class="comment">/* ... */</span> &#125;<span class="comment">//若T是引用类型，则一直为true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实际中右值引用常用于：模板转发其实参或模板被重载</span></span><br><span class="line"><span class="comment">//使用右值引用的函数模板通常应该重载</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T&amp;&amp;)</span></span>;<span class="comment">//绑定到非const右值</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">const</span> T&amp;)</span></span>;<span class="comment">//绑定到左值和const右值</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="16-2-6-理解std-move"><a class="header-anchor" href="#16-2-6-理解std-move">¶</a>16.2.6 理解std::move</h2>
+<ul>
+<li>
+<p>std::move如何定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> remove_reference&lt;T&gt;::<span class="function">type&amp;&amp; <span class="title">move</span><span class="params">(T&amp;&amp; t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">typename</span> remove_reference&lt;T&gt;::type&amp;&amp;&gt;(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>std::move如何工作</p>
+<p>我们考虑如下代码的工作过程：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::string s1("hi"), s2;</span><br><span class="line">s2 = <span class="built_in">std</span>::move(<span class="built_in">string</span>(<span class="string">"hi"</span>));    <span class="comment">// 正确，从一个右值移动数据</span></span><br><span class="line">s2 = <span class="built_in">std</span>::move(s1);                <span class="comment">// 正确，但是在赋值之后，s1的值是不确定的</span></span><br></pre></td></tr></table></figure>
+<p>在第一个赋值中，实参是string类型的右值，因此过程为：</p>
+<ul>
+<li>推断T的类型为 string</li>
+<li>remove_reference<string> 的 type 成员是 string</string></li>
+<li>move 返回类型是 string&amp;&amp;</li>
+<li>move 的函数参数t的类型为 string&amp;&amp;</li>
+</ul>
+<p>因此，这个调用实例化 move<string>，即函数</string></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span>&amp;&amp; <span class="title">move</span><span class="params">(<span class="built_in">string</span> &amp;&amp;t)</span></span></span><br></pre></td></tr></table></figure>
+<p>在第二个赋值中，实参是一个左值，因此：</p>
+<ul>
+<li>推断T的类型为 string&amp;</li>
+<li>remove_reference&lt;string&amp;&gt; 的 type 成员是 string</li>
+<li>move 返回类型是 string&amp;&amp;</li>
+<li>move 的函数参数t的类型为 string&amp; &amp;&amp;，会折叠成 string&amp;</li>
+</ul>
+<p>因此，这个调用实例化 move&lt;string&amp;&gt;，即</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span>&amp;&amp; <span class="title">move</span><span class="params">(<span class="built_in">string</span> &amp;t)</span></span></span><br></pre></td></tr></table></figure>
+<p>通常情况下，static_cast 只能用于其他合法的类型转换。但是有一条针对右值的特许规则：虽然不能隐式的将一个左值转换成右值引用，但我们可以用static_cast显示的将一个左值转换为一个右值</p>
+<blockquote>
+<p>统一使用std::move使得我们在程序中查找潜在的截断左值的代码变得很容易</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="16-2-7-转发"><a class="header-anchor" href="#16-2-7-转发">¶</a>16.2.7 转发</h2>
+<blockquote>
+<p>某些函数需要将其一个或多个实参连同类型不变的转发给其他函数，这种情况下我们需要保持被转发实参的所有性质，包括实参类型是否是const的以及实参是左值还是右值。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(F f, T1 t1, T2 t2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    f(t2, t1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">subfunc</span><span class="params">(<span class="keyword">int</span> v1, <span class="keyword">int</span> &amp;v2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ++v2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">func(subfunc, i, <span class="number">2</span>);    <span class="comment">// i并没有增加</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>定义能保持类型信息的函数参数</p>
+<ul>
+<li>我们可以使用右值引用来解决上述问题：</li>
+</ul>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(F f, T1 &amp;&amp;t1, T2 &amp;&amp;t2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    f(t2, t1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">subfunc</span><span class="params">(<span class="keyword">int</span> v1, <span class="keyword">int</span> &amp;v2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ++v2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">func(subfunc, i, <span class="number">2</span>);    <span class="comment">// i增加了,而且也可以传递const</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>但是函数func对于接受一个左值引用的函数工作的很好，但不能接受右值引用参数的函数：</li>
+</ul>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(F f, T1 &amp;&amp;t1, T2 &amp;&amp;t2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    f(t2, t1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">subfunc</span><span class="params">(<span class="keyword">int</span> &amp;&amp;v1, <span class="keyword">int</span> &amp;v2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ++v2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">func(subfunc, i, <span class="number">2</span>);    <span class="comment">// 错误，不能从一个左值实例化int&amp;&amp;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>在调用中使用std::forward保持类型信息<br>
+为了解决上述问题，我们可以使用一个名为forward的新标准库设施来传递参数，它能保持原始实参的类型。forward必须通过显示模板实参来调用。forward返回该显示实参类型的右值引用。</li>
+</ul>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(F f, T1 &amp;&amp;t1, T2 &amp;&amp;t2)</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">     f(<span class="built_in">std</span>::forward&lt;T2&gt;(t2), <span class="built_in">std</span>::forward&lt;T1&gt;(t1));    <span class="comment">// 通过引用折叠，左值还是左值，右值还是右值</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">subfunc</span><span class="params">(<span class="keyword">int</span> &amp;&amp;v1, <span class="keyword">int</span> &amp;v2)</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">     ++v2;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"> func(subfunc, i, <span class="number">2</span>);    <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+<h1>16.3 重载与模板</h1>
+<blockquote>
+<p>函数模板可以被另一个模板或者一个非模板函数重载，名字相同的函数必须具有不同数量或类型的参数。涉及到函数模板，函数匹配规则满足：</p>
+<ul>
+<li>对于一个调用，其候选函数包括所有模板实参推断成功的函数模板实例</li>
+<li>候选函数总是可行的，因为模板实参推断会排出任何不可行的模板</li>
+<li>可行函数按照类型转换来排序</li>
+<li>如果恰有一个函数提供比其他函数都更好的匹配，则选择此函数，如果有多个函数提供同样好的匹配，则：
+<ul>
+<li>如果同样好的函数中只有一个非模板函数，则选择此函数</li>
+<li>如果没有非模板函数，有多个函数模板，则选择其中一个比其他模板更特例化的模板</li>
+<li>否则此调用有歧义</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>编写重载模板</p>
+<ul>
+<li>
+<p>下面函数可以生成一个对象对应的string表示，该对象是任何具备输出运算符的类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打印任何我们不能处理的类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;tyename T&gt;<span class="function"><span class="built_in">string</span> <span class="title">debug_rep</span><span class="params">(<span class="keyword">const</span> T &amp;t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">ostringstream</span> ret;</span><br><span class="line">    ret &lt;&lt; t;</span><br><span class="line">    <span class="keyword">return</span> ret.str();<span class="comment">//返回ret绑定的string副本</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>下面是打印指针的debug_rep版本</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打印任何我们不能处理的类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;tyename T&gt;<span class="function"><span class="built_in">string</span> <span class="title">debug_rep</span><span class="params">(T *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">ostringstream</span> ret;</span><br><span class="line">    ret &lt;&lt; p;</span><br><span class="line">    <span class="keyword">if</span>(p)</span><br><span class="line">        ret &lt;&lt; <span class="string">"pointer:"</span> &lt;&lt; p;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        ret &lt;&lt; <span class="string">"null pointer"</span>;</span><br><span class="line">    <span class="keyword">return</span> ret.str();<span class="comment">//返回ret绑定的string副本</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hello"</span>)</span></span>;</span><br><span class="line">debug_rep(s);<span class="comment">//调用第一个版本的debug_rep</span></span><br><span class="line"><span class="comment">//只有第一个版本的debug_rep是可行的，第二版本要求一个指针参数</span></span><br><span class="line"></span><br><span class="line">debug_rep(&amp;s);<span class="comment">//调用第二版本的debug_rep</span></span><br><span class="line"><span class="comment">//第一版本能生成实例，其T的类型是string *，需要进行普通指针到const指针的转换</span></span><br><span class="line"><span class="comment">//第二版本T类型为string，此为更精确匹配</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>多个可行版本</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">string</span> *sp = &amp;s;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; debug_rep(sp) &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//两个版本都是可行的，都是精确匹配</span></span><br><span class="line"><span class="comment">//第一个版本实例为：debug_rep&lt;string&amp;&gt;(const string *&amp;),T被绑定为string*</span></span><br><span class="line"><span class="comment">//第二个版本实例为：debug_rep&lt;const string&gt;(const string *)，T被绑定为const string</span></span><br><span class="line"><span class="comment">//由于第二版本比第一版本更加特例化，固解析为第二版本。第一个版本本质上可以用于任何类型，包括指针类型，第二个版本只能用于指针类型</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>非模板和模板重载</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">debug_rep</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>'<span class="string">"'+s+'"</span><span class="string">';</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hello"</span>)</span></span>;</span><br><span class="line">debug_rep(s);<span class="comment">//调用第三个非模块版本的debug_rep</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第一和第三个版本都能提供同样好的匹配</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第一版本实例化为debug_rep&lt;string&gt;(const string &amp;),T被绑定到string</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//存在同样好的模板和非模板函数时，编译器会选择非模板函数，当存在多个同样好的非模板函数时，编译器会选择最特例化的版本，一个非模板函数比模板函数更加特例化</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>重载与类型转换</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; debug_rep(<span class="string">"hello"</span>);<span class="comment">//调用第二版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//上述三个版本都可行</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//debug_rep(const T&amp;)，T为char[6]</span></span><br><span class="line"><span class="comment">//debug_rep(T*)，T为const char*</span></span><br><span class="line"><span class="comment">//debug_rep(const string&amp;)，要求从const char*到string的类型转换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对给定的实参来说，第二个版本需要一次数组到指针的转换，这是精确匹配</span></span><br><span class="line"><span class="comment">//非模板版本需要一次用户定义的类型转换，因此没有精确匹配那么好</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果希望将字符指针按string处理，可以定义另外两个非模板的重载版本</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">debug_rep</span><span class="params">(<span class="keyword">char</span> *p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> debug_rep(<span class="built_in">string</span>(p));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">debug_rep</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> debug_rep(<span class="built_in">string</span>(p));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>缺少声明可能导致程序行为异常</p>
+<ul>
+<li>
+<p>使用一个忘记声明的函数，代码将会编译失败</p>
+</li>
+<li>
+<p>对于重载函数模板的函数，如果编译器可以从模板实例化出与调用匹配的版本，则缺少的声明就不重要了</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="built_in">string</span> <span class="title">debug_rep</span><span class="params">(<span class="keyword">const</span> T &amp;t)</span></span>;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="built_in">string</span> <span class="title">debug_rep</span><span class="params">(T *p)</span></span>;</span><br><span class="line"><span class="comment">//为了使debug_rep(char *)的定义正确工作，下面声明必须在作用域中</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">debug_rep</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">debug_rep</span><span class="params">(<span class="keyword">char</span> *p)</span></span>&#123;</span><br><span class="line">    <span class="comment">//如果接受一个const string&amp;的版本的声明不在作用域中，则返回语句将调用debug_rep(const T&amp;)的T实例化为string的版本</span></span><br><span class="line">    <span class="keyword">return</span> debug_rep(<span class="built_in">string</span>(p));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1>16.4 可变参数模板</h1>
+<blockquote>
+<p>一个<strong>可变参数模板</strong>是一个接受可变数目参数的模板函数或模板类；</p>
+<p>可变数目的参数被称为<strong>参数包</strong>；</p>
+<p>存在两种参数包：<strong>模板参数包</strong>和<strong>函数参数包</strong>；</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">const</span> T &amp;t, <span class="keyword">const</span> Args&amp; ... rest)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>; <span class="keyword">double</span> d = <span class="number">3.14</span>; <span class="built_in">string</span> s = <span class="string">"how now brown cow"</span>;</span><br><span class="line">foo(i, s, <span class="number">42</span>, d); <span class="comment">//void foo(const int&amp;, const string&amp;, const int&amp;, const double&amp;);</span></span><br><span class="line">foo(s, <span class="number">42</span>, <span class="string">"hi"</span>); <span class="comment">//void foo(const string&amp;, const int&amp;, const char[3]&amp;);</span></span><br><span class="line">foo(d, s); <span class="comment">//void foo(const double&amp;, const string&amp;);</span></span><br><span class="line">foo(<span class="string">"hi"</span>); <span class="comment">//void foo(const char[3]&amp;);</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><code>sizeof...</code>运算符</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ... Args&gt; <span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">(Args ... args)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>...(Args) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//类型参数的数目</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>...(args) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//函数参数的数目、</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="16-4-1-编写可变参数函数模板"><a class="header-anchor" href="#16-4-1-编写可变参数函数模板">¶</a>16.4.1 编写可变参数函数模板</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="function">ostream &amp;<span class="title">print</span><span class="params">(ostream &amp;os, <span class="keyword">const</span> T &amp;t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> os &lt;&lt; t; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function">ostream &amp;<span class="title">print</span><span class="params">(ostream &amp;os, <span class="keyword">const</span> T &amp;t, <span class="keyword">const</span> Args&amp; ... rest)</span></span>&#123;</span><br><span class="line">	os &lt;&lt; t &lt;&lt; <span class="string">", "</span>;</span><br><span class="line">	<span class="keyword">return</span> print(os, rest...); <span class="comment">//递归调用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="16-4-2-包扩展"><a class="header-anchor" href="#16-4-2-包扩展">¶</a>16.4.2 包扩展</h2>
+<blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</span><br><span class="line">&gt; ostream &amp;</span><br><span class="line">&gt; print(ostream &amp;os, <span class="keyword">const</span> T &amp;t, <span class="keyword">const</span> Args&amp;... rest) <span class="comment">//扩展Args</span></span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt;     os &lt;&lt; t &lt;&lt;<span class="string">", "</span>;</span><br><span class="line">&gt;     <span class="keyword">return</span> print(os, rest...); <span class="comment">//扩展rest</span></span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>两个扩展</p>
+<ol>
+<li>第一个扩展模板参数包，生成函数参数列表</li>
+<li>第二个出现在对print的调用中，为print生成实参列表</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p>理解包扩展</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function">ostream <span class="title">error_Msg</span><span class="params">(ostream&amp; os, <span class="keyword">const</span> Args&amp;... rest)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> print(os, debug_rep(rest)...);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用error_Msg(cerr, fcnName, code.num())相当于编写print(cerr, debug_rep(fcnName), debug_rep(code.num()));</span></span><br><span class="line"><span class="comment">//print(os, debug_rep(rest...));会编译失败</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>扩展中的模式会独立地应用于包中的每个元素</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="16-4-3-转发参数包"><a class="header-anchor" href="#16-4-3-转发参数包">¶</a>16.4.3 转发参数包</h2>
+<ul>
+<li>
+<p>首先为了保持实参中的类型信息，必须将函数参数定义为模板类型参数的右值引用</p>
+</li>
+<li>
+<p>其次，当将实参传递给移动构造函数时，必须使用forward来保持实参的原始类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span>... <span class="title">Args</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">inline</span></span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">StrVec</span>:</span>:emplace_back(Args&amp;&amp;... args)&#123;</span><br><span class="line">	chk_n_alloc();</span><br><span class="line">	alloc.construct(first_free++, <span class="built_in">std</span>::forward&lt;Args&gt;(args)...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//svec.emplace_back(10, 'c');</span></span><br><span class="line"><span class="comment">//construct调用中会扩展出std::forward&lt;int&gt;(10), std::forward&lt;char&gt;(c)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>转发和可变参数模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line">&gt; <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(Args&amp;&amp;... args)</span> <span class="comment">//Args扩展为右值引用的列表</span></span></span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt;     <span class="comment">//既扩展Args又扩展args</span></span><br><span class="line">&gt;     work(<span class="built_in">std</span>::forward&lt;Args&gt;(args)...);</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>由于fun的参数是右值引用，因此我们可以传递给它任意类型的实参；</p>
+<p>由于我们使用std::forward传递这些实参，所以它们的所有类型信息都会得到保持；</p>
+</blockquote>
+</li>
+</ul>
+<h1>16.5 模板特例化</h1>
+<ul>
+<li>
+<p>定义函数模板特例化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* <span class="keyword">const</span> &amp;p1, <span class="keyword">const</span> <span class="keyword">char</span>* <span class="keyword">const</span> &amp;p2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">strcmp</span>(p1, p2);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//对template &lt;typename T&gt; int compare(const T&amp;, const T&amp;);特例化</span></span><br><span class="line"><span class="comment">//其中T为const char *，我们的函数要求指向此类型const版本的引用</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>函数重载与模板特例化</p>
+<ul>
+<li>特例化的本质是实例化一个模板，而非重载它，因此不影响函数匹配；</li>
+<li>模板及其特例化版本应该声明在同一个头文件中。所有同名模板的声明应该放在前面，然后是特例化版本；</li>
+</ul>
+</li>
+<li>
+<p>类模板特例化</p>
+<blockquote>
+<p>特例化容器的hash&lt;key_type&gt;</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="built_in">std</span>&#123;<span class="comment">//打开std命名空间</span></span><br><span class="line">    <span class="keyword">template</span> &lt;&gt;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">hash</span>&lt;Sales_data&gt;</span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">typedef</span> <span class="keyword">size_t</span> result_type;</span><br><span class="line">        <span class="keyword">typedef</span> Sales_data argument_type;<span class="comment">//默认情况下，此类型需要==</span></span><br><span class="line">        <span class="keyword">size_t</span> <span class="keyword">operator</span>()(<span class="keyword">const</span> Sales_data&amp; s) <span class="keyword">const</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">size_t</span> hash&lt;Sales_data&gt;::<span class="keyword">operator</span>()(<span class="keyword">const</span> Sales_data&amp; s) <span class="keyword">const</span> </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> hash&lt;<span class="built_in">string</span>&gt;()(s.bookNo) ^</span><br><span class="line">                hash&lt;<span class="keyword">unsigned</span>&gt;()(s.units_sold) ^</span><br><span class="line">                hash&lt;<span class="keyword">double</span>&gt;()(s.revenue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//关闭std命名空间，没有分号</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用hash&lt;Sales_data&gt;</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">class</span> <span class="title">std</span>:</span>:hash;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sales_data</span> &#123;</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:hash&lt;Sales_data&gt;;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//为了让Sales_data的用户能使用hash的特例化版本，我们应该在Sales_data的头文件中定义该特例化版本</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>类模板部分特例化</p>
+<ul>
+<li>一个类的部分特例化本身是一个模板，使用时还必须为那些在特例化版本中未指定的模板参数提供实参；</li>
+<li>只能部分特例化类模板，而不能部分特例化函数模板；</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">struct</span> <span class="title">remove_reference</span> &#123;</span></span><br><span class="line">    <span class="keyword">typedef</span> T type;    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//部分特例化版本</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">struct</span> <span class="title">remove_reference</span>&lt;T&amp;&gt; &#123;</span></span><br><span class="line">    <span class="keyword">typedef</span> T type;    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">struct</span> <span class="title">remove_reference</span>&lt;T&amp;&amp;&gt; &#123;</span></span><br><span class="line">    <span class="keyword">typedef</span> T type;    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="comment">//decltype(42)为int，使用原始模板</span></span><br><span class="line">remove_reference&lt;<span class="keyword">decltype</span>(<span class="number">42</span>)&gt;::type a;</span><br><span class="line"><span class="comment">//decltype(i)为int&amp;，使用(T&amp;)模板</span></span><br><span class="line">remove_reference&lt;<span class="keyword">decltype</span>(i)&gt;::type b;</span><br><span class="line"><span class="comment">//decltype(std::move(i))为int&amp;&amp;，使用(T&amp;&amp;)模板</span></span><br><span class="line">remove_reference&lt;<span class="keyword">decltype</span>(<span class="built_in">std</span>::move(i))&gt;::type c;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>特例化成员而不是类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">struct</span> <span class="title">Foo</span> &#123;</span></span><br><span class="line">    Foo(<span class="keyword">const</span> T &amp;t = T()): mem(t) &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Bar</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    T mem;</span><br><span class="line">    <span class="comment">//Foo的其他成员</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;<span class="comment">//特例化模板</span></span><br><span class="line"><span class="keyword">void</span> Foo&lt;<span class="keyword">int</span>&gt;::Bar()<span class="comment">//特例化Foo&lt;int&gt;的成员Bar</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 应用于int的特例化处理</span></span><br><span class="line">&#125;</span><br><span class="line">Foo&lt;<span class="built_in">string</span>&gt; fs; <span class="comment">//实例化Foo&lt;string&gt;::Foo()</span></span><br><span class="line">fs.Bar(); <span class="comment">//实例化Foo&lt;string&gt;::Bar()</span></span><br><span class="line">Foo&lt;<span class="keyword">int</span>&gt; fi; <span class="comment">//实例化Foo&lt;int&gt;::Foo()</span></span><br><span class="line">fi.Bar(); <span class="comment">//使用特例化的Foo&lt;int&gt;::Bar()</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-Primer/" rel="tag"><i class="fa fa-tag"></i> C++ Primer</a>
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/21/C-Primer学习笔记：第15章-面向对象程序设计/" rel="next" title="C++ Primer学习笔记：第15章 面向对象程序设计">
+                <i class="fa fa-chevron-left"></i> C++ Primer学习笔记：第15章 面向对象程序设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/23/C-Primer学习笔记：第17章-标准库特殊设施/" rel="prev" title="C++ Primer学习笔记：第17章 标准库特殊设施">
+                C++ Primer学习笔记：第17章 标准库特殊设施 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">16.1 定义模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#16-1-1-函数模板"><span class="nav-number">1.1.</span> <span class="nav-text">¶16.1.1 函数模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-1-2-类模板"><span class="nav-number">1.2.</span> <span class="nav-text">¶16.1.2 类模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-1-3-模板参数"><span class="nav-number">1.3.</span> <span class="nav-text">¶16.1.3 模板参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-1-4-成员模板"><span class="nav-number">1.4.</span> <span class="nav-text">¶16.1.4 成员模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-1-5-控制实例化"><span class="nav-number">1.5.</span> <span class="nav-text">¶16.1.5 控制实例化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-1-6-效率与灵活性"><span class="nav-number">1.6.</span> <span class="nav-text">¶16.1.6 效率与灵活性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">16.2 模板实参推断</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#16-2-1-类型转换与模板类型参数"><span class="nav-number">2.1.</span> <span class="nav-text">¶16.2.1 类型转换与模板类型参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-2-2-函数模板显式实参"><span class="nav-number">2.2.</span> <span class="nav-text">¶16.2.2 函数模板显式实参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-2-3-尾置返回类型与类型转换"><span class="nav-number">2.3.</span> <span class="nav-text">¶16.2.3 尾置返回类型与类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-2-4-函数指针和实参推断"><span class="nav-number">2.4.</span> <span class="nav-text">¶16.2.4 函数指针和实参推断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-2-5-模板实参推断和引用"><span class="nav-number">2.5.</span> <span class="nav-text">¶16.2.5 模板实参推断和引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-2-6-理解std-move"><span class="nav-number">2.6.</span> <span class="nav-text">¶16.2.6 理解std::move</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-2-7-转发"><span class="nav-number">2.7.</span> <span class="nav-text">¶16.2.7 转发</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">16.3 重载与模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">16.4 可变参数模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#16-4-1-编写可变参数函数模板"><span class="nav-number">4.1.</span> <span class="nav-text">¶16.4.1 编写可变参数函数模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-4-2-包扩展"><span class="nav-number">4.2.</span> <span class="nav-text">¶16.4.2 包扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-4-3-转发参数包"><span class="nav-number">4.3.</span> <span class="nav-text">¶16.4.3 转发参数包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">16.5 模板特例化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

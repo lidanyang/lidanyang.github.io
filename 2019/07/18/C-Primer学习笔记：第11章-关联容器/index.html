@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>C++ Primer学习笔记：第11章 关联容器 | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/18/C-Primer学习笔记：第11章-关联容器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ Primer学习笔记：第11章 关联容器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-18T12:21:00+08:00">2019-07-18</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>8个容器，3个维度，4个头文件</p>
+<ul>
+<li>或是set，或是map</li>
+<li>或是要求不重复关键字，或是允许重复关键字</li>
+<li>或是按顺序保存，或是无序保存</li>
+</ul>
+<h1>11.1 使用关联容器</h1>
+<ul>
+<li>
+<p>使用map</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">size_t</span>&gt; word_count;</span><br><span class="line"><span class="built_in">string</span> word;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; word)</span><br><span class="line">    ++word_count[word];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;w : word_count)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; w.first &lt;&lt; <span class="string">"occurs "</span> &lt;&lt; w.second &lt;&lt; ((w.second &gt; <span class="number">1</span>) ? <span class="string">" times"</span> : <span class="string">" time"</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<p>从map提取元素，得到pair类型对象，保存两个名为first和second的公有数据成员，first是关键字，second是对应的值</p>
+</li>
+<li>
+<p>使用set</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">size_t</span>&gt; word_count;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; exclude = &#123;<span class="string">"The"</span>, <span class="string">"But"</span>, <span class="string">"And"</span>, <span class="string">"Or"</span>, <span class="string">"An"</span>, <span class="string">"A"</span>, </span><br><span class="line">					<span class="string">"the"</span>, <span class="string">"but"</span>, <span class="string">"and"</span>, <span class="string">"or"</span>, <span class="string">"an"</span>, <span class="string">"a"</span>&#125;;</span><br><span class="line"><span class="built_in">string</span> word;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; word)</span><br><span class="line">    <span class="comment">//find调用返回一个迭代器，如果给定关键字在set中，迭代器指向该关键字，否则返回尾后迭代器</span></span><br><span class="line">	<span class="keyword">if</span>(exclude.find(word) == exclude.end())</span><br><span class="line">		++word_count[word];</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1>11.2 关联容器概述</h1>
+<h2 id="11-2-1-定义关联容器"><a class="header-anchor" href="#11-2-1-定义关联容器">¶</a>11.2.1 定义关联容器</h2>
+<ul>
+<li>默认构造函数，创建空容器</li>
+<li>初始化为另一个同类型容器的拷贝</li>
+<li>从一个值范围初始化关联容器，只要可以转化为容器所需类型即可</li>
+<li>对关联容器进行值初始化</li>
+</ul>
+<h2 id="11-2-2-关键字类型的要求"><a class="header-anchor" href="#11-2-2-关键字类型的要求">¶</a>11.2.2 关键字类型的要求</h2>
+<ul>
+<li>
+<p>有序容器的关键字类型</p>
+<ul>
+<li>所提供的的操作必须在关键字类型上定义一个严格弱序</li>
+</ul>
+</li>
+<li>
+<p>使用关键字类型的比较函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">multiset</span>&lt;Sales_data, <span class="keyword">decltype</span>(compareIsbn) *&gt; bookstore(compareIsbn);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="11-2-3-pair类型"><a class="header-anchor" href="#11-2-3-pair类型">¶</a>11.2.3 pair类型</h2>
+<ul>
+<li>默认构造函数对数据成员进行值初始化</li>
+<li>创建pair对象的函数
+<ul>
+<li>返回pair，可以返回隐式构造的pair对象，也可以对返回值进行列表初始化，还可以用make_pair生成pair对象</li>
+</ul>
+</li>
+</ul>
+<h1>11.3 关联容器操作</h1>
+<p>关联容器额外类型别名</p>
+<ul>
+<li>key_type</li>
+<li>mapped_type
+<ul>
+<li>只有map才有这种类型</li>
+</ul>
+</li>
+<li>value_type
+<ul>
+<li>set:和key_type同</li>
+<li>map:pair&lt;const key_type, mapped_type&gt;</li>
+</ul>
+</li>
+</ul>
+<h2 id="11-3-1-关联容器迭代器"><a class="header-anchor" href="#11-3-1-关联容器迭代器">¶</a>11.3.1 关联容器迭代器</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> map_it = word_count.begin();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; map_it-&gt;first;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; map_it-&gt;second;</span><br><span class="line">map_it-&gt;first = <span class="string">"new key"</span>; <span class="comment">//错误:关键字是const的</span></span><br><span class="line">++map_it-&gt;second;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>set的迭代器是const的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; iset = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator set_it = iset.begin();</span><br><span class="line"><span class="keyword">if</span> (set_it != iset.end()) &#123;</span><br><span class="line">    *set_it = <span class="number">42</span>;<span class="comment">//错误:set中的关键字是只读的</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *set_it &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>遍历关联容器</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> map_it = word_count.cbegin();</span><br><span class="line"><span class="keyword">while</span>(map_it != word_count.cend())</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;map_it-&gt;first&lt;&lt;<span class="string">" occurs "</span>&lt;&lt;map_it-&gt;second&lt;&lt;<span class="string">" times"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    ++map_it;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//程序的输出是按字典序排列的，按关键字升序遍历元素</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>关联容器和算法</p>
+<ul>
+<li>通常不对关联容器使用泛型算法，因为关联容器关键字是const的</li>
+<li>关联容器的可以用自己的find成员通过给定关键字直接获取元素</li>
+<li>可以对关联容器使用copy算法，也可以调用inserter绑定插入器到关联容器</li>
+</ul>
+</li>
+</ul>
+<h2 id="11-3-2-添加元素"><a class="header-anchor" href="#11-3-2-添加元素">¶</a>11.3.2 添加元素</h2>
+<ul>
+<li>insert和emplace</li>
+<li>检测insert的返回值
+<ul>
+<li>返回指向具有给定关键字的元素的迭代器和插入是否成功的布尔值的pair</li>
+</ul>
+</li>
+<li>向multiset或multimap添加元素
+<ul>
+<li>对于允许重复关键字的容器，接受单个元素的insert操作只返回一个指向新元素的迭代器</li>
+</ul>
+</li>
+</ul>
+<h2 id="11-3-3-删除元素"><a class="header-anchor" href="#11-3-3-删除元素">¶</a>11.3.3 删除元素</h2>
+<ul>
+<li>接收一个迭代器或一个迭代器对的erase返回void</li>
+<li>接收key_type的erase，返回实际删除的元素数量</li>
+</ul>
+<h2 id="11-3-4-map的下标操作"><a class="header-anchor" href="#11-3-4-map的下标操作">¶</a>11.3.4 map的下标操作</h2>
+<ul>
+<li>如果关键字不在map中，会为它创建一个元素并插入map中，关联值将进行值初始化</li>
+<li><strong>只可以对非const的map使用下标操作</strong></li>
+<li><a href="http://c.at" target="_blank" rel="noopener">c.at</a>(k)是带参数检查的版本，k不在c中抛出out_of_range异常</li>
+<li>与vector与string不同，map下标运算符返回的类型（mapped_type）与解引用map迭代器得到的类型（value_type）不同</li>
+</ul>
+<h2 id="11-3-5-访问元素"><a class="header-anchor" href="#11-3-5-访问元素">¶</a>11.3.5 访问元素</h2>
+<ul>
+<li>不想改变map，而只是想知道给定关键字是否在map中，不能用下标运算符，而应该用find成员函数</li>
+<li>在multimap或multiset中查找，结合count和find成员函数</li>
+<li>用lower_bound和upper_bound可以得到迭代器范围，表示具有该关键字的元素的范围
+<ul>
+<li>lower_bound返回的迭代器可能指向一个具有给定关键字的元素，但也可能不指向</li>
+<li>如果关键字不在容器中，则lower_bound会返回关键字的第一个安全插入点</li>
+</ul>
+</li>
+<li>equal_range接受一个关键字，返回一个迭代器pair，第一个迭代器指向第一个与关键字匹配的元素，第二个迭代器指向最后一个匹配元素之后的位置</li>
+</ul>
+<h2 id="11-3-6-一个单词转换的map"><a class="header-anchor" href="#11-3-6-一个单词转换的map">¶</a>11.3.6 一个单词转换的map</h2>
+<ul>
+<li>void word_transfrom(ifstream &amp;map_file, ifstream &amp;input)</li>
+<li>map&lt;string, string&gt; buildMap(ifstream &amp;map_file)</li>
+<li>const string &amp;transform(const string &amp;s, const map&lt;string, string&gt; &amp;m)</li>
+</ul>
+<h1>11.4 无序容器</h1>
+<ul>
+<li>
+<p>管理桶</p>
+<ul>
+<li>桶接口
+<ul>
+<li>c.bucket_count()</li>
+<li>c.max_bucket_count()</li>
+<li>c.bucket_size(n)</li>
+<li>c.bucket(k)</li>
+</ul>
+</li>
+<li>桶迭代
+<ul>
+<li>local_iterator</li>
+<li>const_local_iterator</li>
+<li>c.begin(n), c.end(n)</li>
+<li>c.cbegin(n), c.cend(n)</li>
+</ul>
+</li>
+<li>哈希策略
+<ul>
+<li>c.load_factor()</li>
+<li>c.max_load_factor()</li>
+<li>c.rehash(n)</li>
+<li>c.reserve(n)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>对关键字的要求</p>
+<ul>
+<li>
+<p>无序容器使用关键字类型的==运算符比较元素，还用hash&lt;key_type&gt;类型的对象生成每个元素的哈希值</p>
+</li>
+<li>
+<p>不能直接定义关键字类型为自定义类类型的无序容器。需要提供自己的hash模板版本</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> hasher(<span class="keyword">const</span> Sales_data &amp;sd)&#123;</span><br><span class="line">	<span class="keyword">return</span> hash&lt;<span class="built_in">string</span>&gt;()(sd.isbn());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">eqOp</span><span class="params">(<span class="keyword">const</span> Sales_data &amp;lhs, <span class="keyword">const</span> Sales_data &amp;rhs)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lhs.isbn() == rhs.isbn();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> SD_multiset = <span class="built_in">unordered_multiset</span>&lt;Sales_data, <span class="keyword">decltype</span>(hasher)*, <span class="keyword">decltype</span>(eqOp)*&gt;;</span><br><span class="line"><span class="comment">//参数是桶大小，哈希函数指针，相等性判断运算符指针</span></span><br><span class="line"><span class="function">SD_multiset <span class="title">bookstore</span><span class="params">(<span class="number">42</span>, hasher, eqOp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用FooHash生成哈希值；Foo必须有==运算符</span></span><br><span class="line"><span class="built_in">unordered_set</span>&lt;Foo, <span class="keyword">decltype</span>(FooHash)* fooSet(10, FooHash);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-Primer/" rel="tag"><i class="fa fa-tag"></i> C++ Primer</a>
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/17/C-Primer/" rel="next" title="C++ Primer学习笔记：第10章 泛型算法">
+                <i class="fa fa-chevron-left"></i> C++ Primer学习笔记：第10章 泛型算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/18/C-Primer学习笔记：第12章-动态内存/" rel="prev" title="C++ Primer学习笔记：第12章 动态内存">
+                C++ Primer学习笔记：第12章 动态内存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">11.1 使用关联容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">11.2 关联容器概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-1-定义关联容器"><span class="nav-number">2.1.</span> <span class="nav-text">¶11.2.1 定义关联容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-2-关键字类型的要求"><span class="nav-number">2.2.</span> <span class="nav-text">¶11.2.2 关键字类型的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-3-pair类型"><span class="nav-number">2.3.</span> <span class="nav-text">¶11.2.3 pair类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">11.3 关联容器操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-1-关联容器迭代器"><span class="nav-number">3.1.</span> <span class="nav-text">¶11.3.1 关联容器迭代器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-2-添加元素"><span class="nav-number">3.2.</span> <span class="nav-text">¶11.3.2 添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-3-删除元素"><span class="nav-number">3.3.</span> <span class="nav-text">¶11.3.3 删除元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-4-map的下标操作"><span class="nav-number">3.4.</span> <span class="nav-text">¶11.3.4 map的下标操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-5-访问元素"><span class="nav-number">3.5.</span> <span class="nav-text">¶11.3.5 访问元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-6-一个单词转换的map"><span class="nav-number">3.6.</span> <span class="nav-text">¶11.3.6 一个单词转换的map</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">11.4 无序容器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

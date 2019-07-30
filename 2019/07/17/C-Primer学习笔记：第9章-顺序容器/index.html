@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>C++ Primer学习笔记：第9章 顺序容器 | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/C-Primer学习笔记：第9章-顺序容器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ Primer学习笔记：第9章 顺序容器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T14:54:00+08:00">2019-07-17</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>9.1 顺序容器概述</h1>
+<ul>
+<li>
+<p>顺序容器类型</p>
+<ul>
+<li>
+<p>vector</p>
+<p>可变大小数组，随机访问，尾部之外的位置插入或删除元素可能很慢</p>
+</li>
+<li>
+<p>deque</p>
+<p>双端队列，随机访问，头尾插入删除元素很快</p>
+</li>
+<li>
+<p>list</p>
+<p>双向链表，双向顺序访问，任何位置插入删除元素都很快</p>
+</li>
+<li>
+<p>forward_list</p>
+<p>单向链表，单向顺序访问，任何位置插入删除元素都很快</p>
+</li>
+<li>
+<p>array</p>
+<p>固定大小数组，快速随机访问，不能添加删除元素</p>
+</li>
+<li>
+<p>string</p>
+<p>vector相似的容器，专门用于保存字符，随机访问快，尾部插入删除速度快</p>
+</li>
+</ul>
+</li>
+<li>
+<p>新标准库的容器比旧版本快得多，现代C++程序应该使用标准库容器，而不是更原始的数据结构，如内置数组</p>
+</li>
+<li>
+<p>确定使用哪种顺序容器</p>
+<ul>
+<li>
+<p>通常，使用vector时最好的选择，除非你有很好的理由选择其他容器</p>
+</li>
+<li>
+<p>如果是你的程序有很多小的元素，而空间的额外开销很重要，否则不需要使用list或forward_list</p>
+</li>
+<li>
+<p>如果程序要求在容器的中间插入或删除元素，应使用list或forward_list</p>
+</li>
+<li>
+<p>如果程序要写随机访问元素，应使用vector或deque</p>
+</li>
+<li>
+<p>如果程序需要在头尾位置插入或删除元素，但不会在中间位置进行插入或删除操作，则使用deque</p>
+</li>
+<li>
+<p>如果程序只有在读取输入时才需要在容器中间位置插入元素，随后需要随机访问元素，则</p>
+<ul>
+<li>
+<p>首先，确定是否真的需要在容器中间位置添加元素。当处理输入数据时，通常可以很容易地向vector追加数据，然后在 调用标准库的sort函数来重排容器中的元素，从而避免在中间位置添加元素</p>
+</li>
+<li>
+<p>如果必须在中间位置插入元素，考虑在输入阶段使用list，一旦输入完成，将list中的内容拷贝到一个vector</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>9.2 容器库概览</h1>
+<ul>
+<li>元素可以保存的元素类型的限制
+<ul>
+<li>某些特定操作对元素类型有自己的特殊要求</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-2-1-迭代器"><a class="header-anchor" href="#9-2-1-迭代器">¶</a>9.2.1 迭代器</h2>
+<ul>
+<li>迭代器范围（左闭右开）</li>
+<li>使用左闭合范围蕴含的编程假定
+<ul>
+<li>如果begin与end相等，则范围为空</li>
+<li>如果begin与end不等，则范围至少包含一个元素，且begin指向范围中第一个元素</li>
+<li>可以对begin递增若干次，使得begin==end</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-2-2-容器类型成员"><a class="header-anchor" href="#9-2-2-容器类型成员">¶</a>9.2.2 容器类型成员</h2>
+<ul>
+<li>
+<p>类型成员</p>
+<ul>
+<li>size_type</li>
+<li>iterator</li>
+<li>const_iterator</li>
+<li>value_type</li>
+<li>reference</li>
+<li>const_reference</li>
+</ul>
+</li>
+<li>
+<p>这种元素相关的类型别名在泛型编程中非常有用</p>
+</li>
+<li>
+<p>反向迭代器</p>
+</li>
+<li>
+<p>使用这些类型，要显示使用其类名</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt;::iterator iter;<span class="comment">//list&lt;string&gt;定义的一个迭代器类型</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::difference_type count;<span class="comment">//vector&lt;int&gt;定义的一个difference_type类型</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="9-2-3-begin和end成员"><a class="header-anchor" href="#9-2-3-begin和end成员">¶</a>9.2.3 begin和end成员</h2>
+<ul>
+<li>
+<p>不以c开头的函数都被重载过，根据对象是否常量决定是否返回常量版本的返回值</p>
+</li>
+<li>
+<p>以c开头的版本是C++新标准引入的，用以支持auto与begin和end结合使用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//显示指定类型</span></span><br><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt;::iterator it5 = a.begin();</span><br><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt;::const_iterator it6 = a.begin();</span><br><span class="line"></span><br><span class="line"><span class="comment">//是iterator还是const_iterator依赖于a的类型，但是以c开头的版本还是可以获得const_iterator的</span></span><br><span class="line"><span class="keyword">auto</span> it7 = a.begin(); <span class="comment">//仅当a是const，it7是const_iterator</span></span><br><span class="line"><span class="keyword">auto</span> it8 = a.cbegin(); <span class="comment">//it8是const_iterator</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="9-2-4-容器定义和初始化"><a class="header-anchor" href="#9-2-4-容器定义和初始化">¶</a>9.2.4 容器定义和初始化</h2>
+<ul>
+<li>
+<p>将一个容器初始化另一个容器的拷贝</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C <span class="title">c1</span><span class="params">(c2)</span></span>;</span><br><span class="line">C c1 = c2;</span><br><span class="line"><span class="function">C <span class="title">c</span><span class="params">(b, e)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>直接拷贝整个容器，要求<strong>容器类型及其元素类型必须匹配</strong></li>
+<li>拷贝迭代器对指定的元素范围（array除外），不要求容器类型相同，而且元素类型也可以不同</li>
+</ul>
+</li>
+<li>
+<p>列表初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C c&#123;a,b,c...&#125;;</span><br><span class="line">C c = &#123;a,b,c...&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于除array之外的类型，初始化列表还隐含指定了容器大小</li>
+<li>对array来说，遗漏元素进行值初始化</li>
+</ul>
+</li>
+<li>
+<p>与顺序容器大小相关的构造函数</p>
+<ul>
+<li>接受一个容器大小和一个元素初始值。如果不提供初始值，则标准库会创建一个值初始化器</li>
+<li>内置类型或者有默认构造函数的类类型，可以只提供一个容器大小参数</li>
+<li>没有默认构造函数，还必须指定一个显示元素初始值</li>
+</ul>
+</li>
+<li>
+<p>标准库array具有固定大小</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">array</span>&lt;<span class="keyword">int</span>, 42&gt;;</span><br><span class="line"><span class="built_in">array</span>&lt;<span class="built_in">string</span>, 10&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>可以对array进行拷贝和赋值操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">array</span>&lt;<span class="keyword">int</span>, 10&gt; digits = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">array</span>&lt;<span class="keyword">int</span>, 10&gt; copy = digits;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-2-5-赋值和swap"><a class="header-anchor" href="#9-2-5-赋值和swap">¶</a>9.2.5 赋值和swap</h2>
+<ul>
+<li>
+<p>赋值相关运算符可以用于所有容器，将左边容器中全部元素替换成右边容器元素的拷贝</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c1 = c2;</span><br><span class="line">c1 = &#123;a,b,c&#125;;</span><br></pre></td></tr></table></figure>
+<p>标准array类型允许赋值，左右两边必须具有相同的类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">array</span>&lt;<span class="keyword">int</span>, 10&gt; a1 = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">array</span>&lt;<span class="keyword">int</span>, 10&gt; a2 = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">a1 = a2; <span class="comment">//替换a1中的元素</span></span><br><span class="line">a2 = &#123;<span class="number">0</span>&#125;; <span class="comment">//错误:不能将一个花括号列表赋予数组</span></span><br><span class="line"><span class="comment">//因为右边运算对象大小可能与左边运算对象大小不同，所以array类型不支持assign，也不允许用花括号包围的值列表进行赋值</span></span><br></pre></td></tr></table></figure>
+<p>赋值相关运算符会导致指向左边容器内部的迭代器、引用和指针失效。而swap则不会导致失效（容器类型为array和string除外）</p>
+</li>
+<li>
+<p>使用assign</p>
+<ul>
+<li>
+<p>允许从一个不同但相容类型赋值，或者从容器的子序列赋值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; names;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">const</span> <span class="keyword">char</span> *&gt; oldstyle;</span><br><span class="line">names = oldstyle;<span class="comment">//错误:容器类型不匹配</span></span><br><span class="line"><span class="comment">//正确:可以将const char *转换为string</span></span><br><span class="line">names.assign(oldstyle.cbegin(), oldstyle.cend());</span><br><span class="line"><span class="comment">//传递给assign的迭代器不能指向调用assign的容器</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>用指定数目且具有相同给定值的元素替换容器中原有元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; slist1(<span class="number">1</span>); </span><br><span class="line">slist1.assign(<span class="number">10</span>, <span class="string">"Hiya!"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>使用swap</p>
+<ul>
+<li>swap交换两个相同类型容器的内容</li>
+<li><strong>除array外</strong>，交换两个容器内容的操作很快，元素本身未交换，只是交换两个容器的内部数据结构</li>
+<li><strong>除了string外</strong>，指向容器的迭代器、引用和指针在swap后都不会失效。但是迭代器所指元素已经属于不同容器了</li>
+<li>array的swap会真正交换它们的元素，指针、引用和迭代器绑定的元素保持不变，但是元素值和另一个array中对应元素值进行了交换</li>
+<li>统一使用非成员版本的swap是一个好习惯</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-2-6-容器大小操作"><a class="header-anchor" href="#9-2-6-容器大小操作">¶</a>9.2.6 容器大小操作</h2>
+<p>size返回元素数目，empty判断是否为空，max_size返回大于等于该类型容器所能容纳的最大元素数的值</p>
+<p>forward_list支持max_size和empty，但不支持size</p>
+<h2 id="9-2-7-关系运算符"><a class="header-anchor" href="#9-2-7-关系运算符">¶</a>9.2.7 关系运算符</h2>
+<p>每个容器都支持相等运算符；除了无序关联容器外的所有容器都支持关系运算符。左右必须保存相同类型元素的相同类型容器</p>
+<ul>
+<li>容器的关系运算符使用元素的关系运算符完成比较
+<ul>
+<li>只有元素类型也定义了比较运算符，才可以使用比较运算符比较两个容器</li>
+</ul>
+</li>
+</ul>
+<h1>9.3 顺序容器操作</h1>
+<blockquote>
+<p>上一节介绍了所有容器都支持的操作，本章剩余部分介绍顺序容器特有操作</p>
+</blockquote>
+<h2 id="9-3-1-向顺序容器添加元素"><a class="header-anchor" href="#9-3-1-向顺序容器添加元素">¶</a>9.3.1 向顺序容器添加元素</h2>
+<ul>
+<li>
+<p>除array外，所有标准库容器都提供灵活的内存管理</p>
+</li>
+<li>
+<p>添加元素的操作</p>
+<ul>
+<li>这些操作会改变容器大小；array不支持这些操作</li>
+<li>forward_list有自己专有的insert和emplace，并且不支持push_back和emplace_back</li>
+<li>vector和string不支持push_front和emplace_front</li>
+<li>c.push_back(t)，c.emplace_back(args) //在c的尾部创建一个值为t或由args创建的元素。返回void</li>
+<li>c.push_front(t)，c.emplace_front(t) //在c的头部创建一个值为t或由args创建的元素。返回void</li>
+<li>c.insert(p,t)，c.emplace(p,args) //在迭代器p指向的元素之前创建一个元素，返回指向新元素的迭代器</li>
+<li>c.insert(p,n,t) //在p之前插入n个值为t的元素，返回指向新添加的第一个元素的迭代器</li>
+<li>c.insert(p,b,e) //将迭代器b和e指定的范围内的元素插入p之前，b和e不能指向c中的元素</li>
+<li>c.insert(p,il) //il是一个花括号包围的值列表，将这些值插入p之前</li>
+</ul>
+<blockquote>
+<p>向vector、string或deque插入元素会使指向容器的迭代器、引用和指针失效</p>
+</blockquote>
+</li>
+<li>
+<p>使用push_back</p>
+<ul>
+<li>array和forward_list不支持push_back</li>
+<li>把对象插入容器，实际放入的是对象值的拷贝，不是对象本身</li>
+</ul>
+</li>
+<li>
+<p>使用push_front</p>
+<ul>
+<li>forward_list,deque,list支持push_front</li>
+</ul>
+</li>
+<li>
+<p>在容器中特定位置添加元素</p>
+<ul>
+<li>vector、deque、list、string都支持insert，forward_list提供了特殊版本的insert</li>
+<li>有些不支持push_front的容器对insert并无类似限制，所以可以将元素插入开头，而不用担心容器是否支持</li>
+</ul>
+</li>
+<li>
+<p>插入范围元素</p>
+<ul>
+<li>如果插入范围为空，不插入任何元素，insert操作会将第一个参数返回</li>
+</ul>
+</li>
+<li>
+<p>使用insert的返回值</p>
+<ul>
+<li>使用insert的返回值，可以在容器中一个特定位置反复插入元素</li>
+</ul>
+</li>
+<li>
+<p>使用emplace操作</p>
+<ul>
+<li>
+<p>emplace_front、emplace、emplace_back这些操作构造而不是拷贝元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正确，调用emplace_back会在容器管理的内存空间中直接创建对象</span></span><br><span class="line">c.emplace_back(<span class="string">"978-0590353403"</span>, <span class="number">25</span>, <span class="number">15.99</span>);</span><br><span class="line"><span class="comment">//错误</span></span><br><span class="line">c.push_back(<span class="string">"978-0590353403"</span>, <span class="number">25</span>, <span class="number">15.99</span>);</span><br><span class="line"><span class="comment">//正确，push_back会创建一个局部临时对象，将其压入容器中</span></span><br><span class="line">c.push_back(Sales_data(<span class="string">"978-0590353403"</span>, <span class="number">25</span>, <span class="number">15.99</span>));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-3-2-访问元素"><a class="header-anchor" href="#9-3-2-访问元素">¶</a>9.3.2 访问元素</h2>
+<ul>
+<li>包括array在内的每个顺序容器都有front成员函数，除forward_list之外的所有顺序容器都有一个back成员函数，分别返回首元素和尾元素的引用（forward_list的迭代器不能递减）</li>
+<li>front、back、下标和at返回的是引用。const对象，返回const引用；普通对象，返回普通引用</li>
+<li>下标操作和安全的随机访问
+<ul>
+<li>at成员函数如果下标越界，会抛出out_of_range异常</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-3-3-删除元素"><a class="header-anchor" href="#9-3-3-删除元素">¶</a>9.3.3 删除元素</h2>
+<ul>
+<li>pop_front和pop_back
+<ul>
+<li>vector和string不支持pop_front和push_front</li>
+<li>forward_list不支持pop_back</li>
+</ul>
+</li>
+<li>容器内部删除元素
+<ul>
+<li>erase§ //p是待删除元素的迭代器</li>
+<li>erase(b,e) //b,e是待删除范围的元素，返回最后一个被删除的元素之后元素的迭代器</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-3-4-特殊的forward-list操作"><a class="header-anchor" href="#9-3-4-特殊的forward-list操作">¶</a>9.3.4 特殊的forward_list操作</h2>
+<ul>
+<li>forward_list未定义insert、emplace和erase操作
+<ul>
+<li>lst.before_begin</li>
+<li>lst.insert_after</li>
+<li>lst.erase_after</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-3-5-改变容器大小"><a class="header-anchor" href="#9-3-5-改变容器大小">¶</a>9.3.5 改变容器大小</h2>
+<ul>
+<li>array不支持resize</li>
+<li>c.resize(n)</li>
+<li>c.resize(n,t)</li>
+<li>resize缩小容器，则指向被删除元素的迭代器、引用和指针都会失效；对vector、string或deque进行resize可能会导致迭代器、指针和引用失效</li>
+</ul>
+<h2 id="9-3-6-容器操作可能使迭代器失效"><a class="header-anchor" href="#9-3-6-容器操作可能使迭代器失效">¶</a>9.3.6 容器操作可能使迭代器失效</h2>
+<ul>
+<li>添加删除可能会导致指针、引用或迭代器失效</li>
+<li>添加元素
+<ul>
+<li>vector或string，且空间重新分配；未重新分配，则插入位置之前有效，之后无效</li>
+<li>deque，插入首尾之外任意位置都会导致迭引指失效；在首尾插入，迭失效，引指不失效</li>
+<li>list和forward_list，迭引指仍有效</li>
+</ul>
+</li>
+<li>删除元素
+<ul>
+<li>list和forward_list，其他位置的迭引指仍有效</li>
+<li>deque，删除首尾之外任意位置都会导致其他位置的迭引指失效；尾删除，尾后迭代器失效，其他迭引指不影响；首删除，这些也不会受影响</li>
+<li>vector和string，被删元素之前元素的迭引指仍有效。删除元素时尾后迭总失效</li>
+</ul>
+</li>
+<li>编写改变容器的循环程序
+<ul>
+<li>利用inset和erase的返回值</li>
+</ul>
+</li>
+<li>不要保存end返回的迭代器
+<ul>
+<li>如果在一个循环中插入删除deque、string或vector中的元素，不要缓存end返回的迭代器</li>
+</ul>
+</li>
+</ul>
+<h1>9.4 vector对象是如何增长的</h1>
+<ul>
+<li>管理容量的成员函数
+<ul>
+<li>capacity获得不扩张内存空间情况下可以容纳多少元素，只适用vector和string</li>
+<li>reserve通知容器它应该保存多少元素，只适用vector和string
+<ul>
+<li>只有需要的内存空间超过当前容量，reserve才会改变vector容量</li>
+</ul>
+</li>
+<li>shrink_to_fit请将capacity()减少为和size()相同的大小，只适用vector、string和deque
+<ul>
+<li>具体实现可以选择忽略此请求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>resize 只改变容器中元素数目，而不是容器的容量。不能使用resize减少容器预留的内存空间</li>
+</ul>
+<h1>9.5 额外的string操作</h1>
+<h2 id="9-5-1-构造string的其他方法"><a class="header-anchor" href="#9-5-1-构造string的其他方法">¶</a>9.5.1 构造string的其他方法</h2>
+<ul>
+<li>string s(cp, n)</li>
+<li>string s(s2,pos2)</li>
+<li>string s(s2,pos2,len2)</li>
+<li>substr(pos,n)</li>
+</ul>
+<h2 id="9-5-2-改变string的其他方法"><a class="header-anchor" href="#9-5-2-改变string的其他方法">¶</a>9.5.2 改变string的其他方法</h2>
+<ul>
+<li>
+<p>支持assign、insert和erase操作</p>
+</li>
+<li>
+<p>接收下标的insert和erase版本</p>
+</li>
+<li>
+<p>接收C风格字符数组的insert和assign版本</p>
+</li>
+<li>
+<p>append和replace函数</p>
+</li>
+<li>
+<p>改变string的多种重载函数</p>
+<ul>
+<li>assign总是替换string中所有内容</li>
+<li>append总是将新字符追加到string末尾</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-5-3-string搜索操作"><a class="header-anchor" href="#9-5-3-string搜索操作">¶</a>9.5.3 string搜索操作</h2>
+<ul>
+<li>搜索失败返回值是string::size_type的静态成员string::npos，值为-1</li>
+<li>查找子字符串find，rfind</li>
+<li>查找给定字符串中任何一个字符匹配的位置find_first_of</li>
+<li>查找第一个不在参数中的字符find_first_not_of</li>
+<li>find_first都有find_last的版本</li>
+</ul>
+<h2 id="9-5-4-compare函数"><a class="header-anchor" href="#9-5-4-compare函数">¶</a>9.5.4 compare函数</h2>
+<ul>
+<li>参数形式
+<ul>
+<li>s2</li>
+<li>pos1,n1,s2</li>
+<li>pos1,n1,s2,pos2,n2</li>
+<li>cp</li>
+<li>pos1,n1,cp</li>
+<li>pos1,n1,cp,n2</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-5-5-数值转换"><a class="header-anchor" href="#9-5-5-数值转换">¶</a>9.5.5 数值转换</h2>
+<ul>
+<li>to_string(val)</li>
+<li>stoi(s,p,b) //p用来保存s第一个非数值字符的下标，默认为0，即不保存下标；b表示转换用的基数，默认为10</li>
+<li>stol(s,p,b)</li>
+<li>stoul(s,p,b)</li>
+<li>stoll(s,p,b)</li>
+<li>stoull(s,p,b)</li>
+<li>stof(s,p)</li>
+<li>stod(s,p)</li>
+<li>stold(s,p)</li>
+</ul>
+<h1>9.6 容器适配器</h1>
+<blockquote>
+<p>一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型</p>
+</blockquote>
+<ul>
+<li>
+<p>定义一个适配器</p>
+</li>
+<li>
+<p>可以创建适配器时将命名的顺序容器作为第二个类型参数，来重载默认容器类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">stack</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; str_stk;</span><br><span class="line"><span class="built_in">stack</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; str_stk2(svec);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>对容器的限制</p>
+<ul>
+<li>适配器不能构造在array之上</li>
+<li>不能用forward_list构造适配器，因为所有适配器都要求容器有添加删除及访问尾元素的能力</li>
+<li>stack可以用除array和forward_list之外任何容器类型构造</li>
+<li>queue可以构造于list或deque之上，不能基于vector</li>
+<li>priority_queue可以构造于vector或deque，不能基于list构造</li>
+</ul>
+</li>
+<li>
+<p>栈适配器</p>
+</li>
+<li>
+<p>队列适配器</p>
+<ul>
+<li>注意队列的pop函数不返回删除的元素
+<ul>
+<li>如果调用的时候发生异常，并没有返回正确的值，但是栈顶元素已经弹出了，这时就丢失了栈顶数据</li>
+</ul>
+</li>
+<li>queue默认基于deque，priority_queue基于vector实现</li>
+<li>queue可以用list或vector实现，priority_queue也可以用deque实现</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-Primer/" rel="tag"><i class="fa fa-tag"></i> C++ Primer</a>
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/16/C-Primer学习笔记：第8章-IO库/" rel="next" title="C++ Primer学习笔记：第8章 IO库">
+                <i class="fa fa-chevron-left"></i> C++ Primer学习笔记：第8章 IO库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/17/C-Primer/" rel="prev" title="C++ Primer学习笔记：第10章 泛型算法">
+                C++ Primer学习笔记：第10章 泛型算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">9.1 顺序容器概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">9.2 容器库概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-1-迭代器"><span class="nav-number">2.1.</span> <span class="nav-text">¶9.2.1 迭代器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-2-容器类型成员"><span class="nav-number">2.2.</span> <span class="nav-text">¶9.2.2 容器类型成员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-3-begin和end成员"><span class="nav-number">2.3.</span> <span class="nav-text">¶9.2.3 begin和end成员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-4-容器定义和初始化"><span class="nav-number">2.4.</span> <span class="nav-text">¶9.2.4 容器定义和初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-5-赋值和swap"><span class="nav-number">2.5.</span> <span class="nav-text">¶9.2.5 赋值和swap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-6-容器大小操作"><span class="nav-number">2.6.</span> <span class="nav-text">¶9.2.6 容器大小操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-7-关系运算符"><span class="nav-number">2.7.</span> <span class="nav-text">¶9.2.7 关系运算符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">9.3 顺序容器操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-1-向顺序容器添加元素"><span class="nav-number">3.1.</span> <span class="nav-text">¶9.3.1 向顺序容器添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-2-访问元素"><span class="nav-number">3.2.</span> <span class="nav-text">¶9.3.2 访问元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-3-删除元素"><span class="nav-number">3.3.</span> <span class="nav-text">¶9.3.3 删除元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-4-特殊的forward-list操作"><span class="nav-number">3.4.</span> <span class="nav-text">¶9.3.4 特殊的forward_list操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-5-改变容器大小"><span class="nav-number">3.5.</span> <span class="nav-text">¶9.3.5 改变容器大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-6-容器操作可能使迭代器失效"><span class="nav-number">3.6.</span> <span class="nav-text">¶9.3.6 容器操作可能使迭代器失效</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">9.4 vector对象是如何增长的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">9.5 额外的string操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-1-构造string的其他方法"><span class="nav-number">5.1.</span> <span class="nav-text">¶9.5.1 构造string的其他方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-2-改变string的其他方法"><span class="nav-number">5.2.</span> <span class="nav-text">¶9.5.2 改变string的其他方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-3-string搜索操作"><span class="nav-number">5.3.</span> <span class="nav-text">¶9.5.3 string搜索操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-4-compare函数"><span class="nav-number">5.4.</span> <span class="nav-text">¶9.5.4 compare函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-5-数值转换"><span class="nav-number">5.5.</span> <span class="nav-text">¶9.5.5 数值转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">9.6 容器适配器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

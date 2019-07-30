@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>C++ Primer学习笔记：第17章 标准库特殊设施 | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/23/C-Primer学习笔记：第17章-标准库特殊设施/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ Primer学习笔记：第17章 标准库特殊设施</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-23T22:54:00+08:00">2019-07-23</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>17.1 tuple类型</h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">tuple&lt;T1, T2, ..., Tn&gt; t; <span class="comment">//值初始化</span></span><br><span class="line"></span><br><span class="line">tuple&lt;T1, T2, ..., Tn&gt; t(v1, v2, ..., vn); <span class="comment">//explicit构造函数，对应成员用vi初始化</span></span><br><span class="line"></span><br><span class="line">make_tuple(v1, v2, ..., vn); <span class="comment">//用给定初始值初始化，推断类型</span></span><br><span class="line"></span><br><span class="line">t1 == t2;</span><br><span class="line">t1 != t2;</span><br><span class="line"></span><br><span class="line">t1 relop t2;</span><br><span class="line"></span><br><span class="line">get&lt;i&gt;(t); <span class="comment">//获取t的第i个成员的引用</span></span><br><span class="line"></span><br><span class="line">tuple_size&lt;tupleType&gt;::value; <span class="comment">//类模板，用一个tuple类型初始化，有一个名为value的public constexpr static的成员，类型为size_t，表示给定tuple类型成员数量</span></span><br><span class="line"></span><br><span class="line">tuple_element&lt;i, tupleType&gt;::type; <span class="comment">//public成员type表示给定tuple类型中指定成员的类型</span></span><br></pre></td></tr></table></figure>
+<h2 id="17-1-1-定义和初始化tuple"><a class="header-anchor" href="#17-1-1-定义和初始化tuple">¶</a>17.1.1 定义和初始化tuple</h2>
+<p>提供初始值的构造函数必须使用直接初始化语法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tuple&lt;<span class="keyword">size_t</span>, <span class="keyword">size_t</span>, <span class="keyword">size_t</span>&gt; threeD = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;<span class="comment">//错误</span></span><br><span class="line">tuple&lt;<span class="keyword">size_t</span>, <span class="keyword">size_t</span>, <span class="keyword">size_t</span>&gt; threeD&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;<span class="comment">//正确</span></span><br></pre></td></tr></table></figure>
+<p>用make_tuple生成tuple对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> item = make_tuple(<span class="string">"0-999-78345-X"</span>, <span class="number">3</span>, <span class="number">20.00</span>); <span class="comment">//类型推断</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>访问tuple的成员</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">decltype</span><span class="params">(item)</span> trans</span></span><br><span class="line"><span class="function">size_t sz </span>= tuple_size&lt;trans&gt;::value;</span><br><span class="line">tuple_element&lt;<span class="number">1</span>, trans&gt;::type cnt = get&lt;<span class="number">1</span>&gt;(item);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>关系和相等运算符</p>
+<p>只有两个tuple有相同数量成员时才可以比较它们；</p>
+<p>由于tuple定义了&lt;和==运算符，可以将tuple序列传递给算法，并且可以在无序容器中将tuple作为关键字类型；</p>
+</li>
+</ul>
+<h2 id="17-1-2-使用tuple返回多个值"><a class="header-anchor" href="#17-1-2-使用tuple返回多个值">¶</a>17.1.2 使用tuple返回多个值</h2>
+<ul>
+<li>
+<p>返回tuple的函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> tuple&lt;<span class="built_in">vector</span>&lt;Sales_data&gt;::size_type,</span><br><span class="line">				<span class="built_in">vector</span>&lt;Sales_data&gt;::const_iterator,</span><br><span class="line">				<span class="built_in">vector</span>&lt;Sales_data&gt;::const_iterator&gt; matches;</span><br><span class="line"><span class="built_in">vector</span>&lt;matches&gt; findBook(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;Sales_data&gt;&gt; &amp;files,</span><br><span class="line">                        <span class="keyword">const</span> <span class="built_in">string</span> &amp;book)&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">for</span>(...)&#123;</span><br><span class="line">        <span class="comment">//equal_range</span></span><br><span class="line">        <span class="keyword">if</span>(found.first != found.second)</span><br><span class="line">            ret.push_back(make_tuple(it - files.cbegin(),</span><br><span class="line">                                    found.first, found.second));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用函数返回的tuple</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reportResults</span><span class="params">(istream &amp;in, ostream &amp;os,</span></span></span><br><span class="line"><span class="function"><span class="params">                  	<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;Sales_data&gt;&gt; &amp;files)</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span> (in &gt;&gt; s)&#123;</span><br><span class="line">        <span class="keyword">auto</span> trans = findBook(files, s);</span><br><span class="line">        <span class="keyword">if</span> (trans.empty())&#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(...)</span><br><span class="line">            os &lt;&lt; ... &lt;&lt; get&lt;<span class="number">0</span>&gt;(store) &lt;&lt; ...</span><br><span class="line">            	&lt;&lt; accumulate(get&lt;<span class="number">1</span>&gt;(store), get&lt;<span class="number">2</span>&gt;(store), Sales_data(s))</span><br><span class="line">            	&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1>17.2 BITSET类型</h1>
+<h2 id="17-2-1-定义和初始化bitset"><a class="header-anchor" href="#17-2-1-定义和初始化bitset">¶</a>17.2.1 定义和初始化bitset</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//大小固定</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;n&gt; b; <span class="comment">//constexpr构造函数</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;n&gt; b(u); <span class="comment">//constexpr构造函数，b是unsigned long long的值u的低n位的拷贝</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;n&gt; b(s, pos, m, zero, one); <span class="comment">//explicit，b是string s从pos开始m个字符的拷贝，s只能包含字符zero或one</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;n&gt; b(cp, pos, m, zero, one); <span class="comment">//explicit，从cp指向的字符数组中拷贝，如果未提供m，则cp必须指向C风格字符串；提供了m，则从cp开始必须至少有m个zero或one字符</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>用unsigned值初始化bitset</li>
+<li>从一个string初始化bitset
+<ul>
+<li>字符串中下标最小的字符对应高位</li>
+<li>可以只用一个子串作为初始值</li>
+</ul>
+</li>
+</ul>
+<h2 id="17-2-2-bitset操作"><a class="header-anchor" href="#17-2-2-bitset操作">¶</a>17.2.2 bitset操作</h2>
+<ul>
+<li>
+<p>提取bitset的值</p>
+<p>可能抛出overflow_error异常</p>
+</li>
+<li>
+<p>bitset的IO运算符</p>
+</li>
+<li>
+<p>使用bitset</p>
+</li>
+</ul>
+<h1>17.3 正则表达式</h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">regex</span><br><span class="line">regex_match</span><br><span class="line">regex_search</span><br><span class="line">regex_replace</span><br><span class="line">sregex_iterator</span><br><span class="line">smatch <span class="comment">//容器类，保存string中搜索的结果</span></span><br><span class="line">ssub_match <span class="comment">//string中匹配的子表达式的结果</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//regex_search和regex_match的参数</span></span><br><span class="line">(seq, m, r, mft)</span><br><span class="line">(seq, r, mft)</span><br><span class="line"><span class="comment">//seq可以是string、一对迭代器以及指向空字符结尾的字符数组的指针，r是regex对象，m是match对象，mft是可选的regex_constants::match_flag_type值</span></span><br></pre></td></tr></table></figure>
+<h2 id="17-3-1-使用正则表达式库"><a class="header-anchor" href="#17-3-1-使用正则表达式库">¶</a>17.3.1 使用正则表达式库</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">pattern</span><span class="params">(<span class="string">"[^c]ei"</span>)</span></span>;</span><br><span class="line">pattern = <span class="string">"[[:alpha:]]*"</span> + pattern + <span class="string">"[[::alpha:]]*"</span>;</span><br><span class="line"><span class="function">regex <span class="title">r</span><span class="params">(pattern)</span></span>;</span><br><span class="line">smatch results;</span><br><span class="line"><span class="built_in">string</span> test_str = <span class="string">"receipt friend theif receive"</span>;</span><br><span class="line"><span class="keyword">if</span> ( regex_search(test_str, results, r))</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; results.str() &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>指定regex对象的选项</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">regex <span class="title">r</span><span class="params">(re)</span></span></span><br><span class="line"><span class="function">regex <span class="title">r</span><span class="params">(re, f)</span></span></span><br><span class="line"><span class="function">r1 </span>= re</span><br><span class="line">r1.assign(re, f)</span><br><span class="line">r.mark_count()</span><br><span class="line">r.flags()</span><br><span class="line">    </span><br><span class="line"><span class="comment">//选项f</span></span><br><span class="line">icase </span><br><span class="line">nosubs</span><br><span class="line">optimize</span><br><span class="line">ECMAScript</span><br><span class="line">basic</span><br><span class="line">extended</span><br><span class="line">awk</span><br><span class="line">grep</span><br><span class="line">egrep</span><br><span class="line"></span><br><span class="line"><span class="comment">//icase使用示例</span></span><br><span class="line"><span class="function">regex <span class="title">r</span><span class="params">(<span class="string">"[[:alnum:]]+\\.(cpp|cxx|cc)$"</span>, regex::icase)</span></span>;</span><br><span class="line">smatch results;</span><br><span class="line"><span class="built_in">string</span> filename;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; filename)</span><br><span class="line">    <span class="keyword">if</span> (regex_search(filename, results, r))</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; results.str() &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>指定或使用正则表达式时的错误</p>
+<ul>
+<li>
+<p>正则表达式语法是否正确是在运行时解析的</p>
+</li>
+<li>
+<p>如果正则表达式存在编写错误，则运行时标准库会抛出类型为regex_error的异常</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="function">regex <span class="title">r</span><span class="params">(<span class="string">"[[:alnum:]+\\.(cpp|cxx|cc)$"</span>, regex::icase)</span></span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (regex_error e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; e.what() &lt;&lt; <span class="string">"\ncode: "</span> &lt;&lt; e.code() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>避免创建不必要的正则表达式，如果在循环中使用正则表达式，应该在循环外创建它，而不是每步迭代时都编译它</p>
+</li>
+</ul>
+</li>
+<li>
+<p>正则表达式类和输入序列类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果输入序列类型         则使用正则表达式类</span></span><br><span class="line">  <span class="built_in">string</span>                regex、smatch、ssub_match和sregex_iterator</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span>*           regex、cmatch、csub_match和cregex_iterator</span><br><span class="line">  wstring               wregex、wsmatch、wssub_match和wsregex_iterator</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">wchar_t</span>*        wregex、wcmatch、wcsub_match和wcregex_iterator</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="17-3-2-匹配与regex迭代器类型"><a class="header-anchor" href="#17-3-2-匹配与regex迭代器类型">¶</a>17.3.2 匹配与Regex迭代器类型</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sregex_iterator操作</span></span><br><span class="line"><span class="function">sregex_iterator <span class="title">it</span><span class="params">(b, e, r)</span></span>;</span><br><span class="line">sregex_iterator end;</span><br><span class="line">*it <span class="comment">//获得最近一次搜索结果的smatch对象</span></span><br><span class="line">it-&gt;</span><br><span class="line">it++</span><br><span class="line">++it</span><br><span class="line">it1 == it2</span><br><span class="line">it1 != it2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>使用sregex_iterator</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">pattern</span><span class="params">(<span class="string">"[^c]ei"</span>)</span></span>;</span><br><span class="line">pattern = <span class="string">"[[:alpha:]]*"</span> + pattern + <span class="string">"[[::alpha:]]*"</span>;</span><br><span class="line"><span class="function">regex <span class="title">r</span><span class="params">(pattern, regex::icase)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(sregex_iterator it(file.begin(), file.end(), r), end_it;</span><br><span class="line">    it != end_it; ++it)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; it-&gt;str() &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用匹配数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(sregex_iterator it(file.begin(), file.end(), r), end_it;</span><br><span class="line">    it != end_it; ++it)&#123;</span><br><span class="line">        <span class="keyword">auto</span> pos = it-&gt;prefix().length();</span><br><span class="line">        pos = pos &gt; <span class="number">40</span> ? pos - <span class="number">40</span> : <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; it-&gt;prefix().str().substr(pos)</span><br><span class="line">            &lt;&lt; <span class="string">"\n\t\t&gt;&gt;&gt; "</span> &lt;&lt; it-&gt;str() &lt;&lt; <span class="string">" &lt;&lt;&lt;\n"</span></span><br><span class="line">            &lt;&lt; it-&gt;suffix().str().substr(<span class="number">0</span>, <span class="number">40</span>)</span><br><span class="line">            &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//smatch 操作</span></span><br><span class="line">m.ready()</span><br><span class="line">m.size()</span><br><span class="line">m.empty()</span><br><span class="line">m.prefix()</span><br><span class="line">m.suffix()</span><br><span class="line">m.format(...)</span><br><span class="line">m.length(n)</span><br><span class="line">m.position(n)</span><br><span class="line">m.str(n)</span><br><span class="line">m[n]</span><br><span class="line">m.begin(), m.end()</span><br><span class="line">m.cbegin(), m.cend()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="17-3-3-使用子表达式"><a class="header-anchor" href="#17-3-3-使用子表达式">¶</a>17.3.3 使用子表达式</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ssub_match 子匹配操作</span></span><br><span class="line">matched <span class="comment">//可选子表达式是否匹配</span></span><br><span class="line">first</span><br><span class="line">second</span><br><span class="line">length()</span><br><span class="line">str()</span><br><span class="line">s = ssub <span class="comment">//ssub_match转化为string</span></span><br></pre></td></tr></table></figure>
+<h2 id="17-3-4-使用regex-replace"><a class="header-anchor" href="#17-3-4-使用regex-replace">¶</a>17.3.4 使用regex_replace</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">m.format(dest, fmt, mft)</span><br><span class="line">m.format(fmt, mft)</span><br><span class="line">regex_replace(dest, seq, r, fmt, mft)</span><br><span class="line">regex_replace(seq, r, fmt, mft)</span><br><span class="line"><span class="comment">//匹配在m中，fmt是格式字符串，mft是匹配标志，二者用来控制输出</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//示例</span></span><br><span class="line"><span class="built_in">string</span> ftm = <span class="string">"$2.$5.$7"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//匹配标志，定义在regex_constants::match_flag_type中</span></span><br><span class="line">match_default</span><br><span class="line">match_not_bol</span><br><span class="line">match_not_eol</span><br><span class="line">match_not_bow</span><br><span class="line">match_not_eow</span><br><span class="line">match_any</span><br><span class="line">match_not_null</span><br><span class="line">match_continuous</span><br><span class="line">match_prev_avail</span><br><span class="line">match_default</span><br><span class="line">format_default</span><br><span class="line">format_sed</span><br><span class="line">format_no_copy <span class="comment">//不输出未匹配部分</span></span><br><span class="line">format_first_only</span><br><span class="line"></span><br><span class="line"><span class="comment">//匹配标志使用</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; regex_replace(s, r, fmt2, format_no_copy) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h1>17.4 随机数</h1>
+<h2 id="17-4-1-随机数引擎和分布"><a class="header-anchor" href="#17-4-1-随机数引擎和分布">¶</a>17.4.1 随机数引擎和分布</h2>
+<blockquote>
+<p>随机数引擎是函数对象类，定义了调用运算符，不接受参数，返回一个随机unsigned整数</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">default_random_engine e;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; e() &lt;&lt; <span class="string">" "</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//随机数引擎操作</span></span><br><span class="line">Engine e;</span><br><span class="line"><span class="function">Engine <span class="title">e</span><span class="params">(seed)</span></span>;</span><br><span class="line">e.seed(s);</span><br><span class="line">e.min();</span><br><span class="line">e.max();</span><br><span class="line">Engine::result_type</span><br><span class="line">e.discard(u); <span class="comment">//引擎推进u步</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>分布类型和引擎</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uniform_int_distribution&lt;<span class="keyword">unsigned</span>&gt; u(<span class="number">0</span>, <span class="number">9</span>);</span><br><span class="line">default_random_engine e;</span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; u(e) &lt;&lt; <span class="string">" "</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>比较随机数引擎和rand函数</p>
+<p>rand和default_random_engine类似，可以调用min和max获得一个引擎类型的范围</p>
+</li>
+<li>
+<p>引擎生成一个数值序列</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//伪随机性</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">unsigned</span>&gt; bad_randVec()&#123;</span><br><span class="line">    default_random_engine e;</span><br><span class="line">    uniform_int_distribution&lt;<span class="keyword">unsigned</span>&gt; u(<span class="number">0</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">unsigned</span>&gt; ret;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span> ; i &lt; <span class="number">100</span>; ++i )</span><br><span class="line">        ret.push_back(u(e));</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//每次调用都会获得相同的vector</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//应该将引擎和关联的分布对象定义为static的</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">unsigned</span>&gt; good_randVec()&#123;</span><br><span class="line">	<span class="keyword">static</span> default_random_engine e;</span><br><span class="line">    <span class="keyword">static</span> uniform_int_distribution&lt;<span class="keyword">unsigned</span>&gt; u(<span class="number">0</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">unsigned</span>&gt; ret;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span> ; i &lt; <span class="number">100</span>; ++i )</span><br><span class="line">        ret.push_back(u(e));</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>设置随机数发生种子</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">default_random_engine <span class="title">e1</span><span class="params">(time(<span class="number">0</span>))</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="17-4-2-其他随机数分布"><a class="header-anchor" href="#17-4-2-其他随机数分布">¶</a>17.4.2 其他随机数分布</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分布类型的操作</span></span><br><span class="line">Dist d; <span class="comment">//explicit构造函数</span></span><br><span class="line">d(e);</span><br><span class="line">d.min();</span><br><span class="line">d.max();</span><br><span class="line">d.reset();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>生成随机实数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">default_random_engine e;</span><br><span class="line"><span class="comment">//0到1（包含）的均匀分布</span></span><br><span class="line">uniform_real_distribution&lt;<span class="keyword">double</span>&gt; u(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; u(e) &lt;&lt; <span class="string">" "</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用分布的默认结果类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//每个分布模板都有一个默认模板实参</span></span><br><span class="line">uniform_real_distribution&lt;&gt; u(<span class="number">0</span>,<span class="number">1</span>); <span class="comment">//默认生成double值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>生成非均匀分布的随机数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">default_random_engine e;</span><br><span class="line">normal_distribution&lt;&gt; n(<span class="number">4</span>, <span class="number">1.5</span>);</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">unsigned</span>&gt; vals(<span class="number">9</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i != <span class="number">200</span>; ++i)&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> v = lround(n(e));</span><br><span class="line">    <span class="keyword">if</span>(v &lt; vals.size())</span><br><span class="line">        ++vals[v];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> j = <span class="number">0</span>; j != vals.size(); ++j)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; j &lt;&lt; <span class="string">": "</span> &lt;&lt; <span class="built_in">string</span>(vals[j], <span class="string">'*'</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>bernoulli_distribution类</p>
+<blockquote>
+<p>该分布不接受模板参数</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> resp;</span><br><span class="line">default_random_engine e;</span><br><span class="line">bernoulli_distribution b; <span class="comment">//50/50</span></span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> first = b(e);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; (first ? <span class="string">"We go first"</span></span><br><span class="line">            		: <span class="string">"You get to go first"</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ((play(first)) ? <span class="string">"sorry, you lost"</span></span><br><span class="line">            				: <span class="string">"congrats, you won"</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"play again? Enter 'yes' or 'no''"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125; <span class="keyword">while</span>( <span class="built_in">cin</span> &gt;&gt; resp &amp;&amp; resp[<span class="number">0</span>] == <span class="string">'y'</span>);</span><br><span class="line"><span class="comment">//bernoulli_distribution允许调整选择先行一方的概率</span></span><br><span class="line"><span class="function">bernoulli_distribution <span class="title">b</span><span class="params">(<span class="number">.55</span>)</span></span>; <span class="comment">//55/45</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1>17.5 IO库再探</h1>
+<h2 id="17-5-1-格式化输入与输出"><a class="header-anchor" href="#17-5-1-格式化输入与输出">¶</a>17.5.1 格式化输入与输出</h2>
+<ul>
+<li>
+<p>很多操纵符改变格式状态</p>
+<p>操纵符用于两大类输出控制：控制数值的输出形式以及控制补白的数量和位置</p>
+<p>大多数改变格式状态的操纵符都是设置、复原成对的</p>
+</li>
+<li>
+<p>控制布尔值的格式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"default bool: "</span> &lt;&lt; <span class="literal">true</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; <span class="literal">false</span></span><br><span class="line">    &lt;&lt; <span class="string">"\nalpha bool: "</span> &lt;&lt; boolapha</span><br><span class="line">    &lt;&lt; <span class="literal">true</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; <span class="literal">false</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> bool_val = get_status();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; boolalpha </span><br><span class="line">&lt;&lt; boool_val</span><br><span class="line">&lt;&lt; noboolalpha;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>
+<p>指定整型值的进制</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"default: "</span> &lt;&lt; <span class="number">20</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"octal: "</span> &lt;&lt; oct &lt;&lt; <span class="number">20</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"hex: "</span> &lt;&lt; hex &lt;&lt; <span class="number">20</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"decimal: "</span> &lt;&lt; dec &lt;&lt; <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>输出中指出进制</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; showbase;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; noshowbase;</span><br><span class="line"></span><br><span class="line"><span class="comment">//默认情况，16进制以小写打印，前导字符也是小写x</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; uppercase &lt;&lt; showbase &lt;&lt; hex</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    &lt;&lt; nouppercase &lt;&lt; noshowbase &lt;&lt; dec &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>控制浮点数格式</p>
+<p>可以控制浮点数输出三种格式：</p>
+<ul>
+<li>以高精度打印浮点值</li>
+<li>数值是打印为十六进制、定点十进制还是科学记数法形式</li>
+<li>对于没有小数点部分的浮点值是否打印小数点</li>
+</ul>
+<p>默认情况下，浮点数按六位数字精度；如果没有小数部分，不打印小数点；根据浮点数的值选择打印成定点十进制或科学记数法形式；</p>
+<p>标准库会选择一种可读性更好的格式：非常大和小的值打印为科学记数法，其他打印为定点十进制；</p>
+</li>
+<li>
+<p>指定打印精度</p>
+<p>可以调用IO对象的precision成员或使用setprecision操纵符来改变精度；</p>
+<p>操纵符setprecision定义在头文件iomanip中</p>
+</li>
+<li>
+<p>指定浮点数记数法</p>
+<ul>
+<li>scientific改变流的状态来使用科学记数法</li>
+<li>fixed改变流的状态来使用定点十进制</li>
+<li>hexfloat强制使用十六进制格式</li>
+<li>defaultfloat恢复默认状态，根据要打印的值选择记数法</li>
+</ul>
+<blockquote>
+<p>在执行scientific、fixed或hexfloat后，精度值控制的是小数点后面的数字位数，而默认情况下精度值指定的是数字的总位数</p>
+</blockquote>
+</li>
+<li>
+<p>打印小数点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; showpoint &lt;&lt; <span class="number">10.0</span></span><br><span class="line">    &lt;&lt; noshowpoint &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>输出补白</p>
+<p>按列打印数据时，需要精细控制数据格式：</p>
+<ul>
+<li>setw指定下一个数字或字符串值的最小空间</li>
+<li>left表示左对齐</li>
+<li>right表示右对齐，默认对齐格式</li>
+<li>internal控制负数的符号的位置，它左对齐符号，右对齐值，用空格填满中间空间</li>
+<li>setfill允许指定一个字符代替默认空格补白输出</li>
+</ul>
+<blockquote>
+<p>setw类似endl不改变输出流的内部状态，只决定下一个输出的大小</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">//定义在iomanip中的操纵符</span></span><br><span class="line">&gt; setfill(ch)</span><br><span class="line">&gt; setprecision(n)</span><br><span class="line">&gt; setw(w)</span><br><span class="line">&gt; setbase(b)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>控制输入格式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span> &gt;&gt; noskipws; <span class="comment">//读取空白符</span></span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; ch)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ch;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; skipws; <span class="comment">//恢复cin到默认状态，从而丢弃空白符</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="17-5-2-未格式化的输入-输出操作"><a class="header-anchor" href="#17-5-2-未格式化的输入-输出操作">¶</a>17.5.2 未格式化的输入/输出操作</h2>
+<ul>
+<li>
+<p>单字节操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">is.get(ch);</span><br><span class="line">os.put(ch);</span><br><span class="line">is.get(); <span class="comment">//is的下一个字节作为int返回</span></span><br><span class="line">is.putback(ch); <span class="comment">//ch放回is，返回is</span></span><br><span class="line">is.unget(); <span class="comment">//将is向后移动一个字节。返回is</span></span><br><span class="line">is.peek();</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>将字符放回输入流</p>
+<p><code>peek、unget、putback</code></p>
+<p>读取下一个值之前，标准库保证我们最多可以退回最多一个值。即，标准库不保证在中间不进行读取操作的情况下能连续调用<code>putback</code>或<code>unget</code></p>
+</li>
+<li>
+<p>从输入操作返回的int值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ch;</span><br><span class="line"><span class="keyword">while</span> ((ch = <span class="built_in">cin</span>.get()) != EOF)</span><br><span class="line">    <span class="built_in">cout</span>.put(ch);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>多字节操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">is.get(sink, size, delim); <span class="comment">//delim不读取出来存入sink</span></span><br><span class="line">is.getline(sink, size, delim); <span class="comment">//读取并丢弃delim</span></span><br><span class="line">is.read(sink, size);</span><br><span class="line">is.gcount();</span><br><span class="line">os.write(source, size);</span><br><span class="line">is.ignore(size, delim);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>确定读取了多少个字符</p>
+<p>如果在<code>gcount</code>调用之前调用了<code>peek、unget或putback</code>，则<code>gcount</code>的返回值为0</p>
+<blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">char</span> ch;</span><br><span class="line">&gt; <span class="keyword">while</span> ((ch = <span class="built_in">cin</span>.get()) != EOF)</span><br><span class="line">&gt;     <span class="built_in">cout</span>.put(ch);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h2 id="17-5-3-流随机访问"><a class="header-anchor" href="#17-5-3-流随机访问">¶</a>17.5.3 流随机访问</h2>
+<blockquote>
+<p>istream、ostream通常不支持随机访问</p>
+</blockquote>
+<ul>
+<li>
+<p>seek和tell函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tellg();</span><br><span class="line">tellp();</span><br><span class="line"></span><br><span class="line">seekg(pos);</span><br><span class="line">seekp(pos);</span><br><span class="line"></span><br><span class="line">seekp(off, from);</span><br><span class="line">seekg(off, from);</span><br><span class="line"><span class="comment">//g是获得数据，p是放置数据</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>只有一个标记</p>
+<p>一个流中只维护单一标记，不存在独立的读标记和写标记</p>
+</li>
+<li>
+<p>重定位标记</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">seekg(new_position);</span><br><span class="line">seekp(new_position);</span><br><span class="line"></span><br><span class="line">seekg(offset, from);</span><br><span class="line">seekp(offset, from);</span><br><span class="line"><span class="comment">//new_position和offset的类型分别是pos_type和off_type</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>访问标记</p>
+</li>
+<li>
+<p>读写同一个文件</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-Primer/" rel="tag"><i class="fa fa-tag"></i> C++ Primer</a>
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/23/C-Primer学习笔记：第16章-模板与泛型编程/" rel="next" title="C++ Primer学习笔记：第16章 模板与泛型编程">
+                <i class="fa fa-chevron-left"></i> C++ Primer学习笔记：第16章 模板与泛型编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/24/-Primer学习笔记：第18章-用于大型程序的工具/" rel="prev" title="C++ Primer学习笔记：第18章 用于大型程序的工具">
+                C++ Primer学习笔记：第18章 用于大型程序的工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">17.1 tuple类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#17-1-1-定义和初始化tuple"><span class="nav-number">1.1.</span> <span class="nav-text">¶17.1.1 定义和初始化tuple</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-1-2-使用tuple返回多个值"><span class="nav-number">1.2.</span> <span class="nav-text">¶17.1.2 使用tuple返回多个值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">17.2 BITSET类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#17-2-1-定义和初始化bitset"><span class="nav-number">2.1.</span> <span class="nav-text">¶17.2.1 定义和初始化bitset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-2-2-bitset操作"><span class="nav-number">2.2.</span> <span class="nav-text">¶17.2.2 bitset操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">17.3 正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#17-3-1-使用正则表达式库"><span class="nav-number">3.1.</span> <span class="nav-text">¶17.3.1 使用正则表达式库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-3-2-匹配与regex迭代器类型"><span class="nav-number">3.2.</span> <span class="nav-text">¶17.3.2 匹配与Regex迭代器类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-3-3-使用子表达式"><span class="nav-number">3.3.</span> <span class="nav-text">¶17.3.3 使用子表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-3-4-使用regex-replace"><span class="nav-number">3.4.</span> <span class="nav-text">¶17.3.4 使用regex_replace</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">17.4 随机数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#17-4-1-随机数引擎和分布"><span class="nav-number">4.1.</span> <span class="nav-text">¶17.4.1 随机数引擎和分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-4-2-其他随机数分布"><span class="nav-number">4.2.</span> <span class="nav-text">¶17.4.2 其他随机数分布</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">17.5 IO库再探</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#17-5-1-格式化输入与输出"><span class="nav-number">5.1.</span> <span class="nav-text">¶17.5.1 格式化输入与输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-5-2-未格式化的输入-输出操作"><span class="nav-number">5.2.</span> <span class="nav-text">¶17.5.2 未格式化的输入/输出操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-5-3-流随机访问"><span class="nav-number">5.3.</span> <span class="nav-text">¶17.5.3 流随机访问</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
