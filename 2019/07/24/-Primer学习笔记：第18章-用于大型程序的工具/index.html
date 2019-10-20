@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/tags/">
 
 
 
@@ -280,7 +280,17 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:32:48+08:00">2019-07-30</time>
             
           </span>
 
@@ -335,6 +345,7 @@
 
       
         <h1>18.1 异常处理</h1>
+<a id="more"></a>
 <blockquote>
 <p>控制权转移：</p>
 <p>​		沿着调用链的函数可能会提早退出；一旦程序开始执行异常处理代码，则沿着调用链创建的对象将被销毁；</p>
@@ -634,8 +645,7 @@
 <li>
 <p>构造函数与析构函数的次序</p>
 <p>先构造虚基类，然后按照声明顺序逐一构造其他非虚基类</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Character</span> &#123;</span> <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookCharacter</span> :</span> <span class="keyword">public</span> Character &#123; <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ToyAnimal</span> &#123;</span> <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TeddyBear</span> :</span> <span class="keyword">public</span> BookCharacter,</span><br><span class="line">					<span class="keyword">public</span> Bear, <span class="keyword">public</span> <span class="keyword">virtual</span> ToyAnimal</span><br><span class="line">					&#123; <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="comment">//构造顺序</span></span><br><span class="line">ZooAnimal();</span><br><span class="line">ToyAnimal();</span><br><span class="line">Character();</span><br><span class="line">BookCharacter();</span><br><span class="line">Bear();</span><br><span class="line">TeddyBear();</span><br><span class="line"><span class="comment">//合成的拷贝和移动构造函数，合成的赋值运算符的成员顺序和上面一致。析构顺序和上面相反</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Character</span> &#123;</span> <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookCharacter</span> :</span> <span class="keyword">public</span> Character &#123; <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ToyAnimal</span> &#123;</span> <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TeddyBear</span> :</span> <span class="keyword">public</span> BookCharacter,</span><br><span class="line">					<span class="keyword">public</span> Bear, <span class="keyword">public</span> <span class="keyword">virtual</span> ToyAnimal</span><br><span class="line">					&#123; <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="comment">//构造顺序</span></span><br><span class="line">ZooAnimal();</span><br><span class="line">ToyAnimal();</span><br><span class="line">Character();</span><br><span class="line">BookCharacter();</span><br><span class="line">Bear();</span><br><span class="line">TeddyBear();</span><br><span class="line"><span class="comment">//合成的拷贝和移动构造函数，合成的赋值运算符的成员顺序和上面一致。析构顺序和上面相反</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -758,7 +768,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -769,7 +779,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -780,7 +790,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1029,6 +1039,9 @@
 
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
 
   
 

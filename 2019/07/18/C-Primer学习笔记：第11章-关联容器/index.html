@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/tags/">
 
 
 
@@ -280,7 +280,17 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:35:53+08:00">2019-07-30</time>
             
           </span>
 
@@ -340,6 +350,7 @@
 <li>或是要求不重复关键字，或是允许重复关键字</li>
 <li>或是按顺序保存，或是无序保存</li>
 </ul>
+<a id="more"></a>
 <h1>11.1 使用关联容器</h1>
 <ul>
 <li>
@@ -501,8 +512,7 @@
 </li>
 <li>
 <p>不能直接定义关键字类型为自定义类类型的无序容器。需要提供自己的hash模板版本</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> hasher(<span class="keyword">const</span> Sales_data &amp;sd)&#123;</span><br><span class="line">	<span class="keyword">return</span> hash&lt;<span class="built_in">string</span>&gt;()(sd.isbn());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">eqOp</span><span class="params">(<span class="keyword">const</span> Sales_data &amp;lhs, <span class="keyword">const</span> Sales_data &amp;rhs)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lhs.isbn() == rhs.isbn();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> SD_multiset = <span class="built_in">unordered_multiset</span>&lt;Sales_data, <span class="keyword">decltype</span>(hasher)*, <span class="keyword">decltype</span>(eqOp)*&gt;;</span><br><span class="line"><span class="comment">//参数是桶大小，哈希函数指针，相等性判断运算符指针</span></span><br><span class="line"><span class="function">SD_multiset <span class="title">bookstore</span><span class="params">(<span class="number">42</span>, hasher, eqOp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用FooHash生成哈希值；Foo必须有==运算符</span></span><br><span class="line"><span class="built_in">unordered_set</span>&lt;Foo, <span class="keyword">decltype</span>(FooHash)* fooSet(10, FooHash);</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> hasher(<span class="keyword">const</span> Sales_data &amp;sd)&#123;</span><br><span class="line">	<span class="keyword">return</span> hash&lt;<span class="built_in">string</span>&gt;()(sd.isbn());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">eqOp</span><span class="params">(<span class="keyword">const</span> Sales_data &amp;lhs, <span class="keyword">const</span> Sales_data &amp;rhs)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lhs.isbn() == rhs.isbn();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> SD_multiset = <span class="built_in">unordered_multiset</span>&lt;Sales_data, <span class="keyword">decltype</span>(hasher)*, <span class="keyword">decltype</span>(eqOp)*&gt;;</span><br><span class="line"><span class="comment">//参数是桶大小，哈希函数指针，相等性判断运算符指针</span></span><br><span class="line"><span class="function">SD_multiset <span class="title">bookstore</span><span class="params">(<span class="number">42</span>, hasher, eqOp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用FooHash生成哈希值；Foo必须有==运算符</span></span><br><span class="line"><span class="built_in">unordered_set</span>&lt;Foo, <span class="keyword">decltype</span>(FooHash)* fooSet(10, FooHash);</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -627,7 +637,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -638,7 +648,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -649,7 +659,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -898,6 +908,9 @@
 
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
 
   
 

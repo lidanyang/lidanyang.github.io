@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="标签">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/tags/">
+
+
+
+
+
+  <title>918. Maximum Sum Circular Subarray | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/17/918-Maximum-Sum-Circular-Subarray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">918. Maximum Sum Circular Subarray</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-17T13:24:00+08:00">2019-10-17</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-17T13:39:54+08:00">2019-10-17</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1><a href="https://leetcode.com/problems/maximum-sum-circular-subarray/" target="_blank" rel="noopener">918. Maximum Sum Circular Subarray</a></h1>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a <strong>circular array</strong> <strong>C</strong> of integers represented by <code>A</code>, find the maximum possible sum of a non-empty subarray of <strong>C</strong>.</p>
+<p>Here, a <em>circular array</em> means the end of the array connects to the beginning of the array.  (Formally, <code>C[i] = A[i]</code> when <code>0 &lt;= i &lt; A.length</code>, and <code>C[i+A.length] = C[i]</code> when <code>i &gt;= 0</code>.)</p>
+<p>Also, a subarray may only include each element of the fixed buffer <code>A</code> at most once.  (Formally, for a subarray <code>C[i], C[i+1], ..., C[j]</code>, there does not exist <code>i &lt;= k1, k2 &lt;= j</code> with <code>k1 % A.length = k2 % A.length</code>.)</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,-2,3,-2]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: Subarray [3] has maximum sum 3</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [5,-3,5]</span><br><span class="line">Output: 10</span><br><span class="line">Explanation: Subarray [5,5] has maximum sum 5 + 5 = 10</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,-1,2,-1]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: Subarray [2,-1,3] has maximum sum 2 + (-1) + 3 = 4</span><br></pre></td></tr></table></figure>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,-2,2,-3]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: Subarray [3] and [3,-2,2] both have maximum sum 3</span><br></pre></td></tr></table></figure>
+<p><strong>Example 5:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [-2,-3,-1]</span><br><span class="line">Output: -1</span><br><span class="line">Explanation: Subarray [-1] has maximum sum -1</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>-30000 &lt;= A[i] &lt;= 30000</code></li>
+<li><code>1 &lt;= A.length &lt;= 30000</code></li>
+</ol>
+<h1>解法</h1>
+<h2 id="己解"><a class="header-anchor" href="#己解">¶</a>己解</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> _ = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line">​</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        int total(0), cur_mn1(0), mn1(INT_MAX), cur_mn2(0), mn2(INT_MAX), cur_mx(0), mx(INT_MIN), i(0);</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; A.size() - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            total += A[i];</span><br><span class="line">            cur_mx = max(A[i], A[i] + cur_mx);</span><br><span class="line">            mx = max(mx, cur_mx);</span><br><span class="line">            cur_mn1 = min(A[i], A[i]+cur_mn1);</span><br><span class="line">            mn1 = min(cur_mn1, mn1);</span><br><span class="line">        &#125; </span><br><span class="line">        cur_mx = max(A[i], A[i] + cur_mx);</span><br><span class="line">        mx = max(mx, cur_mx);</span><br><span class="line">        total += A[A.size() - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; A.size(); i++)&#123;</span><br><span class="line">            cur_mn2 = min(A[i], A[i]+cur_mn2);</span><br><span class="line">            mn2 = min(cur_mn2, mn2);</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="comment">// cout &lt;&lt; mn1 &lt;&lt; " " &lt;&lt; mn2 &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">return</span> max(mx, max(total - mn1, total - mn2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="next-array"><a class="header-anchor" href="#next-array">¶</a>Next Array</h2>
+<p>  将问题看成求连续子数组或者求由以<code>A[0]</code>开头和<code>A[A.length() - 1]</code>结尾的两个子数组组合成的子数组中和最大的一个；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = A.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ans = A[<span class="number">0</span>], cur = A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; ++i) &#123;</span><br><span class="line">            cur = A[i] + Math.max(cur, <span class="number">0</span>);</span><br><span class="line">            ans = Math.max(ans, cur);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ans is the answer for 1-interval subarrays.</span></span><br><span class="line">        <span class="comment">// Now, let's consider all 2-interval subarrays.</span></span><br><span class="line">        <span class="comment">// For each i, we want to know</span></span><br><span class="line">        <span class="comment">// the maximum of sum(A[j:]) with j &gt;= i+2</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// rightsums[i] = A[i] + A[i+1] + ... + A[N-1]</span></span><br><span class="line">        <span class="keyword">int</span>[] rightsums = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        rightsums[N-<span class="number">1</span>] = A[N-<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = N-<span class="number">2</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">            rightsums[i] = rightsums[i+<span class="number">1</span>] + A[i];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// maxright[i] = max_&#123;j &gt;= i&#125; rightsums[j]</span></span><br><span class="line">        <span class="keyword">int</span>[] maxright = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        maxright[N-<span class="number">1</span>] = A[N-<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = N-<span class="number">2</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">            maxright[i] = Math.max(maxright[i+<span class="number">1</span>], rightsums[i]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> leftsum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N-<span class="number">2</span>; ++i) &#123;</span><br><span class="line">            leftsum += A[i];</span><br><span class="line">            ans = Math.max(ans, leftsum + maxright[i+<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="prefix-sums-monoqueue"><a class="header-anchor" href="#prefix-sums-monoqueue">¶</a>Prefix Sums + Monoqueue</h2>
+<p>  将求A中的循环子数组看做求A+A中的连续子数组（子数组长度不超过A），如果利用前缀和之差求连续子数组和的话，问题就可以转化成求以某位置为右端点、长度固定的区间内的最小值，而单调栈也使用来维持一个区间的所有的最值候选值（<strong>按照我的理解，实质上单调栈维护的是一个线的包络，而最值肯定会落在包络上</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = A.length;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Compute P[j] = B[0] + B[1] + ... + B[j-1]</span></span><br><span class="line">        <span class="comment">// for fixed array B = A+A</span></span><br><span class="line">        <span class="keyword">int</span>[] P = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>*N+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>*N; ++i)</span><br><span class="line">            P[i+<span class="number">1</span>] = P[i] + A[i % N];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Want largest P[j] - P[i] with 1 &lt;= j-i &lt;= N</span></span><br><span class="line">        <span class="comment">// For each j, want smallest P[i] with i &gt;= j-N</span></span><br><span class="line">        <span class="keyword">int</span> ans = A[<span class="number">0</span>];</span><br><span class="line">        <span class="comment">// deque: i's, increasing by P[i]</span></span><br><span class="line">        Deque&lt;Integer&gt; deque = <span class="keyword">new</span> ArrayDeque();</span><br><span class="line">        deque.offer(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2</span>*N; ++j) &#123;</span><br><span class="line">            <span class="comment">// If the smallest i is too small, remove it.</span></span><br><span class="line">            <span class="keyword">if</span> (deque.peekFirst() &lt; j-N)</span><br><span class="line">                deque.pollFirst();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// The optimal i is deque[0], for cand. answer P[j] - P[i].</span></span><br><span class="line">            ans = Math.max(ans, P[j] - P[deque.peekFirst()]);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Remove any i1's with P[i2] &lt;= P[i1].</span></span><br><span class="line">            <span class="keyword">while</span> (!deque.isEmpty() &amp;&amp; P[j] &lt;= P[deque.peekLast()])</span><br><span class="line">                deque.pollLast();</span><br><span class="line"></span><br><span class="line">            deque.offerLast(j);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="动态规划法"><a class="header-anchor" href="#动态规划法">¶</a>动态规划法</h2>
+<p>  将求跨边界的子数组的最大值看做是求整个数组和<strong>减去</strong>连续子数组的最小值（或者<strong>加上</strong>原数组<strong>取负</strong>后的连续子数组的最大值）,并且要注意<strong>减去或加上的连续子数组不能是整个原数组，要不然会使得到的跨边界子数组为空数组</strong>。</p>
+<h3 id="取负"><a class="header-anchor" href="#取负">¶</a>取负</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> S = <span class="number">0</span>;  <span class="comment">// S = sum(A)</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A)</span><br><span class="line">            S += x;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ans1 = kadane(A, <span class="number">0</span>, A.length-<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> ans2 = S + kadane(A, <span class="number">1</span>, A.length-<span class="number">1</span>, -<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> ans3 = S + kadane(A, <span class="number">0</span>, A.length-<span class="number">2</span>, -<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> Math.max(ans1, Math.max(ans2, ans3));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kadane</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> sign)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// The maximum non-empty subarray for array</span></span><br><span class="line">        <span class="comment">// [sign * A[i], sign * A[i+1], ..., sign * A[j]]</span></span><br><span class="line">        <span class="keyword">int</span> ans = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">int</span> cur = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = i; k &lt;= j; ++k) &#123;</span><br><span class="line">            cur = sign * A[k] + Math.max(cur, <span class="number">0</span>);</span><br><span class="line">            ans = Math.max(ans, cur);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="求差"><a class="header-anchor" href="#求差">¶</a>求差</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// S: sum of A</span></span><br><span class="line">        <span class="keyword">int</span> S = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A)</span><br><span class="line">            S += x;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ans1: answer for one-interval subarray</span></span><br><span class="line">        <span class="keyword">int</span> ans1 = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">int</span> cur = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A) &#123;</span><br><span class="line">            cur = x + Math.max(cur, <span class="number">0</span>);</span><br><span class="line">            ans1 = Math.max(ans1, cur);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ans2: answer for two-interval subarray, interior in A[1:]</span></span><br><span class="line">        <span class="keyword">int</span> ans2 = Integer.MAX_VALUE;</span><br><span class="line">        cur = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">            cur = A[i] + Math.min(cur, <span class="number">0</span>);</span><br><span class="line">            ans2 = Math.min(ans2, cur);</span><br><span class="line">        &#125;</span><br><span class="line">        ans2 = S - ans2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ans3: answer for two-interval subarray, interior in A[:-1]</span></span><br><span class="line">        <span class="keyword">int</span> ans3 = Integer.MAX_VALUE;</span><br><span class="line">        cur = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            cur = A[i] + Math.min(cur, <span class="number">0</span>);</span><br><span class="line">            ans3 = Math.min(ans3, cur);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Math.max(ans1, Math.max(ans2, ans3));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/monoqueue/" rel="tag"><i class="fa fa-tag"></i> monoqueue</a>
+          
+            <a href="/tags/queue/" rel="tag"><i class="fa fa-tag"></i> queue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/16/457-Circular-Array-Loop/" rel="next" title="457. Circular Array Loop">
+                <i class="fa fa-chevron-left"></i> 457. Circular Array Loop
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">918. Maximum Sum Circular Subarray</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#己解"><span class="nav-number">2.1.</span> <span class="nav-text">¶己解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next-array"><span class="nav-number">2.2.</span> <span class="nav-text">¶Next Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prefix-sums-monoqueue"><span class="nav-number">2.3.</span> <span class="nav-text">¶Prefix Sums + Monoqueue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划法"><span class="nav-number">2.4.</span> <span class="nav-text">¶动态规划法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#取负"><span class="nav-number">2.4.1.</span> <span class="nav-text">¶取负</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求差"><span class="nav-number">2.4.2.</span> <span class="nav-text">¶求差</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
+
+  
+
+</body>
+</html>

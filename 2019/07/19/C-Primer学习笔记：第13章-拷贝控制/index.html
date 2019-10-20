@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/tags/">
 
 
 
@@ -280,7 +280,17 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:35:34+08:00">2019-07-30</time>
             
           </span>
 
@@ -335,6 +345,7 @@
 
       
         <h1>13.1 拷贝、赋值与销毁</h1>
+<a id="more"></a>
 <blockquote>
 <p>实现拷贝控制最困难的地方首先是认识到什么时候需要定义这些操作</p>
 </blockquote>
@@ -724,8 +735,7 @@
 <p>  就像一个成员函数可以根据是否有const来区分其重载版本一样，引用限定符也可以区分重载版本。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//以下函数会构成重载函数</span></span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> &amp;</span>;   </span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> &amp;&amp;</span>;  </span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> <span class="keyword">const</span> &amp;</span>;</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> <span class="keyword">const</span> &amp;&amp;</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>需要注意的是如果我们定义了两个或者两个以上的<strong>具有相同名字和相同参数列表的成员函数（注意并非所有重载函数集）</strong>，就必须对所有函数加上引用限定符，或者所有都不加：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误，两个sort函数要不都有引用限定符，要不都没有引用限定符</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> &amp;</span>;</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> &amp;</span>;</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> <span class="keyword">const</span> &amp;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="comment">//与上面的函数参数列表不同</span></span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">(<span class="keyword">int</span> *)</span> &amp;</span>;</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">(<span class="keyword">int</span> *)</span> <span class="keyword">const</span> &amp;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误，两个sort函数要不都有引用限定符，要不都没有引用限定符</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> &amp;</span>;</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> &amp;</span>;</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> <span class="keyword">const</span> &amp;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="comment">//与上面的函数参数列表不同</span></span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">(<span class="keyword">int</span> *)</span> &amp;</span>;</span><br><span class="line">    <span class="function">Foo <span class="title">sort</span><span class="params">(<span class="keyword">int</span> *)</span> <span class="keyword">const</span> &amp;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -848,7 +858,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -859,7 +869,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -870,7 +880,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1119,6 +1129,9 @@
 
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
 
   
 

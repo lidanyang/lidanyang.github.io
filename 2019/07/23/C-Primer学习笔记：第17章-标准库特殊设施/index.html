@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/tags/">
 
 
 
@@ -280,7 +280,17 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:35:18+08:00">2019-07-30</time>
             
           </span>
 
@@ -335,6 +345,7 @@
 
       
         <h1>17.1 tuple类型</h1>
+<a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">tuple&lt;T1, T2, ..., Tn&gt; t; <span class="comment">//值初始化</span></span><br><span class="line"></span><br><span class="line">tuple&lt;T1, T2, ..., Tn&gt; t(v1, v2, ..., vn); <span class="comment">//explicit构造函数，对应成员用vi初始化</span></span><br><span class="line"></span><br><span class="line">make_tuple(v1, v2, ..., vn); <span class="comment">//用给定初始值初始化，推断类型</span></span><br><span class="line"></span><br><span class="line">t1 == t2;</span><br><span class="line">t1 != t2;</span><br><span class="line"></span><br><span class="line">t1 relop t2;</span><br><span class="line"></span><br><span class="line">get&lt;i&gt;(t); <span class="comment">//获取t的第i个成员的引用</span></span><br><span class="line"></span><br><span class="line">tuple_size&lt;tupleType&gt;::value; <span class="comment">//类模板，用一个tuple类型初始化，有一个名为value的public constexpr static的成员，类型为size_t，表示给定tuple类型成员数量</span></span><br><span class="line"></span><br><span class="line">tuple_element&lt;i, tupleType&gt;::type; <span class="comment">//public成员type表示给定tuple类型中指定成员的类型</span></span><br></pre></td></tr></table></figure>
 <h2 id="17-1-1-定义和初始化tuple"><a class="header-anchor" href="#17-1-1-定义和初始化tuple">¶</a>17.1.1 定义和初始化tuple</h2>
 <p>提供初始值的构造函数必须使用直接初始化语法</p>
@@ -726,7 +737,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -737,7 +748,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -748,7 +759,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -997,6 +1008,9 @@
 
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
 
   
 

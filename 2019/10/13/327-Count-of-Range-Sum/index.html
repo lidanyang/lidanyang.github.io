@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="标签">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/tags/">
+
+
+
+
+
+  <title>327. Count of Range Sum | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/13/327-Count-of-Range-Sum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">327. Count of Range Sum</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-13T21:51:00+08:00">2019-10-13</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T23:08:18+08:00">2019-10-14</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1><a href="https://leetcode.com/problems/count-of-range-sum/" target="_blank" rel="noopener">327. Count of Range Sum</a></h1>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given an integer array <code>nums</code>, return the number of range sums that lie in <code>[lower, upper]</code> inclusive.<br>
+Range sum <code>S(i, j)</code> is defined as the sum of the elements in <code>nums</code> between indices <code>i</code> and <code>j</code> (<code>i</code> ≤ <code>j</code>), inclusive.</p>
+<p><strong>Note:</strong><br>
+A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do better than that.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [-2,5,-1], lower = -2, upper = 2,</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The three ranges are : [0,0], [2,2], [0,2] and their respective sums are: -2, -1, 2.</span><br></pre></td></tr></table></figure>
+<h1>题解</h1>
+<h2 id="基础版"><a class="header-anchor" href="#基础版">¶</a>基础版</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> _ = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countRangeSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> lower, <span class="keyword">int</span> upper)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.size() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> *prefix = <span class="keyword">new</span> <span class="keyword">long</span> <span class="keyword">long</span>[nums.size() + <span class="number">1</span>]();</span><br><span class="line">        pair&lt;<span class="keyword">long</span> <span class="keyword">long</span>,<span class="keyword">int</span>&gt; *ids = <span class="keyword">new</span> pair&lt;<span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">int</span>&gt;[nums.size() + <span class="number">1</span>]();</span><br><span class="line">        ids[<span class="number">0</span>] = make_pair(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)&#123;</span><br><span class="line">            prefix[i + <span class="number">1</span>] = prefix[i] + nums[i];</span><br><span class="line">            ids[i + <span class="number">1</span>] = make_pair(prefix[i+<span class="number">1</span>], i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(ids, ids + nums.size() + <span class="number">1</span>);</span><br><span class="line">        long long i(0), count(0);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size() + <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">auto</span> u = upper_bound(ids, ids + nums.size() + <span class="number">1</span>, make_pair(ids[i].first + upper, INT_MAX));</span><br><span class="line">            <span class="keyword">auto</span> l = upper_bound(ids, ids + nums.size() + <span class="number">1</span>, make_pair(ids[i].first + lower - <span class="number">1</span>, INT_MAX));</span><br><span class="line">            u--;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> it = l; it &lt;= u; it++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(it != ids + i &amp;&amp; it-&gt;second &gt; ids[i].second)&#123;</span><br><span class="line">                    count++; </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="进阶版"><a class="header-anchor" href="#进阶版">¶</a>进阶版</h2>
+<p>  这个解法大方向上将问题分解转化成求区间和小于某个值的区间，然后对upper和lower-1求两次子问题即可，这种简化思想很值得借鉴，将令人厌烦的上下界同时要考虑的问题转化成只考虑上界的问题，其实这也是前缀和的思想。</p>
+<p>  求解子问题的过程中用了树状数组和双指针来求同时满足下标大小关系和前缀值大小关系的前缀和对的个数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countRangeSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> lower, <span class="keyword">int</span> upper)</span> </span>&#123;</span><br><span class="line">        ll sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> length = nums.size();</span><br><span class="line">        <span class="keyword">if</span> (length &lt;= <span class="number">0</span> || lower &gt; upper)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;ll, <span class="keyword">int</span>&gt;&gt; prefix_sums;</span><br><span class="line">        prefix_sums.push_back(pair&lt;ll, <span class="keyword">int</span>&gt;(<span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;length; i++)&#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            prefix_sums.push_back(pair&lt;ll, <span class="keyword">int</span>&gt;(sum, i+<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        sort(prefix_sums.begin(), prefix_sums.end(), greater&lt;pair&lt;ll, <span class="keyword">int</span>&gt;&gt;());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//cout &lt;&lt; "Upper:" &lt;&lt; endl; </span></span><br><span class="line">        <span class="keyword">int</span> upper_result = count_ranges(prefix_sums, upper);</span><br><span class="line">        <span class="comment">//cout &lt;&lt; "Lower:" &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">int</span> lower_result = count_ranges(prefix_sums, lower<span class="number">-1</span>);</span><br><span class="line">        <span class="comment">//cout &lt;&lt; upper_result &lt;&lt; " " &lt;&lt; lower_result &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">int</span> result = upper_result - lower_result;</span><br><span class="line">        <span class="keyword">return</span> (result) &lt; <span class="number">0</span> ? <span class="number">0</span> : (result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; tree, <span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(; index &lt; tree.size(); index += index &amp; (-index))&#123;</span><br><span class="line">            tree[index] ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; tree, <span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (; index; index -= index &amp; (-index))&#123;</span><br><span class="line">            sum += tree[index];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">count_ranges</span><span class="params">(<span class="built_in">vector</span>&lt;pair&lt;ll, <span class="keyword">int</span>&gt;&gt;&amp; arr, <span class="keyword">int</span> limit)</span></span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tree (arr.size()+<span class="number">1</span>);<span class="comment">//因为树状数组从下标1开始，所以大小要比前缀和数组多1，而前缀和数组又比原数组多1（因为有0前缀）</span></span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (; i&lt;arr.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">while</span> (j&lt;arr.size() &amp;&amp; arr[i].first-arr[j].first &lt;= limit)&#123;</span><br><span class="line">                update(tree, arr[j].second+<span class="number">1</span>);</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            result += find(tree, arr[i].second);<span class="comment">//此处把i == j的情况排除了</span></span><br><span class="line">            <span class="comment">//cout &lt;&lt; i &lt;&lt; " " &lt;&lt; j &lt;&lt; " " &lt;&lt; result &lt;&lt; endl;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="运用很多c-语法特性的解法"><a class="header-anchor" href="#运用很多c-语法特性的解法">¶</a>运用很多C++语法特性的解法</h2>
+<p>  借此解法学到了很多关于模板，lambda，函数对象相关的知识，写出这个解法的人C++功力肯定很深厚。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ext/pb_ds/assoc_container.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_pbds;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">auto</span> _ = []()&#123; ios_base::sync_with_stdio(<span class="literal">false</span>); <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>); <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>); <span class="keyword">return</span> <span class="number">0</span>; &#125;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">bool</span> debug = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __trace(args...) <span class="meta-keyword">if</span> (debug) printf(args);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __see(a) <span class="meta-keyword">if</span> (debug) cout &lt;&lt; #a &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; a &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// optimized segment tree that supports point update and range query on monoids</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> M&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">iterative_segment_tree</span> &#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">using</span> T = <span class="keyword">typename</span> M::T;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">constexpr</span> M mon &#123;&#125;;</span><br><span class="line">  <span class="keyword">int</span> n;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt; t;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">parent</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; <span class="keyword">return</span> (i - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">lch</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; <span class="keyword">return</span> (i &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">rch</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; <span class="keyword">return</span> (i &lt;&lt; <span class="number">1</span>) + <span class="number">2</span>; &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  iterative_segment_tree() = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">point_apply</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">const</span> function&lt;<span class="keyword">void</span>(T&amp;)&gt;&amp; z)</span> </span>&#123;</span><br><span class="line">    z(t[n + i - <span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = parent(n + i - <span class="number">1</span>); j &gt; <span class="number">0</span>; j = parent(j)) &#123;</span><br><span class="line">      t[j] = mon.append(t[lch(j)], t[rch(j)]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> a_n, T init_tval = mon.unit())</span> </span>&#123;</span><br><span class="line">    <span class="comment">// n = 1;</span></span><br><span class="line">    <span class="comment">// while (n &lt;= a_n) n &lt;&lt;= 1;</span></span><br><span class="line">    n = <span class="number">1</span> &lt;&lt; (<span class="number">32</span> - __builtin_clz(a_n));</span><br><span class="line">    t.resize((n &lt;&lt; <span class="number">1</span>) - <span class="number">1</span>, init_tval);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">      t[i] = mon.append(t[lch(i)], t[rch(i)]); <span class="comment">// propagate initial values</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="function">T <span class="title">range_concat</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123; <span class="comment">// 0-based, [l, r)</span></span><br><span class="line">    T lacc = mon.unit(), racc = mon.unit();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> ll = n + l - <span class="number">1</span>, rr = n + r - <span class="number">1</span>; ll &lt; rr; ll = parent(ll), rr = parent(rr)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">not</span> (ll &amp; <span class="number">1</span>)) lacc = mon.append(lacc, t[ll++]);</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">not</span> (rr &amp; <span class="number">1</span>)) racc = mon.append(racc, t[--rr]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> mon.append(lacc, racc);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">plus_monoid</span> &#123;</span></span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">int</span> T;</span><br><span class="line">  <span class="function">T <span class="title">unit</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">T <span class="title">append</span><span class="params">(T a, T b)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> K, <span class="keyword">typename</span> V&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">coordinate_map</span> &#123;</span></span><br><span class="line">  gp_hash_table&lt;K, V&gt; f;</span><br><span class="line">  <span class="built_in">vector</span>&lt;K&gt;           f_inv;</span><br><span class="line"></span><br><span class="line">  <span class="function">V &amp; <span class="title">operator</span><span class="params">()</span><span class="params">(K k)</span> </span>&#123; <span class="keyword">return</span> f[k]; &#125;</span><br><span class="line">  K &amp; <span class="keyword">operator</span>[](V v) &#123; <span class="keyword">return</span> f_inv[v]; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L&gt;</span><br><span class="line">  coordinate_map(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;L&gt; &amp;cd) : f_inv(cd.begin(), cd.end()), f() &#123;</span><br><span class="line">    sort(f_inv.begin(), f_inv.end());</span><br><span class="line">    f_inv.erase(unique(f_inv.begin(),f_inv.end()),f_inv.end());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; f_inv.size(); i++) &#123;</span><br><span class="line">      f.insert( &#123;f_inv[i], i&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">size_t</span> size() <span class="keyword">const</span> &#123; <span class="keyword">return</span> f.size(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  iterative_segment_tree&lt;plus_monoid&gt; segtree;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">countRangeSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> lower, <span class="keyword">int</span> upper)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.size() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> compute_prefix_sum = [&amp;]() -&gt; <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; &#123;</span><br><span class="line">      <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; ret (nums.size(), <span class="number">0</span>);</span><br><span class="line">      ret[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">        ret[i] = ret[i - <span class="number">1</span>] + nums[i];</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> segment_tree_search = [&amp;]() &#123;</span><br><span class="line">      <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;              prefix_sum = compute_prefix_sum();</span><br><span class="line">      coordinate_map&lt;<span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">int</span>&gt; coord_map(prefix_sum);</span><br><span class="line">      segtree.resize(coord_map.size());</span><br><span class="line">      <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&amp; invmap = coord_map.f_inv;</span><br><span class="line">      <span class="keyword">int</span> acc = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">auto</span> increment_functional = [](<span class="keyword">int</span>&amp; x) &#123; <span class="keyword">return</span> x++; &#125;;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prefix_sum.size(); ++i) &#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> cur_sum   = prefix_sum[i];</span><br><span class="line">        <span class="keyword">if</span> (lower &lt;= cur_sum <span class="keyword">and</span> cur_sum &lt;= upper) acc++;</span><br><span class="line">        <span class="keyword">int</span> lower_cut_off = lower_bound(invmap.begin(), invmap.end(), cur_sum - upper) - invmap.begin();</span><br><span class="line">        <span class="keyword">int</span> upper_cut_off = upper_bound(invmap.begin(), invmap.end(), cur_sum - lower) - invmap.begin();</span><br><span class="line">        <span class="keyword">if</span> (lower_cut_off &lt; upper_cut_off) &#123;</span><br><span class="line">          acc += segtree.range_concat(lower_cut_off, upper_cut_off);</span><br><span class="line">        &#125;</span><br><span class="line">        segtree.point_apply(coord_map(cur_sum), increment_functional);</span><br><span class="line">      &#125;    </span><br><span class="line">      <span class="keyword">return</span> acc;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> segment_tree_search();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/binary-search/" rel="tag"><i class="fa fa-tag"></i> binary search</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/12/1169-Invalid-Transactions/" rel="next" title="1169. Invalid Transactions">
+                <i class="fa fa-chevron-left"></i> 1169. Invalid Transactions
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/14/1157-Online-Majority-Element-In-Subarray/" rel="prev" title="1157. Online Majority Element In Subarray">
+                1157. Online Majority Element In Subarray <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">327. Count of Range Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础版"><span class="nav-number">2.1.</span> <span class="nav-text">¶基础版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶版"><span class="nav-number">2.2.</span> <span class="nav-text">¶进阶版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运用很多c-语法特性的解法"><span class="nav-number">2.3.</span> <span class="nav-text">¶运用很多C++语法特性的解法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
+
+  
+
+</body>
+</html>

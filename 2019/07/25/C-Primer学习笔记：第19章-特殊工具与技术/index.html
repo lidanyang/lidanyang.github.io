@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/tags/">
 
 
 
@@ -280,7 +280,17 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:32:37+08:00">2019-07-30</time>
             
           </span>
 
@@ -335,6 +345,7 @@
 
       
         <h1>19.1 控制内存分配</h1>
+<a id="more"></a>
 <h2 id="19-1-1-重载new和delete"><a class="header-anchor" href="#19-1-1-重载new和delete">¶</a>19.1.1 重载new和delete</h2>
 <ul>
 <li>
@@ -660,8 +671,7 @@
 <li>
 <p>重载函数与链接指示</p>
 <p>链接指示与重载函数的相互作用依赖于目标语言</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误，两个extern "C"函数名相同</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>*)</span></span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果一组重载函数有一个是C函数，则其余的必定都是C++函数</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmallInt</span> &#123;</span> <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BigNum</span> &#123;</span> <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="comment">//C函数可以在C或C++程序中调用</span></span><br><span class="line"><span class="comment">//C++函数重载了该函数，可以在C++中调用</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> SmallInt <span class="title">calc</span><span class="params">(<span class="keyword">const</span> SmallInt&amp;)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> BigNum <span class="title">calc</span><span class="params">(<span class="keyword">const</span> BigNum&amp;)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误，两个extern "C"函数名相同</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>*)</span></span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果一组重载函数有一个是C函数，则其余的必定都是C++函数</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmallInt</span> &#123;</span> <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BigNum</span> &#123;</span> <span class="comment">/* ... */</span> &#125;;</span><br><span class="line"><span class="comment">//C函数可以在C或C++程序中调用</span></span><br><span class="line"><span class="comment">//C++函数重载了该函数，可以在C++中调用</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> <span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> SmallInt <span class="title">calc</span><span class="params">(<span class="keyword">const</span> SmallInt&amp;)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> BigNum <span class="title">calc</span><span class="params">(<span class="keyword">const</span> BigNum&amp;)</span></span>;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -704,6 +714,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/31/218-The-Skyline-Problem/" rel="prev" title="218. The Skyline Problem">
+                218. The Skyline Problem <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -780,7 +794,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -791,7 +805,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -802,7 +816,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1051,6 +1065,9 @@
 
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
 
   
 

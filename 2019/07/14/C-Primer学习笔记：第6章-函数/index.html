@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/tags/">
 
 
 
@@ -280,7 +280,17 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:36:24+08:00">2019-07-30</time>
             
           </span>
 
@@ -335,6 +345,7 @@
 
       
         <h1>6.1 函数基础</h1>
+<a id="more"></a>
 <h2 id="6-1-1-局部对象"><a class="header-anchor" href="#6-1-1-局部对象">¶</a>6.1.1 局部对象</h2>
 <ul>
 <li>自动对象
@@ -705,8 +716,7 @@
 </li>
 <li>
 <p>将auto和decltype用于函数指针类型</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span>::<span class="function">size_type <span class="title">sumLength</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">const</span> <span class="built_in">string</span>&amp;)</span></span>;</span><br><span class="line"><span class="built_in">string</span>::<span class="function">size_type <span class="title">largerLength</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">const</span> <span class="built_in">string</span>&amp;)</span></span>;</span><br><span class="line"><span class="comment">//根据其形参的取值，getFcn函数返回指向sumLength或者largerLength的指针</span></span><br><span class="line"><span class="keyword">decltype</span>(sumLength) *getFcn(<span class="keyword">const</span> <span class="built_in">string</span> &amp;);</span><br><span class="line"><span class="comment">//声明getFcn唯一需要注意的地方是牢记当我们将decltype作用于么讴歌函数值，它返回函数类型而非指针类型，因此，我们显式地加上*以表明我们需要返回指针，而非函数本身。</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span>::<span class="function">size_type <span class="title">sumLength</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">const</span> <span class="built_in">string</span>&amp;)</span></span>;</span><br><span class="line"><span class="built_in">string</span>::<span class="function">size_type <span class="title">largerLength</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">const</span> <span class="built_in">string</span>&amp;)</span></span>;</span><br><span class="line"><span class="comment">//根据其形参的取值，getFcn函数返回指向sumLength或者largerLength的指针</span></span><br><span class="line"><span class="keyword">decltype</span>(sumLength) *getFcn(<span class="keyword">const</span> <span class="built_in">string</span> &amp;);</span><br><span class="line"><span class="comment">//声明getFcn唯一需要注意的地方是牢记当我们将decltype作用于么讴歌函数值，它返回函数类型而非指针类型，因此，我们显式地加上*以表明我们需要返回指针，而非函数本身。</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -829,7 +839,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -840,7 +850,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -851,7 +861,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1100,6 +1110,9 @@
 
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
 
   
 
