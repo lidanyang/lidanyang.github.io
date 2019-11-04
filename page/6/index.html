@@ -75,14 +75,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="287. Find the Duplicate Number">
+<meta property="og:url" content="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/index.html">
 <meta property="og:site_name" content="Just a blog">
+<meta property="og:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-10-25T16:59:54.884Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="287. Find the Duplicate Number">
+<meta name="twitter:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
 
 
 
@@ -114,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/">
 
 
 
@@ -234,6 +237,703 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/174-Dungeon-Game/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/27/174-Dungeon-Game/" itemprop="url">174. Dungeon Game</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-27T19:58:00+08:00">2019-06-27</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T21:35:39+08:00">2019-06-27</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/dungeon-game/" target="_blank" rel="noopener">174. Dungeon Game</a></p>
+<p>Difficulty: <strong>Hard</strong></p>
+<style type="text/css" style="display: none;">table.dungeon, .dungeon th, .dungeon td { border:3px solid black; } .dungeon th, .dungeon td { text-align: center; height: 70px; width: 70px; }</style>
+<p>The demons had captured the princess (<strong>P</strong>) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (<strong>K</strong>) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.</p>
+<p>The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.</p>
+<p>Some of the rooms are guarded by demons, so the knight loses health (<em>negative</em> integers) upon entering these rooms; other rooms are either empty (<em>0’s</em>) or contain magic orbs that increase the knight’s health (<em>positive</em> integers).</p>
+<p>In order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.</p>
+<p><strong>Write a function to determine the knight’s minimum initial health so that he is able to rescue the princess.</strong></p>
+<p>For example, given the dungeon below, the initial health of the knight must be at least <strong>7</strong> if he follows the optimal path <code>RIGHT-&gt; RIGHT -&gt; DOWN -&gt; DOWN</code>.</p>
+<table class="dungeon" style="display: table;">
+<tbody style="display: table-row-group;">
+<tr style="display: table-row;">
+<td style="display: table-cell;">-2 (K)</td>
+<td style="display: table-cell;">-3</td>
+<td style="display: table-cell;">3</td>
+</tr>
+<tr style="display: table-row;">
+<td style="display: table-cell;">-5</td>
+<td style="display: table-cell;">-10</td>
+<td style="display: table-cell;">1</td>
+</tr>
+<tr style="display: table-row;">
+<td style="display: table-cell;">10</td>
+<td style="display: table-cell;">30</td>
+<td style="display: table-cell;">-5 (P)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The knight’s health has no upper bound.</li>
+<li>Any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.</li>
+</ul>
+<h1>分析</h1>
+<p>  基本思路就是从右下角往左上角之字形遍历，遍历同时每一点安全到达右下角所需的最少血量，如果算出的血量小于0，那么就取0。递推式如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(min(dp[i+1][j], dp[i][j+1]) - dungeon[i][j], 1)</span><br></pre></td></tr></table></figure>
+<h1>代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def calculateMinimumHP(self, dungeon: List[List[int]]) -&gt; int:</span><br><span class="line">        dp = [1 &lt;&lt; 32 for _ in range(len(dungeon[0])+1)]</span><br><span class="line">        dp[len(dungeon[0]) - 1] = 1</span><br><span class="line">        for i in range(len(dungeon) - 1, -1, -1):</span><br><span class="line">            for j in range(len(dungeon[0]) - 1, -1, -1):</span><br><span class="line">                dp[j] = min(dp[j], dp[j+1]) - dungeon[i][j] </span><br><span class="line">                dp[j] = max(dp[j], 1)</span><br><span class="line">        return dp[0]</span><br></pre></td></tr></table></figure>
+<h1>思考</h1>
+<ol>
+<li>为什么<code>dp[len(dungeon[0]) - 1] = 1</code>而不是<code>dp[len(dungeon[0])] = 1</code>？</li>
+</ol>
+<p>  答:因为dp不会更新最后一个数，而是从倒数第二个数往右算，所以如果<code>dp[len(dungeon[0])] = 1</code>，则会影响后面的所有的边界情况。</p>
+<ol start="2">
+<li>为什么dp数组初始化为<code>1&lt;&lt;32</code>？</li>
+</ol>
+<p>  答:因为是根据下方和右方值中的最小值来计算，设置成大整数就相当于忽略该值，比较方便处理边界情况。从题目的背景中的角度上说，最大整数就意味着从这个点走就需要很多血量，那么肯定不能从这里走。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/166-Fraction-to-Recurring-Decimal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/27/166-Fraction-to-Recurring-Decimal/" itemprop="url">166. Fraction to Recurring Decimal</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-27T19:50:00+08:00">2019-06-27</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T19:57:18+08:00">2019-06-27</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/fraction-to-recurring-decimal/" target="_blank" rel="noopener">166. Fraction to Recurring Decimal</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.</p>
+<p>If the fractional part is repeating, enclose the repeating part in parentheses.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: numerator = 1, denominator = 2</span><br><span class="line">Output: &quot;0.5&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: numerator = 2, denominator = 1</span><br><span class="line">Output: &quot;2&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: numerator = 2, denominator = 3</span><br><span class="line">Output: &quot;0.(6)&quot;</span><br></pre></td></tr></table></figure>
+<h1>解法</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fractionToDecimal</span><span class="params">(self, num: int, denom: int)</span> -&gt; str:</span>      </span><br><span class="line">        tag = <span class="number">-1</span> <span class="keyword">if</span> num * denom &lt; <span class="number">0</span> <span class="keyword">else</span> <span class="number">1</span> <span class="comment">#判断是否有正负号，代码中用正数进行相除，若有负号最后加上</span></span><br><span class="line">        num, denom = abs(num), abs(denom)</span><br><span class="line">        re_num = <span class="string">''</span></span><br><span class="line">        <span class="comment"># 字典记录由该余数算出的下一个商value在re_num中的位置（从0开始),如果有循环节的话，循环节刚好就是从重复余数的字典值对应的下标处开始的。</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> re_num:<span class="comment">#首次进行计算</span></span><br><span class="line">            </span><br><span class="line">                value = num // denom</span><br><span class="line">                num = num % denom</span><br><span class="line">                re_num += str(value)</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> num == <span class="number">0</span>:<span class="comment">#无循环                    </span></span><br><span class="line">                    <span class="keyword">return</span> re_num <span class="keyword">if</span> tag == <span class="number">1</span> <span class="keyword">else</span> <span class="string">'-'</span> + re_num</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    re_num += <span class="string">'.'</span></span><br><span class="line">                    dic[str(num)] = len(re_num)</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment">#后续计算，即寻找循环项，若没有，直接return</span></span><br><span class="line">                num *= <span class="number">10</span></span><br><span class="line">                value = num // denom</span><br><span class="line">                num = num % denom</span><br><span class="line">                re_num += str(value)</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> num == <span class="number">0</span>:<span class="comment">#无循环    </span></span><br><span class="line">                    <span class="keyword">return</span> re_num <span class="keyword">if</span> tag == <span class="number">1</span> <span class="keyword">else</span> <span class="string">'-'</span> + re_num</span><br><span class="line">                <span class="keyword">else</span>:<span class="comment">#有循环时返回</span></span><br><span class="line">                    <span class="keyword">if</span> str(num) <span class="keyword">in</span> dic:</span><br><span class="line">                        re_num = re_num[:dic[str(num)]] + <span class="string">'('</span> + re_num[dic[str(num)]:] + <span class="string">')'</span></span><br><span class="line">                        <span class="keyword">return</span> re_num <span class="keyword">if</span> tag == <span class="number">1</span> <span class="keyword">else</span> <span class="string">'-'</span> + re_num</span><br><span class="line">                    <span class="keyword">else</span>:                        </span><br><span class="line">                        dic[str(num)] = len(re_num)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/164-Maximum-Gap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/26/164-Maximum-Gap/" itemprop="url">164. Maximum Gap</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T16:50:00+08:00">2019-06-26</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-26T17:24:31+08:00">2019-06-26</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/maximum-gap/" target="_blank" rel="noopener">164. Maximum Gap</a></p>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given an unsorted array, find the maximum difference between the successive elements in its sorted form.</p>
+<p>Return 0 if the array contains less than 2 elements.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,6,9,1]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The sorted form of the array is [1,3,6,9], either</span><br><span class="line">             (3,6) or (6,9) has the maximum difference 3.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [10]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: The array contains less than 2 elements, therefore return 0.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.</li>
+<li>Try to solve it in linear time/space.</li>
+</ul>
+<h1>解法</h1>
+<h2 id="法一：普通排序"><a class="header-anchor" href="#法一：普通排序">¶</a>法一：普通排序</h2>
+<p>  最直接的解法是直接排序元素，排好序后从前往后遍历求gap最大值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maximumGap</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            res = max(res, nums[i] - nums[i - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="法二：基数排序"><a class="header-anchor" href="#法二：基数排序">¶</a>法二：基数排序</h2>
+<p>  假设元素记为（e1, e2, …, ed），而每个ei(1 &lt;= i &lt;= d)的取值在(k1, k2, k3, …, kk)之间，则时间复杂度是O(d⋅(n+k))。该题中k为10，d最大为2,147,483,647的位数，即10。空间复杂度是aux和count的大小，即O(n+k)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">int maximumGap(vector&lt;int&gt;&amp; nums)</span><br><span class="line">&#123;</span><br><span class="line">    if (nums.empty() || nums.size() &lt; 2)</span><br><span class="line">        return 0;</span><br><span class="line"></span><br><span class="line">    int maxVal = *max_element(nums.begin(), nums.end());</span><br><span class="line"></span><br><span class="line">    int exp = 1;                                 // 1, 10, 100, 1000 ...</span><br><span class="line">    int radix = 10;                              // base 10 system</span><br><span class="line"></span><br><span class="line">    vector&lt;int&gt; aux(nums.size());</span><br><span class="line"></span><br><span class="line">    /* LSD Radix Sort */</span><br><span class="line">    while (maxVal / exp &gt; 0) &#123;                   // Go through all digits from LSD to MSD</span><br><span class="line">        vector&lt;int&gt; count(radix, 0);</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; nums.size(); i++)    // Counting sort</span><br><span class="line">            count[(nums[i] / exp) % 10]++;</span><br><span class="line"></span><br><span class="line">        for (int i = 1; i &lt; count.size(); i++)   // you could also use partial_sum()</span><br><span class="line">            count[i] += count[i - 1];</span><br><span class="line"></span><br><span class="line">        for (int i = nums.size() - 1; i &gt;= 0; i--)</span><br><span class="line">            aux[--count[(nums[i] / exp) % 10]] = nums[i];</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; nums.size(); i++)</span><br><span class="line">            nums[i] = aux[i];</span><br><span class="line"></span><br><span class="line">        exp *= 10;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int maxGap = 0;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; nums.size() - 1; i++)</span><br><span class="line">        maxGap = max(nums[i + 1] - nums[i], maxGap);</span><br><span class="line"></span><br><span class="line">    return maxGap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="法三：桶排序"><a class="header-anchor" href="#法三：桶排序">¶</a>法三：桶排序</h2>
+<p>  解法的灵感应该是来自计数排序，计数排序其实就是桶大小为1的桶排序，如果让桶的大小大于1呢？如果形成最大gap的两个元素肯定不在一个桶之内呢？要满足这个条件桶的大小为多少合适呢？鸽巢原理（容斥原理）就在这里派上用场了。桶的宽度为w = (max - min) / (L - 1)时，假设形成最大gap的两个元素在一个桶内,且最大gap为g(g &lt; w)，那么max - min的值小于g * (L - 1) &lt; w * (L - 1) = max - min矛盾（<strong>长度为L的数组，最多能形成L-1个gap</strong>），所以只要桶的宽度小于w，则最大gap肯定在两桶之间，而不会在桶之内。排序之后，两桶之间相邻的元素的gap为后一个有元素的桶的最小和前一个有元素的桶的最大的差值，最大gap取这些gap的最大值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maximumGap</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        L = len(nums)</span><br><span class="line">        <span class="keyword">if</span> L &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        minval, maxval = nums[<span class="number">0</span>], nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">            minval = min(nums[i], minval)</span><br><span class="line">            maxval = max(nums[i], maxval)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> maxval - minval == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        wid = max(<span class="number">1</span>, (maxval - minval) // (L - <span class="number">1</span>))</span><br><span class="line">        </span><br><span class="line">        M = (maxval - minval) // wid + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        minn = [<span class="number">1</span> &lt;&lt; <span class="number">32</span>] * (M + <span class="number">1</span>)</span><br><span class="line">        maxn = [<span class="number">-1</span>] * (M + <span class="number">1</span>)</span><br><span class="line">        countn = [<span class="number">0</span>] * (M + <span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">            n = (nums[i] - minval) // wid</span><br><span class="line">            countn[n] = <span class="number">1</span></span><br><span class="line">            minn[n] = min(minn[n], nums[i])</span><br><span class="line">            maxn[n] = max(maxn[n], nums[i])</span><br><span class="line">            </span><br><span class="line">        hasmax = <span class="literal">False</span></span><br><span class="line">        pmax = minval</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, M+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> countn[i]:                </span><br><span class="line">                    <span class="comment"># print(pmax, nmin)</span></span><br><span class="line">                    res = max(res, minn[i] - pmax) </span><br><span class="line">                    pmax = maxn[i]                    </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/156-Binary-Tree-Upside-Down/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/26/156-Binary-Tree-Upside-Down/" itemprop="url">156. Binary Tree Upside Down </a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T14:58:00+08:00">2019-06-26</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-26T15:09:12+08:00">2019-06-26</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p>Given a binary tree where all the right nodes are either leaf nodes with a sibling (a left node that shares the same parent node) or empty, flip it upside down and turn it into a tree where the original right nodes turned into left leaf nodes. Return the new root.</p>
+<h2 id="example"><a class="header-anchor" href="#example">¶</a>Example</h2>
+<h3 id="example1"><a class="header-anchor" href="#example1">¶</a>Example1</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Input: &#123;1,2,3,4,5&#125;</span><br><span class="line">Output: &#123;4,5,2,#,#,3,1&#125;</span><br><span class="line">Explanation:</span><br><span class="line">The input is</span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   3</span><br><span class="line"> / \</span><br><span class="line">4   5</span><br><span class="line">and the output is</span><br><span class="line">   4</span><br><span class="line">  / \</span><br><span class="line"> 5   2</span><br><span class="line">    / \</span><br><span class="line">   3   1</span><br></pre></td></tr></table></figure>
+<h3 id="example2"><a class="header-anchor" href="#example2">¶</a>Example2</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Input: &#123;1,2,3,4&#125;</span><br><span class="line">Output: &#123;4,#,2,3,1&#125;</span><br><span class="line">Explanation:</span><br><span class="line">The input is</span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   3</span><br><span class="line"> /</span><br><span class="line">4</span><br><span class="line">and the output is</span><br><span class="line">   4</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    / \</span><br><span class="line">   3   1</span><br></pre></td></tr></table></figure>
+<h1>解法：</h1>
+<p>非递归解法：</p>
+<h2 id="法一："><a class="header-anchor" href="#法一：">¶</a>法一：</h2>
+<p>利用栈</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Definition of TreeNode:</span></span><br><span class="line"><span class="string">class TreeNode:</span></span><br><span class="line"><span class="string">    def __init__(self, val):</span></span><br><span class="line"><span class="string">        self.val = val</span></span><br><span class="line"><span class="string">        self.left, self.right = None, None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    @param root: the root of binary tree</span></span><br><span class="line"><span class="string">    @return: new root</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">upsideDownBinaryTree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        st = []</span><br><span class="line">        p = root</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            st.append(p)</span><br><span class="line">            p = p.left</span><br><span class="line"></span><br><span class="line">        r = p = st.pop()</span><br><span class="line">        <span class="keyword">while</span> st:</span><br><span class="line">            p.left = st[<span class="number">-1</span>].right</span><br><span class="line">            p.right = st[<span class="number">-1</span>]</span><br><span class="line">            p = st.pop()</span><br><span class="line">        p.left = p.right = <span class="literal">None</span> </span><br><span class="line">        <span class="keyword">return</span> r</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<p>记录中间变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Definition of TreeNode:</span></span><br><span class="line"><span class="string">class TreeNode:</span></span><br><span class="line"><span class="string">    def __init__(self, val):</span></span><br><span class="line"><span class="string">        self.val = val</span></span><br><span class="line"><span class="string">        self.left, self.right = None, None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    @param root: the root of binary tree</span></span><br><span class="line"><span class="string">    @return: new root</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">upsideDownBinaryTree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        p, q, r = root, <span class="literal">None</span>, <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            p.left, p.right, q, p, r= r, q, p, p.left, p.right</span><br><span class="line">        <span class="keyword">return</span> q</span><br></pre></td></tr></table></figure>
+<p>递归解法：</p>
+<p>  这道题就是因为这个递归解法才写了一篇，我用递归做这道题稍微有些费力，总觉得能用递归做，但是写了半天不知道怎么写好。下面是别人的递归代码，学习一下：</p>
+<h2 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Definition of TreeNode:</span></span><br><span class="line"><span class="string">class TreeNode:</span></span><br><span class="line"><span class="string">    def __init__(self, val):</span></span><br><span class="line"><span class="string">        self.val = val</span></span><br><span class="line"><span class="string">        self.left, self.right = None, None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    @param root: the root of binary tree</span></span><br><span class="line"><span class="string">    @return: new root</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">upsideDownBinaryTree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root.left:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">        p = self.upsideDownBinaryTree(root.left) </span><br><span class="line">        root.left.left, root.left.right, root.left, root.right = root.right, root ,<span class="literal">None</span>, <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> p</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1266,691 +1966,6 @@ Could you do both operations in <strong>O(1)</strong> time complexity?</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/leetcode-刷题日常-147-Insertion-Sort-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/23/leetcode-刷题日常-147-Insertion-Sort-List/" itemprop="url">147. Insertion Sort List</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T20:28:00+08:00">2019-06-23</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:10:36+08:00">2019-06-25</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="noopener">147. Insertion Sort List</a></p>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Sort a linked list using insertion sort.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" alt><br>
-<small style="display: inline;">A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.<br>
-With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list</small></p>
-<p><strong>Algorithm of Insertion Sort:</strong></p>
-<ol>
-<li>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.</li>
-<li>At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.</li>
-<li>It repeats until no input elements remain.</li>
-</ol>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 4-&gt;2-&gt;1-&gt;3</span><br><span class="line">Output: 1-&gt;2-&gt;3-&gt;4</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: -1-&gt;5-&gt;3-&gt;4-&gt;0</span><br><span class="line">Output: -1-&gt;0-&gt;3-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
-<h1>解法</h1>
-<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
-<p>  法一很直接，就是普通的插入排序的链表版本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># Definition for singly-linked list.</span><br><span class="line"># class ListNode:</span><br><span class="line">#     def __init__(self, x):</span><br><span class="line">#         self.val = x</span><br><span class="line">#         self.next = None</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def insertionSortList(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        if not head:</span><br><span class="line">            return None</span><br><span class="line">        dummy = ListNode(0)</span><br><span class="line">        dummy.next = head</span><br><span class="line">        head = head.next</span><br><span class="line">        dummy.next.next = None</span><br><span class="line"></span><br><span class="line">        while head:</span><br><span class="line">            p = dummy</span><br><span class="line">            while p.next and p.next.val &lt; head.val:</span><br><span class="line">                p = p.next</span><br><span class="line">            p.next, head.next, head = head, p.next, head.next</span><br><span class="line">        return dummy.next</span><br></pre></td></tr></table></figure>
-<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
-<p>  观察法一的排序过程，可以发现，就算head的值刚好大于有序链表的最后一个值也要从头结点重新遍历一遍整个链表再插入尾部，这样会浪费大量的时间，效率很低，实际上法一的执行时间是2000ms左右也证明了这一点。所以，可以记录头结点和尾结点cur，每次插入完成后，保证尾结点cur的next结点就是下一个要插入的结点就能省去大量时间。如果下一个结点值如果刚好比尾结点cur的值大，那么就可以直接更新尾结点cur为下一个结点；否则的话，就按照普通的插入排序从头开始找最后一个比要插入的结点的值小的结点，插在该结点之后，并且将要插入结点之后的链表重新连在尾结点cur之后，保证cur.next可以取到下一个待插入的结点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertionSortList</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        p = dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        cur = dummy.next = head</span><br><span class="line">        <span class="keyword">while</span> cur <span class="keyword">and</span> cur.next:</span><br><span class="line">            nv = cur.next.val</span><br><span class="line">            <span class="keyword">if</span> cur.val &lt; nv:</span><br><span class="line">                cur = cur.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                p = dummy</span><br><span class="line">                <span class="keyword">while</span> p.next.val &lt; nv:</span><br><span class="line">                    p = p.next</span><br><span class="line">                p.next, cur.next.next, cur.next = cur.next, p.next, cur.next.next </span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
-<h2 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h2>
-<p>  在法二的基础上，还有可以优化的余地。保存上一次搜索的插入位置p，前一个插入位置p之后的点的值大于下一个要插入的点的值，那么说明新的插入位置在前一个插入位置p之前，那么p重置为头结点（dummy），从头开始搜索；否则，新的插入位置肯定在p之后，那么就只需从p之后开始搜索，这样就可以缩小要搜索的结点数。代码只需在法二上稍作修改：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertionSortList</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        p = dummy = ListNode(<span class="number">0</span>)    <span class="comment"># the pos where cur should be inserted after</span></span><br><span class="line">        cur = dummy.next = head</span><br><span class="line">        <span class="keyword">while</span> cur <span class="keyword">and</span> cur.next:</span><br><span class="line">            nv = cur.next.val</span><br><span class="line">            <span class="keyword">if</span> cur.val &lt; nv:</span><br><span class="line">                cur = cur.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> p.next.val &gt; nv:</span><br><span class="line">                    p = dummy</span><br><span class="line">                <span class="keyword">while</span> p.next.val &lt; nv:</span><br><span class="line">                    p = p.next</span><br><span class="line">                p.next, cur.next.next, cur.next = cur.next, p.next, cur.next.next </span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
-<h1>总结</h1>
-<p>  法三记录插入位置的做法很灵性，这种技巧以后也可以用在常规插入排序中。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/leetcode-刷题日常-140-Word-Break-II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/23/leetcode-刷题日常-140-Word-Break-II/" itemprop="url">140. Word Break II</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T20:00:00+08:00">2019-06-23</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:10:41+08:00">2019-06-25</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="noopener">140. Word Break II</a></p>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Given a <strong>non-empty</strong> string <em>s</em> and a dictionary <em>wordDict</em> containing a list of <strong>non-empty</strong> words, add spaces in <em>s</em> to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>The same word in the dictionary may be reused multiple times in the segmentation.</li>
-<li>You may assume the dictionary does not contain duplicate words.</li>
-</ul>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s = &quot;catsanddog&quot;</span><br><span class="line">wordDict = [&quot;cat&quot;, &quot;cats&quot;, &quot;and&quot;, &quot;sand&quot;, &quot;dog&quot;]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  &quot;cats and dog&quot;,</span><br><span class="line">  &quot;cat sand dog&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s = &quot;pineapplepenapple&quot;</span><br><span class="line">wordDict = [&quot;apple&quot;, &quot;pen&quot;, &quot;applepen&quot;, &quot;pine&quot;, &quot;pineapple&quot;]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  &quot;pine apple pen apple&quot;,</span><br><span class="line">  &quot;pineapple pen apple&quot;,</span><br><span class="line">  &quot;pine applepen apple&quot;</span><br><span class="line">]</span><br><span class="line">Explanation: Note that you are allowed to reuse a dictionary word.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s = &quot;catsandog&quot;</span><br><span class="line">wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;]</span><br><span class="line">Output:</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
-<h1>解法</h1>
-<p>  这一题我觉得比上一题还简单，直接用DFS就可以了。对了，递归的时候还要用记忆数组优化效率。</p>
-<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 反向搜索，从结尾处开始取单词</span><br><span class="line">class Solution:</span><br><span class="line">    def wordBreak(self, s: str, wordDict: List[str]) -&gt; List[str]:</span><br><span class="line">        memo = &#123;&#125;</span><br><span class="line">        word_dict = set(wordDict)</span><br><span class="line">        </span><br><span class="line">        def word_combos(fragment):</span><br><span class="line">            if fragment in memo:</span><br><span class="line">                return memo[fragment]</span><br><span class="line">            </span><br><span class="line">            combos = []</span><br><span class="line">            # 下面这一句很重要，可以使递归在发现第一个单词时返回，从而处理了第一个单词前面不用加空格的边界情况</span><br><span class="line">            if fragment in word_dict:</span><br><span class="line">                combos.append(fragment)</span><br><span class="line">            </span><br><span class="line">            for i in range(1, len(fragment)):</span><br><span class="line">                right = fragment[i:]</span><br><span class="line">                if right in word_dict:</span><br><span class="line">                    left = fragment[:i]</span><br><span class="line">                    for combo in word_combos(left):</span><br><span class="line">                        combos.append(f&apos;&#123;combo&#125; &#123;right&#125;&apos;)</span><br><span class="line">            </span><br><span class="line">            memo[fragment] = combos</span><br><span class="line">            return combos</span><br><span class="line">        </span><br><span class="line">        return word_combos(s)</span><br></pre></td></tr></table></figure>
-<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s: str, wordDict: List[str])</span> -&gt; List[str]:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(s, wordDict, m)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> s <span class="keyword">in</span> m:</span><br><span class="line">                <span class="keyword">return</span> m[s]</span><br><span class="line">            <span class="comment"># 这种对边界条件的处理就没有法一灵性，不过也很合情合理</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> s:</span><br><span class="line">                <span class="keyword">return</span> [<span class="string">""</span>]</span><br><span class="line">            res = []</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> wordDict:</span><br><span class="line">                <span class="keyword">if</span> word != s[:len(word)]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                rem = helper(s[len(word):], wordDict, m)</span><br><span class="line">                <span class="keyword">for</span> ss <span class="keyword">in</span> rem:</span><br><span class="line">                    res.append(<span class="string">''</span>.join([word,<span class="string">""</span> <span class="keyword">if</span> <span class="keyword">not</span> ss <span class="keyword">else</span> <span class="string">" "</span>,ss]))</span><br><span class="line">            m[s] = res</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        m = &#123;&#125;</span><br><span class="line">        helper(s, wordDict, m)</span><br><span class="line">        <span class="keyword">return</span> m[s]</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/leetcode-刷题日常-139-Word-Break/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/23/leetcode-刷题日常-139-Word-Break/" itemprop="url">139. Word Break</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T19:56:00+08:00">2019-06-23</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:10:44+08:00">2019-06-25</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/word-break/" target="_blank" rel="noopener">139. Word Break</a></p>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Given a <strong>non-empty</strong> string <em>s</em> and a dictionary <em>wordDict</em> containing a list of <strong>non-empty</strong> words, determine if <em>s</em> can be segmented into a space-separated sequence of one or more dictionary words.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>The same word in the dictionary may be reused multiple times in the segmentation.</li>
-<li>You may assume the dictionary does not contain duplicate words.</li>
-</ul>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;leetcode&quot;, wordDict = [&quot;leet&quot;, &quot;code&quot;]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Return true because &quot;leetcode&quot; can be segmented as &quot;leet code&quot;.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;applepenapple&quot;, wordDict = [&quot;apple&quot;, &quot;pen&quot;]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Return true because &quot;applepenapple&quot; can be segmented as &quot;apple pen apple&quot;.</span><br><span class="line">             Note that you are allowed to reuse a dictionary word.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;]</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<h1>解法</h1>
-<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我自己的解法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s: str, wordDict: List[str])</span> -&gt; bool:</span></span><br><span class="line">        wd = set(wordDict)</span><br><span class="line">        <span class="comment"># if s in wd:</span></span><br><span class="line">        <span class="comment">#     return True</span></span><br><span class="line">        dp = [<span class="literal">False</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(s) + <span class="number">1</span>)]</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(j+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> s[i:j+<span class="number">1</span>] <span class="keyword">in</span> wd:</span><br><span class="line">                    dp[j + <span class="number">1</span>] |= dp[i]</span><br><span class="line">        <span class="comment"># print(dp)</span></span><br><span class="line">        <span class="keyword">return</span> dp[len(s)]</span><br></pre></td></tr></table></figure>
-<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 简洁优雅的解法</span><br><span class="line">class Solution(object):</span><br><span class="line">    def wordBreak(self, s, wordDict):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type s: str</span><br><span class="line">        :type wordDict: Set[str]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        dp = [False] * (len(s) + 1) # dp[i] means s[:i+1] can be segmented into words in the wordDicts </span><br><span class="line">        dp[0] = True</span><br><span class="line">        for i in range(len(s)):</span><br><span class="line">            if dp[i]:</span><br><span class="line">                for j in range(i, len(s)):</span><br><span class="line">                    if s[i: j+1] in wordDict:</span><br><span class="line">                            dp[j+1] = True</span><br><span class="line">                    </span><br><span class="line">        return dp[-1]</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/leetcode-刷题日常-190-Reverse-Bits/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/23/leetcode-刷题日常-190-Reverse-Bits/" itemprop="url">190. Reverse Bits</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T17:29:00+08:00">2019-06-23</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:10:48+08:00">2019-06-25</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/reverse-bits/" target="_blank" rel="noopener">190. Reverse Bits</a></p>
-<p>Difficulty: <strong>Easy</strong></p>
-<p>Reverse bits of a given 32 bits unsigned integer.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 00000010100101000001111010011100</span><br><span class="line">Output: 00111001011110000010100101000000</span><br><span class="line">Explanation: The input binary string 00000010100101000001111010011100 represents the unsigned integer 43261596, so return 964176192 which its binary representation is 00111001011110000010100101000000.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 11111111111111111111111111111101</span><br><span class="line">Output: 10111111111111111111111111111111</span><br><span class="line">Explanation: The input binary string 11111111111111111111111111111101 represents the unsigned integer 4294967293, so return 3221225471 which its binary representation is 10101111110010110010011101101001.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li>Note that in some languages such as Java, there is no unsigned integer type. In this case, both input and output will be given as signed integer type and should not affect your implementation, as the internal binary representation of the integer is the same whether it is signed or unsigned.</li>
-<li>In Java, the compiler represents the signed integers using . Therefore, in <strong>Example 2</strong> above the input represents the signed integer <code>-3</code> and the output represents the signed integer <code>-1073741825</code>.</li>
-</ul>
-<p><strong>Follow up</strong>:</p>
-<p>If this function is called many times, how would you optimize it?</p>
-<h1>解法</h1>
-<p>  该题主要考察位运算。由于限制位数为32位，所以只需对待处理的整数n进行32次右移位，每当低位&amp;1的结果为1，说明低位为1，此时将待输出的目标整数(默认值为0)左移动一位并加上1；每当低位&amp;1的结果为0，说明低位为0，此时将待输出的目标整数左移一位即可；循环直到移动完32次，所得目标整数即为所求。</p>
-<h1>代码</h1>
-<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Reverse_Bits</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> value = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// 32位无符号数</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i) &#123;</span><br><span class="line">			<span class="keyword">if</span> ((n &amp; <span class="number">1</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">				value = (value &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>; <span class="comment">// 左移动</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				value = value &lt;&lt; <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">            n &gt;&gt;= <span class="number">1</span>; <span class="comment">// 右移</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">uint32_t</span> reverseBits(<span class="keyword">uint32_t</span> n) &#123;</span><br><span class="line">    <span class="keyword">uint32_t</span> r = n ;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="keyword">sizeof</span>(n) * CHAR_BIT <span class="number">-1</span>;</span><br><span class="line">    n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)</span><br><span class="line">    &#123;</span><br><span class="line">        r &lt;&lt;=<span class="number">1</span>;</span><br><span class="line">        r|= n&amp;<span class="number">1</span>;</span><br><span class="line">        s--;</span><br><span class="line">        n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    r&lt;&lt;=s;   </span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2001,7 +2016,7 @@ With each iteration one element (red) is removed from the input data and inserte
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">96</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2023,7 +2038,7 @@ With each iteration one element (red) is removed from the input data and inserte
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

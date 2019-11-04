@@ -75,14 +75,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="287. Find the Duplicate Number">
+<meta property="og:url" content="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/index.html">
 <meta property="og:site_name" content="Just a blog">
+<meta property="og:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-10-25T16:59:54.884Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="287. Find the Duplicate Number">
+<meta name="twitter:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
 
 
 
@@ -114,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/">
 
 
 
@@ -234,6 +237,678 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/17/918-Maximum-Sum-Circular-Subarray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/17/918-Maximum-Sum-Circular-Subarray/" itemprop="url">918. Maximum Sum Circular Subarray</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-17T13:24:00+08:00">2019-10-17</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-17T13:39:54+08:00">2019-10-17</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/maximum-sum-circular-subarray/" target="_blank" rel="noopener">918. Maximum Sum Circular Subarray</a></h1>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a <strong>circular array</strong> <strong>C</strong> of integers represented by <code>A</code>, find the maximum possible sum of a non-empty subarray of <strong>C</strong>.</p>
+<p>Here, a <em>circular array</em> means the end of the array connects to the beginning of the array.  (Formally, <code>C[i] = A[i]</code> when <code>0 &lt;= i &lt; A.length</code>, and <code>C[i+A.length] = C[i]</code> when <code>i &gt;= 0</code>.)</p>
+<p>Also, a subarray may only include each element of the fixed buffer <code>A</code> at most once.  (Formally, for a subarray <code>C[i], C[i+1], ..., C[j]</code>, there does not exist <code>i &lt;= k1, k2 &lt;= j</code> with <code>k1 % A.length = k2 % A.length</code>.)</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,-2,3,-2]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: Subarray [3] has maximum sum 3</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [5,-3,5]</span><br><span class="line">Output: 10</span><br><span class="line">Explanation: Subarray [5,5] has maximum sum 5 + 5 = 10</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,-1,2,-1]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: Subarray [2,-1,3] has maximum sum 2 + (-1) + 3 = 4</span><br></pre></td></tr></table></figure>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,-2,2,-3]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: Subarray [3] and [3,-2,2] both have maximum sum 3</span><br></pre></td></tr></table></figure>
+<p><strong>Example 5:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [-2,-3,-1]</span><br><span class="line">Output: -1</span><br><span class="line">Explanation: Subarray [-1] has maximum sum -1</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>-30000 &lt;= A[i] &lt;= 30000</code></li>
+<li><code>1 &lt;= A.length &lt;= 30000</code></li>
+</ol>
+<h1>解法</h1>
+<h2 id="己解"><a class="header-anchor" href="#己解">¶</a>己解</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> _ = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line">​</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        int total(0), cur_mn1(0), mn1(INT_MAX), cur_mn2(0), mn2(INT_MAX), cur_mx(0), mx(INT_MIN), i(0);</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; A.size() - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            total += A[i];</span><br><span class="line">            cur_mx = max(A[i], A[i] + cur_mx);</span><br><span class="line">            mx = max(mx, cur_mx);</span><br><span class="line">            cur_mn1 = min(A[i], A[i]+cur_mn1);</span><br><span class="line">            mn1 = min(cur_mn1, mn1);</span><br><span class="line">        &#125; </span><br><span class="line">        cur_mx = max(A[i], A[i] + cur_mx);</span><br><span class="line">        mx = max(mx, cur_mx);</span><br><span class="line">        total += A[A.size() - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; A.size(); i++)&#123;</span><br><span class="line">            cur_mn2 = min(A[i], A[i]+cur_mn2);</span><br><span class="line">            mn2 = min(cur_mn2, mn2);</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="comment">// cout &lt;&lt; mn1 &lt;&lt; " " &lt;&lt; mn2 &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">return</span> max(mx, max(total - mn1, total - mn2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="next-array"><a class="header-anchor" href="#next-array">¶</a>Next Array</h2>
+<p>  将问题看成求连续子数组或者求由以<code>A[0]</code>开头和<code>A[A.length() - 1]</code>结尾的两个子数组组合成的子数组中和最大的一个；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = A.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ans = A[<span class="number">0</span>], cur = A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; ++i) &#123;</span><br><span class="line">            cur = A[i] + Math.max(cur, <span class="number">0</span>);</span><br><span class="line">            ans = Math.max(ans, cur);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ans is the answer for 1-interval subarrays.</span></span><br><span class="line">        <span class="comment">// Now, let's consider all 2-interval subarrays.</span></span><br><span class="line">        <span class="comment">// For each i, we want to know</span></span><br><span class="line">        <span class="comment">// the maximum of sum(A[j:]) with j &gt;= i+2</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// rightsums[i] = A[i] + A[i+1] + ... + A[N-1]</span></span><br><span class="line">        <span class="keyword">int</span>[] rightsums = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        rightsums[N-<span class="number">1</span>] = A[N-<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = N-<span class="number">2</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">            rightsums[i] = rightsums[i+<span class="number">1</span>] + A[i];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// maxright[i] = max_&#123;j &gt;= i&#125; rightsums[j]</span></span><br><span class="line">        <span class="keyword">int</span>[] maxright = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        maxright[N-<span class="number">1</span>] = A[N-<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = N-<span class="number">2</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">            maxright[i] = Math.max(maxright[i+<span class="number">1</span>], rightsums[i]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> leftsum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N-<span class="number">2</span>; ++i) &#123;</span><br><span class="line">            leftsum += A[i];</span><br><span class="line">            ans = Math.max(ans, leftsum + maxright[i+<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="prefix-sums-monoqueue"><a class="header-anchor" href="#prefix-sums-monoqueue">¶</a>Prefix Sums + Monoqueue</h2>
+<p>  将求A中的循环子数组看做求A+A中的连续子数组（子数组长度不超过A），如果利用前缀和之差求连续子数组和的话，问题就可以转化成求以某位置为右端点、长度固定的区间内的最小值，而单调栈也使用来维持一个区间的所有的最值候选值（<strong>按照我的理解，实质上单调栈维护的是一个线的包络，而最值肯定会落在包络上</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = A.length;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Compute P[j] = B[0] + B[1] + ... + B[j-1]</span></span><br><span class="line">        <span class="comment">// for fixed array B = A+A</span></span><br><span class="line">        <span class="keyword">int</span>[] P = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>*N+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>*N; ++i)</span><br><span class="line">            P[i+<span class="number">1</span>] = P[i] + A[i % N];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Want largest P[j] - P[i] with 1 &lt;= j-i &lt;= N</span></span><br><span class="line">        <span class="comment">// For each j, want smallest P[i] with i &gt;= j-N</span></span><br><span class="line">        <span class="keyword">int</span> ans = A[<span class="number">0</span>];</span><br><span class="line">        <span class="comment">// deque: i's, increasing by P[i]</span></span><br><span class="line">        Deque&lt;Integer&gt; deque = <span class="keyword">new</span> ArrayDeque();</span><br><span class="line">        deque.offer(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2</span>*N; ++j) &#123;</span><br><span class="line">            <span class="comment">// If the smallest i is too small, remove it.</span></span><br><span class="line">            <span class="keyword">if</span> (deque.peekFirst() &lt; j-N)</span><br><span class="line">                deque.pollFirst();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// The optimal i is deque[0], for cand. answer P[j] - P[i].</span></span><br><span class="line">            ans = Math.max(ans, P[j] - P[deque.peekFirst()]);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Remove any i1's with P[i2] &lt;= P[i1].</span></span><br><span class="line">            <span class="keyword">while</span> (!deque.isEmpty() &amp;&amp; P[j] &lt;= P[deque.peekLast()])</span><br><span class="line">                deque.pollLast();</span><br><span class="line"></span><br><span class="line">            deque.offerLast(j);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="动态规划法"><a class="header-anchor" href="#动态规划法">¶</a>动态规划法</h2>
+<p>  将求跨边界的子数组的最大值看做是求整个数组和<strong>减去</strong>连续子数组的最小值（或者<strong>加上</strong>原数组<strong>取负</strong>后的连续子数组的最大值）,并且要注意<strong>减去或加上的连续子数组不能是整个原数组，要不然会使得到的跨边界子数组为空数组</strong>。</p>
+<h3 id="取负"><a class="header-anchor" href="#取负">¶</a>取负</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> S = <span class="number">0</span>;  <span class="comment">// S = sum(A)</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A)</span><br><span class="line">            S += x;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ans1 = kadane(A, <span class="number">0</span>, A.length-<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> ans2 = S + kadane(A, <span class="number">1</span>, A.length-<span class="number">1</span>, -<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> ans3 = S + kadane(A, <span class="number">0</span>, A.length-<span class="number">2</span>, -<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> Math.max(ans1, Math.max(ans2, ans3));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kadane</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> sign)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// The maximum non-empty subarray for array</span></span><br><span class="line">        <span class="comment">// [sign * A[i], sign * A[i+1], ..., sign * A[j]]</span></span><br><span class="line">        <span class="keyword">int</span> ans = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">int</span> cur = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = i; k &lt;= j; ++k) &#123;</span><br><span class="line">            cur = sign * A[k] + Math.max(cur, <span class="number">0</span>);</span><br><span class="line">            ans = Math.max(ans, cur);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="求差"><a class="header-anchor" href="#求差">¶</a>求差</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubarraySumCircular</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// S: sum of A</span></span><br><span class="line">        <span class="keyword">int</span> S = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A)</span><br><span class="line">            S += x;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ans1: answer for one-interval subarray</span></span><br><span class="line">        <span class="keyword">int</span> ans1 = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">int</span> cur = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: A) &#123;</span><br><span class="line">            cur = x + Math.max(cur, <span class="number">0</span>);</span><br><span class="line">            ans1 = Math.max(ans1, cur);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ans2: answer for two-interval subarray, interior in A[1:]</span></span><br><span class="line">        <span class="keyword">int</span> ans2 = Integer.MAX_VALUE;</span><br><span class="line">        cur = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">            cur = A[i] + Math.min(cur, <span class="number">0</span>);</span><br><span class="line">            ans2 = Math.min(ans2, cur);</span><br><span class="line">        &#125;</span><br><span class="line">        ans2 = S - ans2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ans3: answer for two-interval subarray, interior in A[:-1]</span></span><br><span class="line">        <span class="keyword">int</span> ans3 = Integer.MAX_VALUE;</span><br><span class="line">        cur = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            cur = A[i] + Math.min(cur, <span class="number">0</span>);</span><br><span class="line">            ans3 = Math.min(ans3, cur);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Math.max(ans1, Math.max(ans2, ans3));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/457-Circular-Array-Loop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/16/457-Circular-Array-Loop/" itemprop="url">457. Circular Array Loop</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-16T21:20:00+08:00">2019-10-16</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-16T21:50:35+08:00">2019-10-16</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/circular-array-loop/" target="_blank" rel="noopener">457. Circular Array Loop</a></h1>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>You are given a <strong>circular</strong> array <code>nums</code> of positive and negative integers. If a number <em>k</em> at an index is positive, then move forward <em>k</em> steps. Conversely, if it’s negative (-<em>k</em>), move backward <em>k</em> steps. Since the array is circular, you may assume that the last element’s next element is the first element, and the first element’s previous element is the last element.</p>
+<p>Determine if there is a loop (or a cycle) in <code>nums</code>. A cycle must start and end at the same index and the cycle’s length &gt; 1. Furthermore, movements in a cycle must all follow a single direction. In other words, a cycle must not consist of both forward and backward movements.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,-1,1,2,2]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: There is a cycle, from index 0 -&gt; 2 -&gt; 3 -&gt; 0\. The cycle&apos;s length is 3.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [-1,2]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: The movement from index 1 -&gt; 1 -&gt; 1 ... is not a cycle, because the cycle&apos;s length is 1\. By definition the cycle&apos;s length must be greater than 1.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [-2,1,-1,-2,-2]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: The movement from index 1 -&gt; 2 -&gt; 1 -&gt; ... is not a cycle, because movement from index 1 -&gt; 2 is a forward movement, but movement from index 2 -&gt; 1 is a backward movement. All movements in a cycle must follow a single direction.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>-1000 ≤ nums[i] ≤ 1000</li>
+<li>nums[i] ≠ 0</li>
+<li>1 ≤ nums.length ≤ 5000</li>
+</ol>
+<p><strong>Follow up:</strong></p>
+<p>Could you solve it in <strong>O(n)</strong> time complexity and <strong>O(1)</strong> extra space complexity?</p>
+<h1>解法</h1>
+<h2 id="己解"><a class="header-anchor" href="#己解">¶</a>己解</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> fast = start, slow = start;</span><br><span class="line">        <span class="keyword">if</span>(nums[fast] *(nums[(nums[fast] + fast + nums.size()) % nums.size()]) &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span>(nums[fast] *(nums[(nums[fast] + fast + nums.size()) % nums.size()]) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            slow = (nums[slow] + slow + nums.size()) % nums.size();</span><br><span class="line">            fast = (nums[fast] + fast + nums.size()) % nums.size();</span><br><span class="line">            <span class="keyword">if</span>(nums[fast] *(nums[(nums[fast] + fast + nums.size()) % nums.size()]) &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            fast = (nums[fast] + fast + nums.size()) % nums.size();</span><br><span class="line">            <span class="keyword">if</span>(slow == fast) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(slow == fast &amp;&amp; (nums[slow] + slow + nums.size()) % nums.size() != slow)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">circularArrayLoop</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)</span><br><span class="line">            <span class="keyword">if</span>(judge(nums, i)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对上面的解法做一些改进得到下面的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> _ = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line">​</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getNext</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sz = nums.size();</span><br><span class="line">        <span class="keyword">return</span> ((i + nums[i]) % sz + sz) % sz;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> fast = getNext(nums, start), slow = start;</span><br><span class="line">        <span class="keyword">if</span>(nums[start] == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> val = nums[start];</span><br><span class="line">        <span class="keyword">while</span>(nums[fast] * val &gt; <span class="number">0</span> &amp;&amp; val * nums[getNext(nums, fast)] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            slow = getNext(nums, slow);</span><br><span class="line">            fast = getNext(nums, getNext(nums, fast));</span><br><span class="line">            <span class="keyword">if</span>(slow == fast) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(slow == fast &amp;&amp; getNext(nums, slow) != slow)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> next;</span><br><span class="line">            slow = start;</span><br><span class="line">            <span class="keyword">while</span>(nums[slow] * val &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                next = getNext(nums, slow);</span><br><span class="line">                nums[slow] = <span class="number">0</span>;</span><br><span class="line">                slow = next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">circularArrayLoop</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)</span><br><span class="line">            <span class="keyword">if</span>(judge(nums, i)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="比较好的解法"><a class="header-anchor" href="#比较好的解法">¶</a>比较好的解法</h2>
+<h3 id="not-o-1"><a class="header-anchor" href="#not-o-1">¶</a>not O(1)</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">circularArrayLoop</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; visited(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (visited[i]) <span class="keyword">continue</span>;</span><br><span class="line">            visited[i] = <span class="literal">true</span>;</span><br><span class="line">            <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">            <span class="keyword">int</span> cur = i;</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> next = ((cur + nums[cur]) % n + n) % n;</span><br><span class="line">                <span class="keyword">if</span> (next == cur || nums[next] * nums[cur] &lt; <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">if</span> (m.count(next)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                m[cur] = next;</span><br><span class="line">                cur = next;</span><br><span class="line">                visited[next] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="o-1"><a class="header-anchor" href="#o-1">¶</a>O(1)</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">circularArrayLoop</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> slow = i, fast = getNext(nums, i), val = nums[i];</span><br><span class="line">            <span class="keyword">while</span> (val * nums[fast] &gt; <span class="number">0</span> &amp;&amp; val * nums[getNext(nums, fast)] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (slow == fast) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (slow == getNext(nums, slow)) <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                slow = getNext(nums, slow);</span><br><span class="line">                fast = getNext(nums, getNext(nums, fast));</span><br><span class="line">            &#125;</span><br><span class="line">            slow = i;</span><br><span class="line">            <span class="keyword">while</span> (val * nums[slow] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> next = getNext(nums, slow);</span><br><span class="line">                nums[slow] = <span class="number">0</span>;</span><br><span class="line">                slow = next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getNext</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">return</span> (((nums[i] + i) % n) + n) % n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/15/768-Max-Chunks-To-Make-Sorted-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/15/768-Max-Chunks-To-Make-Sorted-II/" itemprop="url">768. Max Chunks To Make Sorted II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-15T23:14:00+08:00">2019-10-15</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T23:22:57+08:00">2019-10-15</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/max-chunks-to-make-sorted-ii/" target="_blank" rel="noopener">768. Max Chunks To Make Sorted II</a></h1>
+<p>Difficulty: <strong>Hard</strong></p>
+<p><em>This question is the same as “Max Chunks to Make Sorted” except the integers of the given array are not necessarily distinct, the input array could be up to length <code>2000</code>, and the elements could be up to <code>10**8</code>.</em></p>
+<hr>
+<p>Given an array <code>arr</code> of integers (<strong>not necessarily distinct</strong>), we split the array into some number of “chunks” (partitions), and individually sort each chunk.  After concatenating them, the result equals the sorted array.</p>
+<p>What is the most number of chunks we could have made?</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: arr = [5,4,3,2,1]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation:</span><br><span class="line">Splitting into two or more chunks will not return the required result.</span><br><span class="line">For example, splitting into [5, 4], [3, 2, 1] will result in [4, 5, 1, 2, 3], which isn&apos;t sorted.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: arr = [2,1,3,4,4]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation:</span><br><span class="line">We can split into two chunks, such as [2, 1], [3, 4, 4].</span><br><span class="line">However, splitting into [2, 1], [3], [4], [4] is the highest number of chunks possible.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>arr</code> will have length in range <code>[1, 2000]</code>.</li>
+<li><code>arr[i]</code> will be an integer in range <code>[0, 10**8]</code>.</li>
+</ul>
+<h1>解法</h1>
+<p>  这道题虽然自己解出来的，但是却让我明白，即使有解决问题的思路，写出一个让自己满意的简洁有准确的代码还是很难的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(maxl[i - <span class="number">1</span>] &lt;= minr[i]) res += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res ;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> prev = <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(maxl[i] == minr[i] &amp;&amp; maxl[i] == arr[i])&#123;</span><br><span class="line">        <span class="keyword">if</span>(prev == i - <span class="number">1</span> &amp;&amp; i &lt; arr.size() - <span class="number">1</span>)&#123;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(prev != i - <span class="number">1</span> &amp;&amp; i &lt; arr.size() - <span class="number">1</span>)&#123;</span><br><span class="line">            res += <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(prev != i - <span class="number">1</span> &amp;&amp; i == arr.size() - <span class="number">1</span>)&#123;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        prev = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(i &gt; <span class="number">1</span> &amp;&amp; maxl[i - <span class="number">1</span>] &lt;= minr[i] &amp;&amp; prev != i - <span class="number">1</span>) res++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res ;</span><br></pre></td></tr></table></figure>
+<p>  比如上面两段代码，做的是同样的事，但是明显第一个要比第二个更易读也更简洁，而且还更快（因为少了很多if分支）。虽然最后还是自己写出了第一段的代码，但是耗时还是太长，代价太大，我的代码转化能力还有待提高。下面是完整解法，思路就是当前元素左边的最大值小于右边（包含当前元素）的最小值，就可以在该元素之前“切一刀”。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxChunksToSorted</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> *maxl = <span class="keyword">new</span> <span class="keyword">int</span>[arr.size()]();</span><br><span class="line">        <span class="keyword">int</span> *minr = <span class="keyword">new</span> <span class="keyword">int</span>[arr.size()]();</span><br><span class="line">        <span class="keyword">int</span> tmp_maxl = INT_MIN, tmp_minr = INT_MAX;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i] &gt; tmp_maxl)&#123;</span><br><span class="line">                maxl[i] = arr[i];</span><br><span class="line">                tmp_maxl = arr[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                maxl[i] = tmp_maxl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(arr[arr.size() - <span class="number">1</span> - i] &lt; tmp_minr)&#123;</span><br><span class="line">                minr[arr.size() - <span class="number">1</span> - i] = arr[arr.size() - <span class="number">1</span> - i];</span><br><span class="line">                tmp_minr = arr[arr.size() - <span class="number">1</span> - i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                minr[arr.size() - <span class="number">1</span> - i] = tmp_minr;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(maxl[i - <span class="number">1</span>] &lt;= minr[i]) res += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/14/782-Transform-to-Chessboard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/14/782-Transform-to-Chessboard/" itemprop="url">782. Transform to Chessboard</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T23:28:58+08:00">2019-10-14</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T20:39:10+08:00">2019-10-15</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/transform-to-chessboard/" target="_blank" rel="noopener">782. Transform to Chessboard</a></h1>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>An N x N <code>board</code> contains only <code>0</code>s and <code>1</code>s. In each move, you can swap any 2 rows with each other, or any 2 columns with each other.</p>
+<p>What is the minimum number of moves to transform the board into a “chessboard” - a board where no <code>0</code>s and no <code>1</code>s are 4-directionally adjacent? If the task is impossible, return -1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Examples:</span><br><span class="line">Input: board = [[0,1,1,0],[0,1,1,0],[1,0,0,1],[1,0,0,1]]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation:</span><br><span class="line">One potential sequence of moves is shown below, from left to right:</span><br><span class="line"></span><br><span class="line">0110     1010     1010</span><br><span class="line">0110 --&gt; 1010 --&gt; 0101</span><br><span class="line">1001     0101     1010</span><br><span class="line">1001     0101     0101</span><br><span class="line"></span><br><span class="line">The first move swaps the first and second column.</span><br><span class="line">The second move swaps the second and third row.</span><br><span class="line"></span><br><span class="line">Input: board = [[0, 1], [1, 0]]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation:</span><br><span class="line">Also note that the board with 0 in the top left corner,</span><br><span class="line">01</span><br><span class="line">10</span><br><span class="line"></span><br><span class="line">is also a valid chessboard.</span><br><span class="line"></span><br><span class="line">Input: board = [[1, 0], [1, 0]]</span><br><span class="line">Output: -1</span><br><span class="line">Explanation:</span><br><span class="line">No matter what sequence of moves you make, you cannot end with a valid chessboard.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>board</code> will have the same number of rows and columns, a number in the range <code>[2, 30]</code>.</li>
+<li><code>board[i][j]</code> will be only <code>0</code>s or <code>1</code>s.</li>
+</ul>
+<h1>解法</h1>
+<ol>
+<li>先用<code>board[0][0] ^ board[i][0] ^ board[0][j] ^ board[i][j]</code>判断数据合法性，即是否任意两行互为取反或者互等，另一种说法是不同的行向量有两个，不同的列向量的个数也只有两个。其实只要不同的行向量有两个的话，那么不同的列向量一定也只有两个，因为翻转任意一行，不会改变两个列向量之间的关系。</li>
+<li>计算其中一个行向量和列向量的个数，要满足不同的行向量的个数能大致相等；</li>
+<li>计算不在正确位置上的0,1的个数，这个数一定要是个<strong>偶数</strong>；</li>
+<li>根据n的奇偶性，分情况计算总共的不在其位的0,1的个数，将这个数除以2得出交换次数最小值，因为每一次有效的交换（,奇1和偶0或奇0和偶1）会使这个数减2，所以要除以2；</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> _ = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">movesToChessboard</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = board.size(), rowSum = <span class="number">0</span>, colSum = <span class="number">0</span>, rowDiff = <span class="number">0</span>, colDiff = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (board[<span class="number">0</span>][<span class="number">0</span>] ^ board[i][<span class="number">0</span>] ^ board[<span class="number">0</span>][j] ^ board[i][j]) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            rowSum += board[<span class="number">0</span>][i];</span><br><span class="line">            colSum += board[i][<span class="number">0</span>];</span><br><span class="line">            rowDiff += (board[i][<span class="number">0</span>] == i % <span class="number">2</span>);</span><br><span class="line">            colDiff += (board[<span class="number">0</span>][i] == i % <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n / <span class="number">2</span> &gt; rowSum || rowSum &gt; (n + <span class="number">1</span>) / <span class="number">2</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n / <span class="number">2</span> &gt; colSum || colSum &gt; (n + <span class="number">1</span>) / <span class="number">2</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (rowDiff % <span class="number">2</span>) rowDiff = n - rowDiff;</span><br><span class="line">            <span class="keyword">if</span> (colDiff % <span class="number">2</span>) colDiff = n - colDiff;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            rowDiff = min(n - rowDiff, rowDiff);</span><br><span class="line">            colDiff = min(n - colDiff, colDiff);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (rowDiff + colDiff) / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1271,646 +1946,6 @@ A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do 
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/矩形重叠问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/10/矩形重叠问题/" itemprop="url">矩形重叠问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-10T15:00:00+08:00">2019-10-10</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-10T15:08:30+08:00">2019-10-10</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/niuke/" itemprop="url" rel="index">
-                    <span itemprop="name">niuke</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p>平面内有n个矩形, 第i个矩形的左下角坐标为(x1[i], y1[i]), 右上角坐标为(x2[i], y2[i])。如果两个或者多个矩形有公共区域则认为它们是相互重叠的(不考虑边界和角落)。请你计算出平面内重叠矩形数量最多的地方,有多少个矩形相互重叠。</p>
-<h1>输入描述:</h1>
-<p>输入包括五行。</p>
-<p>第一行包括一个整数n(2 &lt;= n &lt;= 50), 表示矩形的个数。</p>
-<p>第二行包括n个整数x1[i](-10^9 &lt;= x1[i] &lt;= 10^9),表示左下角的横坐标。</p>
-<p>第三行包括n个整数y1[i](-10^9 &lt;= y1[i] &lt;= 10^9),表示左下角的纵坐标。</p>
-<p>第四行包括n个整数x2[i](-10^9 &lt;= x2[i] &lt;= 10^9),表示右上角的横坐标。</p>
-<p>第五行包括n个整数y2[i](-10^9 &lt;= y2[i] &lt;= 10^9),表示右上角的纵坐标。</p>
-<h1>输出描述:</h1>
-<p>输出一个正整数, 表示最多的地方有多少个矩形相互重叠,如果矩形都不互相重叠,输出1。</p>
-<h1>题解</h1>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">链接：https:<span class="comment">//www.nowcoder.com/questionTerminal/a22dd98b3d224f2bb89142f8acc2fe57?f=discussion</span></span><br><span class="line">来源：牛客网</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">// square overlap</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> left, right, up, down;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> Square &amp;x)&#123;</span><br><span class="line">        <span class="keyword">return</span> down &lt; x.down;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">leftto</span><span class="params">(Square a, Square b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.left &lt; b.left;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">eraselower</span><span class="params">(<span class="built_in">vector</span>&lt;Square&gt; &amp;a, <span class="keyword">int</span> ybound)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> deln = <span class="number">0</span>, i = <span class="number">0</span>, n = a.size();</span><br><span class="line">    <span class="keyword">while</span>(i + deln &lt; n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i].up&lt;=ybound)</span><br><span class="line">            swap(a[i], a[n-(++deln)]);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    a.erase(a.end()-deln, a.end());</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="built_in">vector</span>&lt;Square&gt; sqs(n), row;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; ++i)</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;sqs[i].left;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; ++i)</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;sqs[i].down;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; ++i)</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;sqs[i].right;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; ++i)</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;sqs[i].up;</span><br><span class="line">    sort(sqs.begin(), sqs.end());</span><br><span class="line">    <span class="keyword">int</span> sn = <span class="number">0</span>, curdown = <span class="number">0</span>, res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(sn&lt;n)&#123;</span><br><span class="line">        curdown = sqs[sn].down;</span><br><span class="line">        <span class="keyword">while</span>(sn&lt;n &amp;&amp; sqs[sn].down == curdown)</span><br><span class="line">            row.push_back(sqs[sn++]);</span><br><span class="line">        eraselower(row, curdown);</span><br><span class="line">        sort(row.begin(), row.end(), leftto);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rights;</span><br><span class="line">        <span class="keyword">for</span>(Square x:row)&#123;</span><br><span class="line">            rights.erase(rights.begin(), upper_bound(rights.begin(), rights.end(), x.left));<span class="comment">//当前越过的右端点删去</span></span><br><span class="line">            rights.insert(upper_bound(rights.begin(), rights.end(), x.right), x.right);<span class="comment">//将当前矩形右端点加入</span></span><br><span class="line">            <span class="keyword">if</span>(res &lt; rights.size()) res = rights.size();<span class="comment">//右端点个数即为当前段重叠矩形个数</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/31/218-The-Skyline-Problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/31/218-The-Skyline-Problem/" itemprop="url">218. The Skyline Problem</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-31T22:55:00+08:00">2019-07-31</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-31T23:15:50+08:00">2019-07-31</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="218-the-skyline-problem"><a class="header-anchor" href="#218-the-skyline-problem">¶</a><a href="https://leetcode.com/problems/the-skyline-problem/" target="_blank" rel="noopener">218. The Skyline Problem</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>A city’s skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Now suppose you are <strong>given the locations and height of all the buildings</strong> as shown on a cityscape photo (Figure A), write a program to <strong>output the skyline</strong> formed by these buildings collectively (Figure B).</p>
-<p>The geometric information of each building is represented by a triplet of integers <code>[Li, Ri, Hi]</code>, where <code>Li</code> and <code>Ri</code> are the x coordinates of the left and right edge of the ith building, respectively, and <code>Hi</code> is its height. It is guaranteed that <code>0 ≤ Li, Ri ≤ INT_MAX</code>, <code>0 &lt; Hi ≤ INT_MAX</code>, and <code>Ri - Li &gt; 0</code>. You may assume all buildings are perfect rectangles grounded on an absolutely flat surface at height 0.</p>
-<p>For instance, the dimensions of all buildings in Figure A are recorded as: <code>[ [2 9 10], [3 7 15], [5 12 12], [15 20 10], [19 24 8] ]</code> .</p>
-<p>The output is a list of “<strong>key points</strong>” (red dots in Figure B) in the format of <code>[ [x1,y1], [x2, y2], [x3, y3], ... ]</code> that uniquely defines a skyline. <strong>A key point is the left endpoint of a horizontal line segment</strong>. Note that the last key point, where the rightmost building ends, is merely used to mark the termination of the skyline, and always has zero height. Also, the ground in between any two adjacent buildings should be considered part of the skyline contour.</p>
-<p>For instance, the skyline in Figure B should be represented as:<code>[ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ]</code>.</p>
-<p><strong>Notes:</strong></p>
-<ul>
-<li>The number of buildings in any input list is guaranteed to be in the range <code>[0, 10000]</code>.</li>
-<li>The input list is already sorted in ascending order by the left x position <code>Li</code>.</li>
-<li>The output list must be sorted by the x position.</li>
-<li>There must be no consecutive horizontal lines of equal height in the output skyline. For instance, <code>[...[2 3], [4 5], [7 5], [11 5], [12 7]...]</code> is not acceptable; the three lines of height 5 should be merged into one in the final output as such: <code>[...[2 3], [4 5], [12 7], ...]</code></li>
-</ul>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  <strong>这道题不放解法了，放一些我看过的解法的链接</strong></p>
-<h5 id="解法一"><a class="header-anchor" href="#解法一">¶</a>解法一</h5>
-<p>  <a href="https://briangordon.github.io/2014/08/the-skyline-problem.html" target="_blank" rel="noopener">https://briangordon.github.io/2014/08/the-skyline-problem.html</a></p>
-<p>  注意题目要求的是<strong>A key point is the left endpoint of a horizontal line segment</strong>，所以<strong>key point</strong>不可能是一个矩形的右上角，所以求当前<strong>critical point</strong>对应的<strong>key point</strong>时候，不需要考虑右边界<strong>不</strong>在当前<strong>critical point</strong>右侧的那些矩形的高度。具体地说，从堆中弹出height的时候，一直弹到矩形的右边缘在当前<strong>critical point</strong>的右边就行了，这样就不需要在堆外还要维护高度对应的。虽然可能堆里还有已经经过右边的矩形，但是不会影响下一次的判定；</p>
-<h5 id="解法二"><a class="header-anchor" href="#解法二">¶</a>解法二</h5>
-<p>  <a href="https://www.bilibili.com/video/av35576405?from=search&amp;seid=5423373818521773292" target="_blank" rel="noopener">https://www.bilibili.com/video/av35576405?from=search&amp;seid=5423373818521773292</a></p>
-<p>  这个解法是将边界情况分成三种，然后自定义了一个compare函数来处理这三种情况，然后排序插入和删除事件。其次，还定义了一个维护矩形相应高度在堆中位置的数组，方便从堆中删除某个矩形的高。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/25/C-Primer学习笔记：第19章-特殊工具与技术/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/25/C-Primer学习笔记：第19章-特殊工具与技术/" itemprop="url">C++ Primer学习笔记：第19章 特殊工具与技术</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-25T15:55:00+08:00">2019-07-25</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:32:37+08:00">2019-07-30</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1>19.1 控制内存分配</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/25/C-Primer学习笔记：第19章-特殊工具与技术/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/-Primer学习笔记：第18章-用于大型程序的工具/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/24/-Primer学习笔记：第18章-用于大型程序的工具/" itemprop="url">C++ Primer学习笔记：第18章 用于大型程序的工具</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T18:44:00+08:00">2019-07-24</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:32:48+08:00">2019-07-30</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1>18.1 异常处理</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/24/-Primer学习笔记：第18章-用于大型程序的工具/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1961,7 +1996,7 @@ A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do 
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">96</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1983,7 +2018,7 @@ A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do 
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

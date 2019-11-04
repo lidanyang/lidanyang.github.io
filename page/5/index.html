@@ -75,14 +75,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="287. Find the Duplicate Number">
+<meta property="og:url" content="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/index.html">
 <meta property="og:site_name" content="Just a blog">
+<meta property="og:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-10-25T16:59:54.884Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="287. Find the Duplicate Number">
+<meta name="twitter:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
 
 
 
@@ -114,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/">
 
 
 
@@ -234,6 +237,886 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/11/python面向对象学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/11/python面向对象学习/" itemprop="url">python学习20190711</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-11T09:56:00+08:00">2019-07-11</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-11T22:35:13+08:00">2019-07-11</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><a href="https://www.cnblogs.com/weihengblog/p/8528967.html" target="_blank" rel="noopener">python抽象类和接口类</a></li>
+<li><a href="https://www.cnblogs.com/yutongzhu/p/5615764.html" target="_blank" rel="noopener">python装饰器</a></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myDecorator</span><span class="params">(...)</span>:</span>　　　　<span class="comment">#定义装饰器，可能带参数</span></span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">decorator</span><span class="params">(func)</span>:</span>    <span class="comment">#装饰器核心，以被装饰的函数对象为参数，返回装饰后的函数对象</span></span><br><span class="line">         <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kvargs)</span>:</span>    <span class="comment">#装饰的过程，参数列表适应不同参数的函数</span></span><br><span class="line">             ...    <span class="comment">#修改函数调用前的行为</span></span><br><span class="line">             func(*args, **kvargs)    <span class="comment">#调用函数</span></span><br><span class="line">             ...    <span class="comment">#修改函数调用后的行为</span></span><br><span class="line">         <span class="keyword">return</span> wrapper</span><br><span class="line">     <span class="keyword">return</span> decorator</span><br><span class="line"> </span><br><span class="line"><span class="meta">@myDecorator(...):　　　　#给函数加上装饰器</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">myFunc</span><span class="params">(...)</span>:</span>　　　　  <span class="comment">#自己定义的功能函数</span></span><br><span class="line">    	...</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><a href="https://blog.csdn.net/orangleliu/article/details/45843813" target="_blank" rel="noopener">装饰器传参数</a></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*- encoding=utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task_logging</span><span class="params">(taskname)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func_wrapper</span><span class="params">(func)</span>:</span></span><br><span class="line"><span class="meta">        @wraps(func)</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">return_wrapper</span><span class="params">(*args, **wkargs)</span>:</span></span><br><span class="line">            <span class="comment"># 函数通过装饰起参数给装饰器传送参数</span></span><br><span class="line">            <span class="keyword">print</span> <span class="string">'before task'</span>,taskname</span><br><span class="line">            <span class="comment"># 装饰器传变量给函数</span></span><br><span class="line">            taskid = <span class="number">1</span></span><br><span class="line">            summer, funcres = func(taskid, *args, **wkargs)</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'after task'</span>, taskid, summer </span><br><span class="line">            <span class="keyword">return</span> funcres</span><br><span class="line">        <span class="keyword">return</span> return_wrapper</span><br><span class="line">    <span class="keyword">return</span> func_wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@task_logging("test")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">testd</span><span class="params">(taskid)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"testd runing"</span>,taskid</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"task summer success eg"</span>, []</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> testd()</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><a href="https://www.cnblogs.com/zhangzhuozheng/p/8053045.html" target="_blank" rel="noopener">*arg和**kwargs的含义</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/树状数组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/09/树状数组/" itemprop="url">树状数组</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-09T16:18:00+08:00">2019-07-09</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-23T11:53:21+08:00">2019-10-23</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-structure/" itemprop="url" rel="index">
+                    <span itemprop="name">data structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-基本用法"><a class="header-anchor" href="#1-基本用法">¶</a>1. 基本用法</h3>
+<ol>
+<li>单点修改，区间查询</li>
+<li>区间修改，单点查询</li>
+<li>区间修改，区间查询</li>
+</ol>
+<h3 id="2-模板代码"><a class="header-anchor" href="#2-模板代码">¶</a>2.模板代码</h3>
+<ol>
+<li>结构体版</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinTree</span>:</span><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">explicit</span> <span class="title">BinTree</span><span class="params">(<span class="keyword">int</span> k=<span class="number">0</span>)</span><span class="comment">//默认初始化一个能保存k个元素的空树状数组</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            assign(k+<span class="number">1</span>,<span class="number">0</span>);<span class="comment">//有效下标从1开始，0仅作逻辑用处</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> k&amp;-k;</span><br><span class="line">            <span class="comment">//也可写作x&amp;(x^(x–1))</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> k)</span><span class="comment">//求第1个元素到第n个元素的和</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> k&gt;<span class="number">0</span>?sum(k-lowbit(k))+(*<span class="keyword">this</span>)[k]:<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">last</span><span class="params">()</span><span class="comment">//返回最后一个元素下标</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> size()<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> w)</span><span class="comment">//为节点k加上w</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(k&gt;last())<span class="keyword">return</span>;</span><br><span class="line">            (*<span class="keyword">this</span>)[k]+=w;</span><br><span class="line">            add(k+lowbit(k),w);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>函数版</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n,m,i,num[<span class="number">100001</span>],t[<span class="number">200001</span>],l,r;<span class="comment">//num:原数组；t：树状数组 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> p)</span><span class="comment">//将第x个数加p </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(x&lt;=n)</span><br><span class="line">    &#123;</span><br><span class="line">        t[x]+=p;</span><br><span class="line">        x+=lowbit(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> k)</span><span class="comment">//前k个数的和 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(k&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans+=t[k];</span><br><span class="line">        k-=lowbit(k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span><span class="comment">//求l-r区间和 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sum(r)-sum(l<span class="number">-1</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>注意事项</li>
+</ol>
+<p>  树状数组下标从1开始，不要忘了初始化数组，原数组和树状数组的关系要分清楚；</p>
+<h3 id="3-扩展"><a class="header-anchor" href="#3-扩展">¶</a>3. 扩展</h3>
+<ol>
+<li>二维树状数组</li>
+<li>求逆序对</li>
+<li>树形树状数组</li>
+<li>求指定长度单调子序列</li>
+<li>树状数组求区间最值</li>
+</ol>
+<h3 id="4-参考"><a class="header-anchor" href="#4-参考">¶</a>4. 参考</h3>
+<ol>
+<li><a href="https://blog.csdn.net/qq_39553725/article/details/76696168" target="_blank" rel="noopener">https://blog.csdn.net/qq_39553725/article/details/76696168</a></li>
+<li><a href="https://blog.csdn.net/u010598215/article/details/48206959" target="_blank" rel="noopener">https://blog.csdn.net/u010598215/article/details/48206959</a></li>
+<li><a href="https://baike.baidu.com/item/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">https://baike.baidu.com/item/树状数组</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/OI知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/07/OI知识/" itemprop="url">OI知识总结（来自洛谷）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-07T22:17:40+08:00">2019-07-07</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-09T16:18:48+08:00">2019-07-09</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="线性结构"><a class="header-anchor" href="#线性结构">¶</a>线性结构</h2>
+<h3 id="莫队算法"><a class="header-anchor" href="#莫队算法">¶</a>莫队算法</h3>
+<h3 id="前缀和"><a class="header-anchor" href="#前缀和">¶</a>前缀和</h3>
+<h3 id="基本数组"><a class="header-anchor" href="#基本数组">¶</a>基本数组</h3>
+<h3 id="向量"><a class="header-anchor" href="#向量">¶</a>向量</h3>
+<h3 id="栈"><a class="header-anchor" href="#栈">¶</a>栈</h3>
+<h3 id="队列"><a class="header-anchor" href="#队列">¶</a>队列</h3>
+<h3 id="块状链表-块状数组-分块"><a class="header-anchor" href="#块状链表-块状数组-分块">¶</a>块状链表，块状数组，分块</h3>
+<h3 id="st表-稀疏表"><a class="header-anchor" href="#st表-稀疏表">¶</a>st表，稀疏表</h3>
+<h3 id="差分"><a class="header-anchor" href="#差分">¶</a>差分</h3>
+<h2 id="字符串"><a class="header-anchor" href="#字符串">¶</a>字符串</h2>
+<h3 id="后缀自动机-sam"><a class="header-anchor" href="#后缀自动机-sam">¶</a>后缀自动机，SAM</h3>
+<h3 id="字典树-trie树"><a class="header-anchor" href="#字典树-trie树">¶</a>字典树，Trie树</h3>
+<h3 id="ac自动机"><a class="header-anchor" href="#ac自动机">¶</a>AC自动机</h3>
+<h3 id="kmp"><a class="header-anchor" href="#kmp">¶</a>KMP</h3>
+<h3 id="后缀数组-sa"><a class="header-anchor" href="#后缀数组-sa">¶</a>后缀数组，SA</h3>
+<h3 id="后缀树"><a class="header-anchor" href="#后缀树">¶</a>后缀树</h3>
+<h3 id="有限状态自动机"><a class="header-anchor" href="#有限状态自动机">¶</a>有限状态自动机</h3>
+<h3 id="哈夫曼-huffman"><a class="header-anchor" href="#哈夫曼-huffman">¶</a>哈夫曼，Huffman</h3>
+<h3 id="简单密码学"><a class="header-anchor" href="#简单密码学">¶</a>简单密码学</h3>
+<h3 id="回文自动机pam"><a class="header-anchor" href="#回文自动机pam">¶</a>回文自动机PAM</h3>
+<h3 id="manacher算法"><a class="header-anchor" href="#manacher算法">¶</a>Manacher算法</h3>
+<h2 id="动态规划"><a class="header-anchor" href="#动态规划">¶</a>动态规划</h2>
+<h3 id="动态规划初步"><a class="header-anchor" href="#动态规划初步">¶</a>动态规划初步</h3>
+<h3 id="背包"><a class="header-anchor" href="#背包">¶</a>背包</h3>
+<h3 id="环型动态规划"><a class="header-anchor" href="#环型动态规划">¶</a>环型动态规划</h3>
+<h3 id="数位动态规划"><a class="header-anchor" href="#数位动态规划">¶</a>数位动态规划</h3>
+<h3 id="多维状态"><a class="header-anchor" href="#多维状态">¶</a>多维状态</h3>
+<h3 id="区间动态规划"><a class="header-anchor" href="#区间动态规划">¶</a>区间动态规划</h3>
+<h3 id="子母树"><a class="header-anchor" href="#子母树">¶</a>子母树</h3>
+<h3 id="动态规划优化"><a class="header-anchor" href="#动态规划优化">¶</a>动态规划优化</h3>
+<h3 id="树形动态规划"><a class="header-anchor" href="#树形动态规划">¶</a>树形动态规划</h3>
+<h3 id="插头动态规划"><a class="header-anchor" href="#插头动态规划">¶</a>插头动态规划</h3>
+<h2 id="搜索"><a class="header-anchor" href="#搜索">¶</a>搜索</h2>
+<h3 id="bfs"><a class="header-anchor" href="#bfs">¶</a>BFS</h3>
+<h3 id="dfs"><a class="header-anchor" href="#dfs">¶</a>DFS</h3>
+<h3 id="剪枝"><a class="header-anchor" href="#剪枝">¶</a>剪枝</h3>
+<h3 id="记忆化搜索"><a class="header-anchor" href="#记忆化搜索">¶</a>记忆化搜索</h3>
+<h3 id="启发式搜索"><a class="header-anchor" href="#启发式搜索">¶</a>启发式搜索</h3>
+<h4 id="启发式迭代加深-ida"><a class="header-anchor" href="#启发式迭代加深-ida">¶</a>启发式迭代加深，IDA*</h4>
+<h4 id="dancing-links"><a class="header-anchor" href="#dancing-links">¶</a>Dancing links</h4>
+<h4 id="爬山法"><a class="header-anchor" href="#爬山法">¶</a>爬山法</h4>
+<h4 id="模拟退火"><a class="header-anchor" href="#模拟退火">¶</a>模拟退火</h4>
+<h4 id="遗传"><a class="header-anchor" href="#遗传">¶</a>遗传</h4>
+<h4 id="a-算法"><a class="header-anchor" href="#a-算法">¶</a>A*算法</h4>
+<h3 id="迭代加深"><a class="header-anchor" href="#迭代加深">¶</a>迭代加深</h3>
+<h3 id="随机调整"><a class="header-anchor" href="#随机调整">¶</a>随机调整</h3>
+<h2 id="数学-数论"><a class="header-anchor" href="#数学-数论">¶</a>数学，数论</h2>
+<h3 id="整数研究"><a class="header-anchor" href="#整数研究">¶</a>整数研究</h3>
+<h4 id="素数判断-质数-筛法"><a class="header-anchor" href="#素数判断-质数-筛法">¶</a>素数判断，质数，筛法</h4>
+<h4 id="最大公约数-gcd"><a class="header-anchor" href="#最大公约数-gcd">¶</a>最大公约数，gcd</h4>
+<h4 id="扩展欧几里得-扩欧"><a class="header-anchor" href="#扩展欧几里得-扩欧">¶</a>扩展欧几里得，扩欧</h4>
+<h4 id="不定方程"><a class="header-anchor" href="#不定方程">¶</a>不定方程</h4>
+<h4 id="进制"><a class="header-anchor" href="#进制">¶</a>进制</h4>
+<h4 id="同余-中国剩余定理"><a class="header-anchor" href="#同余-中国剩余定理">¶</a>同余，中国剩余定理</h4>
+<h4 id="莫比乌斯反演"><a class="header-anchor" href="#莫比乌斯反演">¶</a>莫比乌斯反演</h4>
+<h4 id="逆元"><a class="header-anchor" href="#逆元">¶</a>逆元</h4>
+<h3 id="集合论"><a class="header-anchor" href="#集合论">¶</a>集合论</h3>
+<h3 id="群论"><a class="header-anchor" href="#群论">¶</a>群论</h3>
+<h4 id="置换"><a class="header-anchor" href="#置换">¶</a>置换</h4>
+<h4 id="polya原理"><a class="header-anchor" href="#polya原理">¶</a>Polya原理</h4>
+<h3 id="组合数学"><a class="header-anchor" href="#组合数学">¶</a>组合数学</h3>
+<h4 id="排列组合"><a class="header-anchor" href="#排列组合">¶</a>排列组合</h4>
+<h4 id="二项式定理"><a class="header-anchor" href="#二项式定理">¶</a>二项式定理</h4>
+<h4 id="康托展开"><a class="header-anchor" href="#康托展开">¶</a>康托展开</h4>
+<h4 id="袋与球问题"><a class="header-anchor" href="#袋与球问题">¶</a>袋与球问题</h4>
+<h4 id="鸽笼"><a class="header-anchor" href="#鸽笼">¶</a>鸽笼</h4>
+<h4 id="容斥"><a class="header-anchor" href="#容斥">¶</a>容斥</h4>
+<h4 id="fibonacci"><a class="header-anchor" href="#fibonacci">¶</a>Fibonacci</h4>
+<h4 id="catalan"><a class="header-anchor" href="#catalan">¶</a>Catalan</h4>
+<h4 id="stirling"><a class="header-anchor" href="#stirling">¶</a>Stirling</h4>
+<h4 id="生成函数"><a class="header-anchor" href="#生成函数">¶</a>生成函数</h4>
+<h4 id="lucas"><a class="header-anchor" href="#lucas">¶</a>Lucas</h4>
+<h3 id="线性规划"><a class="header-anchor" href="#线性规划">¶</a>线性规划</h3>
+<h3 id="概率论-统计"><a class="header-anchor" href="#概率论-统计">¶</a>概率论，统计</h3>
+<h4 id="众数"><a class="header-anchor" href="#众数">¶</a>众数</h4>
+<h4 id="简单概率"><a class="header-anchor" href="#简单概率">¶</a>简单概率</h4>
+<h4 id="条件概率"><a class="header-anchor" href="#条件概率">¶</a>条件概率</h4>
+<h4 id="bayes"><a class="header-anchor" href="#bayes">¶</a>Bayes</h4>
+<h4 id="期望"><a class="header-anchor" href="#期望">¶</a>期望</h4>
+<h3 id="线性代数"><a class="header-anchor" href="#线性代数">¶</a>线性代数</h3>
+<h4 id="矩阵运算"><a class="header-anchor" href="#矩阵运算">¶</a>矩阵运算</h4>
+<h4 id="矩阵乘法"><a class="header-anchor" href="#矩阵乘法">¶</a>矩阵乘法</h4>
+<h4 id="线性递推-递推式"><a class="header-anchor" href="#线性递推-递推式">¶</a>线性递推，递推式</h4>
+<h4 id="高斯消元"><a class="header-anchor" href="#高斯消元">¶</a>高斯消元</h4>
+<h4 id="异或方程组"><a class="header-anchor" href="#异或方程组">¶</a>异或方程组</h4>
+<h4 id="线性基"><a class="header-anchor" href="#线性基">¶</a>线性基</h4>
+<h3 id="微积分初步"><a class="header-anchor" href="#微积分初步">¶</a>微积分初步</h3>
+<h4 id="极限"><a class="header-anchor" href="#极限">¶</a>极限</h4>
+<h4 id="导数"><a class="header-anchor" href="#导数">¶</a>导数</h4>
+<h4 id="积分"><a class="header-anchor" href="#积分">¶</a>积分</h4>
+<h4 id="定积分"><a class="header-anchor" href="#定积分">¶</a>定积分</h4>
+<h4 id="立体解析几何"><a class="header-anchor" href="#立体解析几何">¶</a>立体解析几何</h4>
+<h4 id="级数"><a class="header-anchor" href="#级数">¶</a>级数</h4>
+<h2 id="图论"><a class="header-anchor" href="#图论">¶</a>图论</h2>
+<h3 id="图的建立-建图"><a class="header-anchor" href="#图的建立-建图">¶</a>图的建立，建图</h3>
+<h4 id="邻接矩阵"><a class="header-anchor" href="#邻接矩阵">¶</a>邻接矩阵</h4>
+<h4 id="邻接表"><a class="header-anchor" href="#邻接表">¶</a>邻接表</h4>
+<h3 id="图的遍历"><a class="header-anchor" href="#图的遍历">¶</a>图的遍历</h3>
+<h3 id="拓扑排序"><a class="header-anchor" href="#拓扑排序">¶</a>拓扑排序</h3>
+<h4 id="aov"><a class="header-anchor" href="#aov">¶</a>AOV</h4>
+<h4 id="aoe"><a class="header-anchor" href="#aoe">¶</a>AOE</h4>
+<h3 id="最短路"><a class="header-anchor" href="#最短路">¶</a>最短路</h3>
+<h4 id="floyd"><a class="header-anchor" href="#floyd">¶</a>Floyd</h4>
+<h4 id="dijkstra"><a class="header-anchor" href="#dijkstra">¶</a>Dijkstra</h4>
+<h4 id="bellman-ford"><a class="header-anchor" href="#bellman-ford">¶</a>Bellman-Ford</h4>
+<h4 id="spfa"><a class="header-anchor" href="#spfa">¶</a>SPFA</h4>
+<h4 id="k短路"><a class="header-anchor" href="#k短路">¶</a>K短路</h4>
+<h4 id="差分约束"><a class="header-anchor" href="#差分约束">¶</a>差分约束</h4>
+<h3 id="生成树"><a class="header-anchor" href="#生成树">¶</a>生成树</h3>
+<h4 id="prim"><a class="header-anchor" href="#prim">¶</a>Prim</h4>
+<h4 id="kruskal"><a class="header-anchor" href="#kruskal">¶</a>Kruskal</h4>
+<h4 id="生成树另类算法"><a class="header-anchor" href="#生成树另类算法">¶</a>生成树另类算法</h4>
+<h4 id="次小生成树"><a class="header-anchor" href="#次小生成树">¶</a>次小生成树</h4>
+<h4 id="特殊生成树"><a class="header-anchor" href="#特殊生成树">¶</a>特殊生成树</h4>
+<h3 id="圈和块"><a class="header-anchor" href="#圈和块">¶</a>圈和块</h3>
+<h4 id="最小环"><a class="header-anchor" href="#最小环">¶</a>最小环</h4>
+<h4 id="负权环"><a class="header-anchor" href="#负权环">¶</a>负权环</h4>
+<h4 id="连通块"><a class="header-anchor" href="#连通块">¶</a>连通块</h4>
+<h4 id="2-sat"><a class="header-anchor" href="#2-sat">¶</a>2-SAT</h4>
+<h4 id="欧拉公式"><a class="header-anchor" href="#欧拉公式">¶</a>欧拉公式</h4>
+<h4 id="四色定理"><a class="header-anchor" href="#四色定理">¶</a>四色定理</h4>
+<h4 id="欧拉回路"><a class="header-anchor" href="#欧拉回路">¶</a>欧拉回路</h4>
+<h3 id="强连通分量-缩点"><a class="header-anchor" href="#强连通分量-缩点">¶</a>强连通分量，缩点</h3>
+<h4 id="tarjan"><a class="header-anchor" href="#tarjan">¶</a>Tarjan</h4>
+<h4 id="割点"><a class="header-anchor" href="#割点">¶</a>割点</h4>
+<h3 id="仙人掌"><a class="header-anchor" href="#仙人掌">¶</a>仙人掌</h3>
+<h2 id="计算几何"><a class="header-anchor" href="#计算几何">¶</a>计算几何</h2>
+<h3 id="凸包"><a class="header-anchor" href="#凸包">¶</a>凸包</h3>
+<h3 id="叉积"><a class="header-anchor" href="#叉积">¶</a>叉积</h3>
+<h3 id="线段相交"><a class="header-anchor" href="#线段相交">¶</a>线段相交</h3>
+<h3 id="点积"><a class="header-anchor" href="#点积">¶</a>点积</h3>
+<h3 id="半平面相交-半平面交"><a class="header-anchor" href="#半平面相交-半平面交">¶</a>半平面相交，半平面交</h3>
+<h3 id="最近点对"><a class="header-anchor" href="#最近点对">¶</a>最近点对</h3>
+<h3 id="凸多边形的交"><a class="header-anchor" href="#凸多边形的交">¶</a>凸多边形的交</h3>
+<h3 id="离散化扫描"><a class="header-anchor" href="#离散化扫描">¶</a>离散化扫描</h3>
+<h3 id="旋转卡壳"><a class="header-anchor" href="#旋转卡壳">¶</a>旋转卡壳</h3>
+<h2 id="树形结构"><a class="header-anchor" href="#树形结构">¶</a>树形结构</h2>
+<h3 id="线段树"><a class="header-anchor" href="#线段树">¶</a>线段树</h3>
+<h4 id="二维线段树"><a class="header-anchor" href="#二维线段树">¶</a>二维线段树</h4>
+<h4 id="矩形树"><a class="header-anchor" href="#矩形树">¶</a>矩形树</h4>
+<h4 id="zkw线段树"><a class="header-anchor" href="#zkw线段树">¶</a>zkw线段树</h4>
+<h4 id="主席树"><a class="header-anchor" href="#主席树">¶</a>主席树</h4>
+<h3 id="点分治"><a class="header-anchor" href="#点分治">¶</a>点分治</h3>
+<h3 id="平衡树"><a class="header-anchor" href="#平衡树">¶</a>平衡树</h3>
+<h4 id="avl"><a class="header-anchor" href="#avl">¶</a>AVL</h4>
+<h4 id="treap"><a class="header-anchor" href="#treap">¶</a>Treap</h4>
+<h4 id="sbt"><a class="header-anchor" href="#sbt">¶</a>SBT</h4>
+<h4 id="splay"><a class="header-anchor" href="#splay">¶</a>Splay</h4>
+<h4 id="静态排序树"><a class="header-anchor" href="#静态排序树">¶</a>静态排序树</h4>
+<h4 id="替罪羊树"><a class="header-anchor" href="#替罪羊树">¶</a>替罪羊树</h4>
+<h3 id="二叉堆"><a class="header-anchor" href="#二叉堆">¶</a>二叉堆</h3>
+<h4 id="左偏树"><a class="header-anchor" href="#左偏树">¶</a>左偏树</h4>
+<h4 id="斜堆"><a class="header-anchor" href="#斜堆">¶</a>斜堆</h4>
+<h4 id="二项堆"><a class="header-anchor" href="#二项堆">¶</a>二项堆</h4>
+<h3 id="树状数组"><a class="header-anchor" href="#树状数组">¶</a>树状数组</h3>
+<h3 id="cdq分治"><a class="header-anchor" href="#cdq分治">¶</a>cdq分治</h3>
+<h3 id="树上距离"><a class="header-anchor" href="#树上距离">¶</a>树上距离</h3>
+<h4 id="节点到根的距离"><a class="header-anchor" href="#节点到根的距离">¶</a>节点到根的距离</h4>
+<h4 id="最近公共祖先-lca"><a class="header-anchor" href="#最近公共祖先-lca">¶</a>最近公共祖先，LCA</h4>
+<h4 id="节点间的距离"><a class="header-anchor" href="#节点间的距离">¶</a>节点间的距离</h4>
+<h4 id="树的直径"><a class="header-anchor" href="#树的直径">¶</a>树的直径</h4>
+<h3 id="动态树"><a class="header-anchor" href="#动态树">¶</a>动态树</h3>
+<h4 id="树链剖分-树剖"><a class="header-anchor" href="#树链剖分-树剖">¶</a>树链剖分，树剖</h4>
+<h4 id="link-cut-tree-lct"><a class="header-anchor" href="#link-cut-tree-lct">¶</a>Link-Cut Tree，LCT</h4>
+<h3 id="树的应用"><a class="header-anchor" href="#树的应用">¶</a>树的应用</h3>
+<h4 id="并查集"><a class="header-anchor" href="#并查集">¶</a>并查集</h4>
+<h4 id="树的遍历"><a class="header-anchor" href="#树的遍历">¶</a>树的遍历</h4>
+<h4 id="哈夫曼树"><a class="header-anchor" href="#哈夫曼树">¶</a>哈夫曼树</h4>
+<h4 id="rmq"><a class="header-anchor" href="#rmq">¶</a>RMQ</h4>
+<h4 id="树套树"><a class="header-anchor" href="#树套树">¶</a>树套树</h4>
+<h4 id="可持久化"><a class="header-anchor" href="#可持久化">¶</a>可持久化</h4>
+<h4 id="虚树"><a class="header-anchor" href="#虚树">¶</a>虚树</h4>
+<h3 id="整体二分"><a class="header-anchor" href="#整体二分">¶</a>整体二分</h3>
+<h3 id="环套树"><a class="header-anchor" href="#环套树">¶</a>环套树</h3>
+<h3 id="k-d-tree"><a class="header-anchor" href="#k-d-tree">¶</a>K-D Tree</h3>
+<h2 id="网络流"><a class="header-anchor" href="#网络流">¶</a>网络流</h2>
+<h3 id="最大流"><a class="header-anchor" href="#最大流">¶</a>最大流</h3>
+<h4 id="dicnic"><a class="header-anchor" href="#dicnic">¶</a>Dicnic</h4>
+<h4 id="sap"><a class="header-anchor" href="#sap">¶</a>Sap</h4>
+<h4 id="有上下界的最大流"><a class="header-anchor" href="#有上下界的最大流">¶</a>有上下界的最大流</h4>
+<h3 id="最小割"><a class="header-anchor" href="#最小割">¶</a>最小割</h3>
+<h4 id="闭合图"><a class="header-anchor" href="#闭合图">¶</a>闭合图</h4>
+<h4 id="最小点权覆盖集"><a class="header-anchor" href="#最小点权覆盖集">¶</a>最小点权覆盖集</h4>
+<h4 id="最大点权独立集"><a class="header-anchor" href="#最大点权独立集">¶</a>最大点权独立集</h4>
+<h4 id="分数规划"><a class="header-anchor" href="#分数规划">¶</a>分数规划</h4>
+<h4 id="最大密度子图"><a class="header-anchor" href="#最大密度子图">¶</a>最大密度子图</h4>
+<h3 id="费用流"><a class="header-anchor" href="#费用流">¶</a>费用流</h3>
+<h4 id="最短路增广费用流"><a class="header-anchor" href="#最短路增广费用流">¶</a>最短路增广费用流</h4>
+<h4 id="zkw费用流"><a class="header-anchor" href="#zkw费用流">¶</a>zkw费用流</h4>
+<h4 id="最小费用可行流"><a class="header-anchor" href="#最小费用可行流">¶</a>最小费用可行流</h4>
+<h2 id="基础算法"><a class="header-anchor" href="#基础算法">¶</a>基础算法</h2>
+<h3 id="模拟"><a class="header-anchor" href="#模拟">¶</a>模拟</h3>
+<h3 id="贪心"><a class="header-anchor" href="#贪心">¶</a>贪心</h3>
+<h3 id="递推"><a class="header-anchor" href="#递推">¶</a>递推</h3>
+<h3 id="递归"><a class="header-anchor" href="#递归">¶</a>递归</h3>
+<h3 id="枚举-暴力"><a class="header-anchor" href="#枚举-暴力">¶</a>枚举，暴力</h3>
+<h3 id="分治"><a class="header-anchor" href="#分治">¶</a>分治</h3>
+<h2 id="排序"><a class="header-anchor" href="#排序">¶</a>排序</h2>
+<h3 id="冒泡排序"><a class="header-anchor" href="#冒泡排序">¶</a>冒泡排序</h3>
+<h3 id="选择排序"><a class="header-anchor" href="#选择排序">¶</a>选择排序</h3>
+<h3 id="桶排序"><a class="header-anchor" href="#桶排序">¶</a>桶排序</h3>
+<h3 id="插入排序"><a class="header-anchor" href="#插入排序">¶</a>插入排序</h3>
+<h3 id="归并排序"><a class="header-anchor" href="#归并排序">¶</a>归并排序</h3>
+<h3 id="快速排序-快排"><a class="header-anchor" href="#快速排序-快排">¶</a>快速排序，快排</h3>
+<h3 id="堆排序"><a class="header-anchor" href="#堆排序">¶</a>堆排序</h3>
+<h3 id="希尔排序"><a class="header-anchor" href="#希尔排序">¶</a>希尔排序</h3>
+<h3 id="外部排序"><a class="header-anchor" href="#外部排序">¶</a>外部排序</h3>
+<h2 id="查找"><a class="header-anchor" href="#查找">¶</a>查找</h2>
+<h3 id="二分答案"><a class="header-anchor" href="#二分答案">¶</a>二分答案</h3>
+<h3 id="顺序查找"><a class="header-anchor" href="#顺序查找">¶</a>顺序查找</h3>
+<h3 id="二分查找"><a class="header-anchor" href="#二分查找">¶</a>二分查找</h3>
+<h2 id="二分图"><a class="header-anchor" href="#二分图">¶</a>二分图</h2>
+<h3 id="最大匹配"><a class="header-anchor" href="#最大匹配">¶</a>最大匹配</h3>
+<h4 id="匈牙利算法"><a class="header-anchor" href="#匈牙利算法">¶</a>匈牙利算法</h4>
+<h4 id="一般图的最大匹配"><a class="header-anchor" href="#一般图的最大匹配">¶</a>一般图的最大匹配</h4>
+<h4 id="konig定理"><a class="header-anchor" href="#konig定理">¶</a>Konig定理</h4>
+<h3 id="带权二分图匹配"><a class="header-anchor" href="#带权二分图匹配">¶</a>带权二分图匹配</h3>
+<h3 id="稳定婚姻系统"><a class="header-anchor" href="#稳定婚姻系统">¶</a>稳定婚姻系统</h3>
+<h2 id="其他技巧"><a class="header-anchor" href="#其他技巧">¶</a>其他技巧</h2>
+<h3 id="暴力数据结构"><a class="header-anchor" href="#暴力数据结构">¶</a>暴力数据结构</h3>
+<h3 id="高精"><a class="header-anchor" href="#高精">¶</a>高精</h3>
+<h3 id="博弈论"><a class="header-anchor" href="#博弈论">¶</a>博弈论</h3>
+<h4 id="nim游戏"><a class="header-anchor" href="#nim游戏">¶</a>Nim游戏</h4>
+<h4 id="博弈树"><a class="header-anchor" href="#博弈树">¶</a>博弈树</h4>
+<h4 id="shannon开关游戏"><a class="header-anchor" href="#shannon开关游戏">¶</a>Shannon开关游戏</h4>
+<h3 id="倍增"><a class="header-anchor" href="#倍增">¶</a>倍增</h3>
+<h3 id="离散化"><a class="header-anchor" href="#离散化">¶</a>离散化</h3>
+<h3 id="哈希-hash"><a class="header-anchor" href="#哈希-hash">¶</a>哈希，HASH</h3>
+<h4 id="elfhash"><a class="header-anchor" href="#elfhash">¶</a>ELFhash</h4>
+<h4 id="sdbm"><a class="header-anchor" href="#sdbm">¶</a>SDBM</h4>
+<h4 id="bkdr"><a class="header-anchor" href="#bkdr">¶</a>BKDR</h4>
+<h3 id="随机贪心-随机化"><a class="header-anchor" href="#随机贪心-随机化">¶</a>随机贪心，随机化</h3>
+<h3 id="快速傅里叶变换-dft-fft"><a class="header-anchor" href="#快速傅里叶变换-dft-fft">¶</a>快速傅里叶变换，DFT，FFT</h3>
+<h3 id="位运算-按位"><a class="header-anchor" href="#位运算-按位">¶</a>位运算，按位</h3>
+<h3 id="骗分"><a class="header-anchor" href="#骗分">¶</a>骗分</h3>
+<h3 id="np问题"><a class="header-anchor" href="#np问题">¶</a>NP问题</h3>
+<h3 id="构造"><a class="header-anchor" href="#构造">¶</a>构造</h3>
+<h3 id="快速数论变换ntt"><a class="header-anchor" href="#快速数论变换ntt">¶</a>快速数论变换NTT</h3>
+<h3 id="快速沃尔什变换fwt"><a class="header-anchor" href="#快速沃尔什变换fwt">¶</a>快速沃尔什变换FWT</h3>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/214-Shortest-Palindrome/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/03/214-Shortest-Palindrome/" itemprop="url">214. Shortest Palindrome</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T20:03:00+08:00">2019-07-03</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-03T22:29:19+08:00">2019-07-03</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/shortest-palindrome/" target="_blank" rel="noopener">214. Shortest Palindrome</a></p>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given a string <em><strong>s</strong></em>, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;aacecaaa&quot;</span><br><span class="line">Output: &quot;aaacecaaa&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abcd&quot;</span><br><span class="line">Output: &quot;dcbabcd&quot;</span><br></pre></td></tr></table></figure>
+<h1>解法</h1>
+<p>  这道题可以转化成求字符串以左侧边界为起点的“最大回文子串”。</p>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<p>  暴力解法，先将整个字符串倒转成rev，比较<code>s[0:n-i]</code>和<code>rev[i:]</code>（i从0到n），第一次使<code>s[0:n-i]==rev[i:]</code>的<code>s[0:n-i]</code>就是题目所要求的“最大回文子串”。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">shortestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.size();</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">rev</span><span class="params">(s)</span></span>;</span><br><span class="line">    reverse(rev.begin(), rev.end());</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s.substr(<span class="number">0</span>, n - i) == rev.substr(i))</span><br><span class="line">            <span class="keyword">return</span> rev.substr(<span class="number">0</span>, i) + s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<p>  这个解法利用双指针，两个指针分别从头和从尾遍历，尾指针每次左移一位，同时比较头指针和尾指针，如果指向相同的字符，则头指针加一；如果指向不同的字符，则头指针不动。如果头指针在过程的结尾刚好移动到尾部，说明整个字符串是回文串。**这个过程结束后能保证s[0:i]一定包含从字符串头开始的最长回文串。**利用这个结论不断缩小搜索范围，直到整个子串都是回文串。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">shortestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = s.size();</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == s[j])</span><br><span class="line">                i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i == n)</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        <span class="built_in">string</span> remain_rev = s.substr(i);</span><br><span class="line">        reverse(remain_rev.begin(), remain_rev.end());</span><br><span class="line">        <span class="keyword">return</span> remain_rev + shortestPalindrome(s.substr(<span class="number">0</span>, i)) + s.substr(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h2>
+<p>  背景知识:Knuth–Morris–Pratt算法。KMP算法的核心是求出失败索引查找表，也就是前缀数组next。假设<code>f(s)</code>代表在待匹配字符串的第s个字符失配时，下一个查找的起点，亦即下一次就从待匹配字符串的第<code>f(s)</code>个字符开始继续往后比较，也<strong>即是<code>b0b1b2b3b4...bs</code>的前缀也是其后缀的最长子串的长度</strong>。</p>
+<p>  KMP求前缀数组的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">f(<span class="number">0</span>) = <span class="number">0</span></span><br><span class="line"><span class="comment">//下面代码中的t要看成前缀长度，别看成坐标，因为坐标是从0开始的</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//假设b0~bi-1匹配，而bi失配，则取f(i-1)（b0~bi-1的最长前后缀长度）的下一个位置和bi继续匹配，如果此时b0~bf(i-1)-1匹配而bf(i-1)失配，则继续上述过程。</span></span><br><span class="line">    t = f(i<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">while</span>(t &gt; <span class="number">0</span> &amp;&amp; b[i] != b[t])</span><br><span class="line">        t = f(t<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">if</span>(b[i] == b[t])&#123;</span><br><span class="line">        ++t</span><br><span class="line">    f(i) = t</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  求最长前缀回文串等价于求s+&quot;#&quot;+reverse(s)的最后一个字符的KMP的f值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">shortestPalindrome</span><span class="params">(self, s: str)</span> -&gt; str:</span></span><br><span class="line">        S = <span class="string">''</span>.join([s, <span class="string">"#"</span>, s[::<span class="number">-1</span>]])</span><br><span class="line">        f = [<span class="number">0</span>]*len(S)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(S)):</span><br><span class="line">            t = f[i - <span class="number">1</span>]</span><br><span class="line">            <span class="keyword">while</span> t &gt; <span class="number">0</span> <span class="keyword">and</span> S[i] != S[t]:</span><br><span class="line">                t = f[t - <span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> S[i] == S[t]:</span><br><span class="line">                t += <span class="number">1</span></span><br><span class="line">            f[i] = t</span><br><span class="line">        <span class="keyword">return</span> s[f[len(S) - <span class="number">1</span>]:][::<span class="number">-1</span>]+s</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1217,703 +2100,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/174-Dungeon-Game/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/27/174-Dungeon-Game/" itemprop="url">174. Dungeon Game</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-27T19:58:00+08:00">2019-06-27</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T21:35:39+08:00">2019-06-27</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/dungeon-game/" target="_blank" rel="noopener">174. Dungeon Game</a></p>
-<p>Difficulty: <strong>Hard</strong></p>
-<style type="text/css" style="display: none;">table.dungeon, .dungeon th, .dungeon td { border:3px solid black; } .dungeon th, .dungeon td { text-align: center; height: 70px; width: 70px; }</style>
-<p>The demons had captured the princess (<strong>P</strong>) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (<strong>K</strong>) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.</p>
-<p>The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.</p>
-<p>Some of the rooms are guarded by demons, so the knight loses health (<em>negative</em> integers) upon entering these rooms; other rooms are either empty (<em>0’s</em>) or contain magic orbs that increase the knight’s health (<em>positive</em> integers).</p>
-<p>In order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.</p>
-<p><strong>Write a function to determine the knight’s minimum initial health so that he is able to rescue the princess.</strong></p>
-<p>For example, given the dungeon below, the initial health of the knight must be at least <strong>7</strong> if he follows the optimal path <code>RIGHT-&gt; RIGHT -&gt; DOWN -&gt; DOWN</code>.</p>
-<table class="dungeon" style="display: table;">
-<tbody style="display: table-row-group;">
-<tr style="display: table-row;">
-<td style="display: table-cell;">-2 (K)</td>
-<td style="display: table-cell;">-3</td>
-<td style="display: table-cell;">3</td>
-</tr>
-<tr style="display: table-row;">
-<td style="display: table-cell;">-5</td>
-<td style="display: table-cell;">-10</td>
-<td style="display: table-cell;">1</td>
-</tr>
-<tr style="display: table-row;">
-<td style="display: table-cell;">10</td>
-<td style="display: table-cell;">30</td>
-<td style="display: table-cell;">-5 (P)</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Note:</strong></p>
-<ul>
-<li>The knight’s health has no upper bound.</li>
-<li>Any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.</li>
-</ul>
-<h1>分析</h1>
-<p>  基本思路就是从右下角往左上角之字形遍历，遍历同时每一点安全到达右下角所需的最少血量，如果算出的血量小于0，那么就取0。递推式如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(min(dp[i+1][j], dp[i][j+1]) - dungeon[i][j], 1)</span><br></pre></td></tr></table></figure>
-<h1>代码</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def calculateMinimumHP(self, dungeon: List[List[int]]) -&gt; int:</span><br><span class="line">        dp = [1 &lt;&lt; 32 for _ in range(len(dungeon[0])+1)]</span><br><span class="line">        dp[len(dungeon[0]) - 1] = 1</span><br><span class="line">        for i in range(len(dungeon) - 1, -1, -1):</span><br><span class="line">            for j in range(len(dungeon[0]) - 1, -1, -1):</span><br><span class="line">                dp[j] = min(dp[j], dp[j+1]) - dungeon[i][j] </span><br><span class="line">                dp[j] = max(dp[j], 1)</span><br><span class="line">        return dp[0]</span><br></pre></td></tr></table></figure>
-<h1>思考</h1>
-<ol>
-<li>为什么<code>dp[len(dungeon[0]) - 1] = 1</code>而不是<code>dp[len(dungeon[0])] = 1</code>？</li>
-</ol>
-<p>  答:因为dp不会更新最后一个数，而是从倒数第二个数往右算，所以如果<code>dp[len(dungeon[0])] = 1</code>，则会影响后面的所有的边界情况。</p>
-<ol start="2">
-<li>为什么dp数组初始化为<code>1&lt;&lt;32</code>？</li>
-</ol>
-<p>  答:因为是根据下方和右方值中的最小值来计算，设置成大整数就相当于忽略该值，比较方便处理边界情况。从题目的背景中的角度上说，最大整数就意味着从这个点走就需要很多血量，那么肯定不能从这里走。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/166-Fraction-to-Recurring-Decimal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/27/166-Fraction-to-Recurring-Decimal/" itemprop="url">166. Fraction to Recurring Decimal</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-27T19:50:00+08:00">2019-06-27</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T19:57:18+08:00">2019-06-27</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/fraction-to-recurring-decimal/" target="_blank" rel="noopener">166. Fraction to Recurring Decimal</a></p>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.</p>
-<p>If the fractional part is repeating, enclose the repeating part in parentheses.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: numerator = 1, denominator = 2</span><br><span class="line">Output: &quot;0.5&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: numerator = 2, denominator = 1</span><br><span class="line">Output: &quot;2&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: numerator = 2, denominator = 3</span><br><span class="line">Output: &quot;0.(6)&quot;</span><br></pre></td></tr></table></figure>
-<h1>解法</h1>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fractionToDecimal</span><span class="params">(self, num: int, denom: int)</span> -&gt; str:</span>      </span><br><span class="line">        tag = <span class="number">-1</span> <span class="keyword">if</span> num * denom &lt; <span class="number">0</span> <span class="keyword">else</span> <span class="number">1</span> <span class="comment">#判断是否有正负号，代码中用正数进行相除，若有负号最后加上</span></span><br><span class="line">        num, denom = abs(num), abs(denom)</span><br><span class="line">        re_num = <span class="string">''</span></span><br><span class="line">        <span class="comment"># 字典记录由该余数算出的下一个商value在re_num中的位置（从0开始),如果有循环节的话，循环节刚好就是从重复余数的字典值对应的下标处开始的。</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> re_num:<span class="comment">#首次进行计算</span></span><br><span class="line">            </span><br><span class="line">                value = num // denom</span><br><span class="line">                num = num % denom</span><br><span class="line">                re_num += str(value)</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> num == <span class="number">0</span>:<span class="comment">#无循环                    </span></span><br><span class="line">                    <span class="keyword">return</span> re_num <span class="keyword">if</span> tag == <span class="number">1</span> <span class="keyword">else</span> <span class="string">'-'</span> + re_num</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    re_num += <span class="string">'.'</span></span><br><span class="line">                    dic[str(num)] = len(re_num)</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment">#后续计算，即寻找循环项，若没有，直接return</span></span><br><span class="line">                num *= <span class="number">10</span></span><br><span class="line">                value = num // denom</span><br><span class="line">                num = num % denom</span><br><span class="line">                re_num += str(value)</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> num == <span class="number">0</span>:<span class="comment">#无循环    </span></span><br><span class="line">                    <span class="keyword">return</span> re_num <span class="keyword">if</span> tag == <span class="number">1</span> <span class="keyword">else</span> <span class="string">'-'</span> + re_num</span><br><span class="line">                <span class="keyword">else</span>:<span class="comment">#有循环时返回</span></span><br><span class="line">                    <span class="keyword">if</span> str(num) <span class="keyword">in</span> dic:</span><br><span class="line">                        re_num = re_num[:dic[str(num)]] + <span class="string">'('</span> + re_num[dic[str(num)]:] + <span class="string">')'</span></span><br><span class="line">                        <span class="keyword">return</span> re_num <span class="keyword">if</span> tag == <span class="number">1</span> <span class="keyword">else</span> <span class="string">'-'</span> + re_num</span><br><span class="line">                    <span class="keyword">else</span>:                        </span><br><span class="line">                        dic[str(num)] = len(re_num)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/164-Maximum-Gap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/26/164-Maximum-Gap/" itemprop="url">164. Maximum Gap</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T16:50:00+08:00">2019-06-26</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-26T17:24:31+08:00">2019-06-26</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/maximum-gap/" target="_blank" rel="noopener">164. Maximum Gap</a></p>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Given an unsorted array, find the maximum difference between the successive elements in its sorted form.</p>
-<p>Return 0 if the array contains less than 2 elements.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,6,9,1]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The sorted form of the array is [1,3,6,9], either</span><br><span class="line">             (3,6) or (6,9) has the maximum difference 3.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [10]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: The array contains less than 2 elements, therefore return 0.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li>You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.</li>
-<li>Try to solve it in linear time/space.</li>
-</ul>
-<h1>解法</h1>
-<h2 id="法一：普通排序"><a class="header-anchor" href="#法一：普通排序">¶</a>法一：普通排序</h2>
-<p>  最直接的解法是直接排序元素，排好序后从前往后遍历求gap最大值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maximumGap</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            res = max(res, nums[i] - nums[i - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<h2 id="法二：基数排序"><a class="header-anchor" href="#法二：基数排序">¶</a>法二：基数排序</h2>
-<p>  假设元素记为（e1, e2, …, ed），而每个ei(1 &lt;= i &lt;= d)的取值在(k1, k2, k3, …, kk)之间，则时间复杂度是O(d⋅(n+k))。该题中k为10，d最大为2,147,483,647的位数，即10。空间复杂度是aux和count的大小，即O(n+k)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">int maximumGap(vector&lt;int&gt;&amp; nums)</span><br><span class="line">&#123;</span><br><span class="line">    if (nums.empty() || nums.size() &lt; 2)</span><br><span class="line">        return 0;</span><br><span class="line"></span><br><span class="line">    int maxVal = *max_element(nums.begin(), nums.end());</span><br><span class="line"></span><br><span class="line">    int exp = 1;                                 // 1, 10, 100, 1000 ...</span><br><span class="line">    int radix = 10;                              // base 10 system</span><br><span class="line"></span><br><span class="line">    vector&lt;int&gt; aux(nums.size());</span><br><span class="line"></span><br><span class="line">    /* LSD Radix Sort */</span><br><span class="line">    while (maxVal / exp &gt; 0) &#123;                   // Go through all digits from LSD to MSD</span><br><span class="line">        vector&lt;int&gt; count(radix, 0);</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; nums.size(); i++)    // Counting sort</span><br><span class="line">            count[(nums[i] / exp) % 10]++;</span><br><span class="line"></span><br><span class="line">        for (int i = 1; i &lt; count.size(); i++)   // you could also use partial_sum()</span><br><span class="line">            count[i] += count[i - 1];</span><br><span class="line"></span><br><span class="line">        for (int i = nums.size() - 1; i &gt;= 0; i--)</span><br><span class="line">            aux[--count[(nums[i] / exp) % 10]] = nums[i];</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; nums.size(); i++)</span><br><span class="line">            nums[i] = aux[i];</span><br><span class="line"></span><br><span class="line">        exp *= 10;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int maxGap = 0;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; nums.size() - 1; i++)</span><br><span class="line">        maxGap = max(nums[i + 1] - nums[i], maxGap);</span><br><span class="line"></span><br><span class="line">    return maxGap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="法三：桶排序"><a class="header-anchor" href="#法三：桶排序">¶</a>法三：桶排序</h2>
-<p>  解法的灵感应该是来自计数排序，计数排序其实就是桶大小为1的桶排序，如果让桶的大小大于1呢？如果形成最大gap的两个元素肯定不在一个桶之内呢？要满足这个条件桶的大小为多少合适呢？鸽巢原理（容斥原理）就在这里派上用场了。桶的宽度为w = (max - min) / (L - 1)时，假设形成最大gap的两个元素在一个桶内,且最大gap为g(g &lt; w)，那么max - min的值小于g * (L - 1) &lt; w * (L - 1) = max - min矛盾（<strong>长度为L的数组，最多能形成L-1个gap</strong>），所以只要桶的宽度小于w，则最大gap肯定在两桶之间，而不会在桶之内。排序之后，两桶之间相邻的元素的gap为后一个有元素的桶的最小和前一个有元素的桶的最大的差值，最大gap取这些gap的最大值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maximumGap</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        L = len(nums)</span><br><span class="line">        <span class="keyword">if</span> L &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        minval, maxval = nums[<span class="number">0</span>], nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">            minval = min(nums[i], minval)</span><br><span class="line">            maxval = max(nums[i], maxval)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> maxval - minval == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        wid = max(<span class="number">1</span>, (maxval - minval) // (L - <span class="number">1</span>))</span><br><span class="line">        </span><br><span class="line">        M = (maxval - minval) // wid + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        minn = [<span class="number">1</span> &lt;&lt; <span class="number">32</span>] * (M + <span class="number">1</span>)</span><br><span class="line">        maxn = [<span class="number">-1</span>] * (M + <span class="number">1</span>)</span><br><span class="line">        countn = [<span class="number">0</span>] * (M + <span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(L):</span><br><span class="line">            n = (nums[i] - minval) // wid</span><br><span class="line">            countn[n] = <span class="number">1</span></span><br><span class="line">            minn[n] = min(minn[n], nums[i])</span><br><span class="line">            maxn[n] = max(maxn[n], nums[i])</span><br><span class="line">            </span><br><span class="line">        hasmax = <span class="literal">False</span></span><br><span class="line">        pmax = minval</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, M+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> countn[i]:                </span><br><span class="line">                    <span class="comment"># print(pmax, nmin)</span></span><br><span class="line">                    res = max(res, minn[i] - pmax) </span><br><span class="line">                    pmax = maxn[i]                    </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/156-Binary-Tree-Upside-Down/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/26/156-Binary-Tree-Upside-Down/" itemprop="url">156. Binary Tree Upside Down </a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T14:58:00+08:00">2019-06-26</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-26T15:09:12+08:00">2019-06-26</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p>Given a binary tree where all the right nodes are either leaf nodes with a sibling (a left node that shares the same parent node) or empty, flip it upside down and turn it into a tree where the original right nodes turned into left leaf nodes. Return the new root.</p>
-<h2 id="example"><a class="header-anchor" href="#example">¶</a>Example</h2>
-<h3 id="example1"><a class="header-anchor" href="#example1">¶</a>Example1</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Input: &#123;1,2,3,4,5&#125;</span><br><span class="line">Output: &#123;4,5,2,#,#,3,1&#125;</span><br><span class="line">Explanation:</span><br><span class="line">The input is</span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   3</span><br><span class="line"> / \</span><br><span class="line">4   5</span><br><span class="line">and the output is</span><br><span class="line">   4</span><br><span class="line">  / \</span><br><span class="line"> 5   2</span><br><span class="line">    / \</span><br><span class="line">   3   1</span><br></pre></td></tr></table></figure>
-<h3 id="example2"><a class="header-anchor" href="#example2">¶</a>Example2</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Input: &#123;1,2,3,4&#125;</span><br><span class="line">Output: &#123;4,#,2,3,1&#125;</span><br><span class="line">Explanation:</span><br><span class="line">The input is</span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   3</span><br><span class="line"> /</span><br><span class="line">4</span><br><span class="line">and the output is</span><br><span class="line">   4</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    / \</span><br><span class="line">   3   1</span><br></pre></td></tr></table></figure>
-<h1>解法：</h1>
-<p>非递归解法：</p>
-<h2 id="法一："><a class="header-anchor" href="#法一：">¶</a>法一：</h2>
-<p>利用栈</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Definition of TreeNode:</span></span><br><span class="line"><span class="string">class TreeNode:</span></span><br><span class="line"><span class="string">    def __init__(self, val):</span></span><br><span class="line"><span class="string">        self.val = val</span></span><br><span class="line"><span class="string">        self.left, self.right = None, None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    @param root: the root of binary tree</span></span><br><span class="line"><span class="string">    @return: new root</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">upsideDownBinaryTree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        st = []</span><br><span class="line">        p = root</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            st.append(p)</span><br><span class="line">            p = p.left</span><br><span class="line"></span><br><span class="line">        r = p = st.pop()</span><br><span class="line">        <span class="keyword">while</span> st:</span><br><span class="line">            p.left = st[<span class="number">-1</span>].right</span><br><span class="line">            p.right = st[<span class="number">-1</span>]</span><br><span class="line">            p = st.pop()</span><br><span class="line">        p.left = p.right = <span class="literal">None</span> </span><br><span class="line">        <span class="keyword">return</span> r</span><br></pre></td></tr></table></figure>
-<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
-<p>记录中间变量</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Definition of TreeNode:</span></span><br><span class="line"><span class="string">class TreeNode:</span></span><br><span class="line"><span class="string">    def __init__(self, val):</span></span><br><span class="line"><span class="string">        self.val = val</span></span><br><span class="line"><span class="string">        self.left, self.right = None, None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    @param root: the root of binary tree</span></span><br><span class="line"><span class="string">    @return: new root</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">upsideDownBinaryTree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        p, q, r = root, <span class="literal">None</span>, <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            p.left, p.right, q, p, r= r, q, p, p.left, p.right</span><br><span class="line">        <span class="keyword">return</span> q</span><br></pre></td></tr></table></figure>
-<p>递归解法：</p>
-<p>  这道题就是因为这个递归解法才写了一篇，我用递归做这道题稍微有些费力，总觉得能用递归做，但是写了半天不知道怎么写好。下面是别人的递归代码，学习一下：</p>
-<h2 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Definition of TreeNode:</span></span><br><span class="line"><span class="string">class TreeNode:</span></span><br><span class="line"><span class="string">    def __init__(self, val):</span></span><br><span class="line"><span class="string">        self.val = val</span></span><br><span class="line"><span class="string">        self.left, self.right = None, None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    @param root: the root of binary tree</span></span><br><span class="line"><span class="string">    @return: new root</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">upsideDownBinaryTree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root.left:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">        p = self.upsideDownBinaryTree(root.left) </span><br><span class="line">        root.left.left, root.left.right, root.left, root.right = root.right, root ,<span class="literal">None</span>, <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> p</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1964,7 +2150,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">96</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1986,7 +2172,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
