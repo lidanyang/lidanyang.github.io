@@ -75,17 +75,14 @@
 
 
 
-<meta name="description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="287. Find the Duplicate Number">
-<meta property="og:url" content="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="Just a blog">
-<meta property="og:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-25T16:59:54.884Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="287. Find the Duplicate Number">
-<meta name="twitter:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
+<meta name="twitter:title" content="分类">
 
 
 
@@ -117,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/">
+  <link rel="canonical" href="http://yoursite.com/categories/">
 
 
 
@@ -293,7 +290,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-26T00:48:27+08:00">2019-10-26</time>
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-04T16:47:00+08:00">2019-11-04</time>
             
           </span>
 
@@ -353,7 +350,7 @@
 <p><strong>窄化对大括号而言是不成立的</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">x1</span><span class="params">(<span class="number">5.3</span>)</span></span>; <span class="comment">// OK, but OUCH: x1 becomes 5</span></span><br><span class="line"><span class="keyword">int</span> x2 = <span class="number">5.3</span>; <span class="comment">// OK, but OUCH: x2 becomes 5</span></span><br><span class="line"><span class="keyword">int</span> x3&#123;<span class="number">5.0</span>&#125;; <span class="comment">// ERROR: narrowing</span></span><br><span class="line"><span class="keyword">int</span> x4 = &#123;<span class="number">5.3</span>&#125;; <span class="comment">// ERROR: narrowing</span></span><br><span class="line"><span class="keyword">char</span> c1&#123;<span class="number">7</span>&#125;; <span class="comment">// OK: even though 7 is an int, this is not narrowing</span></span><br><span class="line"><span class="keyword">char</span> c2&#123;<span class="number">99999</span>&#125;; <span class="comment">// ERROR: narrowing (if 99999 doesn’t fit into a char)</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1 &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span> &#125;; <span class="comment">// OK</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2 &#123; <span class="number">1</span>, <span class="number">2.3</span>, <span class="number">4</span>, <span class="number">5.6</span> &#125;; <span class="comment">// ERROR: narrowing doubles to ints</span></span><br></pre></td></tr></table></figure>
 <p><strong>initializer_list为参数的版本优先于指明参数的版本</strong><br>
-<strong>只有指明参数的版本构造函数可以用大括号来来初始化</strong></p>
+<strong>只有指明参数的版本的构造函数的类也可以用大括号来初始化（一致初始化）</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">P</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">P(<span class="keyword">int</span>,<span class="keyword">int</span>);</span><br><span class="line">P(<span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;<span class="keyword">int</span>&gt;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">P <span class="title">p</span><span class="params">(<span class="number">77</span>,<span class="number">5</span>)</span></span>; <span class="comment">// calls P::P(int,int)</span></span><br><span class="line">P q&#123;<span class="number">77</span>,<span class="number">5</span>&#125;; <span class="comment">// calls P::P(initializer_list)</span></span><br><span class="line">P r&#123;<span class="number">77</span>,<span class="number">5</span>,<span class="number">42</span>&#125;; <span class="comment">// calls P::P(initializer_list)</span></span><br><span class="line">P s = &#123;<span class="number">77</span>,<span class="number">5</span>&#125;; <span class="comment">// calls P::P(initializer_list)</span></span><br><span class="line"><span class="comment">//如果只有P(int, int)，则只有r会出错，其他都正确</span></span><br></pre></td></tr></table></figure>
 <p><strong>explicit禁止隐式转换</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">P</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">P(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">explicit</span> <span class="title">P</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">P <span class="title">x</span><span class="params">(<span class="number">77</span>,<span class="number">5</span>)</span></span>; <span class="comment">// OK</span></span><br><span class="line">P y&#123;<span class="number">77</span>,<span class="number">5</span>&#125;; <span class="comment">// OK</span></span><br><span class="line">P z &#123;<span class="number">77</span>,<span class="number">5</span>,<span class="number">42</span>&#125;; <span class="comment">// OK</span></span><br><span class="line">P v = &#123;<span class="number">77</span>,<span class="number">5</span>&#125;; <span class="comment">// OK (implicit type conversion allowed)</span></span><br><span class="line">P w = &#123;<span class="number">77</span>,<span class="number">5</span>,<span class="number">42</span>&#125;; <span class="comment">// ERROR due to explicit (no implicit type conversion allowed)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fp</span><span class="params">(<span class="keyword">const</span> P&amp;)</span></span>;</span><br><span class="line">fp(&#123;<span class="number">47</span>,<span class="number">11</span>&#125;); <span class="comment">// OK, implicit conversion of &#123;47,11&#125; into P</span></span><br><span class="line">fp(&#123;<span class="number">47</span>,<span class="number">11</span>,<span class="number">3</span>&#125;); <span class="comment">// ERROR due to explicit</span></span><br><span class="line">fp(P&#123;<span class="number">47</span>,<span class="number">11</span>&#125;); <span class="comment">// OK, explicit conversion of &#123;47,11&#125; into P</span></span><br><span class="line">fp(P&#123;<span class="number">47</span>,<span class="number">11</span>,<span class="number">3</span>&#125;); <span class="comment">// OK, explicit conversion of &#123;47,11,3&#125; into P</span></span><br></pre></td></tr></table></figure>
@@ -362,7 +359,65 @@
 <p><strong>初始化<code>for(decl:coll)</code>中的<code>decl</code>时不能算作explicit conversion，所以用explicit构造函数的decl会报错</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">explicit</span> <span class="title">C</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; s)</span></span>; <span class="comment">// explicit(!) type conversion from strings</span></span><br><span class="line">...</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; vs;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> C&amp; elem : vs) &#123; <span class="comment">// ERROR, no conversion from string to C defined</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; elem &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1>移动语义和右值引用</h1>
-
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createAndInsert</span> <span class="params">(<span class="built_in">std</span>::<span class="built_in">set</span>&lt;X&gt;&amp; coll)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	X x; <span class="comment">// create an object of type X</span></span><br><span class="line">	...</span><br><span class="line">	coll.insert(x); <span class="comment">// insert it into the passed collection</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  正常情况下，会调用<code>insert (const T&amp; v);</code>创建x的一份拷贝后插入set，这种行为提供了值语义，允许插入临时对象和将来还可能会被改变和使用的对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">X x;</span><br><span class="line">coll.insert(x); <span class="comment">// inserts copy of x</span></span><br><span class="line">...</span><br><span class="line">coll.insert(x+x); <span class="comment">// inserts copy of temporary rvalue</span></span><br><span class="line">...</span><br><span class="line">coll.insert(x); <span class="comment">// inserts copy of x (although x is not used any longer)</span></span><br></pre></td></tr></table></figure>
+<p>  但是当插入临时右值对象（不具名的只可出现在赋值操作符右侧的对象）或者不再使用的对象时，如果<code>X</code>很复杂，那么拷贝<code>X</code>中的每一部分就很耗时，这时需要有一种方法将<code>X</code>内部的资源<strong>偷</strong>出来赋给将要插入到coll的对象中。<code>move</code>就是为了这个目的而出现的新机制。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">X x;</span><br><span class="line">coll.insert(x); <span class="comment">// inserts copy of x (OK, x is still used)</span></span><br><span class="line">...</span><br><span class="line">coll.insert(x+x); <span class="comment">// moves (or copies) contents of temporary rvalue</span></span><br><span class="line">...</span><br><span class="line">coll.insert(<span class="built_in">std</span>::move(x)); <span class="comment">// moves (or copies) contents of x into coll</span></span><br></pre></td></tr></table></figure>
+<p>  <code>move</code>只是将参数转换成右值引用，即<code>X&amp;&amp;</code>，它本身不做移动资源的操作。这个新类型代表可以被修改的右值，它意味着该参数是以后<strong>不会再用到</strong>的对象。具体的移动资源的操作要依靠<strong>移动构造函数</strong>。并且为了确保被传入的对象（被偷的对象）的任何改动不会冲击新对象（偷资源的对象），需要清楚被传入的实参的内容。</p>
+<ul>
+<li>
+<p>重载规则</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(X&amp;)</span></span>;<span class="comment">//只能用于lvalue</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">const</span> X&amp;)</span></span>;<span class="comment">//可用于lvalue和rvalue</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">const</span> X&amp;&amp;)</span></span>; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">const</span> X&amp;)</span></span>;或<span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(X&amp;)</span></span>;<span class="comment">//可区分rvalue和lvalue，rvalue版本需要提供move语义</span></span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(X&amp;&amp;)</span></span>;<span class="comment">//只提供move语义，只能用于rvalue</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果class没提供move语义，只有惯常的copy赋值和构造函数，rvalue reference也可以调用它们。std::move()在提供了move语义的情况下意味着调用move语义，否则调用的是copy语义。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>返回rvalue reference</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">X <span class="title">foo</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    X x;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  如果有move和copy构造函数，则会忽略copy构造，自动调用move构造，这是一种优化机制（NRVO，named return value optimization）。其他情况会只调用对应的版本或者报错（两者都不存在）。</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">X&amp;&amp; <span class="title">foo</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   X x;</span><br><span class="line">   ...</span><br><span class="line">   <span class="keyword">return</span> x; <span class="comment">// ERROR: returns reference to nonexisting object</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  右值引用也是个引用，返回一个局部非静态对象的右值引用意味着返回一个不存在的对象的引用，因此是不对的。</p>
+<h1>字符串字面量</h1>
+<h3 id="raw-string-literal"><a class="header-anchor" href="#raw-string-literal">¶</a>raw string literal</h3>
+<p>语法：<code>R&quot;delim(...)delim&quot;; //)delim不能出现在...中</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">R<span class="string">"nc(a\</span></span><br><span class="line"><span class="string">b\nc()"</span></span><br><span class="line">)nc<span class="string">";</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//等价于</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span>a\\\n b\\nc()\<span class="string">"\n "</span></span><br></pre></td></tr></table></figure>
+<h3 id="encoded-string-literal"><a class="header-anchor" href="#encoded-string-literal">¶</a>encoded string literal</h3>
+<ul>
+<li>u8 UTF8编码字符串，字符类型是const char</li>
+<li>u 带着char16_t类型的字符</li>
+<li>U 带着char32_t类型的字符</li>
+<li>L 宽字符字面串，字符类型是wchar_t</li>
+</ul>
+<h1>关键字noexcept</h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> <span class="keyword">noexcept</span></span>; <span class="comment">// 声明了foo不打算抛出异常，如果有异常未被foo处理，程序会被终止</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//带条件的noexcept</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span> <span class="params">(Type&amp; x, Type&amp; y)</span> <span class="title">noexcept</span><span class="params">(<span class="keyword">noexcept</span>(x.swap(y)))</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	x.swap(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pair&amp; <span class="keyword">operator</span>= (pair&amp;&amp; p)</span><br><span class="line">	<span class="keyword">noexcept</span>(is_nothrow_move_assignable&lt;T1&gt;::value &amp;&amp;</span><br><span class="line">		is_nothrow_move_assignable&lt;T2&gt;::value);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>析构函数隐式异常说明为noexcept(true)，普通函数省略异常说明代表可能抛出任何异常</li>
+<li>违反先决条件会导致不明确行为的库函数，不适用noexcept说明</li>
+</ul>
+<p><strong>更多noexcept相关的链接</strong>:</p>
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/12833241/difference-between-c03-throw-specifier-c11-noexcept" target="_blank" rel="noopener">https://stackoverflow.com/questions/12833241/difference-between-c03-throw-specifier-c11-noexcept</a></p>
+</li>
+<li>
+<p><a href="https://akrzemi1.wordpress.com/2011/06/10/using-noexcept/" target="_blank" rel="noopener">https://akrzemi1.wordpress.com/2011/06/10/using-noexcept/</a></p>
+</li>
+<li>
+<p><a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2009/n2855.html" target="_blank" rel="noopener">http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2009/n2855.html</a></p>
+</li>
+<li>
+<p><a href="https://en.cppreference.com/w/cpp/language/destructor" target="_blank" rel="noopener">https://en.cppreference.com/w/cpp/language/destructor</a></p>
+</li>
+<li>
+<p><a href="https://www.zhihu.com/question/22889420" target="_blank" rel="noopener">https://www.zhihu.com/question/22889420</a></p>
+</li>
+</ul>
+<blockquote>
+<p>凭我现在的水平还没办法完全弄懂这些，先打个标记，以后再回头研究！！</p>
+</blockquote>
+<h1>constexpr关键字</h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于编译期计算表达式</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">square</span> <span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">float</span> a[square(<span class="number">9</span>)]; <span class="comment">// OK since C++11: a has 81 elements</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//c++11以前不能被看作整形常量</span></span><br><span class="line"><span class="built_in">std</span>::numeric_limits&lt;<span class="keyword">short</span>&gt;::max()</span><br><span class="line"></span><br><span class="line"><span class="comment">//c++11以后可用来声明数组或者进行编译期运算</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">float</span>,<span class="built_in">std</span>::numeric_limits&lt;<span class="keyword">short</span>&gt;::max()&gt; a;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -483,7 +538,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -494,7 +549,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -505,7 +560,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -554,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">一致性初始化和初始值列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">range-based for循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">移动语义和右值引用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">一致性初始化和初始值列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">range-based for循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">移动语义和右值引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">字符串字面量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#raw-string-literal"><span class="nav-number">4.0.1.</span> <span class="nav-text">¶raw string literal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#encoded-string-literal"><span class="nav-number">4.0.2.</span> <span class="nav-text">¶encoded string literal</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">关键字noexcept</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">constexpr关键字</span></a></li></div>
             
 
           </div>
