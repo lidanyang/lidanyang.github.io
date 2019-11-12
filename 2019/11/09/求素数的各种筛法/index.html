@@ -75,17 +75,14 @@
 
 
 
-<meta name="description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="287. Find the Duplicate Number">
-<meta property="og:url" content="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Just a blog">
-<meta property="og:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-25T16:59:54.884Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="287. Find the Duplicate Number">
-<meta name="twitter:description" content="287. Find the Duplicate Number Difficulty: Medium Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist.">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -117,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/26/287-Find-the-Duplicate-Number/">
+  <link rel="canonical" href="http://yoursite.com/tags/">
 
 
 
 
 
-  <title>分类: data structure | Just a blog</title>
+  <title>求素数的各种筛法 | Just a blog</title>
   
 
 
@@ -142,7 +139,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,53 +233,219 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>data structure<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/09/求素数的各种筛法/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/07/09/树状数组/" itemprop="url">
-              
-                <span itemprop="name">树状数组</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">求素数的各种筛法</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-09T16:18:00+08:00" content="2019-07-09">
-          07-09
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T16:52:00+08:00">2019-11-09</time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-09T20:54:42+08:00">2019-11-09</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/math/" itemprop="url" rel="index">
+                    <span itemprop="name">math</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/math/number-theory/" itemprop="url" rel="index">
+                    <span itemprop="name">number theory</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>Eratosthenes筛法</li>
+</ol>
+<p>  利用奇合数<code>2m+1=(2i+1)(2j+1)=2(i+j+2ji)+1</code>的性质，如果想找出不大于<code>limit</code>的所有素数，只需找出不大于<code>(limit-1)&gt;&gt;1</code>的所有形如<code>i+j+2ij</code>的数，剔除掉这些数后其他数对应的奇数即是奇质数。还有一种该筛法的缓存局部性优化版本叫<a href="https://www.geeksforgeeks.org/segmented-sieve/" target="_blank" rel="noopener">segmented sieve</a>，spoj上的<a href="https://github.com/cacophonix/SPOJ/blob/master/PRIME1.cpp" target="_blank" rel="noopener">第二题</a>也可以用该法求解。</p>
+<ol start="2">
+<li>Euler筛法</li>
+</ol>
+<p>  <a href="https://bruceking.site/2017/09/18/prime-sieves/" target="_blank" rel="noopener">这个博客里讲的挺清楚</a>，这个筛法也是对Eratosthenes筛法的一种改进，它保存已经求得的素数，每次只往前标记一小部分数，逐步向前推进，并且推进的过程中当前数只和比它的最小素因数还小的素数乘，通过对素因数的大小顺序进行限制保证了每个合数只会标记一次。还值得注意的是，这个算法是先更新素数列表，然后再对后面的合数进行标记的，否则会漏数。</p>
+<ol start="3">
+<li>Sundaram筛选法</li>
+</ol>
+<p>  利用奇合数<code>2m+1=(2i+1)(2j+1)=2(i+j+2ji)+1</code>的性质，如果想找出不大于<code>limit</code>的所有素数，只需找出不大于<code>(limit-1)&gt;&gt;1</code>的所有形如<code>i+j+2ij</code>的数，剔除掉这些数后其他数对应的奇数即是奇质数。</p>
+<ol start="4">
+<li>atkin筛法</li>
+</ol>
+<p>  <a href="https://bruceking.site/2017/09/18/prime-sieves/" target="_blank" rel="noopener">https://bruceking.site/2017/09/18/prime-sieves/</a></p>
+<ol start="5">
+<li>更多</li>
+</ol>
+<p>  关于求素数的方法实现代码，可以参考以下链接：</p>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/bitwise-sieve/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/bitwise-sieve/</a></li>
+<li><a href="https://bruceking.site/2017/09/18/prime-sieves/" target="_blank" rel="noopener">https://bruceking.site/2017/09/18/prime-sieves/</a></li>
+<li><a href="https://www.geeksforgeeks.org/segmented-sieve/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/segmented-sieve/</a></li>
+<li><a href="https://www.geeksforgeeks.org/sieve-of-atkin/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/sieve-of-atkin/</a></li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/number-theory/" rel="tag"><i class="fa fa-tag"></i> number theory</a>
+          
+            <a href="/tags/primes/" rel="tag"><i class="fa fa-tag"></i> primes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/09/1249-Minimum-Remove-to-Make-Valid-Parentheses/" rel="next" title="1249. Minimum Remove to Make Valid Parentheses">
+                <i class="fa fa-chevron-left"></i> 1249. Minimum Remove to Make Valid Parentheses
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/10/1025-Divisor-Game/" rel="prev" title="1025. Divisor Game">
+                1025. Divisor Game <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -290,6 +453,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -326,7 +493,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">136</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -337,7 +504,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -348,7 +515,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -516,6 +683,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
 
   
 
@@ -573,26 +744,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
