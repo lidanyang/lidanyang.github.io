@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="标签">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/tags/">
+
+
+
+
+
+  <title>972. Equal Rational Numbers | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/972-Equal-Rational-Numbers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">972. Equal Rational Numbers</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-16T21:57:00+08:00">2019-11-16</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-16T22:08:46+08:00">2019-11-16</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="972-equal-rational-numbers"><a class="header-anchor" href="#972-equal-rational-numbers">¶</a><a href="https://leetcode.com/problems/equal-rational-numbers/" target="_blank" rel="noopener">972. Equal Rational Numbers</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given two strings <code>S</code> and <code>T</code>, each of which represents a non-negative rational number, return <strong>True</strong> if and only if they represent the same number. The strings may use parentheses to denote the repeating part of the rational number.</p>
+<p>In general a rational number can be represented using up to three parts: an <em>integer part</em>, a <em>non-repeating part,</em> and a <em>repeating part</em>. The number will be represented in one of the following three ways:</p>
+<ul>
+<li><code>&lt;IntegerPart&gt;</code> (e.g. 0, 12, 123)</li>
+<li><code>&lt;IntegerPart&gt;&lt;.&gt;&lt;NonRepeatingPart&gt;</code>  (e.g. 0.5, 1., 2.12, 2.0001)</li>
+<li><code>&lt;IntegerPart&gt;&lt;.&gt;&lt;NonRepeatingPart&gt;&lt;(&gt;&lt;RepeatingPart&gt;&lt;)&gt;</code> (e.g. 0.1(6), 0.9(9), 0.00(1212))</li>
+</ul>
+<p>The repeating portion of a decimal expansion is conventionally denoted within a pair of round brackets.  For example:</p>
+<p>1 / 6 = 0.16666666… = 0.1(6) = 0.1666(6) = 0.166(66)</p>
+<p>Both 0.1(6) or 0.1666(6) or 0.166(66) are correct representations of 1 / 6.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: S = &quot;0.(52)&quot;, T = &quot;0.5(25)&quot;</span><br><span class="line">Output: true</span><br><span class="line">Explanation:</span><br><span class="line">Because &quot;0.(52)&quot; represents 0.52525252..., and &quot;0.5(25)&quot; represents 0.52525252525..... , the strings represent the same number.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: S = &quot;0.1666(6)&quot;, T = &quot;0.166(66)&quot;</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: S = &quot;0.9(9)&quot;, T = &quot;1.&quot;</span><br><span class="line">Output: true</span><br><span class="line">Explanation: </span><br><span class="line">&quot;0.9(9)&quot; represents 0.999999999... repeated forever, which equals 1\.  []</span><br><span class="line">&quot;1.&quot; represents the number 1, which is formed correctly: (IntegerPart) = &quot;1&quot; and (NonRepeatingPart) = &quot;&quot;.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>Each part consists only of digits.</li>
+<li>The <code>&lt;IntegerPart&gt;</code> will not begin with 2 or more zeros.  (There is no other restriction on the digits of each part.)</li>
+<li><code>1 &lt;= &lt;IntegerPart&gt;.length &lt;= 4</code></li>
+<li><code>0 &lt;= &lt;NonRepeatingPart&gt;.length &lt;= 4</code></li>
+<li><code>1 &lt;= &lt;RepeatingPart&gt;.length &lt;= 4</code></li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>对于<code>&lt;IntegerPart&gt;&lt;.&gt;&lt;NonRepeatingPart&gt;&lt;(&gt;&lt;RepeatingPart&gt;&lt;)&gt;</code>，设三个部分的长度分别为i,j,k,三个部分的数值分别为a,b,c，则该有理数的分数表示为$a + \frac{b}{10^j} + \frac{c}{10^j * (10^k - 1)}$</p>
+<h4 id="c-解法"><a class="header-anchor" href="#c-解法">¶</a>C++解法</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ll <span class="title">gcd</span><span class="params">(ll a, ll b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> b==<span class="number">0</span>?a:gcd(b, a%b);</span><br><span class="line">    &#125;</span><br><span class="line">    pair&lt;ll,ll&gt; rational_add(<span class="keyword">const</span> pair&lt;ll,ll&gt; &amp;p1,<span class="keyword">const</span> pair&lt;ll,ll&gt; &amp;p2)&#123;</span><br><span class="line">        ll a = p1.second*p2.second;</span><br><span class="line">        ll b = p1.first*p2.second+p2.first*p1.second;</span><br><span class="line">        ll c = gcd(a, b);</span><br><span class="line">        <span class="keyword">return</span> make_pair(b/c, a/c);</span><br><span class="line">    &#125;</span><br><span class="line">    pair&lt;ll,ll&gt; helper(<span class="keyword">const</span> <span class="built_in">string</span> &amp;sip, <span class="keyword">const</span> <span class="built_in">string</span> &amp;snp, <span class="keyword">const</span> <span class="built_in">string</span> &amp;srp)&#123;</span><br><span class="line">        ll sum = <span class="number">0</span>;</span><br><span class="line">        ll base1 = <span class="number">1</span>, base2 = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sip.size(); i++)&#123;</span><br><span class="line">            sum = sum * <span class="number">10</span> + (sip[i] - <span class="string">'0'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> p1 = make_pair(sum, <span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; snp.size(); i++)&#123;</span><br><span class="line">            sum = sum * <span class="number">10</span> + (snp[i] - <span class="string">'0'</span>);</span><br><span class="line">            base1 *= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ll GCD = gcd(base1, sum);</span><br><span class="line">        <span class="keyword">auto</span> p2 = GCD == <span class="number">0</span> ? make_pair(<span class="number">0l</span>l, <span class="number">1l</span>l) :make_pair(sum/GCD, base1/GCD);</span><br><span class="line">        </span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        base2 = base1;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; srp.size(); i++)&#123;</span><br><span class="line">            sum = sum * <span class="number">10</span> + (srp[i] - <span class="string">'0'</span>);</span><br><span class="line">            base2 *= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        GCD = gcd(base2 - base1, sum);</span><br><span class="line">        <span class="keyword">auto</span> p3 = GCD == <span class="number">0</span> ? make_pair(<span class="number">0l</span>l, <span class="number">1l</span>l) :make_pair(sum/GCD, (base2-base1)/GCD);</span><br><span class="line">        <span class="keyword">return</span> rational_add(p1, rational_add(p2, p3));</span><br><span class="line">    &#125;</span><br><span class="line">    pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; parse(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)&#123;</span><br><span class="line">        <span class="built_in">string</span> ip, np, rp;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; s.size() &amp;&amp; s[i] != <span class="string">'.'</span>) ip.push_back(s[i++]);</span><br><span class="line">        j = <span class="number">0</span>, ++i;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; s.size() &amp;&amp; s[i] != <span class="string">'('</span>) np.push_back(s[i++]);</span><br><span class="line">        j = <span class="number">0</span>, ++i;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; s.size() &amp;&amp; s[i] != <span class="string">')'</span>) rp.push_back(s[i++]);</span><br><span class="line">        <span class="keyword">return</span> helper(ip, np, rp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isRationalEqual</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">auto</span> p1 = parse(s);</span><br><span class="line">        <span class="keyword">auto</span> p2 = parse(t);</span><br><span class="line">        <span class="keyword">return</span> p1 == p2;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="python解法"><a class="header-anchor" href="#python解法">¶</a>python解法</h4>
+<p>python的解法看着更加简洁</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fractions <span class="keyword">import</span> Fraction</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isRationalEqual</span><span class="params">(self, S, T)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">convert</span><span class="params">(S)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">'.'</span> <span class="keyword">not</span> <span class="keyword">in</span> S:</span><br><span class="line">                <span class="keyword">return</span> Fraction(int(S), <span class="number">1</span>)</span><br><span class="line">            i = S.index(<span class="string">'.'</span>)</span><br><span class="line">            ans = Fraction(int(S[:i]), <span class="number">1</span>)</span><br><span class="line">            S = S[i+<span class="number">1</span>:]</span><br><span class="line">            <span class="keyword">if</span> <span class="string">'('</span> <span class="keyword">not</span> <span class="keyword">in</span> S:</span><br><span class="line">                <span class="keyword">if</span> S:</span><br><span class="line">                    ans += Fraction(int(S), <span class="number">10</span> ** len(S))</span><br><span class="line">                <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">            i = S.index(<span class="string">'('</span>)</span><br><span class="line">            <span class="keyword">if</span> i:</span><br><span class="line">                ans += Fraction(int(S[:i]), <span class="number">10</span> ** i)</span><br><span class="line">            S = S[i+<span class="number">1</span>:<span class="number">-1</span>]</span><br><span class="line">            j = len(S)</span><br><span class="line">            ans += Fraction(int(S), <span class="number">10</span>**i * (<span class="number">10</span>**j - <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> convert(S) == convert(T)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/math/" rel="tag"><i class="fa fa-tag"></i> math</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/16/LCP-4-覆盖/" rel="next" title="LCP 4. 覆盖">
+                <i class="fa fa-chevron-left"></i> LCP 4. 覆盖
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/17/lucas定理求卡特兰数/" rel="prev" title="lucas定理求卡特兰数">
+                lucas定理求卡特兰数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">148</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#972-equal-rational-numbers"><span class="nav-number">1.</span> <span class="nav-text">¶972. Equal Rational Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">1.1.</span> <span class="nav-text">¶Solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-解法"><span class="nav-number">1.2.</span> <span class="nav-text">¶C++解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python解法"><span class="nav-number">1.3.</span> <span class="nav-text">¶python解法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
+
+  
+
+</body>
+</html>
