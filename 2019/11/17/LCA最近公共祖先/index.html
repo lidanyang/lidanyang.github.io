@@ -290,7 +290,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-17T15:11:24+08:00">2019-11-17</time>
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-18T13:54:07+08:00">2019-11-18</time>
             
           </span>
 
@@ -325,9 +325,12 @@
         <p>参考:<a href="https://www.bilibili.com/video/av41067872?p=3" target="_blank" rel="noopener">https://www.bilibili.com/video/av41067872?p=3</a></p>
 <p>三种解法:</p>
 <ol>
-<li>
-<p>倍增</p>
-</li>
+<li>倍增</li>
+</ol>
+<p>模板题:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2586" target="_blank" rel="noopener">用LCA求两点距离</a></p>
+<p>代码来自:<a href="https://blog.csdn.net/xiaonanxinyi/article/details/91953107" target="_blank" rel="noopener">https://blog.csdn.net/xiaonanxinyi/article/details/91953107</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">50010</span>;</span><br><span class="line"><span class="keyword">int</span> f[maxn][<span class="number">20</span>], d[maxn], dist[maxn];</span><br><span class="line"><span class="keyword">int</span> ver[<span class="number">2</span> * maxn], Next[maxn * <span class="number">2</span>], edge[maxn * <span class="number">2</span>], head[maxn];</span><br><span class="line"><span class="keyword">int</span> T, n, m, tot, t;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">	ver[++tot] = y; edge[tot] = z; Next[tot] = head[x]; head[x] = tot;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	q.push(<span class="number">1</span>); d[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">		<span class="keyword">int</span> x = q.front(); q.pop();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = head[x]; i; i = Next[i]) &#123;</span><br><span class="line">			<span class="keyword">int</span> y = ver[i];</span><br><span class="line">			<span class="keyword">if</span> (d[y])<span class="keyword">continue</span>;</span><br><span class="line">			d[y] = d[x] + <span class="number">1</span>;</span><br><span class="line">			dist[y] = dist[x] + edge[i];</span><br><span class="line">			f[y][<span class="number">0</span>] = x;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= t; j++)</span><br><span class="line">				f[y][j] = f[f[y][j - <span class="number">1</span>]][j - <span class="number">1</span>];</span><br><span class="line">			q.push(y);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (d[x] &lt; d[y])swap(x,y);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = t; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (d[f[x][i]] &gt;= d[y])x = f[x][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x == y)<span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = t; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (f[x][i] != f[y][i])x = f[x][i], y = f[y][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> f[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">		t = (<span class="keyword">int</span>)(<span class="built_in">log</span>(n) / <span class="built_in">log</span>(<span class="number">2</span>)) + <span class="number">1</span>;</span><br><span class="line">		<span class="built_in">memset</span>(head,<span class="number">0</span>,<span class="keyword">sizeof</span>(<span class="number">0</span>));</span><br><span class="line">		<span class="built_in">memset</span>(d,<span class="number">0</span>,<span class="keyword">sizeof</span>(<span class="number">0</span>));</span><br><span class="line">		tot = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> x, y, z;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d%dd"</span>,&amp;x,&amp;y,&amp;z);</span><br><span class="line">			add(x,y,z);</span><br><span class="line">			add(y,x,z);</span><br><span class="line">		&#125;</span><br><span class="line">		bfs();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> x, y;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dist[x]+dist[y]<span class="number">-2</span>*dist[lca(x,y)]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
 <li>
 <p>ST+RMQ</p>
 </li>
@@ -368,6 +371,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/18/LCP-5-发-LeetCoin-1/" rel="prev" title="LCP 5. 发 LeetCoin">
+                LCP 5. 发 LeetCoin <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -435,7 +442,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">148</span>
+                  <span class="site-state-item-count">150</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -446,7 +453,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -457,7 +464,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

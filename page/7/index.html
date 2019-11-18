@@ -248,6 +248,366 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/20/1185-Day-of-the-Week/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/20/1185-Day-of-the-Week/" itemprop="url">1185. Day of the Week</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-20T22:37:00+08:00">2019-10-20</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-20T22:54:21+08:00">2019-10-20</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1185-day-of-the-week"><a class="header-anchor" href="#1185-day-of-the-week">¶</a><a href="https://leetcode.com/problems/day-of-the-week/" target="_blank" rel="noopener">1185. Day of the Week</a></h3>
+<p>Difficulty: <strong>Easy</strong></p>
+<p>Given a date, return the corresponding day of the week for that date.</p>
+<p>The input is given as three integers representing the <code>day</code>, <code>month</code> and <code>year</code> respectively.</p>
+<p>Return the answer as one of the following values <code>{&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;}</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: day = 31, month = 8, year = 2019</span><br><span class="line">Output: &quot;Saturday&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: day = 18, month = 7, year = 1999</span><br><span class="line">Output: &quot;Sunday&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: day = 15, month = 8, year = 1993</span><br><span class="line">Output: &quot;Sunday&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li>The given dates are valid dates between the years <code>1971</code> and <code>2100</code>.</li>
+</ul>
+<h1>解法</h1>
+<p><a href="https://www.geeksforgeeks.org/tomohiko-sakamotos-algorithm-finding-day-week/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/tomohiko-sakamotos-algorithm-finding-day-week/</a></p>
+<p>根据公式直接计算，非常简单，前提是1年1月1日是星期1。大致思路是：</p>
+<ol>
+<li><code>365%7</code>是1，所以不考虑闰年，每隔一整年，星期只加1，即<code>year%7</code>。</li>
+<li>再考虑闰年<code>366%7</code>是2，所以比1.中多走了闰年个数个天，即<code>year/4 - year/100+year/400</code>。</li>
+<li>最后一年月数小于3时和大于3时分开计算，大于2时2月按27天算，小于3时则<code>year</code>的闰年不考虑。假如<code>year</code>是闰年，<code>year + year/4 - year/100 + year/400 + t[month-1] + day</code>中<code>year</code>和<code>year/4 - year/100 + year/400</code>各自会比不考虑<code>year</code>的闰年加1，刚好比27多2补上了缺失的天数；假如<code>year</code>不是闰年，则<code>year + year/4 - year/100 + year/400 + t[month-1] + day</code>会比不考虑闰年总共多1，加上27是28符合非闰年2月的天数。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">dayOfTheWeek</span><span class="params">(<span class="keyword">int</span> day, <span class="keyword">int</span> month, <span class="keyword">int</span> year)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; week;</span><br><span class="line">        week[<span class="number">0</span>] = <span class="string">"Sunday"</span>;</span><br><span class="line">        week[<span class="number">1</span>] = <span class="string">"Monday"</span>;</span><br><span class="line">        week[<span class="number">2</span>] = <span class="string">"Tuesday"</span>;</span><br><span class="line">        week[<span class="number">3</span>] = <span class="string">"Wednesday"</span>;</span><br><span class="line">        week[<span class="number">4</span>] = <span class="string">"Thursday"</span>;</span><br><span class="line">        week[<span class="number">5</span>] = <span class="string">"Friday"</span>;</span><br><span class="line">        week[<span class="number">6</span>] = <span class="string">"Saturday"</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t = &#123;<span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span>(month &lt; <span class="number">3</span>)</span><br><span class="line">            year -=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> k = (year + year/<span class="number">4</span> - year/<span class="number">100</span> + year/<span class="number">400</span> + t[month<span class="number">-1</span>] + day)%<span class="number">7</span>;</span><br><span class="line">        <span class="keyword">return</span> week[k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/20/1235-Maximum-Profit-in-Job-Scheduling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/20/1235-Maximum-Profit-in-Job-Scheduling/" itemprop="url">1235. Maximum Profit in Job Scheduling</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-20T18:11:00+08:00">2019-10-20</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-06T09:22:01+08:00">2019-11-06</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/maximum-profit-in-job-scheduling/" target="_blank" rel="noopener">1235. Maximum Profit in Job Scheduling</a></h1>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>We have <code>n</code> jobs, where every job is scheduled to be done from <code>startTime[i]</code> to <code>endTime[i]</code>, obtaining a profit of <code>profit[i]</code>.</p>
+<p>You’re given the <code>startTime</code> , <code>endTime</code> and <code>profit</code> arrays, you need to output the maximum profit you can take such that there are no 2 jobs in the subset with overlapping time range.</p>
+<p>If you choose a job that ends at time <code>X</code> you will be able to start another job that starts at time <code>X</code>.</p>
+<p><strong>Example 1:</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2019/10/10/sample1_1584.png" alt></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: startTime = [1,2,3,3], endTime = [3,4,5,6], profit = [50,10,40,70]</span><br><span class="line">Output: 120</span><br><span class="line">Explanation: The subset chosen is the first and fourth job. </span><br><span class="line">Time range [1-3]+[3-6] , we get profit of 120 = 50 + 70.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2019/10/10/sample22_1584.png" alt></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: startTime = [1,2,3,4,6], endTime = [3,5,10,6,9], profit = [20,20,100,70,60]</span><br><span class="line">Output: 150</span><br><span class="line">Explanation: The subset chosen is the first, fourth and fifth job. </span><br><span class="line">Profit obtained 150 = 20 + 70 + 60.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<p><strong><img src="https://assets.leetcode.com/uploads/2019/10/10/sample3_1584.png" alt></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: startTime = [1,1,1], endTime = [2,3,4], profit = [5,6,4]</span><br><span class="line">Output: 6</span><br></pre></td></tr></table></figure>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= startTime.length == endTime.length == profit.length &lt;= 5 * 10^4</code></li>
+<li><code>1 &lt;= startTime[i] &lt; endTime[i] &lt;= 10^9</code></li>
+<li><code>1 &lt;= profit[i] &lt;= 10^4</code></li>
+</ul>
+<h1>解法</h1>
+<h2 id="动态规划-排序endtime"><a class="header-anchor" href="#动态规划-排序endtime">¶</a>动态规划（排序endTime）</h2>
+<h3 id="动态规划1"><a class="header-anchor" href="#动态规划1">¶</a>动态规划1</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; v;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; startTime.size(); i++)&#123;</span><br><span class="line">            v.push_back(&#123;startTime[i], endTime[i], profit[i]&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(v.begin(), v.end(), [](<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v1, <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v2)&#123;</span><br><span class="line">            <span class="keyword">return</span> v1[<span class="number">1</span>] &lt; v2[<span class="number">1</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; tmp;</span><br><span class="line">        <span class="keyword">int</span> res = INT_MIN;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">auto</span> it = upper_bound(tmp.begin(), tmp.end(), make_pair(v[i][<span class="number">0</span>], INT_MAX));</span><br><span class="line">            <span class="keyword">if</span>(it == tmp.begin())&#123;</span><br><span class="line">                <span class="keyword">int</span> profit = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span>(tmp.size() == <span class="number">0</span>)&#123;</span><br><span class="line">                    profit = v[i][<span class="number">2</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    profit = max(v[i][<span class="number">2</span>], tmp[tmp.size() - <span class="number">1</span>].second);</span><br><span class="line">                &#125;</span><br><span class="line">                tmp.push_back(make_pair(v[i][<span class="number">1</span>], profit));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;  </span><br><span class="line">                it--;</span><br><span class="line">                tmp.push_back(make_pair(v[i][<span class="number">1</span>], max(it-&gt;second + v[i][<span class="number">2</span>], tmp[tmp.size() - <span class="number">1</span>].second)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tmp[tmp.size() - <span class="number">1</span>].second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="动态规划2"><a class="header-anchor" href="#动态规划2">¶</a>动态规划2</h3>
+<p>  注意tuple的用法，还有tie解包tuple</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;tuple&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; jobs;</span><br><span class="line">        <span class="keyword">int</span> n = profit.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) jobs.emplace_back(endTime[i], startTime[i], profit[i]);</span><br><span class="line">        sort(jobs.begin(), jobs.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n, <span class="number">0</span>);</span><br><span class="line">        dp[<span class="number">0</span>] = get&lt;<span class="number">2</span>&gt;(jobs[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ends;</span><br><span class="line">        ends.push_back(get&lt;<span class="number">0</span>&gt;(jobs[<span class="number">0</span>]));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> e, s, p;</span><br><span class="line">            tie(e, s, p) = jobs[i];</span><br><span class="line">            <span class="keyword">int</span> idx = upper_bound(ends.begin(), ends.end(), s) - ends.begin();</span><br><span class="line">            <span class="keyword">if</span> (idx - <span class="number">1</span> &gt;= <span class="number">0</span>) p += dp[idx - <span class="number">1</span>];</span><br><span class="line">            dp[i] = max(dp[i - <span class="number">1</span>], p);</span><br><span class="line">            ends.push_back(e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="动态规划3"><a class="header-anchor" href="#动态规划3">¶</a>动态规划3</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">job</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> start, end, profit;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> job &amp;other) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> end &lt; other.end;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; times;</span><br><span class="line">        times.push_back(<span class="number">-1e9</span>);<span class="comment">//方便处理边界情况</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> time : endTime)</span><br><span class="line">            times.push_back(time);</span><br><span class="line"></span><br><span class="line">        sort(times.begin(), times.end());</span><br><span class="line">        times.resize(unique(times.begin(), times.end()) - times.begin());</span><br><span class="line">        <span class="keyword">int</span> T = times.size();</span><br><span class="line">        <span class="keyword">int</span> N = startTime.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;job&gt; jobs;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">            jobs.push_back(&#123;startTime[i], endTime[i], profit[i]&#125;);</span><br><span class="line"></span><br><span class="line">        sort(jobs.begin(), jobs.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; dp(T, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (job jb : jobs) &#123;</span><br><span class="line">            <span class="keyword">int</span> start = jb.start;</span><br><span class="line">            <span class="keyword">int</span> end = jb.end;</span><br><span class="line"></span><br><span class="line">            start = upper_bound(times.begin(), times.end(), start) - times.begin() - <span class="number">1</span>;</span><br><span class="line">            end = lower_bound(times.begin(), times.end(), end) - times.begin();</span><br><span class="line"></span><br><span class="line">            dp[end] = max(dp[end], dp[start] + jb.profit);<span class="comment">//因为有end一样的任务，用dp[0]代表的是前方无任务是处理边界情况的巧妙之处</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (end &gt;= <span class="number">0</span>)</span><br><span class="line">                dp[end] = max(dp[end], dp[end - <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> *max_element(dp.begin(), dp.end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="利用树状数组维护最值"><a class="header-anchor" href="#利用树状数组维护最值">¶</a>利用树状数组维护最值</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Dwell</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> s, e, p;</span><br><span class="line">    Dwell(<span class="keyword">int</span> _s, <span class="keyword">int</span> _e, <span class="keyword">int</span> _p): s(_s), e(_e), p(_p) &#123;&#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt; (<span class="keyword">const</span> Dwell&amp; that) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> e &lt; that.e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> tree[<span class="number">100010</span>];</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x &amp; (-x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (x) &#123;</span><br><span class="line">            ret = max(ret, tree[x]);</span><br><span class="line">            x -= lowbit(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> n, <span class="keyword">int</span> dt)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (x &lt;= n) &#123;</span><br><span class="line">            tree[x] = max(tree[x], dt);</span><br><span class="line">            x += lowbit(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = startTime.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            dis.push_back(startTime[i]);</span><br><span class="line">            dis.push_back(endTime[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(dis.begin(), dis.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;Dwell&gt; v;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            startTime[i] = lower_bound(dis.begin(), dis.end(), startTime[i]) - dis.begin() + <span class="number">1</span>;</span><br><span class="line">            endTime[i] = lower_bound(dis.begin(), dis.end(), endTime[i]) - dis.begin() + <span class="number">1</span>;</span><br><span class="line">            v.emplace_back(startTime[i], endTime[i], profit[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(v.begin(), v.end());</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">memset</span>(tree, <span class="number">0</span>, <span class="keyword">sizeof</span>(tree));</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> q = query(v[i].s);</span><br><span class="line">            ans = max(ans, q + v[i].p);</span><br><span class="line">            update(v[i].e, n * <span class="number">2</span>, q + v[i].p);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="动态规划-排序starttime"><a class="header-anchor" href="#动态规划-排序starttime">¶</a>动态规划（排序startTime）</h2>
+<h3 id="优先级队列"><a class="header-anchor" href="#优先级队列">¶</a>优先级队列</h3>
+<p>  动态规划是排序endTime来求，这个解法是排序startTime来求，比较难懂。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; e, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; p)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, <span class="keyword">int</span>&gt;&gt; v;</span><br><span class="line">        <span class="keyword">int</span> n = s.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) v.emplace_back(make_pair(s[i], e[i]), p[i]);</span><br><span class="line">        sort(v.begin(), v.end());</span><br><span class="line">        v.emplace_back(make_pair(INT_MAX, INT_MAX), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> best = <span class="number">0</span>;<span class="comment">//到当前start为止的最大收益</span></span><br><span class="line">        priority_queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;,<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;, greater&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; i : v) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!q.empty() &amp;&amp; q.top().first&lt;=i.first.first) &#123;<span class="comment">//综合i.first.first之前的候选最大收益算出i.first.first时刻的最大收益</span></span><br><span class="line">                best = max(best, q.top().second);</span><br><span class="line">                q.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            q.emplace(i.first.second, best + i.second);<span class="comment">//best+i.second是i.first.second时刻的候选最大收益</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> best;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="利用map自动按key排序的特性"><a class="header-anchor" href="#利用map自动按key排序的特性">¶</a>利用map自动按key排序的特性</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">signed</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> _P</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _P(...) (void)printf(__VA_ARGS__)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FOR(x,to) for(x=0;x&lt;(to);x++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FORR(x,arr) for(auto&amp; x:arr)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ITR(x,c) for(__typeof(c.begin()) x=c.begin();x!=c.end();x++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ALL(a) (a.begin()),(a.end())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ZERO(a) memset(a,0,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MINUS(a) memset(a,0xff,sizeof(a))</span></span><br><span class="line"><span class="comment">//-------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; V;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        FOR(i,startTime.size()) V.push_back(&#123;startTime[i],endTime[i],profit[i]&#125;);</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>,ll&gt; M;</span><br><span class="line">        ll ma=<span class="number">0</span>;</span><br><span class="line">        sort(ALL(V));</span><br><span class="line">        FORR(e,V) &#123;</span><br><span class="line">			<span class="keyword">while</span>(M.size() &amp;&amp; M.begin()-&gt;first&lt;=e[<span class="number">0</span>]) &#123;</span><br><span class="line">				ma=max(ma,M.begin()-&gt;second);</span><br><span class="line">				M.erase(M.begin());</span><br><span class="line">			&#125;</span><br><span class="line">			M[e[<span class="number">1</span>]]=max(M[e[<span class="number">1</span>]],ma+e[<span class="number">2</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">        FORR(m,M) ma=max(ma,m.second);</span><br><span class="line">        <span class="keyword">return</span> ma;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1>总结</h1>
+<p>  从这道题中学到了离散化，动态规划，树状数组，优先级队列，tuple的使用，map的按key排序的性质，emplace函数的用法。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/20/1234-Replace-the-Substring-for-Balanced-String/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1615,347 +1975,6 @@ A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do 
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/12/1169-Invalid-Transactions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/12/1169-Invalid-Transactions/" itemprop="url">1169. Invalid Transactions</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-12T19:03:00+08:00">2019-10-12</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-12T19:06:19+08:00">2019-10-12</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1><a href="https://leetcode.com/problems/invalid-transactions/" target="_blank" rel="noopener">1169. Invalid Transactions</a></h1>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>A transaction is <em>possibly invalid</em> if:</p>
-<ul>
-<li>the amount exceeds $1000, or;</li>
-<li>if it occurs within (and including) 60 minutes of another transaction with the same name in a different city.</li>
-</ul>
-<p>Each transaction string <code>transactions[i]</code> consists of comma separated values representing the name, time (in minutes), amount, and city of the transaction.</p>
-<p>Given a list of <code>transactions</code>, return a list of transactions that are possibly invalid.  You may return the answer in any order.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: transactions = [&quot;alice,20,800,mtv&quot;,&quot;alice,50,100,beijing&quot;]</span><br><span class="line">Output: [&quot;alice,20,800,mtv&quot;,&quot;alice,50,100,beijing&quot;]</span><br><span class="line">Explanation: The first transaction is invalid because the second transaction occurs within a difference of 60 minutes, have the same name and is in a different city. Similarly the second one is invalid too.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: transactions = [&quot;alice,20,800,mtv&quot;,&quot;alice,50,1200,mtv&quot;]</span><br><span class="line">Output: [&quot;alice,50,1200,mtv&quot;]</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: transactions = [&quot;alice,20,800,mtv&quot;,&quot;bob,50,1200,mtv&quot;]</span><br><span class="line">Output: [&quot;bob,50,1200,mtv&quot;]</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>transactions.length &lt;= 1000</code></li>
-<li>Each <code>transactions[i]</code> takes the form <code>&quot;{name},{time},{amount},{city}&quot;</code></li>
-<li>Each <code>{name}</code> and <code>{city}</code> consist of lowercase English letters, and have lengths between <code>1</code> and <code>10</code>.</li>
-<li>Each <code>{time}</code> consist of digits, and represent an integer between <code>0</code> and <code>1000</code>.</li>
-<li>Each <code>{amount}</code> consist of digits, and represent an integer between <code>0</code> and <code>2000</code>.</li>
-</ul>
-<h1>题解</h1>
-<h2 id="我的解法-100-ms"><a class="header-anchor" href="#我的解法-100-ms">¶</a>我的解法(100+ms)</h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> _ = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">toInt</span><span class="params">(<span class="built_in">string</span> &amp;s)</span></span>&#123;</span><br><span class="line">    <span class="built_in">stringstream</span> ss;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    ss &lt;&lt; s;</span><br><span class="line">    ss &gt;&gt; i;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; toVector(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)&#123;</span><br><span class="line">    <span class="keyword">int</span> prev = <span class="number">0</span>, cur = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v;</span><br><span class="line">    cur = s.find_first_of(<span class="string">","</span>, prev);</span><br><span class="line">    v.push_back(s.substr(prev, cur-prev));</span><br><span class="line">    prev = cur + <span class="number">1</span>;</span><br><span class="line">    cur = s.find_first_of(<span class="string">","</span>, prev);</span><br><span class="line">    v.push_back(s.substr(prev, cur-prev));</span><br><span class="line">    prev = cur + <span class="number">1</span>;</span><br><span class="line">    cur = s.find_first_of(<span class="string">","</span>, prev);</span><br><span class="line">    v.push_back(s.substr(prev, cur-prev));</span><br><span class="line">    prev = cur + <span class="number">1</span>;</span><br><span class="line">    v.push_back(s.substr(prev));</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; invalidTransactions(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; t) &#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; &gt; m;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> s : t)&#123;</span><br><span class="line">            <span class="keyword">int</span> prev = <span class="number">0</span>, cur = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">string</span> name; </span><br><span class="line">            cur = s.find_first_of(<span class="string">","</span>, prev);</span><br><span class="line">            name = s.substr(prev, cur-prev);</span><br><span class="line">            <span class="keyword">if</span>(m.find(name) == m.end())</span><br><span class="line">                m[name] = <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">            m[name].push_back(s);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i = m.begin(); i != m.end(); i++)&#123;</span><br><span class="line">            <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; tmp;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> j = i-&gt;second.begin(); j != i-&gt;second.end(); j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(tmp.find(*j) != tmp.end())</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v = toVector(*j);</span><br><span class="line">                <span class="keyword">if</span>(toInt(v[<span class="number">2</span>]) &gt; <span class="number">1000</span>)&#123;</span><br><span class="line">                    res.push_back(*j);</span><br><span class="line">                    tmp.insert(*j);</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">auto</span> k = i-&gt;second.begin(); k != i-&gt;second.end(); k++)&#123;</span><br><span class="line">                    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; w = toVector(*k);</span><br><span class="line">                    <span class="keyword">if</span>(w[<span class="number">0</span>] == v[<span class="number">0</span>] &amp;&amp; w[<span class="number">3</span>] != v[<span class="number">3</span>] &amp;&amp; <span class="built_in">abs</span>(toInt(w[<span class="number">1</span>]) - toInt(v[<span class="number">1</span>])) &lt;= <span class="number">60</span>)&#123;</span><br><span class="line">                        res.push_back(*j);</span><br><span class="line">                        tmp.insert(*j);</span><br><span class="line">                        <span class="keyword">if</span>(tmp.find(*k) == tmp.end())&#123;</span><br><span class="line">                            res.push_back(*k);</span><br><span class="line">                            tmp.insert(*k);      </span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="优化后的解法-20ms"><a class="header-anchor" href="#优化后的解法-20ms">¶</a>优化后的解法(20ms)</h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">            <span class="keyword">while</span> (t[i][j] != <span class="string">','</span>) min = min*<span class="number">10</span> + t[i][j++] - <span class="string">'0'</span>; ++j;</span><br><span class="line">            <span class="keyword">while</span> (t[i][j] != <span class="string">','</span>) amnt = amnt*<span class="number">10</span> + t[i][j++] - <span class="string">'0'</span>; ++j;</span><br><span class="line">            <span class="keyword">while</span> (j &lt; t[i].size()) city += t[i][j++];</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; name &lt;&lt; min &lt;&lt; amnt &lt;&lt;city &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            trans.push_back(Transaction(name, min, amnt, city));</span><br><span class="line">            m[trans[i].name].push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i = m.begin(); i != m.end(); i++)&#123;</span><br><span class="line">            <span class="comment">// unordered_set&lt;int&gt; tmp;</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> j : i-&gt;second)&#123;</span><br><span class="line">                <span class="comment">// if(tmp.find(j) != tmp.end())</span></span><br><span class="line">                <span class="comment">//     continue;</span></span><br><span class="line">                Transaction v = trans[j];</span><br><span class="line">                <span class="keyword">if</span>(v.amount &gt; <span class="number">1000</span>)&#123;</span><br><span class="line">                    res.push_back(t[j]);</span><br><span class="line">                    <span class="comment">// tmp.insert(j);</span></span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">auto</span> k : i-&gt;second)&#123;</span><br><span class="line">                    Transaction w = trans[k];</span><br><span class="line">                    <span class="keyword">if</span>(w.name == v.name &amp;&amp; w.city != v.city &amp;&amp; <span class="built_in">abs</span>(w.min - v.min) &lt;= <span class="number">60</span>)&#123;</span><br><span class="line">                        res.push_back(t[j]);</span><br><span class="line">                        <span class="comment">// tmp.insert(j);</span></span><br><span class="line">                        <span class="comment">// if(tmp.find(k) == tmp.end())&#123;</span></span><br><span class="line">                        <span class="comment">//     res.push_back(t[k]);</span></span><br><span class="line">                        <span class="comment">//     tmp.insert(k);      </span></span><br><span class="line">                        <span class="comment">// &#125;</span></span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1>总结</h1>
-<p>  这个题我的感受是一些简单操作能用C语言，就不要用STL，这样会大大提升程序运行速度，由上面的两个解法的对比就可看出。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/12/381-Insert-Delete-GetRandom-O-1-Duplicates-allowed/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/12/381-Insert-Delete-GetRandom-O-1-Duplicates-allowed/" itemprop="url">381. Insert Delete GetRandom O(1) - Duplicates allowed</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-12T14:40:00+08:00">2019-10-12</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-12T14:41:32+08:00">2019-10-12</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1><a href="https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/" target="_blank" rel="noopener">381. Insert Delete GetRandom O(1) - Duplicates allowed</a></h1>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Design a data structure that supports all following operations in <em>average</em> <strong>O(1)</strong> time.</p>
-<p><strong>Note: Duplicate elements are allowed.</strong></p>
-<ol>
-<li><code>insert(val)</code>: Inserts an item val to the collection.</li>
-<li><code>remove(val)</code>: Removes an item val from the collection if present.</li>
-<li><code>getRandom</code>: Returns a random element from current collection of elements. The probability of each element being returned is <strong>linearly related</strong> to the number of same value the collection contains.</li>
-</ol>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// Init an empty collection.</span><br><span class="line">RandomizedCollection collection = new RandomizedCollection();</span><br><span class="line"></span><br><span class="line">// Inserts 1 to the collection. Returns true as the collection did not contain 1.</span><br><span class="line">collection.insert(1);</span><br><span class="line"></span><br><span class="line">// Inserts another 1 to the collection. Returns false as the collection contained 1\. Collection now contains [1,1].</span><br><span class="line">collection.insert(1);</span><br><span class="line"></span><br><span class="line">// Inserts 2 to the collection, returns true. Collection now contains [1,1,2].</span><br><span class="line">collection.insert(2);</span><br><span class="line"></span><br><span class="line">// getRandom should return 1 with the probability 2/3, and returns 2 with the probability 1/3.</span><br><span class="line">collection.getRandom();</span><br><span class="line"></span><br><span class="line">// Removes 1 from the collection, returns true. Collection now contains [1,2].</span><br><span class="line">collection.remove(1);</span><br><span class="line"></span><br><span class="line">// getRandom should return 1 and 2 both equally likely.</span><br><span class="line">collection.getRandom();</span><br></pre></td></tr></table></figure>
-<h1>解法</h1>
-<p>用一个hash表存放每个值对应的下标的set，用一个数组存放具体的值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> _ = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;(); </span><br><span class="line">​</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RandomizedCollection</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; &gt; m;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    RandomizedCollection() &#123;</span><br><span class="line">        m = <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; &gt;();</span><br><span class="line">        v = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(m.find(val) == m.end())</span><br><span class="line">            m[val] = <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        m[val].insert(v.size());</span><br><span class="line">        v.push_back(val);</span><br><span class="line">        <span class="keyword">return</span> m[val].size() == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes a value from the collection. Returns true if the collection contained the specified element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(m.find(val) == m.end() || m[val].size() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> b = *m[val].begin();</span><br><span class="line">            m[val].erase(b);</span><br><span class="line">            v[b] = v[v.size() - <span class="number">1</span>];</span><br><span class="line">            m[v[v.size() - <span class="number">1</span>]].insert(b);</span><br><span class="line">            m[v[v.size() - <span class="number">1</span>]].erase(v.size() - <span class="number">1</span>);</span><br><span class="line">            v.pop_back();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get a random element from the collection. */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getRandom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> v[random() % v.size()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">​</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your RandomizedCollection object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * RandomizedCollection* obj = new RandomizedCollection();</span></span><br><span class="line"><span class="comment"> * bool param_1 = obj-&gt;insert(val);</span></span><br><span class="line"><span class="comment"> * bool param_2 = obj-&gt;remove(val);</span></span><br><span class="line"><span class="comment"> * int param_3 = obj-&gt;getRandom();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2006,7 +2025,7 @@ A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do 
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">148</span>
+                  <span class="site-state-item-count">150</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2017,7 +2036,7 @@ A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do 
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2028,7 +2047,7 @@ A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do 
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

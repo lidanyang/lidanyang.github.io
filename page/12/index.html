@@ -248,6 +248,361 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/151-Reverse-Words-in-a-String/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/25/151-Reverse-Words-in-a-String/" itemprop="url">151. Reverse Words in a String</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-25T23:11:00+08:00">2019-06-25</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T23:16:43+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank" rel="noopener">151. Reverse Words in a String</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given an input string, reverse the string word by word.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;the sky is blue&quot;</span><br><span class="line">Output: &quot;blue is sky the&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;  hello world!  &quot;</span><br><span class="line">Output: &quot;world! hello&quot;</span><br><span class="line">Explanation: Your reversed string should not contain leading or trailing spaces.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;a good   example&quot;</span><br><span class="line">Output: &quot;example good a&quot;</span><br><span class="line">Explanation: You need to reduce multiple spaces between two words to a single space in the reversed string.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>A word is defined as a sequence of non-space characters.</li>
+<li>Input string may contain leading or trailing spaces. However, your reversed string should not contain leading or trailing spaces.</li>
+<li>You need to reduce multiple spaces between two words to a single space in the reversed string.</li>
+</ul>
+<p><strong>Follow up:</strong></p>
+<p>For C programmers, try to solve it <em>in-place</em> in <em>O</em>(1) extra space.</p>
+<h1>解法</h1>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">char</span>* p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> L = p - s;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; L/<span class="number">2</span>; i++)&#123;</span><br><span class="line">        s[i] ^= s[L - i - <span class="number">1</span>];</span><br><span class="line">        s[L - i - <span class="number">1</span>] ^= s[i];</span><br><span class="line">        s[i] ^= s[L - i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">reverseWords</span><span class="params">(<span class="keyword">char</span> * s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> L = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> k;</span><br><span class="line">    <span class="keyword">char</span> *p;</span><br><span class="line">    </span><br><span class="line">    reverse(s, s+L);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(s[i] != <span class="string">'\0'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(s[i] == <span class="string">' '</span> &amp;&amp; s[i] != <span class="string">'\0'</span>) i++;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        k = j;   </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(s[i] != <span class="string">' '</span> &amp;&amp; s[i] != <span class="string">'\0'</span>) s[j++] = s[i++];</span><br><span class="line">        </span><br><span class="line">        reverse(s + k, s + j);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(s[i] == <span class="string">'\0'</span> || j == k)&#123;</span><br><span class="line">            s[(j == k &amp;&amp; s[i] == <span class="string">'\0'</span> &amp;&amp; j &gt; <span class="number">0</span>) ? j - <span class="number">1</span> : j] = <span class="string">'\0'</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        s[j++] = <span class="string">' '</span>;  </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">reverseWords</span><span class="params">(<span class="keyword">char</span> * s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (s[j] == <span class="string">' '</span>) &#123;j++;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (s[j] != <span class="string">'\0'</span>) &#123;</span><br><span class="line">        s[i++] = s[j++];</span><br><span class="line">        <span class="keyword">if</span> (s[j] == <span class="string">' '</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span> (s[++j] == <span class="string">' '</span>) &#123;&#125;</span><br><span class="line">            <span class="keyword">if</span> (s[j] != <span class="string">'\0'</span>) &#123;</span><br><span class="line">                s[i++] = <span class="string">' '</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    s[i] = <span class="string">'\0'</span>;    </span><br><span class="line">    <span class="comment">// int l = i;</span></span><br><span class="line">    <span class="keyword">char</span> temp;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; i/<span class="number">2</span>; j++) &#123;</span><br><span class="line">        temp = s[j];</span><br><span class="line">        s[j] = s[i - j - <span class="number">1</span>];</span><br><span class="line">        s[i-j<span class="number">-1</span>] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// int start = 0;</span></span><br><span class="line">    <span class="keyword">int</span> end = <span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt;= i; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[j] == <span class="string">' '</span> || s[j] == <span class="string">'\0'</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> start = end + <span class="number">1</span>;</span><br><span class="line">            end = j;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = start; k &lt; start + (end - start) / <span class="number">2</span>; k++) &#123;</span><br><span class="line">                temp = s[k];</span><br><span class="line">                s[k] = s[end - k + start - <span class="number">1</span>];</span><br><span class="line">                s[end - k + start - <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>扩展</h1>
+<p>  把189题和上面的题放一起，因为他们都用了<strong>翻转字符串</strong>的方式来平移字符串中的子串。</p>
+<h3 id="题目描述"><a class="header-anchor" href="#题目描述">¶</a>题目描述</h3>
+<p><a href="https://leetcode.com/problems/rotate-array/" target="_blank" rel="noopener">189. Rotate Array</a></p>
+<p>Difficulty: <strong>Easy</strong></p>
+<p>Given an array, rotate the array to the right by <em>k</em> steps, where <em>k</em> is non-negative.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,4,5,6,7] and k = 3</span><br><span class="line">Output: [5,6,7,1,2,3,4]</span><br><span class="line">Explanation:</span><br><span class="line">rotate 1 steps to the right: [7,1,2,3,4,5,6]</span><br><span class="line">rotate 2 steps to the right: [6,7,1,2,3,4,5]</span><br><span class="line">rotate 3 steps to the right: [5,6,7,1,2,3,4]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: [-1,-100,3,99] and k = 2</span><br><span class="line">Output: [3,99,-1,-100]</span><br><span class="line">Explanation: </span><br><span class="line">rotate 1 steps to the right: [99,-1,-100,3]</span><br><span class="line">rotate 2 steps to the right: [3,99,-1,-100]</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.</li>
+<li>Could you do it in-place with O(1) extra space?</li>
+</ul>
+<h3 id="解法"><a class="header-anchor" href="#解法">¶</a>解法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    k = k % numsSize;</span><br><span class="line">    <span class="keyword">int</span> *temp = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*k);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++)&#123;</span><br><span class="line">        temp[k - <span class="number">1</span> - i] = nums[numsSize - <span class="number">1</span> - i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = numsSize - <span class="number">1</span> - k, j = numsSize - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--, j--)&#123;</span><br><span class="line">        nums[j] = nums[i];</span><br><span class="line">        <span class="comment">// printf("%d ", nums[i]);</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++)&#123;</span><br><span class="line">        nums[i] = temp[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/leetcode-刷题日常-146-LRU-Cache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/25/leetcode-刷题日常-146-LRU-Cache/" itemprop="url">146. LRU Cache(Todo)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-25T20:04:00+08:00">2019-06-25</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T23:17:02+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/lru-cache/" target="_blank" rel="noopener">146. LRU Cache</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Design and implement a data structure for . It should support the following operations: <code>get</code> and <code>put</code>.</p>
+<p><code>get(key)</code> - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br>
+<code>put(key, value)</code> - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.</p>
+<p>The cache is initialized with a <strong>positive</strong> capacity.</p>
+<p><strong>Follow up:</strong><br>
+Could you do both operations in <strong>O(1)</strong> time complexity?</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">LRUCache cache = new LRUCache( 2 /* capacity */ );</span><br><span class="line"></span><br><span class="line">cache.put(1, 1);</span><br><span class="line">cache.put(2, 2);</span><br><span class="line">cache.get(1);       // returns 1</span><br><span class="line">cache.put(3, 3);    // evicts key 2</span><br><span class="line">cache.get(2);       // returns -1 (not found)</span><br><span class="line">cache.put(4, 4);    // evicts key 1</span><br><span class="line">cache.get(1);       // returns -1 (not found)</span><br><span class="line">cache.get(3);       // returns 3</span><br><span class="line">cache.get(4);       // returns 4</span><br></pre></td></tr></table></figure>
+<h1>解法</h1>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<p>  法一是我自己写的复杂的解法。基本思路是维护一个双向链表以及链表头尾指针，链表节点存放（key，value）键值对，然后用字典保存key到链表节点的映射，以方便能用key快速取得链表节点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, k, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.key = k</span><br><span class="line">        self.next = <span class="literal">None</span></span><br><span class="line">        self.prev = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printcache</span><span class="params">(self)</span>:</span></span><br><span class="line">        head = self.head</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            print(head.key, head.val,end=<span class="string">" "</span>)</span><br><span class="line">            head = head.next</span><br><span class="line">        print(<span class="string">"\n"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, capacity: int)</span>:</span></span><br><span class="line">        self.dic = &#123;&#125;</span><br><span class="line">        self.head = <span class="literal">None</span></span><br><span class="line">        self.tail = <span class="literal">None</span></span><br><span class="line">        self.cap = capacity</span><br><span class="line">        self.size = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, key: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.dic:</span><br><span class="line">            <span class="keyword">if</span> self.head != self.dic[key] <span class="keyword">and</span> self.tail != self.dic[key]:</span><br><span class="line">                N = self.dic[key]</span><br><span class="line">                prevN, nextN =  N.prev, N.next</span><br><span class="line">                <span class="keyword">if</span> prevN:</span><br><span class="line">                    prevN.next = nextN</span><br><span class="line">                <span class="keyword">if</span> nextN:</span><br><span class="line">                    nextN.prev = prevN</span><br><span class="line">                N.next = self.head</span><br><span class="line">                N.prev = <span class="literal">None</span></span><br><span class="line">                self.head.prev = N</span><br><span class="line">                self.head = N</span><br><span class="line">            <span class="keyword">elif</span> self.dic[key] != self.head <span class="keyword">and</span> self.tail == self.dic[key]:</span><br><span class="line">                oldtail = self.tail</span><br><span class="line">                newtail = self.tail.prev</span><br><span class="line">                self.head.prev = oldtail</span><br><span class="line">                oldtail.next = self.head</span><br><span class="line">                oldtail.prev = <span class="literal">None</span></span><br><span class="line">                self.head = oldtail</span><br><span class="line">                newtail.next = <span class="literal">None</span></span><br><span class="line">                self.tail = newtail                </span><br><span class="line">            <span class="keyword">return</span> self.dic[key].val</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span><span class="params">(self, key: int, value: int)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.dic:</span><br><span class="line">            self.dic[key] = ListNode(key, value)</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span> &lt; self.size &lt; self.cap:                </span><br><span class="line">                self.dic[key].next, self.head.prev, self.head = self.head, self.dic[key], self.dic[key]</span><br><span class="line">                self.size += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> self.size == <span class="number">0</span>:</span><br><span class="line">                self.head = self.tail = self.dic[key]</span><br><span class="line">                self.size += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> self.size == self.cap:</span><br><span class="line">                self.dic.pop(self.tail.key)</span><br><span class="line">                self.head.prev, self.dic[key].next, self.head = self.dic[key], self.head, self.dic[key]</span><br><span class="line">                self.tail.next, self.tail.prev, self.tail = <span class="literal">None</span>, <span class="literal">None</span>, self.tail.prev  </span><br><span class="line">                self.tail.next = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.dic[key].val = value</span><br><span class="line">            <span class="keyword">if</span> self.dic[key] != self.head <span class="keyword">and</span> self.dic[key] != self.tail:</span><br><span class="line">                </span><br><span class="line">                N = self.dic[key]</span><br><span class="line">                prevN, nextN =  self.dic[key].prev, self.dic[key].next</span><br><span class="line">                <span class="keyword">if</span> prevN:</span><br><span class="line">                    prevN.next = nextN</span><br><span class="line">                <span class="keyword">if</span> nextN:</span><br><span class="line">                    nextN.prev = prevN</span><br><span class="line">                N.next = self.head</span><br><span class="line">                N.prev = <span class="literal">None</span></span><br><span class="line">                self.head.prev = N</span><br><span class="line">                self.head = N</span><br><span class="line">            <span class="keyword">elif</span> self.dic[key] != self.head <span class="keyword">and</span> self.tail == self.dic[key]:</span><br><span class="line"></span><br><span class="line">                oldtail = self.tail</span><br><span class="line">                newtail = self.tail.prev</span><br><span class="line">                self.head.prev = oldtail</span><br><span class="line">                oldtail.next = self.head</span><br><span class="line">                oldtail.prev = <span class="literal">None</span></span><br><span class="line">                self.head = oldtail</span><br><span class="line">                newtail.next = <span class="literal">None</span></span><br><span class="line">                self.tail = newtail</span><br><span class="line"></span><br><span class="line"><span class="comment"># Your LRUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = LRUCache(capacity)</span></span><br><span class="line"><span class="comment"># param_1 = obj.get(key)</span></span><br><span class="line"><span class="comment"># obj.put(key,value)</span></span><br></pre></td></tr></table></figure>
+<h1>法二</h1>
+<p>  法二依然是我自己的做法，只不过比法一可读性强一点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, k, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.key = k</span><br><span class="line">        self.next = <span class="literal">None</span></span><br><span class="line">        self.prev = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteNode</span><span class="params">(self, node)</span>:</span>       </span><br><span class="line">        <span class="keyword">if</span> self.size == <span class="number">1</span>:</span><br><span class="line">            self.head = self.tail = <span class="literal">None</span></span><br><span class="line">            self.size = <span class="number">0</span></span><br><span class="line">            <span class="keyword">return</span>        </span><br><span class="line">        <span class="keyword">if</span> node == self.head:</span><br><span class="line">            self.head = self.head.next</span><br><span class="line">            self.head.prev = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">elif</span> node == self.tail:</span><br><span class="line">            self.tail = self.tail.prev</span><br><span class="line">            self.tail.next = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            node.prev.next, node.next.prev = node.next, node.prev</span><br><span class="line">        self.size -= <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertNode</span><span class="params">(self, node)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.head:</span><br><span class="line">            self.head = self.tail = node</span><br><span class="line">            self.size += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.head.prev, node.next, self.head = node, self.head, node</span><br><span class="line">            self.size += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, capacity: int)</span>:</span></span><br><span class="line">        self.dic = &#123;&#125;</span><br><span class="line">        self.head = <span class="literal">None</span></span><br><span class="line">        self.tail = <span class="literal">None</span></span><br><span class="line">        self.cap = capacity</span><br><span class="line">        self.size = <span class="number">0</span></span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, key: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.dic:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        <span class="keyword">elif</span> self.dic[key] != self.head:</span><br><span class="line">            self.deleteNode(self.dic[key])</span><br><span class="line">            self.insertNode(self.dic[key])</span><br><span class="line">        <span class="keyword">return</span> self.dic[key].val</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span><span class="params">(self, key: int, value: int)</span> -&gt; <span class="keyword">None</span>:</span>        </span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.dic:</span><br><span class="line">            self.dic[key].val = value</span><br><span class="line">            <span class="keyword">if</span> self.dic[key] != self.head:</span><br><span class="line">                self.deleteNode(self.dic[key])</span><br><span class="line">                self.insertNode(self.dic[key])</span><br><span class="line">        <span class="keyword">elif</span> self.size &lt; self.cap:</span><br><span class="line">            self.dic[key] = ListNode(key, value)</span><br><span class="line">            self.insertNode(self.dic[key])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.dic[key] = ListNode(key, value)</span><br><span class="line">            self.insertNode(self.dic[key])</span><br><span class="line">            self.dic.pop(self.tail.key)</span><br><span class="line">            self.deleteNode(self.tail)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/leetcode-刷题日常-168-Excel-Sheet-Column-Title/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1572,311 +1927,6 @@ With each iteration one element (red) is removed from the input data and inserte
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/leetcode-刷题日常-144-Binary-Tree-Preorder-Traversal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/21/leetcode-刷题日常-144-Binary-Tree-Preorder-Traversal/" itemprop="url">144. Binary Tree Preorder Traversal</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T21:38:00+08:00">2019-06-21</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:11:05+08:00">2019-06-25</time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/" target="_blank" rel="noopener">144. Binary Tree Preorder Traversal</a></p>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Given a binary tree, return the <em>preorder</em> traversal of its nodes’ values.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,null,2,3]</span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3</span><br><span class="line"></span><br><span class="line">Output: [1,2,3]</span><br></pre></td></tr></table></figure>
-<p><strong>Follow up:</strong> Recursive solution is trivial, could you do it iteratively?</p>
-<h1>解法</h1>
-<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># Definition for a binary tree node.</span><br><span class="line"># class TreeNode:</span><br><span class="line">#     def __init__(self, x):</span><br><span class="line">#         self.val = x</span><br><span class="line">#         self.left = None</span><br><span class="line">#         self.right = None</span><br><span class="line">​</span><br><span class="line">class Solution:</span><br><span class="line">    def preorderTraversal(self, root: TreeNode) -&gt; List[int]:</span><br><span class="line">        stack = []</span><br><span class="line">        res = []</span><br><span class="line">        if not root:</span><br><span class="line">            return []</span><br><span class="line">        stack.append(root)</span><br><span class="line">        while len(stack) != 0:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            res.append(node.val)</span><br><span class="line">            if node.right:</span><br><span class="line">                stack.append(node.right)</span><br><span class="line">            if node.left:</span><br><span class="line">                stack.append(node.left)</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
-<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">preorderTraversal</span><span class="params">(self, root: TreeNode)</span> -&gt; List[int]:</span></span><br><span class="line">        ans, st = [],[]</span><br><span class="line">        <span class="keyword">while</span> root <span class="keyword">or</span> st:</span><br><span class="line">            <span class="keyword">while</span> root:</span><br><span class="line">                ans.append(root.val)</span><br><span class="line">                st.append(root)</span><br><span class="line">                root = root.left</span><br><span class="line">            root = st[<span class="number">-1</span>].right</span><br><span class="line">            st.pop()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/leetcode-刷题日常-138-Copy-List-with-Random-Pointer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/21/leetcode-刷题日常-138-Copy-List-with-Random-Pointer/" itemprop="url">138. Copy List with Random Pointer</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T19:44:00+08:00">2019-06-21</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:11:13+08:00">2019-06-25</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">138. Copy List with Random Pointer</a></p>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
-<p>Return a of the list.</p>
-<p><strong>Example 1:</strong></p>
-<p><strong><img src="https://discuss.leetcode.com/uploads/files/1470150906153-2yxeznm.png" alt></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">&#123;&quot;$id&quot;:&quot;1&quot;,&quot;next&quot;:&#123;&quot;$id&quot;:&quot;2&quot;,&quot;next&quot;:null,&quot;random&quot;:&#123;&quot;$ref&quot;:&quot;2&quot;&#125;,&quot;val&quot;:2&#125;,&quot;random&quot;:&#123;&quot;$ref&quot;:&quot;2&quot;&#125;,&quot;val&quot;:1&#125;</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">Node 1&apos;s value is 1, both of its next and random pointer points to Node 2.</span><br><span class="line">Node 2&apos;s value is 2, its next pointer points to null and its random pointer points to itself.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li>You must return the <strong>copy of the given head</strong> as a reference to the cloned list.</li>
-</ol>
-<h1>解法</h1>
-<p>  此题和clone graph那道题一样用BFS/DFS+hashmap求解;</p>
-<h2 id="dfs"><a class="header-anchor" href="#dfs">¶</a>DFS</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copyRandomList</span><span class="params">(self, head: <span class="string">'Node'</span>)</span> -&gt; 'Node':</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(head)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            <span class="keyword">if</span> head <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">return</span> dic[head]                </span><br><span class="line">            new = Node(head.val, <span class="literal">None</span>, <span class="literal">None</span>)</span><br><span class="line">            dic[head] = new</span><br><span class="line">            new.next = DFS(head.next)</span><br><span class="line">            new.random = DFS(head.random)</span><br><span class="line">            <span class="keyword">return</span> new</span><br><span class="line">        <span class="keyword">return</span> DFS(head)</span><br></pre></td></tr></table></figure>
-<h2 id="bfs"><a class="header-anchor" href="#bfs">¶</a>BFS</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copyRandomList</span><span class="params">(self, head: <span class="string">'Node'</span>)</span> -&gt; 'Node':</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head: </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        q = deque([head])</span><br><span class="line">        new = Node(head.val, <span class="literal">None</span>, <span class="literal">None</span>)</span><br><span class="line">        dic[head] = new</span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            node = q.popleft()</span><br><span class="line">            <span class="keyword">if</span> node.next:</span><br><span class="line">                <span class="keyword">if</span> node.next <span class="keyword">not</span> <span class="keyword">in</span> dic:                    </span><br><span class="line">                    dic[node.next] = Node(node.next.val, <span class="literal">None</span>, <span class="literal">None</span>)</span><br><span class="line">                    q.append(node.next)</span><br><span class="line">                dic[node].next = dic[node.next]</span><br><span class="line">            <span class="keyword">if</span> node.random:</span><br><span class="line">                <span class="keyword">if</span> node.random <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">                    dic[node.random] = Node(node.random.val, <span class="literal">None</span>, <span class="literal">None</span>)</span><br><span class="line">                    q.append(node.random)</span><br><span class="line">                dic[node].random = dic[node.random]</span><br><span class="line">        <span class="keyword">return</span> dic[head]</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1927,7 +1977,7 @@ With each iteration one element (red) is removed from the input data and inserte
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">148</span>
+                  <span class="site-state-item-count">150</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1938,7 +1988,7 @@ With each iteration one element (red) is removed from the input data and inserte
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1949,7 +1999,7 @@ With each iteration one element (red) is removed from the input data and inserte
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

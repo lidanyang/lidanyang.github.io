@@ -248,6 +248,376 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/09/求素数的各种筛法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/09/求素数的各种筛法/" itemprop="url">求素数的各种筛法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T16:52:00+08:00">2019-11-09</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-15T15:54:51+08:00">2019-11-15</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/数论/" itemprop="url" rel="index">
+                    <span itemprop="name">数论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>Eratosthenes筛法</li>
+</ol>
+<p>  利用奇合数<code>2m+1=(2i+1)(2j+1)=2(i+j+2ji)+1</code>的性质，如果想找出不大于<code>limit</code>的所有素数，只需找出不大于<code>(limit-1)&gt;&gt;1</code>的所有形如<code>i+j+2ij</code>的数，剔除掉这些数后其他数对应的奇数即是奇质数。还有一种该筛法的缓存局部性优化版本叫<a href="https://www.geeksforgeeks.org/segmented-sieve/" target="_blank" rel="noopener">segmented sieve</a>，spoj上的<a href="https://github.com/cacophonix/SPOJ/blob/master/PRIME1.cpp" target="_blank" rel="noopener">第二题</a>也可以用该法求解。</p>
+<ol start="2">
+<li>Euler筛法</li>
+</ol>
+<p>  <a href="https://bruceking.site/2017/09/18/prime-sieves/" target="_blank" rel="noopener">这个博客里讲的挺清楚</a>，这个筛法也是对Eratosthenes筛法的一种改进，它保存已经求得的素数，每次只往前标记一小部分数，逐步向前推进，并且推进的过程中当前数只和比它的最小素因数还小的素数乘，通过对素因数的大小顺序进行限制保证了每个合数只会标记一次。还值得注意的是，这个算法是先更新素数列表，然后再对后面的合数进行标记的，否则会漏数。</p>
+<ol start="3">
+<li>Sundaram筛选法</li>
+</ol>
+<p>  利用奇合数<code>2m+1=(2i+1)(2j+1)=2(i+j+2ji)+1</code>的性质，如果想找出不大于<code>limit</code>的所有素数，只需找出不大于<code>(limit-1)&gt;&gt;1</code>的所有形如<code>i+j+2ij</code>的数，剔除掉这些数后其他数对应的奇数即是奇质数。</p>
+<ol start="4">
+<li>atkin筛法</li>
+</ol>
+<p>  <a href="https://bruceking.site/2017/09/18/prime-sieves/" target="_blank" rel="noopener">https://bruceking.site/2017/09/18/prime-sieves/</a></p>
+<ol start="5">
+<li>更多</li>
+</ol>
+<p>  关于求素数的方法实现代码，可以参考以下链接：</p>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/bitwise-sieve/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/bitwise-sieve/</a></li>
+<li><a href="https://bruceking.site/2017/09/18/prime-sieves/" target="_blank" rel="noopener">https://bruceking.site/2017/09/18/prime-sieves/</a></li>
+<li><a href="https://www.geeksforgeeks.org/segmented-sieve/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/segmented-sieve/</a></li>
+<li><a href="https://www.geeksforgeeks.org/sieve-of-atkin/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/sieve-of-atkin/</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/09/1249-Minimum-Remove-to-Make-Valid-Parentheses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/09/1249-Minimum-Remove-to-Make-Valid-Parentheses/" itemprop="url">1249. Minimum Remove to Make Valid Parentheses</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T15:04:00+08:00">2019-11-09</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-09T15:11:45+08:00">2019-11-09</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/" target="_blank" rel="noopener">1249. Minimum Remove to Make Valid Parentheses</a></h1>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a string <font face="monospace" style="display: inline;">s</font> of <code>'('</code> , <code>')'</code> and lowercase English characters.</p>
+<p>Your task is to remove the minimum number of parentheses ( <code>'('</code> or <code>')'</code>, in any positions ) so that the resulting <em>parentheses string</em> is valid and return <strong>any</strong> valid string.</p>
+<p>Formally, a <em>parentheses string</em> is valid if and only if:</p>
+<ul>
+<li>It is the empty string, contains only lowercase characters, or</li>
+<li>It can be written as <code>AB</code> (<code>A</code> concatenated with <code>B</code>), where <code>A</code> and <code>B</code> are valid strings, or</li>
+<li>It can be written as <code>(A)</code>, where <code>A</code> is a valid string.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;lee(t(c)o)de)&quot;</span><br><span class="line">Output: &quot;lee(t(c)o)de&quot;</span><br><span class="line">Explanation: &quot;lee(t(co)de)&quot; , &quot;lee(t(c)ode)&quot; would also be accepted.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;a)b(c)d&quot;</span><br><span class="line">Output: &quot;ab(c)d&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;))((&quot;</span><br><span class="line">Output: &quot;&quot;</span><br><span class="line">Explanation: An empty string is also valid.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;(a(b(c)d)&quot;</span><br><span class="line">Output: &quot;a(b(c)d)&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 10^5</code></li>
+<li><code>s[i]</code> is one of  <code>'('</code> , <code>')'</code> and lowercase English letters<code>.</code></li>
+</ul>
+<h1>解法</h1>
+<p>&amp;esmp; 这道题虽然简单，但是思路要清晰才能写对，否则总会这里那里出错。</p>
+<h2 id="法一-栈"><a class="header-anchor" href="#法一-栈">¶</a>法一(栈)</h2>
+<p>  利用栈记录有效括号的位置，然后根据这个位置还原字符串。</p>
+<h6 id="用栈匹配括号并记录下标"><a class="header-anchor" href="#用栈匹配括号并记录下标">¶</a>用栈匹配括号并记录下标</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="built_in">string</span> <span class="title">minRemoveToMakeValid</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; left;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; removed;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (s[i] == <span class="string">'('</span>) &#123;</span><br><span class="line">        left.push(i);</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[i] == <span class="string">')'</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!left.empty()) &#123;</span><br><span class="line">          left.pop();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          removed.emplace_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">​</span><br><span class="line">    <span class="keyword">while</span> (!left.empty()) &#123;</span><br><span class="line">      removed.emplace_back(left.top());</span><br><span class="line">      left.pop();</span><br><span class="line">    &#125;</span><br><span class="line">​</span><br><span class="line">    sort(removed.begin(), removed.end());</span><br><span class="line">    <span class="built_in">string</span> res;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; s.size(); i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (j &lt; removed.size() &amp;&amp; i == removed[j]) &#123;</span><br><span class="line">        j++;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        res.push_back(s[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">​</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">​</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> _ = []() &#123;</span><br><span class="line">  ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">  <span class="built_in">cin</span>.tie(<span class="literal">NULL</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<h6 id="标志位数组记录每个位置是否有效"><a class="header-anchor" href="#标志位数组记录每个位置是否有效">¶</a>标志位数组记录每个位置是否有效</h6>
+<p>  这个解法是我最喜欢的一个解法，也是我一上来就想到的做法，所以是很自然的解法，但是我却没有按照这样写-_-!!</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">minRemoveToMakeValid</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; opar;</span><br><span class="line">        <span class="keyword">bool</span> preserve[s.size()];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">bool</span> &amp;a:preserve) a = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'('</span>)</span><br><span class="line">                opar.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s[i] == <span class="string">')'</span>)</span><br><span class="line">                <span class="keyword">if</span> (opar.size() &gt; <span class="number">0</span>)</span><br><span class="line">                    opar.pop();</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                    preserve[i] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!opar.empty()) &#123;</span><br><span class="line">            preserve[opar.top()] = <span class="literal">false</span>;</span><br><span class="line">            opar.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (preserve[i])</span><br><span class="line">                res += s[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="法二-two-pass"><a class="header-anchor" href="#法二-two-pass">¶</a>法二(two pass)</h2>
+<p>  正着检查一遍，保证左括号一定不少于右括号的数量，然后再到着进行一遍，保证右括号一定不少于左括号的数量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">minRemoveToMakeValid</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l=<span class="number">0</span>,r=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">string</span> res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'('</span>) l++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">')'</span>) r++;</span><br><span class="line">            <span class="keyword">if</span>(r&gt;l)&#123;</span><br><span class="line">                r--;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            res.push_back(s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        l = <span class="number">0</span>, r = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">string</span>().swap(s);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = res.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(res[i] == <span class="string">'('</span>) l++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(res[i] == <span class="string">')'</span>) r++;</span><br><span class="line">            <span class="keyword">if</span>(l&gt;r)&#123;</span><br><span class="line">                l--;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            s.push_back(res[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        reverse(s.begin(), s.end());</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/507-Perfect-Number/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1540,387 +1910,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/05/376-Wiggle-Subsequence/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/05/376-Wiggle-Subsequence/" itemprop="url">376. Wiggle Subsequence</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-05T16:19:00+08:00">2019-11-05</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-05T20:55:06+08:00">2019-11-05</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1><a href="https://leetcode.com/problems/wiggle-subsequence/" target="_blank" rel="noopener">376. Wiggle Subsequence</a></h1>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>A sequence of numbers is called a <strong>wiggle sequence</strong> if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence.</p>
-<p>For example, <code>[1,7,4,9,2,5]</code> is a wiggle sequence because the differences <code>(6,-3,5,-7,3)</code> are alternately positive and negative. In contrast, <code>[1,4,7,2,5]</code> and <code>[1,7,4,5,5]</code> are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.</p>
-<p>Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,7,4,9,2,5]</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: The entire sequence is a wiggle sequence.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,17,5,10,13,15,10,5,16,8]</span><br><span class="line">Output: 7</span><br><span class="line">Explanation: There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,4,5,6,7,8,9]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
-<p><strong>Follow up:</strong><br>
-Can you do it in O(<em>n</em>) time?</p>
-<h1>解法</h1>
-<p>搬运一下leetcode上的solution。</p>
-<h2 id="法一-暴力"><a class="header-anchor" href="#法一-暴力">¶</a>法一(暴力)</h2>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> index, <span class="keyword">boolean</span> isUp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> maxcount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> ((isUp &amp;&amp; nums[i] &gt; nums[index]) || (!isUp &amp;&amp; nums[i] &lt; nums[index]))</span><br><span class="line">                maxcount = Math.max(maxcount, <span class="number">1</span> + calculate(nums, i, !isUp));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxcount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> nums.length;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + Math.max(calculate(nums, <span class="number">0</span>, <span class="keyword">true</span>), calculate(nums, <span class="number">0</span>, <span class="keyword">false</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="法二-dp-o-n-2-时间复杂度-o-n-空间复杂度"><a class="header-anchor" href="#法二-dp-o-n-2-时间复杂度-o-n-空间复杂度">¶</a>法二(dp,O(n^2)时间复杂度,O(n)空间复杂度)</h2>
-<p>递推式:</p>
-<p><code>up[i] = Math.max(up[i],down[j] + 1), 0 =&lt; j &lt; i, nums[i] &gt; nums[j]</code></p>
-<p><code>down[i] = Math.max(down[i],up[j] + 1), 0 &lt;= j &lt; i, nums[i] &lt; nums[j]</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] up = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">int</span>[] down = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] &gt; nums[j]) &#123;</span><br><span class="line">                    up[i] = Math.max(up[i],down[j] + <span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[j]) &#123;</span><br><span class="line">                    down[i] = Math.max(down[i],up[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + Math.max(down[nums.length - <span class="number">1</span>], up[nums.length - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="法三-dp-o-n-时间复杂度-o-n-空间复杂度"><a class="header-anchor" href="#法三-dp-o-n-时间复杂度-o-n-空间复杂度">¶</a>法三(dp,O(n)时间复杂度,O(n)空间复杂度)</h2>
-<p>证明:</p>
-<ol>
-<li>假设子序列的最后是上升的，这样的是up序列，反之则为down序列，目标是两种子序列的最大中最大的那个。</li>
-<li>当后缀单调递增，则把这个单调递增的后缀即使去掉，也不影响down序列的最大长度，去掉末尾单调递减的后缀，也不会影响up序列的最大长度。</li>
-<li>记<code>up[i]</code>，<code>down[i]</code>分别是子数组<code>a[0-i]</code>中最大的up和down序列的长度。由2可证当i增加时，<code>down[i]</code>，<code>up[i]</code>最多只有一个会变化。</li>
-<li>假设<code>a[i-1] &lt; a[i]</code>，则可证子数组<code>a[0-i]</code>的<strong>一定有以<code>a[i]</code>结尾</strong>的最长up子序列。同理<code>a[i-1] &gt; a[i]</code>，则子数组<code>a[0-i]</code>的<strong>一定有以<code>a[i]</code>结尾</strong>的最长down子序列。</li>
-<li>由4知<code>a[i-1] &lt; a[i]</code>时，<code>a[0-i]</code>的<code>up[i]</code>一定对应<code>down[i-1] + 1</code>，并且由2知<code>down[i] = down[i-1]</code>，即<code>down[i]</code>不变。对<code>down[i]</code>也同理可得对应结论。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] up = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">int</span>[] down = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        up[<span class="number">0</span>] = down[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                up[i] = down[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                down[i] = down[i - <span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                down[i] = up[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                up[i] = up[i - <span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                down[i] = down[i - <span class="number">1</span>];</span><br><span class="line">                up[i] = up[i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.max(down[nums.length - <span class="number">1</span>], up[nums.length - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="法四-dp-o-n-时间复杂度-o-1-空间复杂度"><a class="header-anchor" href="#法四-dp-o-n-时间复杂度-o-1-空间复杂度">¶</a>法四(dp,O(n)时间复杂度,O(1)空间复杂度)</h2>
-<p>法四是对法三的一种空间复杂度优化。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> nums.length;</span><br><span class="line">        <span class="keyword">int</span> down = <span class="number">1</span>, up = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>])</span><br><span class="line">                up = down + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[i - <span class="number">1</span>])</span><br><span class="line">                down = up + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.max(down, up);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="法五-贪心"><a class="header-anchor" href="#法五-贪心">¶</a>法五(贪心)</h2>
-<p>就是把所有的局部极值组成一个子序列，有下面两种写法。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> nums.length;</span><br><span class="line">        <span class="keyword">int</span> prevdiff = nums[<span class="number">1</span>] - nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> count = prevdiff != <span class="number">0</span> ? <span class="number">2</span> : <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> diff = nums[i] - nums[i - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> ((diff &gt; <span class="number">0</span> &amp;&amp; prevdiff &lt;= <span class="number">0</span>) || (diff &lt; <span class="number">0</span> &amp;&amp; prevdiff &gt;= <span class="number">0</span>)) &#123;</span><br><span class="line">                count++;</span><br><span class="line">                prevdiff = diff;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>另一种写法:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">2</span>;</span><br><span class="line">        A.erase(unique(A.begin(), A.end()), A.end());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i + <span class="number">1</span> &lt; A.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((A[i] &gt; A[i+<span class="number">1</span>] &amp;&amp; A[i] &gt; A[i<span class="number">-1</span>])||(A[i] &lt; A[i+<span class="number">1</span>] &amp;&amp; A[i] &lt; A[i<span class="number">-1</span>]))</span><br><span class="line">                res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> min(<span class="keyword">int</span>(A.size()), res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/模式匹配算法之一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/03/模式匹配算法之一/" itemprop="url">模式匹配算法之一</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-03T00:06:00+08:00">2019-11-03</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-15T15:55:06+08:00">2019-11-15</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/字符串/" itemprop="url" rel="index">
-                    <span itemprop="name">字符串</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>
-<p>KMP算法</p>
-<ul>
-<li>
-<p>实现</p>
-<ul>
-<li>版本一</li>
-</ul>
-  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">computelps</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; pat, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; lps)</span></span>&#123;</span><br><span class="line">    lps[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> M = pat.size();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; M)&#123;</span><br><span class="line">        <span class="keyword">if</span>(pat[len] == pat[i])&#123;</span><br><span class="line">            len++;</span><br><span class="line">            lps[i] = len;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(len == <span class="number">0</span>) &#123;</span><br><span class="line">                lps[i] = <span class="number">0</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                len = lps[len - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">KMP</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; pat, <span class="keyword">const</span> <span class="built_in">string</span>&amp; source, <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; lps)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, N = source.size(), M = pat.size();</span><br><span class="line">    <span class="keyword">while</span>(i &lt; N)&#123;</span><br><span class="line">        <span class="keyword">if</span>(source[i] == pat[j])&#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(j == M)&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"found at:"</span> &lt;&lt; i - j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            j = lps[j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i &lt; N &amp;&amp; source[i] != pat[j])&#123;</span><br><span class="line">            <span class="keyword">if</span>(j != <span class="number">0</span>)</span><br><span class="line">                j = lps[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> source = <span class="string">"nfiiuqbwelbrjweqiteq"</span>;</span><br><span class="line">    <span class="built_in">string</span> target = <span class="string">"eq"</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; lps(target.size(), <span class="number">0</span>);</span><br><span class="line">    computelps(target, lps);</span><br><span class="line">    KMP(target, source, lps);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>版本二（来自百度百科）</li>
-</ul>
-  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">NEXT</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;T, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;next)</span></span>&#123;<span class="comment">//按模式串生成vector,next(T.size())</span></span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;T.size(); i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> j = next[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; T[i - <span class="number">1</span>] != T[j]) </span><br><span class="line">          j = next[j];<span class="comment">//递推计算</span></span><br><span class="line">        <span class="keyword">if</span> (j &gt;= <span class="number">0</span> &amp;&amp;  T[i - <span class="number">1</span>] == T[j]) </span><br><span class="line">          next[i] = j + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">          next[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> <span class="built_in">string</span>::<span class="function">size_type <span class="title">COUNT_KMP</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;S, <span class="keyword">const</span> <span class="built_in">string</span>&amp;T)</span></span>&#123;</span><br><span class="line">    <span class="comment">//利用模式串T的next函数求T在主串S中的个数count的KMP算法</span></span><br><span class="line">    <span class="comment">//其中T非空，</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;next(T.size());</span><br><span class="line">    NEXT(T, next);</span><br><span class="line">    <span class="built_in">string</span>::size_type index, count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (index = <span class="number">0</span>; index&lt;S.size(); ++index)&#123;</span><br><span class="line">        <span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">string</span>::size_type iter = index;</span><br><span class="line">        <span class="keyword">while</span> (pos&lt;T.size() &amp;&amp; iter&lt;S.size())&#123;</span><br><span class="line">            <span class="keyword">if</span> (S[iter] == T[pos])&#123; ++iter; ++pos; &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (pos == <span class="number">0</span>) ++iter;</span><br><span class="line">                <span class="keyword">else</span> pos = next[pos - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pos == T.size() &amp;&amp; (iter - index) == T.size()) ++count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>*argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> S=<span class="string">"abaabcacabaabcacabaabcacabaabcacabaabcac"</span>;</span><br><span class="line">    <span class="built_in">string</span> T=<span class="string">"ab"</span>; </span><br><span class="line">    <span class="comment">//cin &gt;&gt; S;</span></span><br><span class="line">    <span class="comment">//cin &gt;&gt; T;</span></span><br><span class="line">    <span class="built_in">string</span>::size_type count = COUNT_KMP(S, T);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; count &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    system(<span class="string">"PAUSE"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>相关题目</p>
-<p><a href="https://leetcode.com/problems/implement-strstr/" target="_blank" rel="noopener">https://leetcode.com/problems/implement-strstr/</a></p>
-<p>注：求S中的T，可以看做先将T接在S前面（中间添加一个特殊字符，比如#），然后求<code>T $ S</code>的<code>lps</code>中第一个值等于len(T)的位置。因为如果S中有T则，可设<code>S=S1 T S2</code>，则<code>T $ S=T $ S1 T S2</code>，此时<code>T $ S</code>的第二个T的末尾处lps数组的值刚好就是T的长度，所以问题可以转化成求lps数组。</p>
-</li>
-</ul>
-</li>
-<li>
-<p>RabinKarp算法</p>
-</li>
-</ol>
-  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Hash</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s, <span class="keyword">int</span> m, <span class="keyword">int</span> R, <span class="keyword">long</span> <span class="keyword">long</span> q)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="built_in">string</span> target, <span class="built_in">string</span> source, <span class="keyword">int</span> offset, <span class="keyword">int</span> len)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> source = <span class="string">"abcbdhfqohoqhewhoio"</span>;</span><br><span class="line">    <span class="built_in">string</span> target = <span class="string">"bdhf"</span>;</span><br><span class="line">    <span class="keyword">int</span> R = <span class="number">256</span>;</span><br><span class="line">    <span class="keyword">int</span> q = <span class="number">999991</span>;</span><br><span class="line">    <span class="keyword">int</span> m = target.size();</span><br><span class="line">    <span class="keyword">long</span> RM = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        RM = (RM * R) % q;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> targetHash = Hash(target, m, R, q);</span><br><span class="line">    <span class="keyword">long</span> sourceHash = Hash(source, m, R, q);</span><br><span class="line">    <span class="keyword">if</span>(sourceHash == targetHash &amp;&amp; check(target, source, <span class="number">0</span>, m))&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"first match at:"</span> &lt;&lt; <span class="number">0</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; source.size()-m+<span class="number">1</span>; i++)&#123;</span><br><span class="line">        sourceHash = (sourceHash + q - RM * source[i<span class="number">-1</span>] % q) % q;</span><br><span class="line">        sourceHash = (sourceHash * R + source[i+m<span class="number">-1</span>]) % q;</span><br><span class="line">        <span class="keyword">if</span>(sourceHash == targetHash &amp;&amp; check(target, source, i, m))&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"first match at:"</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="built_in">string</span> target, <span class="built_in">string</span> source, <span class="keyword">int</span> offset, <span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(target[i] != source[i+offset])</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Hash</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s, <span class="keyword">int</span> len, <span class="keyword">int</span> R, <span class="keyword">long</span> <span class="keyword">long</span> q)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> h = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        h = (h * R + s[i]) % q;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> h;<span class="comment">//h = s[0]*R^(m-1) + s[1]*R^(m-2) + ... + s[m - 1];</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>
-<p>更多</p>
-<p><a href="https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/</a></p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1971,7 +1960,7 @@ Can you do it in O(<em>n</em>) time?</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">148</span>
+                  <span class="site-state-item-count">150</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1982,7 +1971,7 @@ Can you do it in O(<em>n</em>) time?</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1993,7 +1982,7 @@ Can you do it in O(<em>n</em>) time?</p>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

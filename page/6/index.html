@@ -248,6 +248,353 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/945-Minimum-Increment-to-Make-Array-Unique/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/27/945-Minimum-Increment-to-Make-Array-Unique/" itemprop="url">945. Minimum Increment to Make Array Unique</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T00:25:00+08:00">2019-10-27</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-27T01:34:35+08:00">2019-10-27</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/minimum-increment-to-make-array-unique/" target="_blank" rel="noopener">945. Minimum Increment to Make Array Unique</a></h1>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given an array of integers A, a <em>move</em> consists of choosing any <code>A[i]</code>, and incrementing it by <code>1</code>.</p>
+<p>Return the least number of moves to make every value in <code>A</code> unique.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,2]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation:  After 1 move, the array could be [1, 2, 3].</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,2,1,2,1,7]</span><br><span class="line">Output: 6</span><br><span class="line">Explanation:  After 6 moves, the array could be [3, 4, 1, 2, 5, 7].</span><br><span class="line">It can be shown with 5 or less moves that it is impossible for the array to have all unique values.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>0 &lt;= A.length &lt;= 40000</code></li>
+<li><code>0 &lt;= A[i] &lt; 40000</code></li>
+</ol>
+<h1>解法</h1>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<p>  法一需要注意为什么要分配大小大于40000的数组（因为重复元素可能会溢出到40000以上的位置）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minIncrementForUnique</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(A.size() &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">int</span> *count = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">50000</span>]();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : A)&#123;</span><br><span class="line">            count[x]++;</span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>, dup = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50000</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(count[i] &gt;= <span class="number">2</span>)&#123;</span><br><span class="line">                dup += count[i] - <span class="number">1</span>;</span><br><span class="line">                ans -= (count[i] - <span class="number">1</span>) * i;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(dup &gt; <span class="number">0</span> &amp;&amp; count[i] == <span class="number">0</span>)&#123;</span><br><span class="line">                dup--;</span><br><span class="line">                ans += i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minIncrementForUnique</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(A.size() &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        sort(A.begin(), A.end());</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>, dup = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(A[i] == A[i - <span class="number">1</span>])&#123;</span><br><span class="line">                ans -= A[i];</span><br><span class="line">                dup++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> tmp = min(dup, A[i] - A[i - <span class="number">1</span>] - <span class="number">1</span>);</span><br><span class="line">                ans += tmp * (A[i - <span class="number">1</span>] + <span class="number">1</span> + A[i - <span class="number">1</span>] + tmp) / <span class="number">2</span>;</span><br><span class="line">                dup -= tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(dup &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            ans += (<span class="number">2</span> * A[A.size() - <span class="number">1</span>] + dup + <span class="number">1</span>) * dup / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="我的解法"><a class="header-anchor" href="#我的解法">¶</a>我的解法</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minIncrementForUnique</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(A.size() &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        sort(A.begin(), A.end());</span><br><span class="line">        <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; dup;</span><br><span class="line">        <span class="keyword">int</span> last = A[<span class="number">0</span>], res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(A[i] == A[i - <span class="number">1</span>]) dup.push_back(A[i]);</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = last + <span class="number">1</span>; j &lt; A[i] &amp;&amp; !dup.empty(); j++)&#123;</span><br><span class="line">                    res += j - dup.front();</span><br><span class="line">                    dup.pop_front();</span><br><span class="line">                &#125;</span><br><span class="line">                last = A[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!dup.empty())&#123;</span><br><span class="line">            res += last + <span class="number">1</span> - dup.front();</span><br><span class="line">            dup.pop_front();</span><br><span class="line">            last++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1>总结</h1>
+<p>  <strong>此题中，先从ans中减去重复元素，这样就可以不用记录重复元素，之后直接加上需要填的数即可</strong>。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/26/870-Advantage-Shuffle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/26/870-Advantage-Shuffle/" itemprop="url">870. Advantage Shuffle</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-26T22:01:00+08:00">2019-10-26</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-26T23:46:45+08:00">2019-10-26</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="870-advantage-shuffle"><a class="header-anchor" href="#870-advantage-shuffle">¶</a><a href="https://leetcode.com/problems/advantage-shuffle/" target="_blank" rel="noopener">870. Advantage Shuffle</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given two arrays <code>A</code> and <code>B</code> of equal size, the <em>advantage of <code>A</code> with respect to <code>B</code></em> is the number of indices <code>i</code> for which <code>A[i] &gt; B[i]</code>.</p>
+<p>Return <strong>any</strong> permutation of <code>A</code> that maximizes its advantage with respect to <code>B</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: A = [2,7,11,15], B = [1,10,4,11]</span><br><span class="line">Output: [2,11,7,15]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: A = [12,24,8,32], B = [13,25,32,11]</span><br><span class="line">Output: [24,32,8,12]</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1 &lt;= A.length = B.length &lt;= 10000</code></li>
+<li><code>0 &lt;= A[i] &lt;= 10^9</code></li>
+<li><code>0 &lt;= B[i] &lt;= 10^9</code></li>
+</ol>
+<h1>解法</h1>
+<h2 id="我的解法"><a class="header-anchor" href="#我的解法">¶</a>我的解法</h2>
+<p>  基本思想是A中对应位置上的数必须要是刚好比B对应位置上的数大的那个数。将A和B分别从小到大排序，然后从A的最小数开始遍历，看该数是否比B的最小数大，如果是则该数位置不变，A取下一个数，B去取一个最小数；否则A的最小数应该对应B的最大数（因为A的最小数和B的最大数都很难形成A[i] &gt; B[i]这种关系，所以最好让他们之间中和），B可以弹出最大数，且B的当前最小数仍然不变以等待第一个大于它的A中的元素的到来，同时A取下一个最小数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; advantageCount(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; B) &#123;</span><br><span class="line">        sort(A.begin(), A.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt; bp;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; B.size(); i++)&#123;</span><br><span class="line">            bp.push_back(make_pair(B[i], i));</span><br><span class="line">        &#125;</span><br><span class="line">        sort(bp.begin(), bp.end());</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = bp.size() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> cur = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(A.size(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">while</span>(i &lt;= j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(A[cur] &gt; bp[i].first)&#123;</span><br><span class="line">                res[bp[i].second] = A[cur];</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                res[bp[j].second] = A[cur];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            cur++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// cout &lt;&lt; cur &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="另一种解法-stl"><a class="header-anchor" href="#另一种解法-stl">¶</a>另一种解法（STL）</h2>
+<h3 id="法一：stl正确使用"><a class="header-anchor" href="#法一：stl正确使用">¶</a>法一：STL正确使用</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; advantageCount(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; B) &#123;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt; s(A.begin(), A.end());</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">auto</span> it = s.upper_bound(B[i]);</span><br><span class="line">            <span class="keyword">if</span>(it == s.end()) &#123;</span><br><span class="line">                it = s.begin();</span><br><span class="line">            &#125;</span><br><span class="line">            A[i] = *it;</span><br><span class="line">            s.erase(it);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> A;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="法二：stl的错误使用-超时"><a class="header-anchor" href="#法二：stl的错误使用-超时">¶</a>法二：STL的错误使用（超时）</h3>
+<p>  multiset可以要用<strong>迭代器初始化</strong>，并且要upper_bound的<strong>成员函数版本</strong>来求上界。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; advantageCount(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; B) &#123;</span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> n: A)</span><br><span class="line">            s.insert(n);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">auto</span> it = upper_bound(s.begin(), s.end(), B[i]);</span><br><span class="line">            <span class="keyword">if</span>(it == s.end()) &#123;</span><br><span class="line">                A[i] = *s.begin();</span><br><span class="line">                it = s.begin();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                A[i] = *it;</span><br><span class="line">            &#125;</span><br><span class="line">            s.erase(it);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> A;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="别人的带注释的版本"><a class="header-anchor" href="#别人的带注释的版本">¶</a>别人的带注释的版本</h3>
+<p>  我觉得这个注释解释的很好。其实我也想到了田忌赛马，也想到下马对上马，关键是STL的用法还是不熟练，导致超时&gt;_&lt;。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 其实这道题的思路还真是田忌赛马的智慧一样，</span></span><br><span class="line"><span class="comment">// 既然要想办法大过B中的数，那么对于B中的每个数（可以看作每匹马），</span></span><br><span class="line"><span class="comment">// 我们先在A中找刚好大于该数的数字（这就是为啥中马跟其下马比，而不是上马跟其下马比），</span></span><br><span class="line"><span class="comment">// 用太大的数字就浪费了，而如果A中没有比之大的数字，就用A中最小的数字</span></span><br><span class="line"><span class="comment">// （用下马跟其上马比）。就用这种贪婪算法的思路就可以成功解题了，</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们就是用一个 MultiSet 来做，既允许重复又自带排序功能，</span></span><br><span class="line"><span class="comment">// 那么遍历B中每个数字，在A进行二分搜索第一个大于的数字，</span></span><br><span class="line"><span class="comment">// 这里使用了 STL 自带的 upper_bound 来做。</span></span><br><span class="line"><span class="comment">// 然后看，若不存在，则将A中最小的数字加到结果 res 中，</span></span><br><span class="line"><span class="comment">// 否则就将第一个大于的数字加入结果 res 中</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">     Solution()&#123;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; advantageCount(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; B) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt; dict(A.begin(), A.end());</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; x : B)&#123;</span><br><span class="line">            <span class="comment">//auto it = *dict.rbegin() &lt;= x ? dict.begin() : dict.upper_bound(x);</span></span><br><span class="line">            <span class="keyword">auto</span> it = dict.upper_bound(x);</span><br><span class="line">            <span class="keyword">if</span>(it == dict.end()) it = dict.begin();</span><br><span class="line">            res.push_back(*it);</span><br><span class="line">            dict.erase(it);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/26/448-Find-All-Numbers-Disappeared-in-an-Array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1630,366 +1977,6 @@ default value</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/20/1185-Day-of-the-Week/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/20/1185-Day-of-the-Week/" itemprop="url">1185. Day of the Week</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-20T22:37:00+08:00">2019-10-20</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-20T22:54:21+08:00">2019-10-20</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1185-day-of-the-week"><a class="header-anchor" href="#1185-day-of-the-week">¶</a><a href="https://leetcode.com/problems/day-of-the-week/" target="_blank" rel="noopener">1185. Day of the Week</a></h3>
-<p>Difficulty: <strong>Easy</strong></p>
-<p>Given a date, return the corresponding day of the week for that date.</p>
-<p>The input is given as three integers representing the <code>day</code>, <code>month</code> and <code>year</code> respectively.</p>
-<p>Return the answer as one of the following values <code>{&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;}</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: day = 31, month = 8, year = 2019</span><br><span class="line">Output: &quot;Saturday&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: day = 18, month = 7, year = 1999</span><br><span class="line">Output: &quot;Sunday&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: day = 15, month = 8, year = 1993</span><br><span class="line">Output: &quot;Sunday&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li>The given dates are valid dates between the years <code>1971</code> and <code>2100</code>.</li>
-</ul>
-<h1>解法</h1>
-<p><a href="https://www.geeksforgeeks.org/tomohiko-sakamotos-algorithm-finding-day-week/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/tomohiko-sakamotos-algorithm-finding-day-week/</a></p>
-<p>根据公式直接计算，非常简单，前提是1年1月1日是星期1。大致思路是：</p>
-<ol>
-<li><code>365%7</code>是1，所以不考虑闰年，每隔一整年，星期只加1，即<code>year%7</code>。</li>
-<li>再考虑闰年<code>366%7</code>是2，所以比1.中多走了闰年个数个天，即<code>year/4 - year/100+year/400</code>。</li>
-<li>最后一年月数小于3时和大于3时分开计算，大于2时2月按27天算，小于3时则<code>year</code>的闰年不考虑。假如<code>year</code>是闰年，<code>year + year/4 - year/100 + year/400 + t[month-1] + day</code>中<code>year</code>和<code>year/4 - year/100 + year/400</code>各自会比不考虑<code>year</code>的闰年加1，刚好比27多2补上了缺失的天数；假如<code>year</code>不是闰年，则<code>year + year/4 - year/100 + year/400 + t[month-1] + day</code>会比不考虑闰年总共多1，加上27是28符合非闰年2月的天数。</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">dayOfTheWeek</span><span class="params">(<span class="keyword">int</span> day, <span class="keyword">int</span> month, <span class="keyword">int</span> year)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; week;</span><br><span class="line">        week[<span class="number">0</span>] = <span class="string">"Sunday"</span>;</span><br><span class="line">        week[<span class="number">1</span>] = <span class="string">"Monday"</span>;</span><br><span class="line">        week[<span class="number">2</span>] = <span class="string">"Tuesday"</span>;</span><br><span class="line">        week[<span class="number">3</span>] = <span class="string">"Wednesday"</span>;</span><br><span class="line">        week[<span class="number">4</span>] = <span class="string">"Thursday"</span>;</span><br><span class="line">        week[<span class="number">5</span>] = <span class="string">"Friday"</span>;</span><br><span class="line">        week[<span class="number">6</span>] = <span class="string">"Saturday"</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t = &#123;<span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span>(month &lt; <span class="number">3</span>)</span><br><span class="line">            year -=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> k = (year + year/<span class="number">4</span> - year/<span class="number">100</span> + year/<span class="number">400</span> + t[month<span class="number">-1</span>] + day)%<span class="number">7</span>;</span><br><span class="line">        <span class="keyword">return</span> week[k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/20/1235-Maximum-Profit-in-Job-Scheduling/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/20/1235-Maximum-Profit-in-Job-Scheduling/" itemprop="url">1235. Maximum Profit in Job Scheduling</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-20T18:11:00+08:00">2019-10-20</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-06T09:22:01+08:00">2019-11-06</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1><a href="https://leetcode.com/problems/maximum-profit-in-job-scheduling/" target="_blank" rel="noopener">1235. Maximum Profit in Job Scheduling</a></h1>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>We have <code>n</code> jobs, where every job is scheduled to be done from <code>startTime[i]</code> to <code>endTime[i]</code>, obtaining a profit of <code>profit[i]</code>.</p>
-<p>You’re given the <code>startTime</code> , <code>endTime</code> and <code>profit</code> arrays, you need to output the maximum profit you can take such that there are no 2 jobs in the subset with overlapping time range.</p>
-<p>If you choose a job that ends at time <code>X</code> you will be able to start another job that starts at time <code>X</code>.</p>
-<p><strong>Example 1:</strong></p>
-<p><strong><img src="https://assets.leetcode.com/uploads/2019/10/10/sample1_1584.png" alt></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: startTime = [1,2,3,3], endTime = [3,4,5,6], profit = [50,10,40,70]</span><br><span class="line">Output: 120</span><br><span class="line">Explanation: The subset chosen is the first and fourth job. </span><br><span class="line">Time range [1-3]+[3-6] , we get profit of 120 = 50 + 70.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<p><strong><img src="https://assets.leetcode.com/uploads/2019/10/10/sample22_1584.png" alt></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: startTime = [1,2,3,4,6], endTime = [3,5,10,6,9], profit = [20,20,100,70,60]</span><br><span class="line">Output: 150</span><br><span class="line">Explanation: The subset chosen is the first, fourth and fifth job. </span><br><span class="line">Profit obtained 150 = 20 + 70 + 60.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<p><strong><img src="https://assets.leetcode.com/uploads/2019/10/10/sample3_1584.png" alt></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: startTime = [1,1,1], endTime = [2,3,4], profit = [5,6,4]</span><br><span class="line">Output: 6</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= startTime.length == endTime.length == profit.length &lt;= 5 * 10^4</code></li>
-<li><code>1 &lt;= startTime[i] &lt; endTime[i] &lt;= 10^9</code></li>
-<li><code>1 &lt;= profit[i] &lt;= 10^4</code></li>
-</ul>
-<h1>解法</h1>
-<h2 id="动态规划-排序endtime"><a class="header-anchor" href="#动态规划-排序endtime">¶</a>动态规划（排序endTime）</h2>
-<h3 id="动态规划1"><a class="header-anchor" href="#动态规划1">¶</a>动态规划1</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; v;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; startTime.size(); i++)&#123;</span><br><span class="line">            v.push_back(&#123;startTime[i], endTime[i], profit[i]&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(v.begin(), v.end(), [](<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v1, <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v2)&#123;</span><br><span class="line">            <span class="keyword">return</span> v1[<span class="number">1</span>] &lt; v2[<span class="number">1</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; tmp;</span><br><span class="line">        <span class="keyword">int</span> res = INT_MIN;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">auto</span> it = upper_bound(tmp.begin(), tmp.end(), make_pair(v[i][<span class="number">0</span>], INT_MAX));</span><br><span class="line">            <span class="keyword">if</span>(it == tmp.begin())&#123;</span><br><span class="line">                <span class="keyword">int</span> profit = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span>(tmp.size() == <span class="number">0</span>)&#123;</span><br><span class="line">                    profit = v[i][<span class="number">2</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    profit = max(v[i][<span class="number">2</span>], tmp[tmp.size() - <span class="number">1</span>].second);</span><br><span class="line">                &#125;</span><br><span class="line">                tmp.push_back(make_pair(v[i][<span class="number">1</span>], profit));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;  </span><br><span class="line">                it--;</span><br><span class="line">                tmp.push_back(make_pair(v[i][<span class="number">1</span>], max(it-&gt;second + v[i][<span class="number">2</span>], tmp[tmp.size() - <span class="number">1</span>].second)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tmp[tmp.size() - <span class="number">1</span>].second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="动态规划2"><a class="header-anchor" href="#动态规划2">¶</a>动态规划2</h3>
-<p>  注意tuple的用法，还有tie解包tuple</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;tuple&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; jobs;</span><br><span class="line">        <span class="keyword">int</span> n = profit.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) jobs.emplace_back(endTime[i], startTime[i], profit[i]);</span><br><span class="line">        sort(jobs.begin(), jobs.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n, <span class="number">0</span>);</span><br><span class="line">        dp[<span class="number">0</span>] = get&lt;<span class="number">2</span>&gt;(jobs[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ends;</span><br><span class="line">        ends.push_back(get&lt;<span class="number">0</span>&gt;(jobs[<span class="number">0</span>]));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> e, s, p;</span><br><span class="line">            tie(e, s, p) = jobs[i];</span><br><span class="line">            <span class="keyword">int</span> idx = upper_bound(ends.begin(), ends.end(), s) - ends.begin();</span><br><span class="line">            <span class="keyword">if</span> (idx - <span class="number">1</span> &gt;= <span class="number">0</span>) p += dp[idx - <span class="number">1</span>];</span><br><span class="line">            dp[i] = max(dp[i - <span class="number">1</span>], p);</span><br><span class="line">            ends.push_back(e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="动态规划3"><a class="header-anchor" href="#动态规划3">¶</a>动态规划3</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">job</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> start, end, profit;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> job &amp;other) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> end &lt; other.end;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; times;</span><br><span class="line">        times.push_back(<span class="number">-1e9</span>);<span class="comment">//方便处理边界情况</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> time : endTime)</span><br><span class="line">            times.push_back(time);</span><br><span class="line"></span><br><span class="line">        sort(times.begin(), times.end());</span><br><span class="line">        times.resize(unique(times.begin(), times.end()) - times.begin());</span><br><span class="line">        <span class="keyword">int</span> T = times.size();</span><br><span class="line">        <span class="keyword">int</span> N = startTime.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;job&gt; jobs;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">            jobs.push_back(&#123;startTime[i], endTime[i], profit[i]&#125;);</span><br><span class="line"></span><br><span class="line">        sort(jobs.begin(), jobs.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; dp(T, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (job jb : jobs) &#123;</span><br><span class="line">            <span class="keyword">int</span> start = jb.start;</span><br><span class="line">            <span class="keyword">int</span> end = jb.end;</span><br><span class="line"></span><br><span class="line">            start = upper_bound(times.begin(), times.end(), start) - times.begin() - <span class="number">1</span>;</span><br><span class="line">            end = lower_bound(times.begin(), times.end(), end) - times.begin();</span><br><span class="line"></span><br><span class="line">            dp[end] = max(dp[end], dp[start] + jb.profit);<span class="comment">//因为有end一样的任务，用dp[0]代表的是前方无任务是处理边界情况的巧妙之处</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (end &gt;= <span class="number">0</span>)</span><br><span class="line">                dp[end] = max(dp[end], dp[end - <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> *max_element(dp.begin(), dp.end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="利用树状数组维护最值"><a class="header-anchor" href="#利用树状数组维护最值">¶</a>利用树状数组维护最值</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Dwell</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> s, e, p;</span><br><span class="line">    Dwell(<span class="keyword">int</span> _s, <span class="keyword">int</span> _e, <span class="keyword">int</span> _p): s(_s), e(_e), p(_p) &#123;&#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt; (<span class="keyword">const</span> Dwell&amp; that) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> e &lt; that.e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> tree[<span class="number">100010</span>];</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x &amp; (-x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (x) &#123;</span><br><span class="line">            ret = max(ret, tree[x]);</span><br><span class="line">            x -= lowbit(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> n, <span class="keyword">int</span> dt)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (x &lt;= n) &#123;</span><br><span class="line">            tree[x] = max(tree[x], dt);</span><br><span class="line">            x += lowbit(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = startTime.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dis;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            dis.push_back(startTime[i]);</span><br><span class="line">            dis.push_back(endTime[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(dis.begin(), dis.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;Dwell&gt; v;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            startTime[i] = lower_bound(dis.begin(), dis.end(), startTime[i]) - dis.begin() + <span class="number">1</span>;</span><br><span class="line">            endTime[i] = lower_bound(dis.begin(), dis.end(), endTime[i]) - dis.begin() + <span class="number">1</span>;</span><br><span class="line">            v.emplace_back(startTime[i], endTime[i], profit[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(v.begin(), v.end());</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">memset</span>(tree, <span class="number">0</span>, <span class="keyword">sizeof</span>(tree));</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> q = query(v[i].s);</span><br><span class="line">            ans = max(ans, q + v[i].p);</span><br><span class="line">            update(v[i].e, n * <span class="number">2</span>, q + v[i].p);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="动态规划-排序starttime"><a class="header-anchor" href="#动态规划-排序starttime">¶</a>动态规划（排序startTime）</h2>
-<h3 id="优先级队列"><a class="header-anchor" href="#优先级队列">¶</a>优先级队列</h3>
-<p>  动态规划是排序endTime来求，这个解法是排序startTime来求，比较难懂。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; e, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; p)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, <span class="keyword">int</span>&gt;&gt; v;</span><br><span class="line">        <span class="keyword">int</span> n = s.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) v.emplace_back(make_pair(s[i], e[i]), p[i]);</span><br><span class="line">        sort(v.begin(), v.end());</span><br><span class="line">        v.emplace_back(make_pair(INT_MAX, INT_MAX), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> best = <span class="number">0</span>;<span class="comment">//到当前start为止的最大收益</span></span><br><span class="line">        priority_queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;,<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;, greater&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; i : v) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!q.empty() &amp;&amp; q.top().first&lt;=i.first.first) &#123;<span class="comment">//综合i.first.first之前的候选最大收益算出i.first.first时刻的最大收益</span></span><br><span class="line">                best = max(best, q.top().second);</span><br><span class="line">                q.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            q.emplace(i.first.second, best + i.second);<span class="comment">//best+i.second是i.first.second时刻的候选最大收益</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> best;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="利用map自动按key排序的特性"><a class="header-anchor" href="#利用map自动按key排序的特性">¶</a>利用map自动按key排序的特性</h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">signed</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> _P</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _P(...) (void)printf(__VA_ARGS__)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FOR(x,to) for(x=0;x&lt;(to);x++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FORR(x,arr) for(auto&amp; x:arr)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ITR(x,c) for(__typeof(c.begin()) x=c.begin();x!=c.end();x++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ALL(a) (a.begin()),(a.end())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ZERO(a) memset(a,0,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MINUS(a) memset(a,0xff,sizeof(a))</span></span><br><span class="line"><span class="comment">//-------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jobScheduling</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; startTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; endTime, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; V;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        FOR(i,startTime.size()) V.push_back(&#123;startTime[i],endTime[i],profit[i]&#125;);</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>,ll&gt; M;</span><br><span class="line">        ll ma=<span class="number">0</span>;</span><br><span class="line">        sort(ALL(V));</span><br><span class="line">        FORR(e,V) &#123;</span><br><span class="line">			<span class="keyword">while</span>(M.size() &amp;&amp; M.begin()-&gt;first&lt;=e[<span class="number">0</span>]) &#123;</span><br><span class="line">				ma=max(ma,M.begin()-&gt;second);</span><br><span class="line">				M.erase(M.begin());</span><br><span class="line">			&#125;</span><br><span class="line">			M[e[<span class="number">1</span>]]=max(M[e[<span class="number">1</span>]],ma+e[<span class="number">2</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">        FORR(m,M) ma=max(ma,m.second);</span><br><span class="line">        <span class="keyword">return</span> ma;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1>总结</h1>
-<p>  从这道题中学到了离散化，动态规划，树状数组，优先级队列，tuple的使用，map的按key排序的性质，emplace函数的用法。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2040,7 +2027,7 @@ default value</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">148</span>
+                  <span class="site-state-item-count">150</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2051,7 +2038,7 @@ default value</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2062,7 +2049,7 @@ default value</p>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
