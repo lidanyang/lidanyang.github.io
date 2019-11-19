@@ -248,6 +248,345 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/212-Word-Search-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/01/212-Word-Search-II/" itemprop="url">212. Word Search II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-01T20:13:00+08:00">2019-07-01</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-01T22:40:33+08:00">2019-07-01</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/word-search-ii/" target="_blank" rel="noopener">212. Word Search II</a></p>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given a 2D board and a list of words from the dictionary, find all words in the board.</p>
+<p>Each word must be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">board = [</span><br><span class="line">  [&apos;o&apos;,&apos;a&apos;,&apos;a&apos;,&apos;n&apos;],</span><br><span class="line">  [&apos;e&apos;,&apos;t&apos;,&apos;a&apos;,&apos;e&apos;],</span><br><span class="line">  [&apos;i&apos;,&apos;h&apos;,&apos;k&apos;,&apos;r&apos;],</span><br><span class="line">  [&apos;i&apos;,&apos;f&apos;,&apos;l&apos;,&apos;v&apos;]</span><br><span class="line">]</span><br><span class="line">words = [&quot;oath&quot;,&quot;pea&quot;,&quot;eat&quot;,&quot;rain&quot;]</span><br><span class="line"></span><br><span class="line">Output: [&quot;eat&quot;,&quot;oath&quot;]</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>All inputs are consist of lowercase letters <code>a-z</code>.</li>
+<li>The values of <code>words</code> are distinct.</li>
+</ol>
+<h1>解法</h1>
+<p>  这道题用DFS搜索，用字典树剪枝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">class TrieNode:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.dic = &#123;&#125;</span><br><span class="line">        self.word = &apos;&apos;</span><br><span class="line">​</span><br><span class="line">class Solution:</span><br><span class="line">    def findWords(self, board: List[List[str]], words: List[str]) -&gt; List[str]:</span><br><span class="line">        root = self.buildTrieTree(words)</span><br><span class="line">                </span><br><span class="line">        res = []</span><br><span class="line">        R = len(board)</span><br><span class="line">        C = len(board[0])</span><br><span class="line">        </span><br><span class="line">        cur_visited = [[False] * C for _ in range(R)]</span><br><span class="line">        </span><br><span class="line">        def dfs(i, j, node):</span><br><span class="line">            if i &lt; 0 or i &gt; R - 1 or j &lt; 0 or j &gt; C - 1 or cur_visited[i][j]:</span><br><span class="line">                return</span><br><span class="line">            </span><br><span class="line">            if board[i][j] not in node.dic:</span><br><span class="line">                return</span><br><span class="line">        </span><br><span class="line">            node = node.dic[board[i][j]]</span><br><span class="line">            </span><br><span class="line">            if node.word:</span><br><span class="line">                res.append(node.word)</span><br><span class="line">                node.word = &apos;&apos;</span><br><span class="line">            </span><br><span class="line">            for row, col in (i - 1, j),(i + 1, j),(i, j - 1),(i, j + 1):</span><br><span class="line">                cur_visited[i][j] = True</span><br><span class="line">                dfs(row, col, node)</span><br><span class="line">                cur_visited[i][j] = False</span><br><span class="line">            </span><br><span class="line">        for i in range(R):</span><br><span class="line">            for j in range(C):</span><br><span class="line">                dfs(i, j, root)</span><br><span class="line">                </span><br><span class="line">        return res   </span><br><span class="line">    </span><br><span class="line">    def buildTrieTree(self, words):</span><br><span class="line">        root = TrieNode()</span><br><span class="line">        for word in words:</span><br><span class="line">            p = root</span><br><span class="line">            for ch in word:</span><br><span class="line">                if ch not in p.dic:</span><br></pre></td></tr></table></figure>
+<h1>扩展</h1>
+<p>  来自大神StefanPochmann的代码，值得学习，特别是建立字典树的过程只用了短短的6行代码，简直太秀了！</p>
+<p>  关键点：</p>
+<ol>
+<li>用复数表示board每个点，当前字符的四个方向上的相邻位置即<code>z + 1j**k,0 &lt;= k &lt;= 3</code>。</li>
+<li>字典树节点用字典表示，并且用（None，True）键值对表示该节点是单词的情况，同时在遍历过一个节点后设置<code>board[i][j]=None</code>，每次递归调用DFS会把字典树节点中的None弹出字典后再判断当前字符是否在字典节点中，所以即使当前字符是None，也不用担心会因为搜到单词节点中有None（因为会在<code>if c in node</code>之前弹出None）而重复搜索之前搜索过的节点，这也是很巧妙的一点！</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findWords</span><span class="params">(self, board, words)</span>:</span></span><br><span class="line"></span><br><span class="line">			<span class="comment"># 字典树建立</span></span><br><span class="line">        root = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            node = root</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> word:</span><br><span class="line">                node = node.setdefault(c, &#123;&#125;)</span><br><span class="line">            node[<span class="literal">None</span>] = <span class="literal">True</span></span><br><span class="line">        <span class="comment"># 将坐标转化成复数</span></span><br><span class="line">        board = &#123;i + <span class="number">1j</span>*j: c</span><br><span class="line">                 <span class="keyword">for</span> i, row <span class="keyword">in</span> enumerate(board)</span><br><span class="line">                 <span class="keyword">for</span> j, c <span class="keyword">in</span> enumerate(row)&#125;</span><br><span class="line"></span><br><span class="line">        found = []</span><br><span class="line">        <span class="comment"># DFS搜索</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(node, z, word)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> node.pop(<span class="literal">None</span>, <span class="literal">None</span>):</span><br><span class="line">                found.append(word)</span><br><span class="line">            c = board.get(z)</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> node:</span><br><span class="line">                board[z] = <span class="literal">None</span></span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                    search(node[c], z + <span class="number">1j</span>**k, word + c)</span><br><span class="line">                board[z] = c</span><br><span class="line">        <span class="keyword">for</span> z <span class="keyword">in</span> board:</span><br><span class="line">            search(root, z, <span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> found</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/158-Read-N-Characters-Given-Read4-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/01/158-Read-N-Characters-Given-Read4-II/" itemprop="url">158. Read N Characters Given Read4 II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-01T11:28:00+08:00">2019-07-01</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-01T11:41:00+08:00">2019-07-01</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p>The API: int read4(char *buf) reads 4 characters at a time from a file.</p>
+<p>The return value is the actual number of characters read. For example, it returns 3 if there is only 3 characters left in the file.</p>
+<p>By using the read4 API, implement the function int read(char *buf, int n) that reads n characters from the file.</p>
+<p>The read function may be called multiple times.</p>
+<p>Example 1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">&quot;filetestbuffer&quot;</span><br><span class="line">read(6)</span><br><span class="line">read(5)</span><br><span class="line">read(4)</span><br><span class="line">read(3)</span><br><span class="line">read(2)</span><br><span class="line">read(1)</span><br><span class="line">read(10)</span><br><span class="line">Output:</span><br><span class="line">6, buf = &quot;filete&quot;</span><br><span class="line">5, buf = &quot;stbuf&quot;</span><br><span class="line">3, buf = &quot;fer&quot;</span><br><span class="line">0, buf = &quot;&quot;</span><br><span class="line">0, buf = &quot;&quot;</span><br><span class="line">0, buf = &quot;&quot;</span><br><span class="line">0, buf = &quot;&quot;</span><br></pre></td></tr></table></figure>
+<p>Example 2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">&quot;abcdef&quot;</span><br><span class="line">read(1)</span><br><span class="line">read(5)</span><br><span class="line">Output:</span><br><span class="line">1, buf = &quot;a&quot;</span><br><span class="line">5, buf = &quot;bcdef&quot;</span><br></pre></td></tr></table></figure>
+<h1>解法：</h1>
+<p>  这道题的解法三把我看呆了，为什么别人的解法可以这么简洁明了？！</p>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<p>  把所有字符都一次性读出来，然后用两个数记录当前读到的位置和剩余的未读的字符数，这是最暴力的解法了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">The read4 API is already defined for you.</span></span><br><span class="line"><span class="string">@param buf a list of characters</span></span><br><span class="line"><span class="string">@return an integer</span></span><br><span class="line"><span class="string">you can call Reader.read4(buf)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.allchar = []</span><br><span class="line">        self.remainchar = <span class="number">0</span></span><br><span class="line">        self.cur = <span class="number">0</span></span><br><span class="line">        temp = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line">        readed = <span class="number">4</span></span><br><span class="line">        <span class="keyword">while</span> readed == <span class="number">4</span>:</span><br><span class="line">            readed = Reader.read4(temp)</span><br><span class="line">            self.allchar.extend(temp[:readed])</span><br><span class="line">            self.remainchar += readed</span><br><span class="line">        <span class="comment"># print(self.allchar)</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment"># @param &#123;char[]&#125; buf destination buffer</span></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; n maximum number of characters to read</span></span><br><span class="line">    <span class="comment"># @return &#123;int&#125; the number of characters read</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(self, buf, n)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n &lt; self.remainchar:</span><br><span class="line">            buf[:n] = self.allchar[self.cur:self.cur+n]</span><br><span class="line">            self.cur += n</span><br><span class="line">            self.remainchar -= n</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            buf[:self.remainchar] = self.allchar[self.cur:self.cur+self.remainchar]    </span><br><span class="line">            tempv = self.remainchar</span><br><span class="line">            self.cur += self.remainchar</span><br><span class="line">            self.remainchar = <span class="number">0</span></span><br><span class="line">            <span class="keyword">return</span> tempv</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<p>  用self.remain保存上一次读取的4个字符中剩下来的字符。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">The read4 API is already defined for you.</span></span><br><span class="line"><span class="string">@param buf a list of characters</span></span><br><span class="line"><span class="string">@return an integer</span></span><br><span class="line"><span class="string">you can call Reader.read4(buf)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.remain = [] <span class="comment"># record the unreaded characters of previous round of read</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment"># @param &#123;char[]&#125; buf destination buffer</span></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; n maximum number of characters to read</span></span><br><span class="line">    <span class="comment"># @return &#123;int&#125; the number of characters read</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(self, buf, n)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        readed = <span class="number">0</span> <span class="comment"># counter of characters already readed into buf</span></span><br><span class="line">        temp = [<span class="number">0</span>] * <span class="number">4</span> <span class="comment"># buf for read4</span></span><br><span class="line">        <span class="comment"># print(self.remain)</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n &gt; len(self.remain):</span><br><span class="line">            <span class="keyword">if</span> len(self.remain):</span><br><span class="line">                n -= len(self.remain)</span><br><span class="line">                buf[:len(self.remain)] = self.remain</span><br><span class="line">                readed += len(self.remain)</span><br><span class="line">                self.remain = []</span><br><span class="line">                <span class="comment"># print(buf)</span></span><br><span class="line">        </span><br><span class="line">            <span class="keyword">while</span> n &gt;= <span class="number">4</span>:</span><br><span class="line">                returnn = Reader.read4(temp)</span><br><span class="line">                buf[readed:readed+returnn] = temp</span><br><span class="line">                readed += returnn</span><br><span class="line">                <span class="keyword">if</span> returnn &lt; <span class="number">4</span>:</span><br><span class="line">                    <span class="keyword">return</span> readed</span><br><span class="line">                n -= <span class="number">4</span></span><br><span class="line">            <span class="keyword">if</span> n:</span><br><span class="line">                returnn = Reader.read4(temp)</span><br><span class="line">                <span class="keyword">if</span> n &gt;= returnn:</span><br><span class="line">                    buf[readed:readed+returnn] = temp</span><br><span class="line">                    readed += returnn</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    buf[readed:readed+n] = temp[:n]</span><br><span class="line">                    readed += n</span><br><span class="line">                    self.remain = temp[n:returnn]</span><br><span class="line">            <span class="keyword">return</span> readed</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            buf[:n] = self.remain[:n]</span><br><span class="line">            self.remain = self.remain[n:]</span><br><span class="line">            <span class="keyword">return</span> n</span><br></pre></td></tr></table></figure>
+<h2 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h2>
+<p>  这个解法才是最让我醍醐灌顶的解法。用大小为4的数组（记为buff）存放read4的返回结果，readpos和writepos记录当前读到的字符的位置和最后一个字符的位置。如果readpos和writepos相等，说明读到buff的结束了，就再调用read4，并将reapos放回buff的起点，writepos放在read4返回值对应的位置上（也是buff中来自刚刚这次read4调用的最后一个有效字符的位置）。每次调用read4之后检查writepos，如果为0，说明所有字符都读完了，就直接返回。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.buff = [<span class="number">0</span>] * <span class="number">4</span> <span class="comment"># record the unreaded characters of previous round of read</span></span><br><span class="line">        self.readpos = <span class="number">0</span></span><br><span class="line">        self.writepos = <span class="number">0</span></span><br><span class="line">    <span class="comment"># @param &#123;char[]&#125; buf destination buffer</span></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; n maximum number of characters to read</span></span><br><span class="line">    <span class="comment"># @return &#123;int&#125; the number of characters read</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(self, buf, n)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; n:</span><br><span class="line">            <span class="keyword">if</span> self.readpos == self.writepos:</span><br><span class="line">                self.writepos = Reader.read4(self.buff)</span><br><span class="line">                self.readpos = <span class="number">0</span></span><br><span class="line">                <span class="keyword">if</span> self.writepos == <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            buf[i] = self.buff[self.readpos]</span><br><span class="line">            i, self.readpos = i + <span class="number">1</span>, self.readpos + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/30/179-Largest-Number/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1575,351 +1914,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/155-Min-Stack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/26/155-Min-Stack/" itemprop="url">155. Min Stack</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T10:58:00+08:00">2019-06-26</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-28T09:25:22+08:00">2019-06-28</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/min-stack/" target="_blank" rel="noopener">155. Min Stack</a></p>
-<p>Difficulty: <strong>Easy</strong></p>
-<p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
-<ul>
-<li>push(x) – Push element x onto stack.</li>
-<li>pop() – Removes the element on top of the stack.</li>
-<li>top() – Get the top element.</li>
-<li>getMin() – Retrieve the minimum element in the stack.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MinStack minStack = new MinStack();</span><br><span class="line">minStack.push(-2);</span><br><span class="line">minStack.push(0);</span><br><span class="line">minStack.push(-3);</span><br><span class="line">minStack.getMin();   --&gt; Returns -3.</span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; Returns 0.</span><br><span class="line">minStack.getMin();   --&gt; Returns -2.</span><br></pre></td></tr></table></figure>
-<h1>解法</h1>
-<p>  基本思想就是用空间换时间，入栈每个元素时都记录从该元素到栈底的所有元素的最小值，要入栈的元素对应的最小值只需取入栈之前的栈顶元素的最小值和要入栈的元素值中的最小值即可。时间复杂度O(1)。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        initialize your data structure here.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.st = []</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, x: int)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.st:</span><br><span class="line">            self.st.append((x, x))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.st.append((x, min(self.st[<span class="number">-1</span>][<span class="number">1</span>], x)))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.st:</span><br><span class="line">            self.st.pop()</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">return</span> self.st[<span class="number">-1</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMin</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">return</span> self.st[<span class="number">-1</span>][<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/154-Find-Minimum-in-Rotated-Sorted-Array-II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/26/154-Find-Minimum-in-Rotated-Sorted-Array-II/" itemprop="url">154. Find Minimum in Rotated Sorted Array II</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T10:28:00+08:00">2019-06-26</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-26T10:38:09+08:00">2019-06-26</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/" target="_blank" rel="noopener">154. Find Minimum in Rotated Sorted Array II</a></p>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e.,  <code>[0,1,2,4,5,6,7]</code> might become  <code>[4,5,6,7,0,1,2]</code>).</p>
-<p>Find the minimum element.</p>
-<p>The array may contain duplicates.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,3,5]</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,2,2,0,1]</span><br><span class="line">Output: 0</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li>This is a follow up problem to .</li>
-<li>Would allow duplicates affect the run-time complexity? How and why?</li>
-</ul>
-<h1>解法</h1>
-<p>  这道题和其他三道rotated array的题都很经典，很有启发性，提醒我们要活用二分搜索，不要死记硬背套模板。</p>
-<p>  解法的核心是nums[mid] &gt; nums[begin] or nums[mid] &gt; nums[end]和nums[mid] &lt; nums[end] or nums[mid] &lt; nums[begin]和nums[mid] == nums[end] == nums[begin]三者必然只有一个成立。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMin</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        begin = <span class="number">0</span></span><br><span class="line">        end = len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> begin &lt; end:</span><br><span class="line">            </span><br><span class="line">            mid = begin + (end - begin) // <span class="number">2</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> nums[mid] &gt; nums[begin] <span class="keyword">or</span> nums[mid] &gt; nums[end]:</span><br><span class="line">                <span class="keyword">if</span> nums[mid] &gt; nums[end]:</span><br><span class="line">                    begin = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> nums[begin]                    </span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &lt; nums[end] <span class="keyword">or</span> nums[mid] &lt; nums[begin]:</span><br><span class="line">                <span class="keyword">if</span> nums[mid] &lt; nums[begin]:</span><br><span class="line">                    end = mid</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> nums[begin]                    </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end -= <span class="number">1</span></span><br><span class="line">                <span class="comment"># begin += 1</span></span><br><span class="line">        <span class="keyword">return</span> nums[begin]</span><br></pre></td></tr></table></figure>
-<h1>相关题目</h1>
-<p><em>以下解法都来自https://www.happygirlzt.com/post/rotatedsortedarray/</em></p>
-<p><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">33. Search in Rotated Sorted Array</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span> lo = <span class="number">0</span>, hi = n - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (lo &lt;= hi) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> mid;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// [3, 1], target is 1</span></span><br><span class="line">            <span class="keyword">if</span> (nums[lo] &lt;= nums[mid]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &gt; nums[mid] || target &lt; nums[lo]) &#123;</span><br><span class="line">                   lo = mid + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   hi = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &lt; nums[mid] || target &gt; nums[hi]) &#123;</span><br><span class="line">                    hi = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;  <span class="keyword">else</span> &#123;</span><br><span class="line">                    lo = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/search-in-rotated-sorted-array-ii/" target="_blank" rel="noopener">81. Search in Rotated Sorted Array II</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> boolean <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span> lo = <span class="number">0</span>, hi = n - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (lo &lt;= hi) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[lo] &lt; nums[mid] || nums[mid] &gt; nums[hi]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &gt; nums[mid] || target &lt; nums[lo]) &#123;</span><br><span class="line">                   lo = mid + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   hi = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; nums[hi] || nums[lo] &gt; nums[mid]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &lt; nums[mid] || target &gt; nums[hi]) &#123;</span><br><span class="line">                    hi = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;  <span class="keyword">else</span> &#123;</span><br><span class="line">                    lo = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                hi--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="noopener">153. Find Minimum in Rotated Sorted Array</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">if</span> (nums[<span class="number">0</span>] &lt; nums[n - <span class="number">1</span>]) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> lo = <span class="number">0</span>, hi = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (mid &gt; <span class="number">0</span> &amp;&amp; nums[mid] &lt; nums[mid - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[mid];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[mid + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[mid + <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[lo] &lt; nums[mid]) &#123;</span><br><span class="line">                lo = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                hi = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// when the size of nums is 1, will reach here</span></span><br><span class="line">        <span class="keyword">return</span> nums[lo];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1965,7 +1964,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">150</span>
+                  <span class="site-state-item-count">152</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1987,7 +1986,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
