@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:30.000Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="分类">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/categories/">
 
 
 
@@ -234,6 +234,165 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/MIT-HAKMEM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/30/MIT-HAKMEM/" itemprop="url">countbits</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-30T16:57:00+08:00">2019-10-30</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-30T17:46:06+08:00">2019-10-30</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>  两种求二进数表示中1的个数的算法。</p>
+<h4 id="mit-hakmem"><a class="header-anchor" href="#mit-hakmem">¶</a>MIT HAKMEM</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bitcount</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> tmp;</span><br><span class="line"></span><br><span class="line">    tmp = n</span><br><span class="line">        - ((n &gt;&gt; <span class="number">1</span>) &amp; <span class="number">033333333333</span>)</span><br><span class="line">        - ((n &gt;&gt; <span class="number">2</span>) &amp; <span class="number">011111111111</span>);</span><br><span class="line"></span><br><span class="line">    tmp = (tmp + (tmp &gt;&gt; <span class="number">3</span>)) &amp; <span class="number">030707070707</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (tmp%<span class="number">63</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h5>
+<p><a href="https://blog.csdn.net/msquare/article/details/4536388#commentBox" target="_blank" rel="noopener">https://blog.csdn.net/msquare/article/details/4536388#commentBox</a></p>
+<h4 id="variable-precision-swar"><a class="header-anchor" href="#variable-precision-swar">¶</a>variable-precision SWAR</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">numberOfSetBits</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	i = i - ((i &gt;&gt; <span class="number">1</span>) &amp; <span class="number">0x55555555</span>);</span><br><span class="line">	i = (i &amp; <span class="number">0x33333333</span>) + ((i &gt;&gt; <span class="number">2</span>) &amp; <span class="number">0x33333333</span>);</span><br><span class="line">	<span class="keyword">return</span> (((i + (i &gt;&gt; <span class="number">4</span>)) &amp; <span class="number">0x0F0F0F0F</span>) * <span class="number">0x01010101</span>) &gt;&gt; <span class="number">24</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="参考-v2"><a class="header-anchor" href="#参考-v2">¶</a>参考</h5>
+<p><a href="https://blog.csdn.net/popvip44/article/details/51718621" target="_blank" rel="noopener">https://blog.csdn.net/popvip44/article/details/51718621</a><br>
+<a href="https://blog.csdn.net/zuoyouzouzou/article/details/88739118" target="_blank" rel="noopener">https://blog.csdn.net/zuoyouzouzou/article/details/88739118</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1739,182 +1898,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/289-Game-of-Life/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/27/289-Game-of-Life/" itemprop="url">289. Game of Life</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T15:09:00+08:00">2019-10-27</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-27T15:16:52+08:00">2019-10-27</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1><a href="https://leetcode.com/problems/game-of-life/" target="_blank" rel="noopener">289. Game of Life</a></h1>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>According to the : “The <strong>Game of Life</strong>, also known simply as <strong>Life</strong>, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.”</p>
-<p>Given a <em>board</em> with <em>m</em> by <em>n</em> cells, each cell has an initial state <em>live</em> (1) or <em>dead</em> (0). Each cell interacts with its (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):</p>
-<ol>
-<li>Any live cell with fewer than two live neighbors dies, as if caused by under-population.</li>
-<li>Any live cell with two or three live neighbors lives on to the next generation.</li>
-<li>Any live cell with more than three live neighbors dies, as if by over-population…</li>
-<li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
-</ol>
-<p>The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">[</span><br><span class="line">  [0,1,0],</span><br><span class="line">  [0,0,1],</span><br><span class="line">  [1,1,1],</span><br><span class="line">  [0,0,0]</span><br><span class="line">]</span><br><span class="line">Output: </span><br><span class="line">[</span><br><span class="line">  [0,0,0],</span><br><span class="line">  [1,0,1],</span><br><span class="line">  [0,1,1],</span><br><span class="line">  [0,1,0]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p><strong>Follow up</strong>:</p>
-<ol>
-<li>Could you solve it in-place? Remember that the board needs to be updated at the same time: You cannot update some cells first and then use their updated values to update other cells.</li>
-<li>In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. How would you address these problems?</li>
-</ol>
-<h1>解法</h1>
-<h2 id="法一-利用循环数组处理边界"><a class="header-anchor" href="#法一-利用循环数组处理边界">¶</a>法一(利用循环数组处理边界)</h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">gameOfLife</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row = board.size(), col= board[<span class="number">0</span>].size();</span><br><span class="line">        board.push_back(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(col+<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line">        row++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            board[i].push_back(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        col++;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col - <span class="number">1</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> a = (i - <span class="number">1</span> + row) % row;</span><br><span class="line">                <span class="keyword">int</span> b = (i + <span class="number">1</span> + row) % row;</span><br><span class="line">                <span class="keyword">int</span> c = (j - <span class="number">1</span> + col) % col;</span><br><span class="line">                <span class="keyword">int</span> d = (j + <span class="number">1</span> + col) % col;</span><br><span class="line">                <span class="keyword">int</span> lives = (<span class="built_in">abs</span>(board[a][c]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[a][j]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[a][d]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[i][c]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[i][d]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[b][c]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[b][j]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[b][d]) == <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(board[i][j] == <span class="number">1</span> &amp;&amp; (lives &lt; <span class="number">2</span> || lives &gt; <span class="number">3</span>))&#123;</span><br><span class="line">                    board[i][j] = <span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(board[i][j] == <span class="number">0</span> &amp;&amp; lives == <span class="number">3</span>)&#123;</span><br><span class="line">                    board[i][j] = <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        board.pop_back();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col - <span class="number">1</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j] == <span class="number">-1</span>) board[i][j] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(board[i][j] == <span class="number">2</span>) board[i][j] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            board[i].pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="法二-o-mn-空间复杂度"><a class="header-anchor" href="#法二-o-mn-空间复杂度">¶</a>法二(O(mn)空间复杂度)</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gameOfLife</span><span class="params">(self, board: List[List[int]])</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Neighbors array to find 8 neighboring cells for a given cell</span></span><br><span class="line">        neighbors = [(<span class="number">1</span>,<span class="number">0</span>), (<span class="number">1</span>,<span class="number">-1</span>), (<span class="number">0</span>,<span class="number">-1</span>), (<span class="number">-1</span>,<span class="number">-1</span>), (<span class="number">-1</span>,<span class="number">0</span>), (<span class="number">-1</span>,<span class="number">1</span>), (<span class="number">0</span>,<span class="number">1</span>), (<span class="number">1</span>,<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        rows = len(board)</span><br><span class="line">        cols = len(board[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Create a copy of the original board</span></span><br><span class="line">        copy_board = [[board[row][col] <span class="keyword">for</span> col <span class="keyword">in</span> range(cols)] <span class="keyword">for</span> row <span class="keyword">in</span> range(rows)]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Iterate through board cell by cell.</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line"></span><br><span class="line">                <span class="comment"># For each cell count the number of live neighbors.</span></span><br><span class="line">                live_neighbors = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbors:</span><br><span class="line"></span><br><span class="line">                    r = (row + neighbor[<span class="number">0</span>])</span><br><span class="line">                    c = (col + neighbor[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># Check the validity of the neighboring cell and if it was originally a live cell.</span></span><br><span class="line">                    <span class="comment"># The evaluation is done against the copy, since that is never updated.</span></span><br><span class="line">                    <span class="keyword">if</span> (r &lt; rows <span class="keyword">and</span> r &gt;= <span class="number">0</span>) <span class="keyword">and</span> (c &lt; cols <span class="keyword">and</span> c &gt;= <span class="number">0</span>) <span class="keyword">and</span> (copy_board[r][c] == <span class="number">1</span>):</span><br><span class="line">                        live_neighbors += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># Rule 1 or Rule 3        </span></span><br><span class="line">                <span class="keyword">if</span> copy_board[row][col] == <span class="number">1</span> <span class="keyword">and</span> (live_neighbors &lt; <span class="number">2</span> <span class="keyword">or</span> live_neighbors &gt; <span class="number">3</span>):</span><br><span class="line">                    board[row][col] = <span class="number">0</span></span><br><span class="line">                <span class="comment"># Rule 4</span></span><br><span class="line">                <span class="keyword">if</span> copy_board[row][col] == <span class="number">0</span> <span class="keyword">and</span> live_neighbors == <span class="number">3</span>:</span><br><span class="line">                    board[row][col] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h2 id="法三-o-1-空间复杂度"><a class="header-anchor" href="#法三-o-1-空间复杂度">¶</a>法三(O(1)空间复杂度)</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gameOfLife</span><span class="params">(self, board: List[List[int]])</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># Neighbors array to find 8 neighboring cells for a given cell</span></span><br><span class="line">        neighbors = [(<span class="number">1</span>,<span class="number">0</span>), (<span class="number">1</span>,<span class="number">-1</span>), (<span class="number">0</span>,<span class="number">-1</span>), (<span class="number">-1</span>,<span class="number">-1</span>), (<span class="number">-1</span>,<span class="number">0</span>), (<span class="number">-1</span>,<span class="number">1</span>), (<span class="number">0</span>,<span class="number">1</span>), (<span class="number">1</span>,<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        rows = len(board)</span><br><span class="line">        cols = len(board[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Iterate through board cell by cell.</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line"></span><br><span class="line">                <span class="comment"># For each cell count the number of live neighbors.</span></span><br><span class="line">                live_neighbors = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbors:</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># row and column of the neighboring cell</span></span><br><span class="line">                    r = (row + neighbor[<span class="number">0</span>])</span><br><span class="line">                    c = (col + neighbor[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># Check the validity of the neighboring cell and if it was originally a live cell.</span></span><br><span class="line">                    <span class="keyword">if</span> (r &lt; rows <span class="keyword">and</span> r &gt;= <span class="number">0</span>) <span class="keyword">and</span> (c &lt; cols <span class="keyword">and</span> c &gt;= <span class="number">0</span>) <span class="keyword">and</span> abs(board[r][c]) == <span class="number">1</span>:</span><br><span class="line">                        live_neighbors += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># Rule 1 or Rule 3</span></span><br><span class="line">                <span class="keyword">if</span> board[row][col] == <span class="number">1</span> <span class="keyword">and</span> (live_neighbors &lt; <span class="number">2</span> <span class="keyword">or</span> live_neighbors &gt; <span class="number">3</span>):</span><br><span class="line">                    <span class="comment"># -1 signifies the cell is now dead but originally was live.</span></span><br><span class="line">                    board[row][col] = <span class="number">-1</span></span><br><span class="line">                <span class="comment"># Rule 4</span></span><br><span class="line">                <span class="keyword">if</span> board[row][col] == <span class="number">0</span> <span class="keyword">and</span> live_neighbors == <span class="number">3</span>:</span><br><span class="line">                    <span class="comment"># 2 signifies the cell is now live but was originally dead.</span></span><br><span class="line">                    board[row][col] = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Get the final representation for the newly updated board.</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line">                <span class="keyword">if</span> board[row][col] &gt; <span class="number">0</span>:</span><br><span class="line">                    board[row][col] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    board[row][col] = <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h1>扩展</h1>
-<p>&amp;esmp; 当棋盘无限时，可以看做稀疏矩阵，只保存值为1的坐标，因为只有值为1的附近的值才有可能变化，然后列出每个值为1的值的neighbor，将neighbor计数做一个counter即可得到每个可能变化的位置的neighbor中的1的个数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gameOfLifeInfinite</span><span class="params">(self, live)</span>:</span></span><br><span class="line">    ctr = collections.Counter((I, J)</span><br><span class="line">                              <span class="keyword">for</span> i, j <span class="keyword">in</span> live</span><br><span class="line">                              <span class="keyword">for</span> I <span class="keyword">in</span> range(i<span class="number">-1</span>, i+<span class="number">2</span>)</span><br><span class="line">                              <span class="keyword">for</span> J <span class="keyword">in</span> range(j<span class="number">-1</span>, j+<span class="number">2</span>)</span><br><span class="line">                              <span class="keyword">if</span> I != i <span class="keyword">or</span> J != j)</span><br><span class="line">    <span class="keyword">return</span> &#123;ij</span><br><span class="line">            <span class="keyword">for</span> ij <span class="keyword">in</span> ctr</span><br><span class="line">            <span class="keyword">if</span> ctr[ij] == <span class="number">3</span> <span class="keyword">or</span> ctr[ij] == <span class="number">2</span> <span class="keyword">and</span> ij <span class="keyword">in</span> live&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gameOfLife</span><span class="params">(self, board)</span>:</span></span><br><span class="line">    live = &#123;(i, j) <span class="keyword">for</span> i, row <span class="keyword">in</span> enumerate(board) <span class="keyword">for</span> j, live <span class="keyword">in</span> enumerate(row) <span class="keyword">if</span> live&#125;</span><br><span class="line">    live = self.gameOfLifeInfinite(live)</span><br><span class="line">    <span class="keyword">for</span> i, row <span class="keyword">in</span> enumerate(board):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(row)):</span><br><span class="line">            row[j] = int((i, j) <span class="keyword">in</span> live)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1965,7 +1948,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">152</span>
+                  <span class="site-state-item-count">153</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
