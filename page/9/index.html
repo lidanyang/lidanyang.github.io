@@ -248,6 +248,339 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/14/782-Transform-to-Chessboard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/14/782-Transform-to-Chessboard/" itemprop="url">782. Transform to Chessboard</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T23:28:58+08:00">2019-10-14</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T20:39:10+08:00">2019-10-15</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/transform-to-chessboard/" target="_blank" rel="noopener">782. Transform to Chessboard</a></h1>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>An N x N <code>board</code> contains only <code>0</code>s and <code>1</code>s. In each move, you can swap any 2 rows with each other, or any 2 columns with each other.</p>
+<p>What is the minimum number of moves to transform the board into a “chessboard” - a board where no <code>0</code>s and no <code>1</code>s are 4-directionally adjacent? If the task is impossible, return -1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Examples:</span><br><span class="line">Input: board = [[0,1,1,0],[0,1,1,0],[1,0,0,1],[1,0,0,1]]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation:</span><br><span class="line">One potential sequence of moves is shown below, from left to right:</span><br><span class="line"></span><br><span class="line">0110     1010     1010</span><br><span class="line">0110 --&gt; 1010 --&gt; 0101</span><br><span class="line">1001     0101     1010</span><br><span class="line">1001     0101     0101</span><br><span class="line"></span><br><span class="line">The first move swaps the first and second column.</span><br><span class="line">The second move swaps the second and third row.</span><br><span class="line"></span><br><span class="line">Input: board = [[0, 1], [1, 0]]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation:</span><br><span class="line">Also note that the board with 0 in the top left corner,</span><br><span class="line">01</span><br><span class="line">10</span><br><span class="line"></span><br><span class="line">is also a valid chessboard.</span><br><span class="line"></span><br><span class="line">Input: board = [[1, 0], [1, 0]]</span><br><span class="line">Output: -1</span><br><span class="line">Explanation:</span><br><span class="line">No matter what sequence of moves you make, you cannot end with a valid chessboard.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>board</code> will have the same number of rows and columns, a number in the range <code>[2, 30]</code>.</li>
+<li><code>board[i][j]</code> will be only <code>0</code>s or <code>1</code>s.</li>
+</ul>
+<h1>解法</h1>
+<ol>
+<li>先用<code>board[0][0] ^ board[i][0] ^ board[0][j] ^ board[i][j]</code>判断数据合法性，即是否任意两行互为取反或者互等，另一种说法是不同的行向量有两个，不同的列向量的个数也只有两个。其实只要不同的行向量有两个的话，那么不同的列向量一定也只有两个，因为翻转任意一行，不会改变两个列向量之间的关系。</li>
+<li>计算其中一个行向量和列向量的个数，要满足不同的行向量的个数能大致相等；</li>
+<li>计算不在正确位置上的0,1的个数，这个数一定要是个<strong>偶数</strong>；</li>
+<li>根据n的奇偶性，分情况计算总共的不在其位的0,1的个数，将这个数除以2得出交换次数最小值，因为每一次有效的交换（,奇1和偶0或奇0和偶1）会使这个数减2，所以要除以2；</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> _ = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">movesToChessboard</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = board.size(), rowSum = <span class="number">0</span>, colSum = <span class="number">0</span>, rowDiff = <span class="number">0</span>, colDiff = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (board[<span class="number">0</span>][<span class="number">0</span>] ^ board[i][<span class="number">0</span>] ^ board[<span class="number">0</span>][j] ^ board[i][j]) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            rowSum += board[<span class="number">0</span>][i];</span><br><span class="line">            colSum += board[i][<span class="number">0</span>];</span><br><span class="line">            rowDiff += (board[i][<span class="number">0</span>] == i % <span class="number">2</span>);</span><br><span class="line">            colDiff += (board[<span class="number">0</span>][i] == i % <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n / <span class="number">2</span> &gt; rowSum || rowSum &gt; (n + <span class="number">1</span>) / <span class="number">2</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n / <span class="number">2</span> &gt; colSum || colSum &gt; (n + <span class="number">1</span>) / <span class="number">2</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (rowDiff % <span class="number">2</span>) rowDiff = n - rowDiff;</span><br><span class="line">            <span class="keyword">if</span> (colDiff % <span class="number">2</span>) colDiff = n - colDiff;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            rowDiff = min(n - rowDiff, rowDiff);</span><br><span class="line">            colDiff = min(n - colDiff, colDiff);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (rowDiff + colDiff) / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/14/1157-Online-Majority-Element-In-Subarray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/14/1157-Online-Majority-Element-In-Subarray/" itemprop="url">1157. Online Majority Element In Subarray</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T23:08:00+08:00">2019-10-14</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-14T23:26:52+08:00">2019-10-14</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/online-majority-element-in-subarray/" target="_blank" rel="noopener">1157. Online Majority Element In Subarray</a></h1>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Implementing the class <code>MajorityChecker</code>, which has the following API:</p>
+<ul>
+<li><code>MajorityChecker(int[] arr)</code> constructs an instance of MajorityChecker with the given array <code>arr</code>;</li>
+<li><code>int query(int left, int right, int threshold)</code> has arguments such that:
+<ul>
+<li><code>0 &lt;= left &lt;= right &lt; arr.length</code> representing a subarray of <code>arr</code>;</li>
+<li><code>2 * threshold &gt; right - left + 1</code>, ie. the threshold is always a strict majority of the length of the subarray</li>
+</ul>
+</li>
+</ul>
+<p>Each <code>query(...)</code> returns the element in <code>arr[left], arr[left+1], ..., arr[right]</code> that occurs at least <code>threshold</code> times, or <code>-1</code> if no such element exists.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MajorityChecker majorityChecker = new MajorityChecker([1,1,2,2,1,1]);</span><br><span class="line">majorityChecker.query(0,5,4); // returns 1</span><br><span class="line">majorityChecker.query(0,3,3); // returns -1</span><br><span class="line">majorityChecker.query(2,3,2); // returns 2</span><br></pre></td></tr></table></figure>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= arr.length &lt;= 20000</code></li>
+<li><code>1 &lt;= arr[i] &lt;= 20000</code></li>
+<li>For each query, <code>0 &lt;= left &lt;= right &lt; len(arr)</code></li>
+<li>For each query, <code>2 * threshold &gt; right - left + 1</code></li>
+<li>The number of queries is at most <code>10000</code></li>
+</ul>
+<h1>题解</h1>
+<h2 id="线段树"><a class="header-anchor" href="#线段树">¶</a>线段树</h2>
+<p>  在查询函数中需要注意一个易错点：<code>int find(int root, int left, int right)</code>返回的是left到right之间的主元素，所以<code>find(root&lt;&lt;1, left, right);</code>和<code>find(root&lt;&lt;1|1, left, right);</code>直接返回即可，而<code>find(root&lt;&lt;1, left, ans[root&lt;&lt;1].r);</code>和<code>find(root&lt;&lt;1|1, ans[root&lt;&lt;1|1].l, right);</code>的返回值要在<code>[left，right]</code>这个区间检查，而不是<code>[ans[root].l, ans[root].r]</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">            ans[root].r = r;</span><br><span class="line">            ans[root].major = v[l];</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ans[root].l = l;</span><br><span class="line">        ans[root].r = r;</span><br><span class="line">        <span class="keyword">int</span> m = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        build(root&lt;&lt;<span class="number">1</span>, l, m);</span><br><span class="line">        build(root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>, m+<span class="number">1</span>, r);</span><br><span class="line">        pushup(root);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ans[root].l == left &amp;&amp; ans[root].r == right)&#123;</span><br><span class="line">            <span class="keyword">return</span> ans[root].major;</span><br><span class="line">        &#125;    </span><br><span class="line">        <span class="keyword">int</span> w = right - left + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(ans[root&lt;&lt;<span class="number">1</span>].r &gt;= right)&#123;</span><br><span class="line">            <span class="keyword">return</span> find(root&lt;&lt;<span class="number">1</span>, left, right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(ans[root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].l &lt;= left) &#123;</span><br><span class="line">            <span class="keyword">return</span> find(root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>, left, right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> candidate;</span><br><span class="line">            candidate = find(root&lt;&lt;<span class="number">1</span>, left, ans[root&lt;&lt;<span class="number">1</span>].r);</span><br><span class="line">            <span class="keyword">if</span>(candidate != <span class="number">-1</span> &amp;&amp; <span class="number">2</span> * getcount(candidate, left, right) &gt; w)</span><br><span class="line">                <span class="keyword">return</span> candidate;</span><br><span class="line">            candidate = find(root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>, ans[root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].l, right);</span><br><span class="line">            <span class="keyword">if</span>(candidate != <span class="number">-1</span> &amp;&amp; <span class="number">2</span> * getcount(candidate, left, right) &gt; w)</span><br><span class="line">                <span class="keyword">return</span> candidate;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> threshold)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> candidate = find(<span class="number">1</span>, left, right);</span><br><span class="line">        <span class="comment">// cout &lt;&lt; candidate &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">if</span>(candidate == <span class="number">-1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(getcount(candidate, left, right) &gt;= threshold)</span><br><span class="line">            <span class="keyword">return</span> candidate;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">​</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MajorityChecker object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MajorityChecker* obj = new MajorityChecker(arr);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj-&gt;query(left,right,threshold);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h2 id="随机选择"><a class="header-anchor" href="#随机选择">¶</a>随机选择</h2>
+<p>  这个方法简直刷新我的三观，有点类似于布隆过滤器那种算法，虽然不一定能求出答案，但是一旦求出就一定是答案！以后求主元素又多了一大利器。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> _ = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MajorityChecker</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; m;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">    MajorityChecker(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr) &#123;</span><br><span class="line">        v.resize(arr.size());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); i++)&#123;</span><br><span class="line">            m[arr[i]].push_back(i);</span><br><span class="line">            v[i] = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> threshold)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> n = random() % (right - left + <span class="number">1</span>) + left;</span><br><span class="line">            <span class="keyword">auto</span> upper = upper_bound(m[v[n]].begin(), m[v[n]].end(), right);</span><br><span class="line">            <span class="keyword">auto</span> lower = lower_bound(m[v[n]].begin(), m[v[n]].end(), left);</span><br><span class="line">            <span class="keyword">if</span>(distance(lower, upper) &gt;= threshold)&#123;</span><br><span class="line">                <span class="keyword">return</span> v[n];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MajorityChecker object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MajorityChecker* obj = new MajorityChecker(arr);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj-&gt;query(left,right,threshold);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h2 id="其他解法"><a class="header-anchor" href="#其他解法">¶</a>其他解法</h2>
+<h3 id="trade-off"><a class="header-anchor" href="#trade-off">¶</a>trade-off</h3>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">MajorityChecker</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; pos;</span><br><span class="line">    <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; popular;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">    <span class="keyword">int</span> lookup_bound;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MajorityChecker(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr): a(arr) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); ++i) &#123;</span><br><span class="line">            pos[arr[i]].push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        lookup_bound = round(<span class="built_in">sqrt</span>(arr.size()));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value]: pos) &#123;</span><br><span class="line">            <span class="keyword">if</span> (value.size() &gt;= lookup_bound) &#123;</span><br><span class="line">                popular.insert(key);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">vote</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> target = a[l], occ = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l + <span class="number">1</span>; i &lt;= r; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] == target) &#123;</span><br><span class="line">                ++occ;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                --occ;</span><br><span class="line">                <span class="keyword">if</span> (occ &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    target = a[i];</span><br><span class="line">                    occ = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt;= r; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] == target) &#123;</span><br><span class="line">                ++cnt;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cnt * <span class="number">2</span> &gt; r - l + <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> target;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get_occurrence</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> iter = pos.find(num);</span><br><span class="line">        <span class="keyword">if</span> (iter == pos.end()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; vec = iter-&gt;second;</span><br><span class="line">        <span class="keyword">auto</span> iter_l = lower_bound(vec.begin(), vec.end(), l);</span><br><span class="line">        <span class="keyword">if</span> (iter_l == vec.end()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> iter_r = upper_bound(vec.begin(), vec.end(), r);</span><br><span class="line">        <span class="keyword">return</span> iter_r - iter_l;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> threshold)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (threshold &lt;= lookup_bound) &#123;</span><br><span class="line">            <span class="keyword">int</span> candidate = vote(left, right);</span><br><span class="line">            <span class="keyword">if</span> (candidate != <span class="number">-1</span> &amp;&amp; get_occurrence(candidate, left, right) &gt;= threshold) &#123;</span><br><span class="line">                <span class="keyword">return</span> candidate;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">int</span>&amp; elem: popular) &#123;</span><br><span class="line">                <span class="keyword">if</span> (get_occurrence(elem, left, right) &gt;= threshold) &#123;</span><br><span class="line">                    <span class="keyword">return</span> elem;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="桶"><a class="header-anchor" href="#桶">¶</a>桶</h3>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">MajorityChecker</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; pos;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; bucket;</span><br><span class="line">    <span class="keyword">int</span> bucket_size;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MajorityChecker(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr): a(arr) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); ++i) &#123;</span><br><span class="line">            pos[arr[i]].push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        bucket_size = round(<span class="built_in">sqrt</span>(a.size()));</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; a.size()) &#123;</span><br><span class="line">            <span class="keyword">int</span> r = min(l + bucket_size, (<span class="keyword">int</span>)a.size()) - <span class="number">1</span>;</span><br><span class="line">            bucket.push_back(vote(l, r));</span><br><span class="line">            l += bucket_size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">vote</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> target = a[l], occ = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l + <span class="number">1</span>; i &lt;= r; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] == target) &#123;</span><br><span class="line">                ++occ;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                --occ;</span><br><span class="line">                <span class="keyword">if</span> (occ &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    target = a[i];</span><br><span class="line">                    occ = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt;= r; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] == target) &#123;</span><br><span class="line">                ++cnt;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cnt * <span class="number">2</span> &gt; r - l + <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> target;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get_occurrence</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> iter = pos.find(num);</span><br><span class="line">        <span class="keyword">if</span> (iter == pos.end()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; vec = iter-&gt;second;</span><br><span class="line">        <span class="keyword">auto</span> iter_l = lower_bound(vec.begin(), vec.end(), l);</span><br><span class="line">        <span class="keyword">if</span> (iter_l == vec.end()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> iter_r = upper_bound(vec.begin(), vec.end(), r);</span><br><span class="line">        <span class="keyword">return</span> iter_r - iter_l;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> threshold)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bucket_l = left / bucket_size;</span><br><span class="line">        <span class="keyword">int</span> bucket_r = right / bucket_size;</span><br><span class="line">        <span class="keyword">if</span> (bucket_l == bucket_r) &#123;</span><br><span class="line">            <span class="keyword">int</span> candidate = vote(left, right);</span><br><span class="line">            <span class="keyword">if</span> (candidate != <span class="number">-1</span> &amp;&amp; get_occurrence(candidate, left, right) &gt;= threshold) &#123;</span><br><span class="line">                <span class="keyword">return</span> candidate;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> vote_l = vote(left, (bucket_l + <span class="number">1</span>) * bucket_size - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">int</span> vote_r = vote(bucket_r * bucket_size, right);</span><br><span class="line">            <span class="keyword">if</span> (vote_l != <span class="number">-1</span> &amp;&amp; get_occurrence(vote_l, left, right) &gt;= threshold) &#123;</span><br><span class="line">                <span class="keyword">return</span> vote_l;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (vote_r != <span class="number">-1</span> &amp;&amp; get_occurrence(vote_r, left, right) &gt;= threshold) &#123;</span><br><span class="line">                <span class="keyword">return</span> vote_r;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = bucket_l + <span class="number">1</span>; i &lt; bucket_r; ++i) &#123;</span><br><span class="line">                <span class="keyword">int</span> occ = get_occurrence(bucket[i], left, right);</span><br><span class="line">                <span class="keyword">if</span> (occ &gt;= threshold) &#123;</span><br><span class="line">                    <span class="keyword">return</span> bucket[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a class="header-anchor" href="#总结">¶</a>总结</h2>
+<p>  在线段树的那个易错点上耽误不少时间，主要还是因为定势思维，太依赖于模板，自己懒得思考。算法和数据结构的精髓还是在于自己推导，自己设计，而不是仅仅比着现有知识的葫芦画没见过的瓢。其实线段树还有很多种不同的写法，比如非递归建树，单点更新区间查询的线段树。下面贴一个non-trivial的线段树的例子：</p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// optimized segment tree that supports point update and range query on monoids</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> M&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">iterative_segment_tree</span> &#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">using</span> T = <span class="keyword">typename</span> M::T;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">constexpr</span> M mon &#123;&#125;;</span><br><span class="line">  <span class="keyword">int</span> n;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt; t;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">parent</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; <span class="keyword">return</span> (i - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">lch</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; <span class="keyword">return</span> (i &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">rch</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; <span class="keyword">return</span> (i &lt;&lt; <span class="number">1</span>) + <span class="number">2</span>; &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  iterative_segment_tree() = <span class="keyword">default</span>;</span><br><span class="line">  <span class="comment">//相当于update</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">point_apply</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">const</span> function&lt;<span class="keyword">void</span>(T&amp;)&gt;&amp; z)</span> </span>&#123;</span><br><span class="line">    z(t[n + i - <span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = parent(n + i - <span class="number">1</span>); j &gt; <span class="number">0</span>; j = parent(j)) &#123;</span><br><span class="line">      t[j] = mon.append(t[lch(j)], t[rch(j)]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//相当于build</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> a_n, T init_tval = mon.unit())</span> </span>&#123;</span><br><span class="line">    <span class="comment">// n = 1;</span></span><br><span class="line">    <span class="comment">// while (n &lt;= a_n) n &lt;&lt;= 1;</span></span><br><span class="line">    n = <span class="number">1</span> &lt;&lt; (<span class="number">32</span> - __builtin_clz(a_n));</span><br><span class="line">    t.resize((n &lt;&lt; <span class="number">1</span>) - <span class="number">1</span>, init_tval);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">      t[i] = mon.append(t[lch(i)], t[rch(i)]); <span class="comment">// propagate initial values</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//相当于query</span></span><br><span class="line">  <span class="function">T <span class="title">range_concat</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123; <span class="comment">// 0-based, [l, r)</span></span><br><span class="line">    T lacc = mon.unit(), racc = mon.unit();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> ll = n + l - <span class="number">1</span>, rr = n + r - <span class="number">1</span>; ll &lt; rr; ll = parent(ll), rr = parent(rr)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">not</span> (ll &amp; <span class="number">1</span>)) lacc = mon.append(lacc, t[ll++]);</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">not</span> (rr &amp; <span class="number">1</span>)) racc = mon.append(racc, t[--rr]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> mon.append(lacc, racc);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">plus_monoid</span> &#123;</span></span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">int</span> T;</span><br><span class="line">  <span class="function">T <span class="title">unit</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">T <span class="title">append</span><span class="params">(T a, T b)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1>参考</h1>
+<p><a href="https://leetcode.com/problems/online-majority-element-in-subarray/discuss/356227/C%2B%2B-Codes-of-different-approaches-(Random-Pick-Trade-off-Segment-Tree-Bucket)" target="_blank" rel="noopener">https://leetcode.com/problems/online-majority-element-in-subarray/discuss/356227/C%2B%2B-Codes-of-different-approaches-(Random-Pick-Trade-off-Segment-Tree-Bucket)</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/13/327-Count-of-Range-Sum/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1568,314 +1901,6 @@ A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do 
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/-Primer学习笔记：第18章-用于大型程序的工具/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/24/-Primer学习笔记：第18章-用于大型程序的工具/" itemprop="url">C++ Primer学习笔记：第18章 用于大型程序的工具</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T18:44:00+08:00">2019-07-24</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:32:48+08:00">2019-07-30</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1>18.1 异常处理</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/24/-Primer学习笔记：第18章-用于大型程序的工具/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/23/C-Primer学习笔记：第17章-标准库特殊设施/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/23/C-Primer学习笔记：第17章-标准库特殊设施/" itemprop="url">C++ Primer学习笔记：第17章 标准库特殊设施</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-23T22:54:00+08:00">2019-07-23</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-30T13:35:18+08:00">2019-07-30</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1>17.1 tuple类型</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/23/C-Primer学习笔记：第17章-标准库特殊设施/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1926,7 +1951,7 @@ A naive algorithm of <em>O</em>(<em>n</em><sup>2</sup>) is trivial. You MUST do 
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">161</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

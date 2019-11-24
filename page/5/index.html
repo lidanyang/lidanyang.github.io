@@ -248,6 +248,319 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/264-Ugly-Number-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/06/264-Ugly-Number-II/" itemprop="url">264. Ugly Number II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-06T21:29:23+08:00">2019-11-06</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-07T10:56:00+08:00">2019-11-07</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/ugly-number-ii/" target="_blank" rel="noopener">264. Ugly Number II</a></h1>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Write a program to find the <code>n</code>-th ugly number.</p>
+<p>Ugly numbers are <strong>positive numbers</strong> whose prime factors only include <code>2, 3, 5</code>.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 10</span><br><span class="line">Output: 12</span><br><span class="line">Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1</code> is typically treated as an ugly number.</li>
+<li><code>n</code> <strong>does not exceed 1690</strong>.</li>
+</ol>
+<h1>解法</h1>
+<p>Language: <strong>C++</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">nthUglyNumber</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i =<span class="number">0</span>, j=<span class="number">0</span>, k =<span class="number">0</span>, count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ugly[n] = &#123;<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">while</span>(count &lt; n - <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = min(ugly[i]*<span class="number">2</span>, min(ugly[j]*<span class="number">3</span>, ugly[k]*<span class="number">5</span>));</span><br><span class="line">            <span class="keyword">if</span>(tmp == ugly[i]*<span class="number">2</span>) i++;</span><br><span class="line">            <span class="keyword">if</span>(tmp == ugly[j]*<span class="number">3</span>) j++;</span><br><span class="line">            <span class="keyword">if</span>(tmp == ugly[k]*<span class="number">5</span>) k++;</span><br><span class="line">            ugly[++count] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ugly[n - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/279-Perfect-Squares/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/06/279-Perfect-Squares/" itemprop="url">279. Perfect Squares</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-06T17:02:00+08:00">2019-11-06</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-06T21:23:10+08:00">2019-11-06</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/perfect-squares/" target="_blank" rel="noopener">279. Perfect Squares</a></h1>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a positive integer <em>n</em>, find the least number of perfect square numbers (for example, <code>1, 4, 9, 16, ...</code>) which sum to <em>n</em>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 12</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: 12 = 4 + 4 + 4.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 13</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: 13 = 4 + 9.</span><br></pre></td></tr></table></figure>
+<h1>解法</h1>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<p>动态规划</p>
+<h4 id="动态规划之一"><a class="header-anchor" href="#动态规划之一">¶</a>动态规划之一</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">numSquaresDP</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n+<span class="number">1</span>, INT_MAX);</span><br><span class="line">        </span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= n;++i) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;i + j*j &lt;= n;++j) &#123;</span><br><span class="line">                dp[i+j*j] = min(dp[i+j*j], dp[i] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp.back();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="动态规划之一-v2"><a class="header-anchor" href="#动态规划之一-v2">¶</a>动态规划之一</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">static</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp &#123;<span class="number">0</span>&#125;;</span><br><span class="line">      <span class="keyword">while</span> (dp.size() &lt;= n) &#123;</span><br><span class="line">          <span class="keyword">int</span> m = dp.size(), squares = INT_MAX;</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i*i&lt;=m; ++i)</span><br><span class="line">              squares = min(squares, dp[m-i*i] + <span class="number">1</span>);</span><br><span class="line">          dp.push_back(squares);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> dp[n];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="动态规划之三"><a class="header-anchor" href="#动态规划之三">¶</a>动态规划之三</h4>
+<p>  将vector<int>声明为static，这样对一个用例调用完之后vector不会清空，后面还可以利用之前调用算出的结果。</int></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">static</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> m = dp.size();</span><br><span class="line">        dp.resize(max(m, n+<span class="number">1</span>), INT_MAX);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>, i2; (i2 = i*i)&lt;=n; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=max(m, i2); j&lt;=n; ++j)</span><br><span class="line">                <span class="keyword">if</span> (dp[j] &gt; dp[j-i2] + <span class="number">1</span>)</span><br><span class="line">                    dp[j] = dp[j-i2] + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<p>BFS</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        q.push_back(n);</span><br><span class="line">        <span class="keyword">int</span> c = <span class="number">0</span>, level = <span class="number">1</span>, lc = q.size();</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> f = q.front();</span><br><span class="line">            q.pop_front();</span><br><span class="line">            c++;</span><br><span class="line">            <span class="keyword">int</span> m = <span class="built_in">sqrt</span>(f);</span><br><span class="line">            <span class="keyword">if</span>(f == m*m) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = m; i &gt;= <span class="number">1</span>; i--)&#123;</span><br><span class="line">                q.push_back(f - i*i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(c == lc)&#123;</span><br><span class="line">                level++;</span><br><span class="line">                lc = q.size();</span><br><span class="line">                c = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> level;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h2>
+<p>数学：涉及到四平方和定理，二平方和定理</p>
+<p><a href="https://en.wikipedia.org/wiki/Sum_of_two_squares_theorem" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Sum_of_two_squares_theorem</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Lagrange%27s_four-square_theorem" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Lagrange's_four-square_theorem</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSquare</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sqrt_n = <span class="built_in">sqrt</span>(n);</span><br><span class="line">        <span class="keyword">return</span> sqrt_n * sqrt_n == n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(isSquare(n)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(n % <span class="number">4</span> == <span class="number">0</span>) n/=<span class="number">4</span>;</span><br><span class="line">        <span class="keyword">if</span>(n % <span class="number">8</span> == <span class="number">7</span>) <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">        <span class="comment">//所有4^a(8n+7)都不能表示成三个平方数的和</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i*i &lt;=n;++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> r = n - (i*i);</span><br><span class="line">            <span class="keyword">if</span>(isSquare(r)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/221-Maximal-Square/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1608,335 +1921,6 @@ Can you do it in O(<em>n</em>) time?</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/MIT-HAKMEM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/30/MIT-HAKMEM/" itemprop="url">countbits</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-30T16:57:00+08:00">2019-10-30</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-30T17:46:06+08:00">2019-10-30</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>  两种求二进数表示中1的个数的算法。</p>
-<h4 id="mit-hakmem"><a class="header-anchor" href="#mit-hakmem">¶</a>MIT HAKMEM</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bitcount</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> tmp;</span><br><span class="line"></span><br><span class="line">    tmp = n</span><br><span class="line">        - ((n &gt;&gt; <span class="number">1</span>) &amp; <span class="number">033333333333</span>)</span><br><span class="line">        - ((n &gt;&gt; <span class="number">2</span>) &amp; <span class="number">011111111111</span>);</span><br><span class="line"></span><br><span class="line">    tmp = (tmp + (tmp &gt;&gt; <span class="number">3</span>)) &amp; <span class="number">030707070707</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (tmp%<span class="number">63</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h5>
-<p><a href="https://blog.csdn.net/msquare/article/details/4536388#commentBox" target="_blank" rel="noopener">https://blog.csdn.net/msquare/article/details/4536388#commentBox</a></p>
-<h4 id="variable-precision-swar"><a class="header-anchor" href="#variable-precision-swar">¶</a>variable-precision SWAR</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">numberOfSetBits</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	i = i - ((i &gt;&gt; <span class="number">1</span>) &amp; <span class="number">0x55555555</span>);</span><br><span class="line">	i = (i &amp; <span class="number">0x33333333</span>) + ((i &gt;&gt; <span class="number">2</span>) &amp; <span class="number">0x33333333</span>);</span><br><span class="line">	<span class="keyword">return</span> (((i + (i &gt;&gt; <span class="number">4</span>)) &amp; <span class="number">0x0F0F0F0F</span>) * <span class="number">0x01010101</span>) &gt;&gt; <span class="number">24</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h5 id="参考-v2"><a class="header-anchor" href="#参考-v2">¶</a>参考</h5>
-<p><a href="https://blog.csdn.net/popvip44/article/details/51718621" target="_blank" rel="noopener">https://blog.csdn.net/popvip44/article/details/51718621</a><br>
-<a href="https://blog.csdn.net/zuoyouzouzou/article/details/88739118" target="_blank" rel="noopener">https://blog.csdn.net/zuoyouzouzou/article/details/88739118</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/969-Pancake-Sorting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/30/969-Pancake-Sorting/" itemprop="url">969. Pancake Sorting</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-30T14:43:00+08:00">2019-10-30</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-30T14:47:37+08:00">2019-10-30</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="969-pancake-sorting"><a class="header-anchor" href="#969-pancake-sorting">¶</a><a href="https://leetcode.com/problems/pancake-sorting/" target="_blank" rel="noopener">969. Pancake Sorting</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Given an array <code>A</code>, we can perform a <em>pancake flip</em>: We choose some positive integer <code>**k** &lt;= A.length</code>, then reverse the order of the first <strong>k</strong> elements of <code>A</code>.  We want to perform zero or more pancake flips (doing them one after another in succession) to sort the array <code>A</code>.</p>
-<p>Return the k-values corresponding to a sequence of pancake flips that sort <code>A</code>.  Any valid answer that sorts the array within <code>10 * A.length</code> flips will be judged as correct.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,2,4,1]</span><br><span class="line">Output: [4,2,4,3]</span><br><span class="line">Explanation: </span><br><span class="line">We perform 4 pancake flips, with k values 4, 2, 4, and 3.</span><br><span class="line">Starting state: A = [3, 2, 4, 1]</span><br><span class="line">After 1st flip (k=4): A = [1, 4, 2, 3]</span><br><span class="line">After 2nd flip (k=2): A = [4, 1, 2, 3]</span><br><span class="line">After 3rd flip (k=4): A = [3, 2, 1, 4]</span><br><span class="line">After 4th flip (k=3): A = [1, 2, 3, 4], which is sorted.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3]</span><br><span class="line">Output: []</span><br><span class="line">Explanation: The input is already sorted, so there is no need to flip anything.</span><br><span class="line">Note that other answers, such as [3, 3], would also be accepted.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>1 &lt;= A.length &lt;= 100</code></li>
-<li><code>A[i]</code> is a permutation of <code>[1, 2, ..., A.length]</code></li>
-</ol>
-<h1>解法</h1>
-<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
-<p>  首先，将位置从A的最大值到A的最小值进行排序。</p>
-<p>  对于具有位置i的每个元素（从最大到最小）根据已完成的薄煎饼翻转模拟该元素的实际位置。</p>
-<p>  对于煎饼翻转f和元素i，如果i &lt;= f，则元素从位置i移至f + 1-i。</p>
-<p>  之后，我们先按i再按N–将这个元素放在正确的位置。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pancakeSort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(A[i] == n &amp;&amp; i != n - <span class="number">1</span>)&#123;</span><br><span class="line">                    reverse(A.begin(), A.begin() + i + <span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">if</span>(i != <span class="number">0</span>)</span><br><span class="line">                        res.push_back(i+<span class="number">1</span>);</span><br><span class="line">                    reverse(A.begin(), A.end() - A.size() + n);</span><br><span class="line">                    res.push_back(n);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            n--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pancakeSort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.size(); i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(A[i] == n &amp;&amp; i != n - <span class="number">1</span>)&#123;</span><br><span class="line">                    reverse(A.begin(), A.begin() + i + <span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">if</span>(i != <span class="number">0</span>)</span><br><span class="line">                        res.push_back(i+<span class="number">1</span>);</span><br><span class="line">                    reverse(A.begin(), A.end() - A.size() + n);</span><br><span class="line">                    res.push_back(n);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            n--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1987,7 +1971,7 @@ Can you do it in O(<em>n</em>) time?</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">161</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

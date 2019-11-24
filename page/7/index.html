@@ -248,6 +248,352 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/289-Game-of-Life/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/27/289-Game-of-Life/" itemprop="url">289. Game of Life</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T15:09:00+08:00">2019-10-27</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-27T15:16:52+08:00">2019-10-27</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/game-of-life/" target="_blank" rel="noopener">289. Game of Life</a></h1>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>According to the : “The <strong>Game of Life</strong>, also known simply as <strong>Life</strong>, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.”</p>
+<p>Given a <em>board</em> with <em>m</em> by <em>n</em> cells, each cell has an initial state <em>live</em> (1) or <em>dead</em> (0). Each cell interacts with its (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):</p>
+<ol>
+<li>Any live cell with fewer than two live neighbors dies, as if caused by under-population.</li>
+<li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+<li>Any live cell with more than three live neighbors dies, as if by over-population…</li>
+<li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
+</ol>
+<p>The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">[</span><br><span class="line">  [0,1,0],</span><br><span class="line">  [0,0,1],</span><br><span class="line">  [1,1,1],</span><br><span class="line">  [0,0,0]</span><br><span class="line">]</span><br><span class="line">Output: </span><br><span class="line">[</span><br><span class="line">  [0,0,0],</span><br><span class="line">  [1,0,1],</span><br><span class="line">  [0,1,1],</span><br><span class="line">  [0,1,0]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><strong>Follow up</strong>:</p>
+<ol>
+<li>Could you solve it in-place? Remember that the board needs to be updated at the same time: You cannot update some cells first and then use their updated values to update other cells.</li>
+<li>In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. How would you address these problems?</li>
+</ol>
+<h1>解法</h1>
+<h2 id="法一-利用循环数组处理边界"><a class="header-anchor" href="#法一-利用循环数组处理边界">¶</a>法一(利用循环数组处理边界)</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">gameOfLife</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row = board.size(), col= board[<span class="number">0</span>].size();</span><br><span class="line">        board.push_back(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(col+<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line">        row++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            board[i].push_back(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        col++;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col - <span class="number">1</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> a = (i - <span class="number">1</span> + row) % row;</span><br><span class="line">                <span class="keyword">int</span> b = (i + <span class="number">1</span> + row) % row;</span><br><span class="line">                <span class="keyword">int</span> c = (j - <span class="number">1</span> + col) % col;</span><br><span class="line">                <span class="keyword">int</span> d = (j + <span class="number">1</span> + col) % col;</span><br><span class="line">                <span class="keyword">int</span> lives = (<span class="built_in">abs</span>(board[a][c]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[a][j]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[a][d]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[i][c]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[i][d]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[b][c]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[b][j]) == <span class="number">1</span>) + (<span class="built_in">abs</span>(board[b][d]) == <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(board[i][j] == <span class="number">1</span> &amp;&amp; (lives &lt; <span class="number">2</span> || lives &gt; <span class="number">3</span>))&#123;</span><br><span class="line">                    board[i][j] = <span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(board[i][j] == <span class="number">0</span> &amp;&amp; lives == <span class="number">3</span>)&#123;</span><br><span class="line">                    board[i][j] = <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        board.pop_back();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col - <span class="number">1</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j] == <span class="number">-1</span>) board[i][j] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(board[i][j] == <span class="number">2</span>) board[i][j] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            board[i].pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="法二-o-mn-空间复杂度"><a class="header-anchor" href="#法二-o-mn-空间复杂度">¶</a>法二(O(mn)空间复杂度)</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gameOfLife</span><span class="params">(self, board: List[List[int]])</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Neighbors array to find 8 neighboring cells for a given cell</span></span><br><span class="line">        neighbors = [(<span class="number">1</span>,<span class="number">0</span>), (<span class="number">1</span>,<span class="number">-1</span>), (<span class="number">0</span>,<span class="number">-1</span>), (<span class="number">-1</span>,<span class="number">-1</span>), (<span class="number">-1</span>,<span class="number">0</span>), (<span class="number">-1</span>,<span class="number">1</span>), (<span class="number">0</span>,<span class="number">1</span>), (<span class="number">1</span>,<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        rows = len(board)</span><br><span class="line">        cols = len(board[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Create a copy of the original board</span></span><br><span class="line">        copy_board = [[board[row][col] <span class="keyword">for</span> col <span class="keyword">in</span> range(cols)] <span class="keyword">for</span> row <span class="keyword">in</span> range(rows)]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Iterate through board cell by cell.</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line"></span><br><span class="line">                <span class="comment"># For each cell count the number of live neighbors.</span></span><br><span class="line">                live_neighbors = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbors:</span><br><span class="line"></span><br><span class="line">                    r = (row + neighbor[<span class="number">0</span>])</span><br><span class="line">                    c = (col + neighbor[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># Check the validity of the neighboring cell and if it was originally a live cell.</span></span><br><span class="line">                    <span class="comment"># The evaluation is done against the copy, since that is never updated.</span></span><br><span class="line">                    <span class="keyword">if</span> (r &lt; rows <span class="keyword">and</span> r &gt;= <span class="number">0</span>) <span class="keyword">and</span> (c &lt; cols <span class="keyword">and</span> c &gt;= <span class="number">0</span>) <span class="keyword">and</span> (copy_board[r][c] == <span class="number">1</span>):</span><br><span class="line">                        live_neighbors += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># Rule 1 or Rule 3        </span></span><br><span class="line">                <span class="keyword">if</span> copy_board[row][col] == <span class="number">1</span> <span class="keyword">and</span> (live_neighbors &lt; <span class="number">2</span> <span class="keyword">or</span> live_neighbors &gt; <span class="number">3</span>):</span><br><span class="line">                    board[row][col] = <span class="number">0</span></span><br><span class="line">                <span class="comment"># Rule 4</span></span><br><span class="line">                <span class="keyword">if</span> copy_board[row][col] == <span class="number">0</span> <span class="keyword">and</span> live_neighbors == <span class="number">3</span>:</span><br><span class="line">                    board[row][col] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="法三-o-1-空间复杂度"><a class="header-anchor" href="#法三-o-1-空间复杂度">¶</a>法三(O(1)空间复杂度)</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gameOfLife</span><span class="params">(self, board: List[List[int]])</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># Neighbors array to find 8 neighboring cells for a given cell</span></span><br><span class="line">        neighbors = [(<span class="number">1</span>,<span class="number">0</span>), (<span class="number">1</span>,<span class="number">-1</span>), (<span class="number">0</span>,<span class="number">-1</span>), (<span class="number">-1</span>,<span class="number">-1</span>), (<span class="number">-1</span>,<span class="number">0</span>), (<span class="number">-1</span>,<span class="number">1</span>), (<span class="number">0</span>,<span class="number">1</span>), (<span class="number">1</span>,<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        rows = len(board)</span><br><span class="line">        cols = len(board[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Iterate through board cell by cell.</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line"></span><br><span class="line">                <span class="comment"># For each cell count the number of live neighbors.</span></span><br><span class="line">                live_neighbors = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbors:</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># row and column of the neighboring cell</span></span><br><span class="line">                    r = (row + neighbor[<span class="number">0</span>])</span><br><span class="line">                    c = (col + neighbor[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># Check the validity of the neighboring cell and if it was originally a live cell.</span></span><br><span class="line">                    <span class="keyword">if</span> (r &lt; rows <span class="keyword">and</span> r &gt;= <span class="number">0</span>) <span class="keyword">and</span> (c &lt; cols <span class="keyword">and</span> c &gt;= <span class="number">0</span>) <span class="keyword">and</span> abs(board[r][c]) == <span class="number">1</span>:</span><br><span class="line">                        live_neighbors += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># Rule 1 or Rule 3</span></span><br><span class="line">                <span class="keyword">if</span> board[row][col] == <span class="number">1</span> <span class="keyword">and</span> (live_neighbors &lt; <span class="number">2</span> <span class="keyword">or</span> live_neighbors &gt; <span class="number">3</span>):</span><br><span class="line">                    <span class="comment"># -1 signifies the cell is now dead but originally was live.</span></span><br><span class="line">                    board[row][col] = <span class="number">-1</span></span><br><span class="line">                <span class="comment"># Rule 4</span></span><br><span class="line">                <span class="keyword">if</span> board[row][col] == <span class="number">0</span> <span class="keyword">and</span> live_neighbors == <span class="number">3</span>:</span><br><span class="line">                    <span class="comment"># 2 signifies the cell is now live but was originally dead.</span></span><br><span class="line">                    board[row][col] = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Get the final representation for the newly updated board.</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line">                <span class="keyword">if</span> board[row][col] &gt; <span class="number">0</span>:</span><br><span class="line">                    board[row][col] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    board[row][col] = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h1>扩展</h1>
+<p>&amp;esmp; 当棋盘无限时，可以看做稀疏矩阵，只保存值为1的坐标，因为只有值为1的附近的值才有可能变化，然后列出每个值为1的值的neighbor，将neighbor计数做一个counter即可得到每个可能变化的位置的neighbor中的1的个数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gameOfLifeInfinite</span><span class="params">(self, live)</span>:</span></span><br><span class="line">    ctr = collections.Counter((I, J)</span><br><span class="line">                              <span class="keyword">for</span> i, j <span class="keyword">in</span> live</span><br><span class="line">                              <span class="keyword">for</span> I <span class="keyword">in</span> range(i<span class="number">-1</span>, i+<span class="number">2</span>)</span><br><span class="line">                              <span class="keyword">for</span> J <span class="keyword">in</span> range(j<span class="number">-1</span>, j+<span class="number">2</span>)</span><br><span class="line">                              <span class="keyword">if</span> I != i <span class="keyword">or</span> J != j)</span><br><span class="line">    <span class="keyword">return</span> &#123;ij</span><br><span class="line">            <span class="keyword">for</span> ij <span class="keyword">in</span> ctr</span><br><span class="line">            <span class="keyword">if</span> ctr[ij] == <span class="number">3</span> <span class="keyword">or</span> ctr[ij] == <span class="number">2</span> <span class="keyword">and</span> ij <span class="keyword">in</span> live&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gameOfLife</span><span class="params">(self, board)</span>:</span></span><br><span class="line">    live = &#123;(i, j) <span class="keyword">for</span> i, row <span class="keyword">in</span> enumerate(board) <span class="keyword">for</span> j, live <span class="keyword">in</span> enumerate(row) <span class="keyword">if</span> live&#125;</span><br><span class="line">    live = self.gameOfLifeInfinite(live)</span><br><span class="line">    <span class="keyword">for</span> i, row <span class="keyword">in</span> enumerate(board):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(row)):</span><br><span class="line">            row[j] = int((i, j) <span class="keyword">in</span> live)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/532-K-diff-Pairs-in-an-Array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/27/532-K-diff-Pairs-in-an-Array/" itemprop="url">532. K-diff Pairs in an Array</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T13:57:00+08:00">2019-10-27</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-27T14:00:32+08:00">2019-10-27</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/k-diff-pairs-in-an-array/" target="_blank" rel="noopener">532. K-diff Pairs in an Array</a></h1>
+<p>Difficulty: <strong>Easy</strong></p>
+<p>Given an array of integers and an integer <strong>k</strong>, you need to find the number of <strong>unique</strong> k-diff pairs in the array. Here a <strong>k-diff</strong> pair is defined as an integer pair (i, j), where <strong>i</strong> and <strong>j</strong> are both numbers in the array and their is <strong>k</strong>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [3, 1, 4, 1, 5], k = 2</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: There are two 2-diff pairs in the array, (1, 3) and (3, 5).Although we have two 1s in the input, we should only return the number of unique pairs.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input:[1, 2, 3, 4, 5], k = 1</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: There are four 1-diff pairs in the array, (1, 2), (2, 3), (3, 4) and (4, 5).</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1, 3, 1, 5, 4], k = 0</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: There is one 0-diff pair in the array, (1, 1).</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The pairs (i, j) and (j, i) count as the same pair.</li>
+<li>The length of the array won’t exceed 10,000.</li>
+<li>All the integers in the given input belong to the range: [-1e7, 1e7].</li>
+</ol>
+<h1>解法</h1>
+<h2 id="法一-map-one-pass"><a class="header-anchor" href="#法一-map-one-pass">¶</a>法一（map one pass）</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findPairs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.size() &lt; <span class="number">2</span> || k &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// O(n) memory to lookup whether a value exists in O(1)</span></span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; valCount;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            valCount[nums[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// We can iterate through the map instead of the vector</span></span><br><span class="line">        <span class="comment">// as each value occurs only once in the map, so no need to worry about duplicates</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> vals : valCount) &#123;</span><br><span class="line">            <span class="keyword">if</span>((k &gt; <span class="number">0</span> &amp;&amp; valCount.count(vals.first + k) &gt; <span class="number">0</span>) ||</span><br><span class="line">               (k == <span class="number">0</span> &amp;&amp; vals.second &gt; <span class="number">1</span>)) &#123;</span><br><span class="line">                result++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="法二-map-two-pass"><a class="header-anchor" href="#法二-map-two-pass">¶</a>法二（map two pass）</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findPairs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; myMap;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (myMap.count(nums[i]+k) &amp;&amp; (myMap.count(nums[i]) == <span class="number">0</span> || myMap[nums[i]] == <span class="number">0</span>)) &#123;</span><br><span class="line">                ++counter;</span><br><span class="line">                myMap[nums[i]] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (myMap.count(nums[i]-k) &amp;&amp; myMap[nums[i]-k] == <span class="number">0</span>) &#123;</span><br><span class="line">                ++counter;</span><br><span class="line">                myMap[nums[i]-k] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (myMap.count(nums[i]) == <span class="number">0</span>) myMap[nums[i]] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> counter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="法三-双指针"><a class="header-anchor" href="#法三-双指针">¶</a>法三（双指针）</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findPairs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k &lt; <span class="number">0</span> || nums.size() &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>; j &lt; nums.size();) &#123;</span><br><span class="line">            <span class="comment">// Since the list has been sorted, we check if val at position j is at least k-diff values ahead of val at position i</span></span><br><span class="line">            <span class="keyword">if</span>(j &lt;= i || nums[i] + k &gt; nums[j]) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// Check if the value at position 'i' isn't the same as the value at position 'i - 1' to avoid duplicates</span></span><br><span class="line">            <span class="comment">// val atposition 'i' is at most k-diff values behind position 'j'</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>((i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) || nums[i] + k &lt; nums[j]) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// val at position 'i' is exactly k-diff apart from val at position 'j'</span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                result++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/697-Degree-of-an-Array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1657,332 +2003,6 @@ default value</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/775-Global-and-Local-Inversions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/23/775-Global-and-Local-Inversions/" itemprop="url">775. Global and Local Inversions</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-23T12:14:00+08:00">2019-10-23</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-23T13:13:05+08:00">2019-10-23</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1><a href="https://leetcode.com/problems/global-and-local-inversions/" target="_blank" rel="noopener">775. Global and Local Inversions</a></h1>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>We have some permutation <code>A</code> of <code>[0, 1, ..., N - 1]</code>, where <code>N</code> is the length of <code>A</code>.</p>
-<p>The number of (global) inversions is the number of <code>i &lt; j</code> with <code>0 &lt;= i &lt; j &lt; N</code> and <code>A[i] &gt; A[j]</code>.</p>
-<p>The number of local inversions is the number of <code>i</code> with <code>0 &lt;= i &lt; N</code> and <code>A[i] &gt; A[i+1]</code>.</p>
-<p>Return <code>true</code> if and only if the number of global inversions is equal to the number of local inversions.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: A = [1,0,2]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: There is 1 global inversion, and 1 local inversion.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: A = [1,2,0]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: There are 2 global inversions, and 1 local inversion.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>A</code> will be a permutation of <code>[0, 1, ..., A.length - 1]</code>.</li>
-<li><code>A</code> will have length in range <code>[1, 5000]</code>.</li>
-<li>The time limit for this problem has been reduced.</li>
-</ul>
-<h1>解法</h1>
-<h2 id="蠢才解法"><a class="header-anchor" href="#蠢才解法">¶</a>蠢才解法</h2>
-<p>  复杂度O(nlogn)，一边检查相邻元素来求local inversion，一边用BIT求global inversion。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> sz, <span class="keyword">int</span> n, <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = p; i &lt; sz; i += lowbit(i))&#123;</span><br><span class="line">            a[i] += n;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = p; i &gt; <span class="number">0</span>; i -= lowbit(i)) &#123;</span><br><span class="line">            res += a[i];</span><br><span class="line">            <span class="comment">// cout &lt;&lt; "get" &lt;&lt; endl;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isIdealPermutation</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        long long global(0), local(0), sz(A.size());</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> *bit = <span class="keyword">new</span> <span class="keyword">int</span>[sz + <span class="number">1</span>]();<span class="comment">//下标从1开始</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(sz &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = sz - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="comment">// cout &lt;&lt; i &lt;&lt; endl;</span></span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; A[i - <span class="number">1</span>] &gt; A[i])&#123;</span><br><span class="line">                local++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// cout &lt;&lt; local &lt;&lt; global &lt;&lt; endl;</span></span><br><span class="line">            update(bit, sz + <span class="number">1</span>, <span class="number">1</span>, A[i] + <span class="number">1</span>);<span class="comment">//0对应数组下标1，因为树状数组从1开始</span></span><br><span class="line">            <span class="comment">// cout &lt;&lt; local &lt;&lt; global &lt;&lt; endl;</span></span><br><span class="line">            global += get(bit, A[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> global == local;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="天才解法"><a class="header-anchor" href="#天才解法">¶</a>天才解法</h2>
-<h3 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h3>
-<p>  从local inversion == global inversion什么情况下才会成立这个角度来考虑。如果两者相等，则数组中的逆序数对必须是相邻的，所以对于A[i]来说，所有A[j], j &lt; i - 1都要小于A[i]，所以只需要遍历一遍，同时维护隔一位前缀的最大值即可，复杂度O(n)。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isIdealPermutation</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max_v = <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">sz</span><span class="params">(A.size())</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; sz; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(max_v &gt; A[i])</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            max_v = max(max_v, A[i - <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h3>
-<p>  注意题目中给的条件<code>A will be a permutation of [0, 1, ..., A.length - 1]</code>，考察数组中<code>A[i]</code>可以放什么值：如果规定<code>A[i]</code>放的值在<code>[i - 1, i + 1]</code>区间内，则<code>A[j], j &lt; i - 1</code>都在<code>[j - 1, j + 1]</code>肯定小于<code>A[i]</code>，满足<code>local inversion == global inversion</code>的条件；如果<code>A[i]</code>放一个小于i - 1的数k，且假设<code>local==global</code>，那么在i - 1之前一共有k个比k小的数（0,1，…，k-1）可供选择（要满足条件的话，i - 1之前的所有数必须小于k），再加上i - 1位置上的数，一共只有k + 1个数，而k又小于i - 1，不可能填满i之前的所有i个位置，矛盾！假设<code>A[i]</code>上的数k大于i+1且<code>local==global</code>，则所有比k小的数有k个，填满<code>A[i]</code>右边相邻和位置和左边所有位置后会有多余的一个小于k的数，必须放在<code>A[i+2]</code>开始往后的位置上，矛盾！综上，满足<code>global == local</code>的等价条件是<code>abs(a[i] - i) &lt;= 1</code>！<br>
-  另一种简单解释，考察数组中<code>A[i]</code>可以放什么位置：A[i]必定只能在它本应在的位置或这个位置的左边一个或者右边一个，不然必定会把比它大的两个数字挤到前面或者把比它小的两个数字挤到后面，因为题目中已经说明它所有的数字是0～n-1的一个排列，那么A[i]-i的绝对值必定&lt;=1，否则就不满足条件～</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isIdealPermutation</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; A.size() ; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">abs</span>(A[i]-i)&gt;<span class="number">1</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/954-Array-of-Doubled-Pairs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/21/954-Array-of-Doubled-Pairs/" itemprop="url">954. Array of Doubled Pairs</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T21:43:10+08:00">2019-10-21</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-21T22:28:36+08:00">2019-10-21</time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1><a href="https://leetcode.com/problems/array-of-doubled-pairs/" target="_blank" rel="noopener">954. Array of Doubled Pairs</a></h1>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Given an array of integers <code>A</code> with even length, return <code>true</code> if and only if it is possible to reorder it such that <code>A[2 * i + 1] = 2 * A[2 * i]</code> for every <code>0 &lt;= i &lt; len(A) / 2</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,1,3,6]</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,1,2,6]</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [4,-2,2,-4]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: We can take two groups, [-2,-4] and [2,4] to form [-2,-4,2,4] or [2,4,-2,-4].</span><br></pre></td></tr></table></figure>
-<p><strong>Example 4:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,4,16,8,4]</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>0 &lt;= A.length &lt;= 30000</code></li>
-<li><code>A.length</code> is even</li>
-<li><code>-100000 &lt;= A[i] &lt;= 100000</code></li>
-</ol>
-<h1>解法</h1>
-<h2 id="解法一"><a class="header-anchor" href="#解法一">¶</a>解法一</h2>
-<p>  按绝对值大小排序，并用map统计每个数的出现次数，然后从绝对值最小的开始检查是否有足够多的2倍于该数的数。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canReorderDoubled</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sz = A.size();</span><br><span class="line">        <span class="keyword">if</span>(sz == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; i++)&#123;</span><br><span class="line">            m[A[i]]++;</span><br><span class="line">        &#125;   </span><br><span class="line">        sort(A.begin(), A.end(), [](<span class="keyword">const</span> <span class="keyword">int</span> &amp;a, <span class="keyword">const</span> <span class="keyword">int</span> &amp;b)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">abs</span>(a) &lt; <span class="built_in">abs</span>(b);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(m[A[i]] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(m[A[i]*<span class="number">2</span>] &lt; m[A[i]]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            m[A[i] * <span class="number">2</span>] -= m[A[i]];</span><br><span class="line">            m[A[i]] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="解法二"><a class="header-anchor" href="#解法二">¶</a>解法二</h2>
-<p>  这个解法可以提供另一种思考问题的方式，假设数组已经有一种合法的reorder，不妨取出任一个数对<code>（n1 , 2 * n1）</code>来观察：对于当前数对是否有<code>(n1 / 2 , n1)</code>,<code>(n1 / 4 , n1 / 2)</code>…这些数对的存在，这个序列肯定是会终止在某个<code>(n2 , 2 * n2)</code>上，此时<code>n2</code>是奇数或者<code>n2</code>是偶数但是数组中没有<code>n2/2</code>（此处还有点问题，万一还有<code>n2/2</code>但是被别的数对当成数对中第二个数了呢，先这样理解吧，以后有新的理解或者能证明该解法错的case再说）。所以解法思路是找到数组中那些必须成为数对中的第一个数的数，然后从这些数开始检查数组，具体见下面注释：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canReorderDoubled</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; counts;</span><br><span class="line">        <span class="keyword">int</span> numZero = <span class="number">0</span>, total = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num : A)</span><br><span class="line">        &#123;</span><br><span class="line">            total += num;</span><br><span class="line">            <span class="keyword">if</span>(num == <span class="number">0</span>)</span><br><span class="line">                numZero++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                counts[num]++; </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>( numZero % <span class="number">2</span> || total % <span class="number">3</span> != <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> pair : counts)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> val = pair.first; </span><br><span class="line">            <span class="comment">//偶数且存在数是该数的一半</span></span><br><span class="line">            <span class="keyword">if</span>( (val % <span class="number">2</span>) == <span class="number">0</span> &amp;&amp; counts.count(val/<span class="number">2</span>))</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//程序到此有如下两种情况：</span></span><br><span class="line">            <span class="comment">//1.奇数，奇数只能和其倍数配对，repeat是当前数的个数，val是当前数的值</span></span><br><span class="line">            <span class="comment">//2.偶数，但是它没有1/2数，所以也只能和倍数配对</span></span><br><span class="line">            <span class="keyword">int</span> repeat = pair.second;</span><br><span class="line">            <span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//奇数一定是A[2 * i + 1] = 2 * A[2 * i]中的A[2 * i]，所以直接检查是否有足够的它的两倍的数能组成题中要求的数对</span></span><br><span class="line">                <span class="keyword">if</span>( counts.count(<span class="number">2</span>*val) == <span class="number">0</span> || repeat &gt; counts[<span class="number">2</span>*val])</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                </span><br><span class="line">                val = <span class="number">2</span>*val;</span><br><span class="line">                repeat = counts[val] - repeat;<span class="comment">//剩下的数只能和其倍数配对，因为1/2数（即当前检查的奇数）已经用完了</span></span><br><span class="line">                <span class="keyword">if</span>( repeat == <span class="number">0</span> )<span class="comment">//奇数的2倍和奇数的个数刚好相等</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span>( counts.count(<span class="number">2</span>*val) == <span class="number">0</span>)<span class="comment">//奇数的2倍数只能和奇数组成数对，直接进入下轮循环</span></span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    val = <span class="number">2</span>*val;<span class="comment">//就算奇数的2倍数之上还有2倍数，也不能和奇数的2倍数组成符合条件的数对，因为奇数的2倍数已经在与奇数组成数对时用完了，而奇数又必须和其倍数组成数对</span></span><br><span class="line">                    repeat = counts[val];<span class="comment">//所以下一个两倍数也和奇数一样必须和它的2倍数配对，而不是1/2数配对</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> _ = []() &#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2033,7 +2053,7 @@ default value</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">161</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
