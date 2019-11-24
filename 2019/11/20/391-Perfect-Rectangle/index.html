@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>391. Perfect Rectangle | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/20/391-Perfect-Rectangle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">391. Perfect Rectangle</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-20T20:26:48+08:00">2019-11-20</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-20T20:31:14+08:00">2019-11-20</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="391-perfect-rectangle"><a class="header-anchor" href="#391-perfect-rectangle">¶</a><a href="https://leetcode.com/problems/perfect-rectangle/" target="_blank" rel="noopener">391. Perfect Rectangle</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given N axis-aligned rectangles where N &gt; 0, determine if they all together form an exact cover of a rectangular region.</p>
+<p>Each rectangle is represented as a bottom-left point and a top-right point. For example, a unit square is represented as [1,1,2,2]. (coordinate of bottom-left point is (1, 1) and top-right point is (2, 2)).</p>
+<p><img src="https://assets.leetcode.com/uploads/2018/10/22/rectangle_perfect.gif" alt></p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rectangles = [</span><br><span class="line">  [1,1,3,3],</span><br><span class="line">  [3,1,4,2],</span><br><span class="line">  [3,2,4,4],</span><br><span class="line">  [1,3,2,4],</span><br><span class="line">  [2,3,3,4]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Return true. All 5 rectangles together form an exact cover of a rectangular region.</span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.leetcode.com/uploads/2018/10/22/rectangle_separated.gif" alt></p>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rectangles = [</span><br><span class="line">  [1,1,2,3],</span><br><span class="line">  [1,3,2,4],</span><br><span class="line">  [3,1,4,2],</span><br><span class="line">  [3,2,4,4]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Return false. Because there is a gap between the two rectangular regions.</span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.leetcode.com/uploads/2018/10/22/rectangle_hole.gif" alt></p>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rectangles = [</span><br><span class="line">  [1,1,3,3],</span><br><span class="line">  [3,1,4,2],</span><br><span class="line">  [1,3,2,4],</span><br><span class="line">  [3,2,4,4]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Return false. Because there is a gap in the top center.</span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.leetcode.com/uploads/2018/10/22/rectangle_intersect.gif" alt></p>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rectangles = [</span><br><span class="line">  [1,1,3,3],</span><br><span class="line">  [3,1,4,2],</span><br><span class="line">  [1,3,2,4],</span><br><span class="line">  [2,2,4,4]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Return false. Because two of the rectangles overlap with each other.</span><br></pre></td></tr></table></figure>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h5 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Solution()&#123;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>); <span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>); <span class="built_in">std</span>::<span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isRectangleCover</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; rectangles)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(rectangles.empty() || rectangles[<span class="number">0</span>].empty()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;ulong&gt; st;</span><br><span class="line">        <span class="keyword">int</span> min_x = INT_MAX, min_y = INT_MAX;</span><br><span class="line">        <span class="keyword">int</span> max_x = INT_MIN, max_y = INT_MIN, area = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; rect : rectangles) &#123;</span><br><span class="line">            min_x = min(min_x, rect[<span class="number">0</span>]);</span><br><span class="line">            min_y = min(min_y, rect[<span class="number">1</span>]);</span><br><span class="line">            max_x = max(max_x, rect[<span class="number">2</span>]);</span><br><span class="line">            max_y = max(max_y, rect[<span class="number">3</span>]);</span><br><span class="line">            area += (rect[<span class="number">3</span>]-rect[<span class="number">1</span>])*(rect[<span class="number">2</span>]-rect[<span class="number">0</span>]);</span><br><span class="line">            ulong l = (((ulong)(<span class="keyword">unsigned</span>)rect[<span class="number">0</span>])&lt;&lt;<span class="number">32</span>) | (<span class="keyword">unsigned</span>)rect[<span class="number">1</span>];</span><br><span class="line">            ulong u = (((ulong)(<span class="keyword">unsigned</span>)rect[<span class="number">0</span>])&lt;&lt;<span class="number">32</span>) | (<span class="keyword">unsigned</span>)rect[<span class="number">3</span>];</span><br><span class="line">            ulong r = (((ulong)(<span class="keyword">unsigned</span>)rect[<span class="number">2</span>])&lt;&lt;<span class="number">32</span>) | (<span class="keyword">unsigned</span>)rect[<span class="number">3</span>];</span><br><span class="line">            ulong d = (((ulong)(<span class="keyword">unsigned</span>)rect[<span class="number">2</span>])&lt;&lt;<span class="number">32</span>) | (<span class="keyword">unsigned</span>)rect[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(st.count(l)) st.erase(l);</span><br><span class="line">            <span class="keyword">else</span> st.insert(l);</span><br><span class="line">            <span class="keyword">if</span>(st.count(u)) st.erase(u);</span><br><span class="line">            <span class="keyword">else</span> st.insert(u);</span><br><span class="line">            <span class="keyword">if</span>(st.count(r)) st.erase(r);</span><br><span class="line">            <span class="keyword">else</span> st.insert(r);</span><br><span class="line">            <span class="keyword">if</span>(st.count(d)) st.erase(d);</span><br><span class="line">            <span class="keyword">else</span> st.insert(d);</span><br><span class="line">        &#125;</span><br><span class="line">        ulong t1 = (((ulong)(<span class="keyword">unsigned</span>)min_x)&lt;&lt;<span class="number">32</span>) | (<span class="keyword">unsigned</span>)min_y;</span><br><span class="line">        ulong t2 = (((ulong)(<span class="keyword">unsigned</span>)min_x)&lt;&lt;<span class="number">32</span>) | (<span class="keyword">unsigned</span>)max_y;</span><br><span class="line">        ulong t3 = (((ulong)(<span class="keyword">unsigned</span>)max_x)&lt;&lt;<span class="number">32</span>) | (<span class="keyword">unsigned</span>)max_y;</span><br><span class="line">        ulong t4 = (((ulong)(<span class="keyword">unsigned</span>)max_x)&lt;&lt;<span class="number">32</span>) | (<span class="keyword">unsigned</span>)min_y;</span><br><span class="line">        <span class="keyword">if</span> (!st.count(t1) || !st.count(t2) || !st.count(t3) || !st.count(t4) || st.size() != <span class="number">4</span>) </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> area == (max_y-min_y)*(max_x-min_x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Solution()&#123;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>); <span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>); <span class="built_in">std</span>::<span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">pairhash</span> &#123;</span>   <span class="comment">//double hash function for pair key</span></span><br><span class="line">        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line">        <span class="keyword">size_t</span> <span class="keyword">operator</span>()(<span class="keyword">const</span> pair&lt;T, U&gt; &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">            <span class="keyword">size_t</span> l = hash&lt;T&gt;()(p.first), r = hash&lt;U&gt;()(p.second);</span><br><span class="line">            <span class="keyword">return</span> l + <span class="number">0x9e3779b9</span> + (r &lt;&lt; <span class="number">6</span>) + (r &gt;&gt; <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isRectangleCover</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; rectangles)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> area = <span class="number">0</span>, xmin = INT_MAX, ymin = INT_MAX, xmax = INT_MIN, ymax = INT_MIN;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, <span class="keyword">int</span>, pairhash&gt; m;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Calculate area, and count points of appearances</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; points = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">3</span>&#125;, &#123;<span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">2</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : rectangles) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> point : points) &#123;</span><br><span class="line">                <span class="keyword">if</span> (++m[make_pair(v[point.first], v[point.second])] &gt; <span class="number">4</span>) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            area += (v[<span class="number">2</span>] - v[<span class="number">0</span>]) * (v[<span class="number">3</span>] - v[<span class="number">1</span>]);</span><br><span class="line">            xmin = min(xmin, v[<span class="number">0</span>]), ymin = min(ymin, v[<span class="number">1</span>]), xmax = max(xmax, v[<span class="number">2</span>]), ymax = max(ymax, v[<span class="number">3</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (area != (xmax - xmin) * (ymax - ymin)) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Check if points appearing odd number of times are exactly large rectangles' 4 corners</span></span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, pairhash&gt; s = &#123;&#123;xmin, ymin&#125;, &#123;xmin, ymax&#125;, &#123;xmax, ymax&#125;, &#123;xmax, ymin&#125;&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it = m.begin(); it != m.end(); it++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (it-&gt;second &amp; <span class="number">1</span> == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s.count(it-&gt;first) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    s.erase(it-&gt;first); </span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.empty();</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面这个解法值的注意的是pair的hash函数是怎么实现的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pairhash</span> &#123;</span>   <span class="comment">//double hash function for pair key</span></span><br><span class="line">        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line">        <span class="keyword">size_t</span> <span class="keyword">operator</span>()(<span class="keyword">const</span> pair&lt;T, U&gt; &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">            <span class="keyword">size_t</span> l = hash&lt;T&gt;()(p.first), r = hash&lt;U&gt;()(p.second);</span><br><span class="line">            <span class="keyword">return</span> l + <span class="number">0x9e3779b9</span> + (r &lt;&lt; <span class="number">6</span>) + (r &gt;&gt; <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<p>也可以用<code>unordered_map&lt;T,unordered_map&lt;U, int&gt;&gt; m</code>实现一样的效果。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/20/236-Lowest-Common-Ancestor-of-a-Binary-Tree/" rel="next" title="236. Lowest Common Ancestor of a Binary Tree">
+                <i class="fa fa-chevron-left"></i> 236. Lowest Common Ancestor of a Binary Tree
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/21/回文树（回文自动机）/" rel="prev" title="回文树（回文自动机）">
+                回文树（回文自动机） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">161</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#391-perfect-rectangle"><span class="nav-number">1.</span> <span class="nav-text">¶391. Perfect Rectangle</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">1.1.</span> <span class="nav-text">¶Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#法一"><span class="nav-number">1.1.1.</span> <span class="nav-text">¶法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#法二"><span class="nav-number">1.1.2.</span> <span class="nav-text">¶法二</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
+
+  
+
+</body>
+</html>
