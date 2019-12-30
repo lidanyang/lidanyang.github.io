@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:34.000Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.696Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/tags/">
 
 
 
@@ -248,7 +248,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/leetcode-刷题日常-72-Edit-Distance/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/leetcode-刷题日常-147-Insertion-Sort-List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lidanyang">
@@ -267,7 +267,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/28/leetcode-刷题日常-72-Edit-Distance/" itemprop="url">72. Edit Distance</a></h1>
+                <a class="post-title-link" href="/2019/06/23/leetcode-刷题日常-147-Insertion-Sort-List/" itemprop="url">147. Insertion Sort List</a></h1>
         
 
         <div class="post-meta">
@@ -279,7 +279,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T09:58:51+08:00">2019-05-28</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T20:28:00+08:00">2019-06-23</time>
             
 
             
@@ -293,7 +293,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:17:28+08:00">2019-06-25</time>
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:10:36+08:00">2019-06-25</time>
             
           </span>
 
@@ -349,31 +349,1517 @@
       
         
           
-            <p>求两个单词的最短&quot;距离&quot;</p>
-<h1>主要思想:</h1>
-<p>word1向word2转化时，如果从前往后调整word1以靠近word2的话，那么word1的最后一个字符的处理只有如下三种情况：</p>
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="noopener">147. Insertion Sort List</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Sort a linked list using insertion sort.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" alt><br>
+<small style="display: inline;">A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.<br>
+With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list</small></p>
+<p><strong>Algorithm of Insertion Sort:</strong></p>
 <ol>
-<li>word1的末尾添加一个和word2末尾相同的字符，则问题转化为求word1和word2[:-1]的最短距离；</li>
-<li>word1的末尾替换成和word2末尾相同的字符，则问题转化为求word1[:-1]和word2[:-1]的最短距离；</li>
-<li>word1的末尾删除一个字符，则问题转化为求word1[:-1]和word2的最短距离；</li>
+<li>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.</li>
+<li>At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.</li>
+<li>It repeats until no input elements remain.</li>
 </ol>
-<h1>代码实现</h1>
-<ol>
-<li>宽度优先搜索（代码来自Accepted Solutions Runtime Distribution)</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDistance</span><span class="params">(self, word1: str, word2: str)</span> -&gt; int:</span></span><br><span class="line">        heap = [(<span class="number">0</span>,word1,word2)]</span><br><span class="line">        seen = set()</span><br><span class="line">        n = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> heap:</span><br><span class="line">            dis, w1, w2 = heapq.heappop(heap)</span><br><span class="line">            <span class="keyword">if</span> w1 == w2: <span class="keyword">return</span> dis</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (w1,w2) <span class="keyword">in</span> seen:</span><br><span class="line">                seen.add((w1,w2))</span><br><span class="line">                <span class="keyword">while</span> w1 <span class="keyword">and</span> w2 <span class="keyword">and</span> w1[<span class="number">-1</span>]==w2[<span class="number">-1</span>]:</span><br><span class="line">                    w1 = w1[:<span class="number">-1</span>]</span><br><span class="line">                    w2 = w2[:<span class="number">-1</span>]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment">#delete 删除</span></span><br><span class="line">                    heapq.heappush(heap,(dis+<span class="number">1</span>,w1[:<span class="number">-1</span>],w2))</span><br><span class="line">                    <span class="keyword">if</span> w2:</span><br><span class="line">                        <span class="comment">#insert 插入</span></span><br><span class="line">                        heapq.heappush(heap,(dis+<span class="number">1</span>,w1,w2[:<span class="number">-1</span>]))</span><br><span class="line">                    <span class="keyword">if</span> w1 <span class="keyword">and</span> w2:</span><br><span class="line">                        <span class="comment">#replace 替换</span></span><br><span class="line">                        heapq.heappush(heap,(dis+<span class="number">1</span>,w1[:<span class="number">-1</span>],w2[:<span class="number">-1</span>]))</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>动态规划</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDistance</span><span class="params">(self, word1: str, word2: str)</span> -&gt; int:</span></span><br><span class="line">        WL1 = len(word1)</span><br><span class="line">        WL2 = len(word2)</span><br><span class="line">        dp = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(WL1 + <span class="number">1</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> range(WL2 + <span class="number">1</span>)]</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(WL1 + <span class="number">1</span>):</span><br><span class="line">            dp[<span class="number">0</span>][i] = i</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(WL2 + <span class="number">1</span>):</span><br><span class="line">            dp[i][<span class="number">0</span>] = i</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, WL2 + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, WL1 + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> word2[i - <span class="number">1</span>] == word1[j - <span class="number">1</span>]:</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j] = min(dp[i - <span class="number">1</span>][j - <span class="number">1</span>], dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]) + <span class="number">1</span></span><br><span class="line">        <span class="comment"># print(dp)</span></span><br><span class="line">        <span class="keyword">return</span> dp[WL2][WL1]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 4-&gt;2-&gt;1-&gt;3</span><br><span class="line">Output: 1-&gt;2-&gt;3-&gt;4</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: -1-&gt;5-&gt;3-&gt;4-&gt;0</span><br><span class="line">Output: -1-&gt;0-&gt;3-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
+<h1>解法</h1>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<p>  法一很直接，就是普通的插入排序的链表版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># Definition for singly-linked list.</span><br><span class="line"># class ListNode:</span><br><span class="line">#     def __init__(self, x):</span><br><span class="line">#         self.val = x</span><br><span class="line">#         self.next = None</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def insertionSortList(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        if not head:</span><br><span class="line">            return None</span><br><span class="line">        dummy = ListNode(0)</span><br><span class="line">        dummy.next = head</span><br><span class="line">        head = head.next</span><br><span class="line">        dummy.next.next = None</span><br><span class="line"></span><br><span class="line">        while head:</span><br><span class="line">            p = dummy</span><br><span class="line">            while p.next and p.next.val &lt; head.val:</span><br><span class="line">                p = p.next</span><br><span class="line">            p.next, head.next, head = head, p.next, head.next</span><br><span class="line">        return dummy.next</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<p>  观察法一的排序过程，可以发现，就算head的值刚好大于有序链表的最后一个值也要从头结点重新遍历一遍整个链表再插入尾部，这样会浪费大量的时间，效率很低，实际上法一的执行时间是2000ms左右也证明了这一点。所以，可以记录头结点和尾结点cur，每次插入完成后，保证尾结点cur的next结点就是下一个要插入的结点就能省去大量时间。如果下一个结点值如果刚好比尾结点cur的值大，那么就可以直接更新尾结点cur为下一个结点；否则的话，就按照普通的插入排序从头开始找最后一个比要插入的结点的值小的结点，插在该结点之后，并且将要插入结点之后的链表重新连在尾结点cur之后，保证cur.next可以取到下一个待插入的结点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertionSortList</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        p = dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        cur = dummy.next = head</span><br><span class="line">        <span class="keyword">while</span> cur <span class="keyword">and</span> cur.next:</span><br><span class="line">            nv = cur.next.val</span><br><span class="line">            <span class="keyword">if</span> cur.val &lt; nv:</span><br><span class="line">                cur = cur.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                p = dummy</span><br><span class="line">                <span class="keyword">while</span> p.next.val &lt; nv:</span><br><span class="line">                    p = p.next</span><br><span class="line">                p.next, cur.next.next, cur.next = cur.next, p.next, cur.next.next </span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
+<h2 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h2>
+<p>  在法二的基础上，还有可以优化的余地。保存上一次搜索的插入位置p，前一个插入位置p之后的点的值大于下一个要插入的点的值，那么说明新的插入位置在前一个插入位置p之前，那么p重置为头结点（dummy），从头开始搜索；否则，新的插入位置肯定在p之后，那么就只需从p之后开始搜索，这样就可以缩小要搜索的结点数。代码只需在法二上稍作修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertionSortList</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        p = dummy = ListNode(<span class="number">0</span>)    <span class="comment"># the pos where cur should be inserted after</span></span><br><span class="line">        cur = dummy.next = head</span><br><span class="line">        <span class="keyword">while</span> cur <span class="keyword">and</span> cur.next:</span><br><span class="line">            nv = cur.next.val</span><br><span class="line">            <span class="keyword">if</span> cur.val &lt; nv:</span><br><span class="line">                cur = cur.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> p.next.val &gt; nv:</span><br><span class="line">                    p = dummy</span><br><span class="line">                <span class="keyword">while</span> p.next.val &lt; nv:</span><br><span class="line">                    p = p.next</span><br><span class="line">                p.next, cur.next.next, cur.next = cur.next, p.next, cur.next.next </span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
 <h1>总结</h1>
-<ol>
-<li>用宽度优先的速度比动态规划明显要快；</li>
-<li>我最初的想法是先求最长公共子串，然后调整word1中公共子串之外的部分，然而这需要知道最长公共子串的具体位置，不好实现就pass了（懒）；</li>
-<li>为什么找最短要按这个步骤？或者说为什么以循环对word1最后一个字符加删改的方式搜索下去，如果遇到word2那么搜索的深度就是最短距离？严格的数学证明并没有看到，可能只是凭感觉或者说是直觉，觉得照这个步骤来搜索就是最短距离，但是还是感觉心里不踏实，接受程度60%，待以后看到更清晰的解释；</li>
-<li>貌似很多程序都是凭感觉写出来的，不需要深究为什么，记住就行了，程序员并不需要成为数学家，只需要成为玄学家！</li>
-</ol>
+<p>  法三记录插入位置的做法很灵性，这种技巧以后也可以用在常规插入排序中。</p>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/leetcode-刷题日常-140-Word-Break-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/23/leetcode-刷题日常-140-Word-Break-II/" itemprop="url">140. Word Break II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T20:00:00+08:00">2019-06-23</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:10:41+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="noopener">140. Word Break II</a></p>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given a <strong>non-empty</strong> string <em>s</em> and a dictionary <em>wordDict</em> containing a list of <strong>non-empty</strong> words, add spaces in <em>s</em> to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The same word in the dictionary may be reused multiple times in the segmentation.</li>
+<li>You may assume the dictionary does not contain duplicate words.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s = &quot;catsanddog&quot;</span><br><span class="line">wordDict = [&quot;cat&quot;, &quot;cats&quot;, &quot;and&quot;, &quot;sand&quot;, &quot;dog&quot;]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  &quot;cats and dog&quot;,</span><br><span class="line">  &quot;cat sand dog&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s = &quot;pineapplepenapple&quot;</span><br><span class="line">wordDict = [&quot;apple&quot;, &quot;pen&quot;, &quot;applepen&quot;, &quot;pine&quot;, &quot;pineapple&quot;]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  &quot;pine apple pen apple&quot;,</span><br><span class="line">  &quot;pineapple pen apple&quot;,</span><br><span class="line">  &quot;pine applepen apple&quot;</span><br><span class="line">]</span><br><span class="line">Explanation: Note that you are allowed to reuse a dictionary word.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s = &quot;catsandog&quot;</span><br><span class="line">wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;]</span><br><span class="line">Output:</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
+<h1>解法</h1>
+<p>  这一题我觉得比上一题还简单，直接用DFS就可以了。对了，递归的时候还要用记忆数组优化效率。</p>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 反向搜索，从结尾处开始取单词</span><br><span class="line">class Solution:</span><br><span class="line">    def wordBreak(self, s: str, wordDict: List[str]) -&gt; List[str]:</span><br><span class="line">        memo = &#123;&#125;</span><br><span class="line">        word_dict = set(wordDict)</span><br><span class="line">        </span><br><span class="line">        def word_combos(fragment):</span><br><span class="line">            if fragment in memo:</span><br><span class="line">                return memo[fragment]</span><br><span class="line">            </span><br><span class="line">            combos = []</span><br><span class="line">            # 下面这一句很重要，可以使递归在发现第一个单词时返回，从而处理了第一个单词前面不用加空格的边界情况</span><br><span class="line">            if fragment in word_dict:</span><br><span class="line">                combos.append(fragment)</span><br><span class="line">            </span><br><span class="line">            for i in range(1, len(fragment)):</span><br><span class="line">                right = fragment[i:]</span><br><span class="line">                if right in word_dict:</span><br><span class="line">                    left = fragment[:i]</span><br><span class="line">                    for combo in word_combos(left):</span><br><span class="line">                        combos.append(f&apos;&#123;combo&#125; &#123;right&#125;&apos;)</span><br><span class="line">            </span><br><span class="line">            memo[fragment] = combos</span><br><span class="line">            return combos</span><br><span class="line">        </span><br><span class="line">        return word_combos(s)</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s: str, wordDict: List[str])</span> -&gt; List[str]:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(s, wordDict, m)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> s <span class="keyword">in</span> m:</span><br><span class="line">                <span class="keyword">return</span> m[s]</span><br><span class="line">            <span class="comment"># 这种对边界条件的处理就没有法一灵性，不过也很合情合理</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> s:</span><br><span class="line">                <span class="keyword">return</span> [<span class="string">""</span>]</span><br><span class="line">            res = []</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> wordDict:</span><br><span class="line">                <span class="keyword">if</span> word != s[:len(word)]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                rem = helper(s[len(word):], wordDict, m)</span><br><span class="line">                <span class="keyword">for</span> ss <span class="keyword">in</span> rem:</span><br><span class="line">                    res.append(<span class="string">''</span>.join([word,<span class="string">""</span> <span class="keyword">if</span> <span class="keyword">not</span> ss <span class="keyword">else</span> <span class="string">" "</span>,ss]))</span><br><span class="line">            m[s] = res</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        m = &#123;&#125;</span><br><span class="line">        helper(s, wordDict, m)</span><br><span class="line">        <span class="keyword">return</span> m[s]</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/leetcode-刷题日常-139-Word-Break/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/23/leetcode-刷题日常-139-Word-Break/" itemprop="url">139. Word Break</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T19:56:00+08:00">2019-06-23</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:10:44+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/word-break/" target="_blank" rel="noopener">139. Word Break</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a <strong>non-empty</strong> string <em>s</em> and a dictionary <em>wordDict</em> containing a list of <strong>non-empty</strong> words, determine if <em>s</em> can be segmented into a space-separated sequence of one or more dictionary words.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The same word in the dictionary may be reused multiple times in the segmentation.</li>
+<li>You may assume the dictionary does not contain duplicate words.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;leetcode&quot;, wordDict = [&quot;leet&quot;, &quot;code&quot;]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Return true because &quot;leetcode&quot; can be segmented as &quot;leet code&quot;.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;applepenapple&quot;, wordDict = [&quot;apple&quot;, &quot;pen&quot;]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Return true because &quot;applepenapple&quot; can be segmented as &quot;apple pen apple&quot;.</span><br><span class="line">             Note that you are allowed to reuse a dictionary word.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;]</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+<h1>解法</h1>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我自己的解法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s: str, wordDict: List[str])</span> -&gt; bool:</span></span><br><span class="line">        wd = set(wordDict)</span><br><span class="line">        <span class="comment"># if s in wd:</span></span><br><span class="line">        <span class="comment">#     return True</span></span><br><span class="line">        dp = [<span class="literal">False</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(s) + <span class="number">1</span>)]</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(j+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> s[i:j+<span class="number">1</span>] <span class="keyword">in</span> wd:</span><br><span class="line">                    dp[j + <span class="number">1</span>] |= dp[i]</span><br><span class="line">        <span class="comment"># print(dp)</span></span><br><span class="line">        <span class="keyword">return</span> dp[len(s)]</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 简洁优雅的解法</span><br><span class="line">class Solution(object):</span><br><span class="line">    def wordBreak(self, s, wordDict):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type s: str</span><br><span class="line">        :type wordDict: Set[str]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        dp = [False] * (len(s) + 1) # dp[i] means s[:i+1] can be segmented into words in the wordDicts </span><br><span class="line">        dp[0] = True</span><br><span class="line">        for i in range(len(s)):</span><br><span class="line">            if dp[i]:</span><br><span class="line">                for j in range(i, len(s)):</span><br><span class="line">                    if s[i: j+1] in wordDict:</span><br><span class="line">                            dp[j+1] = True</span><br><span class="line">                    </span><br><span class="line">        return dp[-1]</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/leetcode-刷题日常-190-Reverse-Bits/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/23/leetcode-刷题日常-190-Reverse-Bits/" itemprop="url">190. Reverse Bits</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T17:29:00+08:00">2019-06-23</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:10:48+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/reverse-bits/" target="_blank" rel="noopener">190. Reverse Bits</a></p>
+<p>Difficulty: <strong>Easy</strong></p>
+<p>Reverse bits of a given 32 bits unsigned integer.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 00000010100101000001111010011100</span><br><span class="line">Output: 00111001011110000010100101000000</span><br><span class="line">Explanation: The input binary string 00000010100101000001111010011100 represents the unsigned integer 43261596, so return 964176192 which its binary representation is 00111001011110000010100101000000.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 11111111111111111111111111111101</span><br><span class="line">Output: 10111111111111111111111111111111</span><br><span class="line">Explanation: The input binary string 11111111111111111111111111111101 represents the unsigned integer 4294967293, so return 3221225471 which its binary representation is 10101111110010110010011101101001.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Note that in some languages such as Java, there is no unsigned integer type. In this case, both input and output will be given as signed integer type and should not affect your implementation, as the internal binary representation of the integer is the same whether it is signed or unsigned.</li>
+<li>In Java, the compiler represents the signed integers using . Therefore, in <strong>Example 2</strong> above the input represents the signed integer <code>-3</code> and the output represents the signed integer <code>-1073741825</code>.</li>
+</ul>
+<p><strong>Follow up</strong>:</p>
+<p>If this function is called many times, how would you optimize it?</p>
+<h1>解法</h1>
+<p>  该题主要考察位运算。由于限制位数为32位，所以只需对待处理的整数n进行32次右移位，每当低位&amp;1的结果为1，说明低位为1，此时将待输出的目标整数(默认值为0)左移动一位并加上1；每当低位&amp;1的结果为0，说明低位为0，此时将待输出的目标整数左移一位即可；循环直到移动完32次，所得目标整数即为所求。</p>
+<h1>代码</h1>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Reverse_Bits</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> value = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// 32位无符号数</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i) &#123;</span><br><span class="line">			<span class="keyword">if</span> ((n &amp; <span class="number">1</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">				value = (value &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>; <span class="comment">// 左移动</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				value = value &lt;&lt; <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">            n &gt;&gt;= <span class="number">1</span>; <span class="comment">// 右移</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">uint32_t</span> reverseBits(<span class="keyword">uint32_t</span> n) &#123;</span><br><span class="line">    <span class="keyword">uint32_t</span> r = n ;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="keyword">sizeof</span>(n) * CHAR_BIT <span class="number">-1</span>;</span><br><span class="line">    n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)</span><br><span class="line">    &#123;</span><br><span class="line">        r &lt;&lt;=<span class="number">1</span>;</span><br><span class="line">        r|= n&amp;<span class="number">1</span>;</span><br><span class="line">        s--;</span><br><span class="line">        n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    r&lt;&lt;=s;   </span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/leetcode-刷题日常-187-Repeated-DNA-Sequences/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/23/leetcode-刷题日常-187-Repeated-DNA-Sequences/" itemprop="url">187. Repeated DNA Sequences</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T16:35:00+08:00">2019-06-23</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:10:54+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/repeated-dna-sequences/" target="_blank" rel="noopener">187. Repeated DNA Sequences</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: “ACGAATTCCG”. When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.</p>
+<p>Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT&quot;</span><br><span class="line"></span><br><span class="line">Output: [&quot;AAAAACCCCC&quot;, &quot;CCCCCAAAAA&quot;]</span><br></pre></td></tr></table></figure>
+<h1>解法</h1>
+<p>  这道题可以用位操作来做，因为组成DNA的字母是固定的，有特殊性，所以可以利用这种特殊性。A，C，G，T的这四个字母的ascii码为0100 0001，0100 0011，0100 0111，0100 0111低3位都不一样，所以可以用低三位表示一个字母，30位表示一个长度为10的字符串，用hash法记录每种30位出现的次数，并且可以通过左移前一个30位加上后一个字母的低三位组成下一个30位，hash表记录当前30位次数为1时，则加入结果，次数为2说明之前已经加入结果中，为0说明第一次出现。</p>
+<h1>代码</h1>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; findRepeatedDnaSequences(<span class="built_in">string</span> s) &#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; r;</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">0</span>, i = <span class="number">0</span>, ss = s.size();</span><br><span class="line">        <span class="keyword">while</span> (i &lt; <span class="number">9</span>)</span><br><span class="line">            t = t &lt;&lt; <span class="number">3</span> | s[i++] &amp; <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; ss)</span><br><span class="line">            <span class="keyword">if</span> (m[t = t &lt;&lt; <span class="number">3</span> &amp; <span class="number">0x3FFFFFFF</span> | s[i++] &amp; <span class="number">7</span>]++ == <span class="number">1</span>)</span><br><span class="line">                r.push_back(s.substr(i - <span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s = <span class="string">"AAAAAAAAAAA"</span>;</span><br><span class="line">    Solution ss;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; result = ss.findRepeatedDnaSequences(s);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.size(); ++i) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; result[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/leetcode-刷题日常-145-Binary-Tree-Postorder-Traversal-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/21/leetcode-刷题日常-145-Binary-Tree-Postorder-Traversal-1/" itemprop="url">145. Binary Tree Postorder Traversal</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T23:08:00+08:00">2019-06-21</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-15T21:30:53+08:00">2019-07-15</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/binary-tree-postorder-traversal/" target="_blank" rel="noopener">145. Binary Tree Postorder Traversal</a></p>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given a binary tree, return the <em>postorder</em> traversal of its nodes’ values.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,null,2,3]</span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3</span><br><span class="line"></span><br><span class="line">Output: [3,2,1]</span><br></pre></td></tr></table></figure>
+<p><strong>Follow up:</strong> Recursive solution is trivial, could you do it iteratively?</p>
+<h1>解法</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这解法把我看湿了</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">postorderTraversal</span><span class="params">(self, root: TreeNode)</span> -&gt; List[int]:</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        st = [root]</span><br><span class="line">        <span class="keyword">while</span> len(st) != <span class="number">0</span>:</span><br><span class="line">            node = st.pop()</span><br><span class="line">            ans.append(node.val)</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                st.append(node.left)</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                st.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> ans[::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/leetcode-刷题日常-144-Binary-Tree-Preorder-Traversal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/21/leetcode-刷题日常-144-Binary-Tree-Preorder-Traversal/" itemprop="url">144. Binary Tree Preorder Traversal</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T21:38:00+08:00">2019-06-21</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:11:05+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/" target="_blank" rel="noopener">144. Binary Tree Preorder Traversal</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a binary tree, return the <em>preorder</em> traversal of its nodes’ values.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,null,2,3]</span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3</span><br><span class="line"></span><br><span class="line">Output: [1,2,3]</span><br></pre></td></tr></table></figure>
+<p><strong>Follow up:</strong> Recursive solution is trivial, could you do it iteratively?</p>
+<h1>解法</h1>
+<h2 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># Definition for a binary tree node.</span><br><span class="line"># class TreeNode:</span><br><span class="line">#     def __init__(self, x):</span><br><span class="line">#         self.val = x</span><br><span class="line">#         self.left = None</span><br><span class="line">#         self.right = None</span><br><span class="line">​</span><br><span class="line">class Solution:</span><br><span class="line">    def preorderTraversal(self, root: TreeNode) -&gt; List[int]:</span><br><span class="line">        stack = []</span><br><span class="line">        res = []</span><br><span class="line">        if not root:</span><br><span class="line">            return []</span><br><span class="line">        stack.append(root)</span><br><span class="line">        while len(stack) != 0:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            res.append(node.val)</span><br><span class="line">            if node.right:</span><br><span class="line">                stack.append(node.right)</span><br><span class="line">            if node.left:</span><br><span class="line">                stack.append(node.left)</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">preorderTraversal</span><span class="params">(self, root: TreeNode)</span> -&gt; List[int]:</span></span><br><span class="line">        ans, st = [],[]</span><br><span class="line">        <span class="keyword">while</span> root <span class="keyword">or</span> st:</span><br><span class="line">            <span class="keyword">while</span> root:</span><br><span class="line">                ans.append(root.val)</span><br><span class="line">                st.append(root)</span><br><span class="line">                root = root.left</span><br><span class="line">            root = st[<span class="number">-1</span>].right</span><br><span class="line">            st.pop()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/leetcode-刷题日常-138-Copy-List-with-Random-Pointer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/21/leetcode-刷题日常-138-Copy-List-with-Random-Pointer/" itemprop="url">138. Copy List with Random Pointer</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T19:44:00+08:00">2019-06-21</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:11:13+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">138. Copy List with Random Pointer</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
+<p>Return a of the list.</p>
+<p><strong>Example 1:</strong></p>
+<p><strong><img src="https://discuss.leetcode.com/uploads/files/1470150906153-2yxeznm.png" alt></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">&#123;&quot;$id&quot;:&quot;1&quot;,&quot;next&quot;:&#123;&quot;$id&quot;:&quot;2&quot;,&quot;next&quot;:null,&quot;random&quot;:&#123;&quot;$ref&quot;:&quot;2&quot;&#125;,&quot;val&quot;:2&#125;,&quot;random&quot;:&#123;&quot;$ref&quot;:&quot;2&quot;&#125;,&quot;val&quot;:1&#125;</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">Node 1&apos;s value is 1, both of its next and random pointer points to Node 2.</span><br><span class="line">Node 2&apos;s value is 2, its next pointer points to null and its random pointer points to itself.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>You must return the <strong>copy of the given head</strong> as a reference to the cloned list.</li>
+</ol>
+<h1>解法</h1>
+<p>  此题和clone graph那道题一样用BFS/DFS+hashmap求解;</p>
+<h2 id="dfs"><a class="header-anchor" href="#dfs">¶</a>DFS</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copyRandomList</span><span class="params">(self, head: <span class="string">'Node'</span>)</span> -&gt; 'Node':</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(head)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            <span class="keyword">if</span> head <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">return</span> dic[head]                </span><br><span class="line">            new = Node(head.val, <span class="literal">None</span>, <span class="literal">None</span>)</span><br><span class="line">            dic[head] = new</span><br><span class="line">            new.next = DFS(head.next)</span><br><span class="line">            new.random = DFS(head.random)</span><br><span class="line">            <span class="keyword">return</span> new</span><br><span class="line">        <span class="keyword">return</span> DFS(head)</span><br></pre></td></tr></table></figure>
+<h2 id="bfs"><a class="header-anchor" href="#bfs">¶</a>BFS</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copyRandomList</span><span class="params">(self, head: <span class="string">'Node'</span>)</span> -&gt; 'Node':</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head: </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        q = deque([head])</span><br><span class="line">        new = Node(head.val, <span class="literal">None</span>, <span class="literal">None</span>)</span><br><span class="line">        dic[head] = new</span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            node = q.popleft()</span><br><span class="line">            <span class="keyword">if</span> node.next:</span><br><span class="line">                <span class="keyword">if</span> node.next <span class="keyword">not</span> <span class="keyword">in</span> dic:                    </span><br><span class="line">                    dic[node.next] = Node(node.next.val, <span class="literal">None</span>, <span class="literal">None</span>)</span><br><span class="line">                    q.append(node.next)</span><br><span class="line">                dic[node].next = dic[node.next]</span><br><span class="line">            <span class="keyword">if</span> node.random:</span><br><span class="line">                <span class="keyword">if</span> node.random <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">                    dic[node.random] = Node(node.random.val, <span class="literal">None</span>, <span class="literal">None</span>)</span><br><span class="line">                    q.append(node.random)</span><br><span class="line">                dic[node].random = dic[node.random]</span><br><span class="line">        <span class="keyword">return</span> dic[head]</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/leetcode-刷题日常-135-CandyCopy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/21/leetcode-刷题日常-135-CandyCopy/" itemprop="url">135. Candy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T16:57:00+08:00">2019-06-21</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:11:22+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/candy/" target="_blank" rel="noopener">135. Candy</a></p>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>There are <em>N</em> children standing in a line. Each child is assigned a rating value.</p>
+<p>You are giving candies to these children subjected to the following requirements:</p>
+<ul>
+<li>Each child must have at least one candy.</li>
+<li>Children with a higher rating get more candies than their neighbors.</li>
+</ul>
+<p>What is the minimum candies you must give?</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,0,2]</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,2]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.</span><br><span class="line">             The third child gets 1 candy because it satisfies the above two conditions.</span><br></pre></td></tr></table></figure>
+<h1>解法</h1>
+<p>  参考leetcode的solution专栏，一共有四个解法。</p>
+<h2 id="法一-暴力解法"><a class="header-anchor" href="#法一-暴力解法">¶</a>法一 暴力解法</h2>
+<p>  最简单的方法是使用一维数组candy来跟踪给学生的糖果。 首先，我们给每个学生1个糖果。然后，对每个i，如果ratings[i] &gt; ratings[i + 1] &amp;&amp; candies[i] &lt;= candies[i + 1]，则更新candies[i]为candies[i + 1] + 1;如果ratings[i] &gt; ratings[i - 1] &amp;&amp; candies[i] &lt;= candies[i - 1])，则更新candies[i]为candies[i - 1] + 1。用这种方式从左到右遍历调整多次，直到没有发生值的改变，就说明到达目标状态了，可以用一个flag记录值的改变情况。</p>
+<p>  最后，我们把candy的所有元素加起来，以获得所需的最少数量的糖果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">candy</span><span class="params">(<span class="keyword">int</span>[] ratings)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] candies = <span class="keyword">new</span> <span class="keyword">int</span>[ratings.length];</span><br><span class="line">        Arrays.fill(candies, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (flag) &#123;</span><br><span class="line">            flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ratings.length; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i != ratings.length - <span class="number">1</span> &amp;&amp; ratings[i] &gt; ratings[i + <span class="number">1</span>] &amp;&amp; candies[i] &lt;= candies[i + <span class="number">1</span>]) &#123;</span><br><span class="line">                    candies[i] = candies[i + <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                    flag = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; ratings[i] &gt; ratings[i - <span class="number">1</span>] &amp;&amp; candies[i] &lt;= candies[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                    candies[i] = candies[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                    flag = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> candy : candies) &#123;</span><br><span class="line">            sum += candy;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h2>
+<p>  这是我自己能想到的最好解法，就是从左往右扫描并调整值，再从右往左扫描并调整值，最后取所有相应位置上左右数组的最大值的和。</p>
+<ul>
+<li>python解法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def candy(self, ratings: List[int]) -&gt; int:</span><br><span class="line">        L = len(ratings)</span><br><span class="line">        minl = [0] * L</span><br><span class="line">        minr = [0] * L        </span><br><span class="line">        sums = 0</span><br><span class="line">        for i in range(1, L):            </span><br><span class="line">            if ratings[i] &gt; ratings[i - 1]:</span><br><span class="line">                minl[i] = minl[i - 1] + 1</span><br><span class="line">        for i in range(L - 2, -1, -1):            </span><br><span class="line">            if ratings[i] &gt; ratings[i + 1]:</span><br><span class="line">                minr[i] = minr[i + 1] + 1</span><br><span class="line">        for k in range(0, L):</span><br><span class="line">            sums += max(minl[k], minr[k]) + 1</span><br><span class="line">        return sums</span><br></pre></td></tr></table></figure>
+<ul>
+<li>java解法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">candy</span><span class="params">(<span class="keyword">int</span>[] ratings)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] left2right = <span class="keyword">new</span> <span class="keyword">int</span>[ratings.length];</span><br><span class="line">        <span class="keyword">int</span>[] right2left = <span class="keyword">new</span> <span class="keyword">int</span>[ratings.length];</span><br><span class="line">        Arrays.fill(left2right, <span class="number">1</span>);</span><br><span class="line">        Arrays.fill(right2left, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; ratings.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ratings[i] &gt; ratings[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                left2right[i] = left2right[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = ratings.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ratings[i] &gt; ratings[i + <span class="number">1</span>]) &#123;</span><br><span class="line">                right2left[i] = right2left[i + <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ratings.length; i++) &#123;</span><br><span class="line">            sum += Math.max(left2right[i], right2left[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h2>
+<p>  法三在法二的基础上进行修改，从用两个数组变成只用一个数组。从左往右时，如果ratings[i] &gt; ratings[i - 1]， 更新candies[i] 为 candies[i - 1] + 1，此时candies[i]满足左边的大小关系；从右往左时，如果ratings[i] &gt; ratings[i + 1])，更新candies[i] 为 Math.max(candies[i], candies[i + 1] + 1)，使得candies[i]同时满足右边的大小关系。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">candy</span><span class="params">(<span class="keyword">int</span>[] ratings)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] candies = <span class="keyword">new</span> <span class="keyword">int</span>[ratings.length];</span><br><span class="line">        Arrays.fill(candies, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; ratings.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ratings[i] &gt; ratings[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                candies[i] = candies[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum = candies[ratings.length - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = ratings.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ratings[i] &gt; ratings[i + <span class="number">1</span>]) &#123;</span><br><span class="line">                candies[i] = Math.max(candies[i], candies[i + <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            sum += candies[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="法四"><a class="header-anchor" href="#法四">¶</a>法四</h2>
+<p>  这个解法是将ratings的递增递减对应candies上下坡记录每个上坡(1,2,3,…)，下坡(…3,2,1)的宽度然后比较大小决定山顶是属于上坡还是下坡(如1,2,3,4,5,3,2,1中5要属于更长的上坡才能满足同时比它旁边的3和4都大)，而山脚为了保证最少糖果取1。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int count(int n) &#123;</span><br><span class="line">        <span class="keyword">return</span> (n * (n + <span class="number">1</span>)) / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    public int candy(int[] ratings) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ratings.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> ratings.length;</span><br><span class="line">        &#125;</span><br><span class="line">        int candies = <span class="number">0</span>;</span><br><span class="line">        <span class="comment"># 该轮上坡高度</span></span><br><span class="line">        int up = <span class="number">0</span>;</span><br><span class="line">        <span class="comment"># 该轮下坡高度</span></span><br><span class="line">        int down = <span class="number">0</span>;</span><br><span class="line">        <span class="comment"># 上一次循环的斜率</span></span><br><span class="line">        int old_slope = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (int i = <span class="number">1</span>; i &lt; ratings.length; i++) &#123;</span><br><span class="line">            int new_slope = (ratings[i] &gt; ratings[i - 1]) ? 1 : (ratings[i] &lt; ratings[i - 1] ? -1 : 0);</span><br><span class="line">            <span class="comment"># 前后相等也看做山脚</span></span><br><span class="line">            <span class="comment"># 如果上一次是上升，下一次是相等则此时是山脚；如果上一次是下降，下一次是上升或者相等，则此时是山脚。</span></span><br><span class="line">            <span class="keyword">if</span> ((old_slope &gt; <span class="number">0</span> &amp;&amp; new_slope == <span class="number">0</span>) || (old_slope &lt; <span class="number">0</span> &amp;&amp; new_slope &gt;= <span class="number">0</span>)) &#123;</span><br><span class="line">                candies += count(up) + count(down) + Math.max(up, down);</span><br><span class="line">                up = <span class="number">0</span>;</span><br><span class="line">                down = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (new_slope &gt; <span class="number">0</span>)</span><br><span class="line">                up++;</span><br><span class="line">            <span class="keyword">if</span> (new_slope &lt; <span class="number">0</span>)</span><br><span class="line">                down++;</span><br><span class="line">            <span class="keyword">if</span> (new_slope == <span class="number">0</span>)</span><br><span class="line">                candies++;</span><br><span class="line">			<span class="comment"># 到这里candies算的是i之前的所有candy的总和，但是不包括山脚i</span></span><br><span class="line">            old_slope = new_slope;</span><br><span class="line">        &#125;</span><br><span class="line">        candies += count(up) + count(down) + Math.max(up, down) + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> candies;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/leetcode-刷题日常-133-Clone-Graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/21/leetcode-刷题日常-133-Clone-Graph/" itemprop="url">133. Clone Graph</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T15:08:00+08:00">2019-06-21</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:11:29+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/clone-graph/" target="_blank" rel="noopener">133. Clone Graph</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a reference of a node in a  undirected graph, return a (clone) of the graph. Each node in the graph contains a val (<code>int</code>) and a list (<code>List[Node]</code>) of its neighbors.</p>
+<p><strong>Example:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2019/02/19/113_sample.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">&#123;&quot;$id&quot;:&quot;1&quot;,&quot;neighbors&quot;:[&#123;&quot;$id&quot;:&quot;2&quot;,&quot;neighbors&quot;:[&#123;&quot;$ref&quot;:&quot;1&quot;&#125;,&#123;&quot;$id&quot;:&quot;3&quot;,&quot;neighbors&quot;:[&#123;&quot;$ref&quot;:&quot;2&quot;&#125;,&#123;&quot;$id&quot;:&quot;4&quot;,&quot;neighbors&quot;:[&#123;&quot;$ref&quot;:&quot;3&quot;&#125;,&#123;&quot;$ref&quot;:&quot;1&quot;&#125;],&quot;val&quot;:4&#125;],&quot;val&quot;:3&#125;],&quot;val&quot;:2&#125;,&#123;&quot;$ref&quot;:&quot;4&quot;&#125;],&quot;val&quot;:1&#125;</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">Node 1&apos;s value is 1, and it has two neighbors: Node 2 and 4.</span><br><span class="line">Node 2&apos;s value is 2, and it has two neighbors: Node 1 and 3.</span><br><span class="line">Node 3&apos;s value is 3, and it has two neighbors: Node 2 and 4.</span><br><span class="line">Node 4&apos;s value is 4, and it has two neighbors: Node 1 and 3.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The number of nodes will be between 1 and 100.</li>
+<li>The undirected graph is a , which means no repeated edges and no self-loops in the graph.</li>
+<li>Since the graph is undirected, if node <em>p</em> has node <em>q</em> as neighbor, then node <em>q</em> must have node <em>p</em> as neighbor too.</li>
+<li>You must return the <strong>copy of the given node</strong> as a reference to the cloned graph.</li>
+</ol>
+<h1>解法</h1>
+<h2 id="法一："><a class="header-anchor" href="#法一：">¶</a>法一：</h2>
+<p>DFS深度优先遍历，DFS返回新节点，DFS的过程中用dic记录新旧节点的对应关系。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line"># Definition for a Node.</span><br><span class="line">class Node:</span><br><span class="line">    def __init__(self, val, neighbors):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.neighbors = neighbors</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">from collections import defaultdict</span><br><span class="line">class Solution:</span><br><span class="line">    def cloneGraph(self, node: &apos;Node&apos;) -&gt; &apos;Node&apos;:    </span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        nodelist = []</span><br><span class="line">        def DFS(N):</span><br><span class="line">            if N == None:</span><br><span class="line">                return None</span><br><span class="line">            if N in dic:</span><br><span class="line">                return dic[N]</span><br><span class="line">            new = Node(N.val, [])</span><br><span class="line">            dic[N] = new</span><br><span class="line">            for n in N.neighbors:</span><br><span class="line">                new.neighbors.append(DFS(n))</span><br><span class="line">            return new</span><br><span class="line">        return DFS(node)</span><br></pre></td></tr></table></figure>
+<h2 id="法二："><a class="header-anchor" href="#法二：">¶</a>法二：</h2>
+<p>BFS遍历，dic存放新旧节点的对应关系，每次节点入队之前都要克隆还没克隆过的节点，dic也可以当作节点访问标记数组使用，节点克隆过就代表节点访问过。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cloneGraph</span><span class="params">(self, node: <span class="string">'Node'</span>)</span> -&gt; 'Node':</span>    </span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        q = deque([node])</span><br><span class="line">        dic[node] = Node(node.val, [])</span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            n = q.popleft()</span><br><span class="line">            <span class="keyword">for</span> neighbor <span class="keyword">in</span> n.neighbors:</span><br><span class="line">                <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">                    q.append(neighbor)</span><br><span class="line">                    dic[neighbor] = Node(neighbor.val, [])</span><br><span class="line">                dic[n].neighbors.append(dic[neighbor])</span><br><span class="line">        <span class="keyword">return</span> dic[node]</span><br></pre></td></tr></table></figure>
           
         
       
@@ -412,7 +1898,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span>
+    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -458,7 +1944,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">211</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -469,7 +1955,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -480,7 +1966,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

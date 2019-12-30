@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:30.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="标签">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/tags/">
+
+
+
+
+
+  <title>473. Matchsticks to Square | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/30/473-Matchsticks-to-Square/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">473. Matchsticks to Square</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-30T13:43:00+08:00">2019-12-30</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-30T13:49:00+08:00">2019-12-30</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="473-matchsticks-to-square"><a class="header-anchor" href="#473-matchsticks-to-square">¶</a><a href="https://leetcode.com/problems/matchsticks-to-square/" target="_blank" rel="noopener">473. Matchsticks to Square</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Remember the story of Little Match Girl? By now, you know exactly what matchsticks the little match girl has, please find out a way you can make one square by using up all those matchsticks. You should not break any stick, but you can link them up, and each matchstick must be used <strong>exactly</strong> one time.</p>
+<p>Your input will be several matchsticks the girl has, represented with their stick length. Your output will either be true or false, to represent whether you could make one square using all the matchsticks the little match girl has.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,1,2,2,2]</span><br><span class="line">Output: true</span><br><span class="line"></span><br><span class="line">Explanation: You can form a square with length 2, one side of the square came two sticks with length 1.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,3,3,3,4]</span><br><span class="line">Output: false</span><br><span class="line"></span><br><span class="line">Explanation: You cannot find a way to form a square with all the matchsticks.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The length sum of the given matchsticks is in the range of <code>0</code> to <code>10^9</code>.</li>
+<li>The length of the given matchstick array will not exceed <code>15</code>.</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>  这题的精髓就是dfs的剪枝了，剪枝的关键是排序后再dfs，具体看代码吧</p>
+<h5 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">makesquare</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.size() &lt; <span class="number">4</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> l_sumLength_i = accumulate(nums.begin(), nums.end(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> ((l_sumLength_i % <span class="number">4</span>) != <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> l_edgeLength_i = l_sumLength_i / <span class="number">4</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; l_edgesVec(<span class="number">4</span>, <span class="number">0</span>);</span><br><span class="line">        sort(nums.begin(), nums.end(), [](<span class="keyword">const</span> <span class="keyword">int</span> l, <span class="keyword">const</span> <span class="keyword">int</span> r) &#123;<span class="keyword">return</span> l &gt; r; &#125;);</span><br><span class="line">        <span class="keyword">return</span> dfs(l_edgesVec, nums, <span class="number">0</span>, l_edgeLength_i);</span><br><span class="line">    &#125;</span><br><span class="line">​</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; f_edgesVec_r, <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; f_nums_r, <span class="keyword">const</span> <span class="keyword">int</span> f_idx_i, <span class="keyword">const</span> <span class="keyword">int</span> f_edgeLength_i)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (f_idx_i == f_nums_r.size())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> (f_edgesVec_r[<span class="number">0</span>] == f_edgesVec_r[<span class="number">1</span>]) <span class="keyword">and</span> (f_edgesVec_r[<span class="number">0</span>] == f_edgesVec_r[<span class="number">2</span>]) <span class="keyword">and</span> (f_edgesVec_r[<span class="number">0</span>] == f_edgesVec_r[<span class="number">3</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l_edgeIdx_i = <span class="number">0</span>; l_edgeIdx_i &lt; <span class="number">4</span>; ++l_edgeIdx_i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> ((f_edgesVec_r[l_edgeIdx_i] + f_nums_r[f_idx_i]) &gt; f_edgeLength_i)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">​</span><br><span class="line">            <span class="keyword">int</span> l_oldEdgeIdx_i = l_edgeIdx_i - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (l_oldEdgeIdx_i &gt;= <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (f_edgesVec_r[l_edgeIdx_i] == f_edgesVec_r[l_oldEdgeIdx_i])</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                l_oldEdgeIdx_i--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (l_oldEdgeIdx_i &gt;= <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;<span class="comment">//之前构成过相同数目的边，就跳过</span></span><br><span class="line">​</span><br><span class="line">            f_edgesVec_r[l_edgeIdx_i] += f_nums_r[f_idx_i];</span><br><span class="line">            <span class="keyword">if</span> (dfs(f_edgesVec_r, f_nums_r, f_idx_i + <span class="number">1</span>, f_edgeLength_i))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            f_edgesVec_r[l_edgeIdx_i] -= f_nums_r[f_idx_i];</span><br><span class="line">        &#125;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> target, n, sum;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; suf;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> vis, <span class="keyword">int</span> s, <span class="keyword">int</span> d, <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s==target&amp;&amp;d==<span class="number">2</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(s&gt;target) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(s==target) <span class="keyword">return</span> dfs(nums, vis, <span class="number">0</span>, d+<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> n=nums.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=p;i&lt;n;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(vis&amp;(<span class="number">1</span>&lt;&lt;i)) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(dfs(nums, vis|<span class="number">1</span>&lt;&lt;i, s+nums[i], d, i+<span class="number">1</span>)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">makesquare</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        n=nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        reverse(nums.begin(), nums.end());</span><br><span class="line">        sum=accumulate(nums.begin(), nums.end(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(sum%<span class="number">4</span>!=<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        target=(sum&gt;&gt;<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">return</span> dfs(nums, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法三-dp"><a class="header-anchor" href="#法三-dp">¶</a>法三 dp</h6>
+<p>  法三是官方给的java版的dp解法。dp的状态表示是手里多火柴最多能形成的complete边数，和当前所有拿到手的火柴长的总和。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> javafx.util.Pair;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The memoization cache to be used during recursion.</span></span><br><span class="line">    <span class="keyword">public</span> HashMap&lt;Pair&lt;Integer, Integer&gt;, Boolean&gt; memo;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Array containing our matchsticks.</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] nums;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Possible side of our square depending on the total sum of all the matchsticks. </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> possibleSquareSide;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Default constructor to initialise our memo cache.</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.memo = <span class="keyword">new</span> HashMap&lt;Pair&lt;Integer, Integer&gt;, Boolean&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Main DP function.</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">recurse</span><span class="params">(Integer mask, Integer sidesDone)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> total = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> L = <span class="keyword">this</span>.nums.length;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// The memo key for this recursion</span></span><br><span class="line">        Pair&lt;Integer, Integer&gt; memoKey = <span class="keyword">new</span> Pair(mask, sidesDone);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Find out the sum of matchsticks used till now.</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = L - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> ((mask&amp;(<span class="number">1</span> &lt;&lt; i)) == <span class="number">0</span>) &#123;</span><br><span class="line">                total += <span class="keyword">this</span>.nums[L - <span class="number">1</span> - i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the sum if divisible by our square's side, then we increment our number of complete sides formed variable.</span></span><br><span class="line">        <span class="keyword">if</span> (total &gt; <span class="number">0</span> &amp;&amp; total % <span class="keyword">this</span>.possibleSquareSide == <span class="number">0</span>) &#123;</span><br><span class="line">            sidesDone++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Base case.</span></span><br><span class="line">        <span class="keyword">if</span> (sidesDone == <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Return precomputed results</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.memo.containsKey(memoKey)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.memo.get(memoKey);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> ans = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> c = total / <span class="keyword">this</span>.possibleSquareSide;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remaining vlength in the current partially formed side.</span></span><br><span class="line">        <span class="keyword">int</span> rem = <span class="keyword">this</span>.possibleSquareSide * (c + <span class="number">1</span>) - total;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Try out all remaining options (that are valid)</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = L - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.nums[L - <span class="number">1</span> - i] &lt;= rem &amp;&amp; (mask&amp;(<span class="number">1</span> &lt;&lt; i)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.recurse(mask ^ (<span class="number">1</span> &lt;&lt; i), sidesDone)) &#123;</span><br><span class="line">                    ans = <span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Cache the computed results.</span></span><br><span class="line">        <span class="keyword">this</span>.memo.put(memoKey, ans);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">makesquare</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Empty matchsticks.</span></span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Find the perimeter of the square (if at all possible)</span></span><br><span class="line">        <span class="keyword">int</span> L = nums.length;</span><br><span class="line">        <span class="keyword">int</span> perimeter = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; L; i++) &#123;</span><br><span class="line">            perimeter += nums[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> possibleSquareSide =  perimeter / <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">if</span> (possibleSquareSide * <span class="number">4</span> != perimeter) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.nums = nums;</span><br><span class="line">        <span class="keyword">this</span>.possibleSquareSide = possibleSquareSide;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.recurse((<span class="number">1</span> &lt;&lt; L) - <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+          
+            <a href="/tags/backtrack/" rel="tag"><i class="fa fa-tag"></i> backtrack</a>
+          
+            <a href="/tags/dfs/" rel="tag"><i class="fa fa-tag"></i> dfs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/29/5298-Verbal-Arithmetic-Puzzle/" rel="next" title="5298. Verbal Arithmetic Puzzle">
+                <i class="fa fa-chevron-left"></i> 5298. Verbal Arithmetic Puzzle
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/30/813-Largest-Sum-of-Averages/" rel="prev" title="813. Largest Sum of Averages">
+                813. Largest Sum of Averages <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">246</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#473-matchsticks-to-square"><span class="nav-number">1.</span> <span class="nav-text">¶473. Matchsticks to Square</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">1.1.</span> <span class="nav-text">¶Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#法一"><span class="nav-number">1.1.1.</span> <span class="nav-text">¶法一</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#法二"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">¶法二</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#法三-dp"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">¶法三 dp</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
+
+  
+
+</body>
+</html>
