@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:30.696Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="分类">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/categories/">
 
 
 
@@ -290,7 +290,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-17T11:42:45+08:00">2019-12-17</time>
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-18T22:06:39+08:00">2020-03-18</time>
             
           </span>
 
@@ -371,7 +371,7 @@
 </ul>
 <h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
 <p>  典型的bfs问题。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">codec</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x1|y1&lt;&lt;<span class="number">8</span>|d&lt;&lt;<span class="number">16</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">decodec</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> &amp;x1, <span class="keyword">int</span> &amp;y1, <span class="keyword">int</span> &amp;d)</span></span>&#123;</span><br><span class="line">        x1=p&amp;<span class="number">0xFF</span>; y1=(p&amp;(<span class="number">0xFF</span>&lt;&lt;<span class="number">8</span>))&gt;&gt;<span class="number">8</span>; d=(p&amp;(<span class="number">0xFF</span>&lt;&lt;<span class="number">16</span>))&gt;&gt;<span class="number">16</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumMoves</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q; q.push(codec(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>));<span class="comment">//0down, 1right</span></span><br><span class="line">        ios_base::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">int</span> N=grid.size(), ans=<span class="number">0</span>, target=codec( N<span class="number">-1</span>, N<span class="number">-2</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> vis[N][N][<span class="number">2</span>]=&#123;&#125;;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">        s.insert(codec(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> sz=q.size();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>, x1, y1, d, j; i &lt; sz;++i)&#123;</span><br><span class="line">                <span class="keyword">auto</span> n=q.front();q.pop();</span><br><span class="line">                <span class="keyword">if</span>(n==target)&#123; <span class="keyword">return</span> ans; &#125;</span><br><span class="line">                decodec(n, x1, y1, d);</span><br><span class="line">                <span class="keyword">if</span>(d==<span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(y1+<span class="number">2</span>&lt;N&amp;&amp;!grid[x1][y1+<span class="number">2</span>])&#123;</span><br><span class="line">                        j=codec(x1, y1+<span class="number">1</span>, d);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">codec</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x1|y1&lt;&lt;<span class="number">8</span>|d&lt;&lt;<span class="number">16</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">decodec</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> &amp;x1, <span class="keyword">int</span> &amp;y1, <span class="keyword">int</span> &amp;d)</span></span>&#123;</span><br><span class="line">        x1=p&amp;<span class="number">0xFF</span>; y1=(p&amp;(<span class="number">0xFF</span>&lt;&lt;<span class="number">8</span>))&gt;&gt;<span class="number">8</span>; d=(p&amp;(<span class="number">0xFF</span>&lt;&lt;<span class="number">16</span>))&gt;&gt;<span class="number">16</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumMoves</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q; q.push(codec(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>));<span class="comment">//0down, 1right</span></span><br><span class="line">        ios_base::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">int</span> N=grid.size(), ans=<span class="number">0</span>, target=codec( N<span class="number">-1</span>, N<span class="number">-2</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> vis[N][N][<span class="number">2</span>]=&#123;&#125;;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">        s.insert(codec(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> sz=q.size();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>, x1, y1, d, j; i &lt; sz;++i)&#123;</span><br><span class="line">                <span class="keyword">auto</span> n=q.front();q.pop();</span><br><span class="line">                <span class="keyword">if</span>(n==target)&#123; <span class="keyword">return</span> ans; &#125;</span><br><span class="line">                decodec(n, x1, y1, d);</span><br><span class="line">                <span class="keyword">if</span>(d==<span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(y1+<span class="number">2</span>&lt;N&amp;&amp;!grid[x1][y1+<span class="number">2</span>])&#123;</span><br><span class="line">                        j=codec(x1, y1+<span class="number">1</span>, d);</span><br><span class="line">                        <span class="keyword">if</span>(vis[x1][y1+<span class="number">1</span>][d]==<span class="number">0</span>) q.push(j),vis[x1][y1+<span class="number">1</span>][d]=<span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(x1+<span class="number">1</span>&lt;N&amp;&amp;!grid[x1+<span class="number">1</span>][y1]&amp;&amp;!grid[x1+<span class="number">1</span>][y1+<span class="number">1</span>])&#123;</span><br><span class="line">                        j=codec(x1+<span class="number">1</span>, y1, d);</span><br><span class="line">                        <span class="keyword">if</span>(vis[x1+<span class="number">1</span>][y1][d]==<span class="number">0</span>) q.push(j),vis[x1+<span class="number">1</span>][y1][d]=<span class="number">1</span>;</span><br><span class="line">                        j=codec(x1, y1, !d);</span><br><span class="line">                        <span class="keyword">if</span>(vis[x1][y1][!d]==<span class="number">0</span>) q.push(j),vis[x1][y1][!d]=<span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(x1+<span class="number">2</span>&lt;N&amp;&amp;!grid[x1+<span class="number">2</span>][y1])&#123;</span><br><span class="line">                        j=codec(x1+<span class="number">1</span>, y1, d);</span><br><span class="line">                        <span class="keyword">if</span>(vis[x1+<span class="number">1</span>][y1][d]==<span class="number">0</span>) q.push(j),vis[x1+<span class="number">1</span>][y1][d]=<span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(y1+<span class="number">1</span>&lt;N&amp;&amp;!grid[x1][y1+<span class="number">1</span>]&amp;&amp;!grid[x1+<span class="number">1</span>][y1+<span class="number">1</span>])&#123;</span><br><span class="line">                        j=codec(x1, y1+<span class="number">1</span>, d);</span><br><span class="line">                        <span class="keyword">if</span>(vis[x1][y1+<span class="number">1</span>][d]==<span class="number">0</span>) q.push(j),vis[x1][y1+<span class="number">1</span>][d]=<span class="number">1</span>;</span><br><span class="line">                        j=codec(x1, y1, !d);</span><br><span class="line">                        <span class="keyword">if</span>(vis[x1][y1][!d]==<span class="number">0</span>) q.push(j),vis[x1][y1][!d]=<span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ++ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -492,7 +492,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">246</span>
+                  <span class="site-state-item-count">441</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -503,7 +503,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -514,7 +514,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -583,7 +583,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

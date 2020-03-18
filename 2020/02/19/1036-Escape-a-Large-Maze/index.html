@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>1036. Escape a Large Maze | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/1036-Escape-a-Large-Maze/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">1036. Escape a Large Maze</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-19T14:50:00+08:00">2020-02-19</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-20T17:27:02+08:00">2020-02-20</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1036-escape-a-large-maze"><a class="header-anchor" href="#1036-escape-a-large-maze">¶</a><a href="https://leetcode.com/problems/escape-a-large-maze/" target="_blank" rel="noopener">1036. Escape a Large Maze</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>In a 1 million by 1 million grid, the coordinates of each grid square are <code>(x, y)</code> with <code>0 &lt;= x, y &lt; 10^6</code>.</p>
+<p>We start at the <code>source</code> square and want to reach the <code>target</code> square.  Each move, we can walk to a 4-directionally adjacent square in the grid that isn’t in the given list of <code>blocked</code> squares.</p>
+<p>Return <code>true</code> if and only if it is possible to reach the target square through a sequence of moves.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: blocked = [[0,1],[1,0]], source = [0,0], target = [0,2]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: </span><br><span class="line">The target square is inaccessible starting from the source square, because we can&apos;t walk outside the grid.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: blocked = [], source = [0,0], target = [999999,999999]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: </span><br><span class="line">Because there are no blocked cells, it&apos;s possible to reach the target square.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>0 &lt;= blocked.length &lt;= 200</code></li>
+<li><code>blocked[i].length == 2</code></li>
+<li><code>0 &lt;= blocked[i][j] &lt; 10^6</code></li>
+<li><code>source.length == target.length == 2</code></li>
+<li><code>0 &lt;= source[i][j], target[i][j] &lt; 10^6</code></li>
+<li><code>source != target</code></li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h6 id="法一-dfs-用栈模拟dfs"><a class="header-anchor" href="#法一-dfs-用栈模拟dfs">¶</a>法一 dfs（用栈模拟dfs）</h6>
+<p>  本题的trick在于block的数量有限，所以并不能围住很大一部分，所以一旦能走到离source很远的位置就说明一定没被围住。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// key thinking: major constraint - number of blocks</span></span><br><span class="line"><span class="comment">// for blocks to form enclosing walls, they either need to be</span></span><br><span class="line"><span class="comment">// wide enough (perimeter limit) or deep enough (radius limit)</span></span><br><span class="line"><span class="comment">// when using bfs, see if moving options more than blocks count</span></span><br><span class="line"><span class="comment">// when using dfs, see if we can move farther than block count</span></span><br><span class="line"><span class="comment">// if we could, than that means they are not enclosing</span></span><br><span class="line"><span class="comment">// test against source and target separately</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">static</span> <span class="built_in">array</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, <span class="number">4</span>&gt; dirs &#123;&#123;&#123;<span class="number">-1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;&#125;&#125;;</span><br><span class="line"><span class="keyword">uint64_t</span> key(<span class="keyword">int</span> x, <span class="keyword">int</span> y) &#123;<span class="keyword">return</span> (<span class="keyword">uint64_t</span>(x) &lt;&lt; <span class="number">32</span>) | y;&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="built_in">unordered_set</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; &amp;visited, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; t, <span class="keyword">int</span> blocks)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">stack</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; q &#123;&#123; &#123;s[<span class="number">0</span>], s[<span class="number">1</span>]&#125; &#125;&#125;;</span><br><span class="line">  <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">    <span class="keyword">auto</span> [x, y] = q.top(); q.pop();</span><br><span class="line">    <span class="comment">// major optimization: </span></span><br><span class="line">    <span class="comment">// if we have moved deep enough, we are guaranteed to be able to break through walls</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">abs</span>(x - s[<span class="number">0</span>]) + <span class="built_in">abs</span>(y - s[<span class="number">1</span>]) &gt;= blocks || x == t[<span class="number">0</span>] &amp;&amp; y == t[<span class="number">1</span>]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> [dx, dy] : dirs) &#123;</span><br><span class="line">      <span class="keyword">auto</span> i = x + dx, j = y + dy;</span><br><span class="line">      <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; <span class="number">999999</span> || j &lt; <span class="number">0</span> || j &gt; <span class="number">999999</span>) <span class="keyword">continue</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">auto</span> k = key(i,j); !visited.count(k)) visited.emplace(k), q.emplace(i, j);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEscapePossible</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; blocked, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; t)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">unordered_set</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; vis_s, <span class="keyword">vis_t</span>;</span><br><span class="line">  <span class="keyword">auto</span> sx = s[<span class="number">0</span>], sy = s[<span class="number">1</span>], tx = t[<span class="number">0</span>], ty = t[<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; b : blocked) &#123;</span><br><span class="line">      <span class="comment">// put blocks to visited list so we cannot walk on it</span></span><br><span class="line">      <span class="keyword">auto</span> bx = b[<span class="number">0</span>], by = b[<span class="number">1</span>];</span><br><span class="line">      <span class="comment">// we only care about blocks that could possibly form walls =&gt; only record close blocks</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">abs</span>(bx - sx) + <span class="built_in">abs</span>(by - sy) &lt; <span class="number">201</span>) vis_s.emplace(key(bx, by));</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">abs</span>(bx - tx) + <span class="built_in">abs</span>(by - ty) &lt; <span class="number">201</span>) <span class="keyword">vis_t</span>.emplace(key(bx, by));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// test if either source and target is enclosed</span></span><br><span class="line">  <span class="comment">// if neither are enclosed, then we are good!</span></span><br><span class="line">  <span class="keyword">return</span> dfs(vis_s, s, t, vis_s.size()) &amp;&amp; dfs(<span class="keyword">vis_t</span>, t, s, <span class="keyword">vis_t</span>.size());</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法二-bfs"><a class="header-anchor" href="#法二-bfs">¶</a>法二 bfs</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1000000</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> dx[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> dy[<span class="number">4</span>] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> B;</span><br><span class="line">    <span class="built_in">unordered_map</span> &lt; <span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">bool</span> &gt; isblocked;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isin</span><span class="params">(<span class="built_in">unordered_map</span> &lt; <span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">bool</span> &gt; &amp;m, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> key = x * (<span class="keyword">long</span> <span class="keyword">long</span>)N + y;</span><br><span class="line">        <span class="keyword">return</span> m.find(key) != m.end();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="built_in">unordered_map</span> &lt; <span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">bool</span> &gt; &amp;m, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> key = x * (<span class="keyword">long</span> <span class="keyword">long</span>)N + y;</span><br><span class="line">        m[key] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">mapdo</span><span class="params">(<span class="built_in">unordered_map</span> &lt; <span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">bool</span> &gt; &amp;m)</span> </span>&#123;</span><br><span class="line">        m.reserve(<span class="number">1024</span>);</span><br><span class="line">        m.max_load_factor(<span class="number">0.25</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> tx, <span class="keyword">int</span> ty)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">queue</span> &lt; pair &lt; <span class="keyword">int</span>, <span class="keyword">int</span> &gt; &gt; q;</span><br><span class="line">        <span class="built_in">unordered_map</span> &lt; <span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">bool</span> &gt; vis;</span><br><span class="line">        mapdo(vis);</span><br><span class="line">        q.push(&#123;x, y&#125;);</span><br><span class="line">        insert(vis, x, y);</span><br><span class="line">        <span class="keyword">while</span> (q.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> n = q.size();</span><br><span class="line">            <span class="keyword">if</span> (n &gt; B) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">                <span class="keyword">auto</span> u = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">                    <span class="keyword">int</span> x = u.first + dx[i];</span><br><span class="line">                    <span class="keyword">int</span> y = u.second + dy[i];</span><br><span class="line">                    <span class="keyword">if</span> (x == tx &amp;&amp; y == ty) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">if</span> (x &gt;= <span class="number">0</span> &amp;&amp; x &lt; N &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; y &lt; N &amp;&amp; !isin(isblocked, x, y)) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (!isin(vis, x, y)) &#123;</span><br><span class="line">                            q.push(&#123;x, y&#125;);</span><br><span class="line">                            insert(vis, x, y);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEscapePossible</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; blocked, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; source, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; target)</span> </span>&#123;</span><br><span class="line">        mapdo(isblocked);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> v : blocked) insert(isblocked, v[<span class="number">0</span>], v[<span class="number">1</span>]);</span><br><span class="line">        B = blocked.size();</span><br><span class="line">        <span class="keyword">int</span> b = bfs(source[<span class="number">0</span>], source[<span class="number">1</span>], target[<span class="number">0</span>], target[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">if</span> (b == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        b = bfs(target[<span class="number">0</span>], target[<span class="number">1</span>], source[<span class="number">0</span>], source[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">if</span> (b == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法三-bfs"><a class="header-anchor" href="#法三-bfs">¶</a>法三 bfs</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEscapePossible</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; blocked, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">long</span>&gt; blocks;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; b : blocked) &#123;</span><br><span class="line">            blocks.insert(b[<span class="number">0</span>] * <span class="number">1e6</span> + b[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> escape(s, t, blocks) &amp;&amp; escape(t, s, blocks);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dirs = &#123;&#123;<span class="number">-1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">escape</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; t, <span class="built_in">unordered_set</span>&lt;<span class="keyword">long</span>&gt;&amp; block)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line">        q.push(s);</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">long</span>&gt; visited;</span><br><span class="line">        visited.insert(s[<span class="number">0</span>] * <span class="number">1e6</span> + s[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">int</span> step = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> visited_pixel = <span class="number">0</span>; <span class="comment">// </span></span><br><span class="line">        <span class="keyword">while</span> (!q.empty() &amp;&amp; q.size() &lt;= block.size() &amp;&amp; step &lt; <span class="number">200</span>) &#123; <span class="comment">// 400 //q.size() &lt;= block.size() much faster, no need step.</span></span><br><span class="line">            <span class="keyword">int</span> k = q.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">                <span class="keyword">int</span> a = q.front()[<span class="number">0</span>];</span><br><span class="line">                <span class="keyword">int</span> b = q.front()[<span class="number">1</span>]; <span class="comment">// faster than vector&lt;&gt;</span></span><br><span class="line">                q.pop();</span><br><span class="line">                visited_pixel++;</span><br><span class="line">                <span class="keyword">if</span> (visited_pixel &gt; <span class="number">19900</span>) <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// Faster</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; dir: dirs) &#123;</span><br><span class="line">                    <span class="keyword">int</span> x = a + dir[<span class="number">0</span>], y = b + dir[<span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">long</span> tmp = x * <span class="number">1e6</span> + y;</span><br><span class="line">                    <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt;= <span class="number">1000000</span> || y &lt; <span class="number">0</span> || y &gt;= <span class="number">1000000</span> || block.count(tmp) || visited.count(tmp)) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">if</span> (x == t[<span class="number">0</span>] &amp;&amp; y == t[<span class="number">1</span>]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">                    visited.insert(tmp);</span><br><span class="line">                    q.push(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;x, y&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            step++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (q.empty()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// step &gt;= 400.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="另类解法-模拟法"><a class="header-anchor" href="#另类解法-模拟法">¶</a>另类解法（模拟法）</h6>
+<p><a href="https://leetcode-cn.com/problems/escape-a-large-maze/solution/cong-zhang-ai-wu-dian-blockedru-shou-de-kuai-su-su/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/escape-a-large-maze/solution/cong-zhang-ai-wu-dian-blockedru-shou-de-kuai-su-su/</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        <span class="keyword">int</span> y;</span><br><span class="line">        <span class="keyword">bool</span> <span class="keyword">operator</span>&lt; (<span class="keyword">const</span> Point&amp; right) <span class="keyword">const</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>-&gt;x &lt; right.x)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>-&gt;x == right.x)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>-&gt;y &lt; right.y;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Point(<span class="keyword">const</span> <span class="keyword">int</span> x,<span class="keyword">const</span> <span class="keyword">int</span> y)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;x = x;</span><br><span class="line">            <span class="keyword">this</span>-&gt;y = y;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> x1,y1,x2,y2,minx,maxx,miny,maxy,l,r;</span><br><span class="line">    <span class="keyword">int</span> extidxx, extidxy;</span><br><span class="line">    <span class="built_in">set</span>&lt;Point&gt; pts;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// (x1,y1)            (x2,y2)</span></span><br><span class="line">    <span class="comment">// S--------  |          T</span></span><br><span class="line">    <span class="comment">//         |  |          |</span></span><br><span class="line">    <span class="comment">//         |  |          |</span></span><br><span class="line">    <span class="comment">//         T  | S---------</span></span><br><span class="line">    <span class="comment">//     (x2,y2)  (x1,y1)</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> INPATH(x,y) (((x) == (x2) &amp;&amp; (y) <span class="meta-string">&lt;= maxy &amp;&amp; (y) &gt;= miny) || ((y) == (y1) &amp;&amp; (x) &gt;= minx &amp;&amp; (x) &lt;= maxx))</span></span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> AREA(x,y) (((x) &gt; maxx) || ((y2 &gt; y1)? ((y) <span class="meta-string">&lt; miny) : ((y) &gt; maxy)))</span></span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> INBOARD(x,y) ((x) &gt;= l &amp;&amp; (x) <span class="meta-string">&lt;= r &amp;&amp; (y) &gt;= l &amp;&amp; (y) &lt;= r)</span></span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateExt</span><span class="params">(<span class="keyword">const</span> Point&amp; pt)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        extidxx = max(pt.x, extidxx);</span><br><span class="line">        <span class="keyword">if</span>(y2 &lt; y1) extidxy = min(pt.y, extidxy);</span><br><span class="line">        <span class="keyword">else</span> extidxy = max(pt.y, extidxy);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">notSearched</span><span class="params">(<span class="keyword">const</span> Point&amp; pt)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pt.x &gt; extidxx)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(y2 &lt; y1 &amp;&amp; pt.y &lt; extidxy)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(y2 &gt; y1 &amp;&amp; pt.y &gt; extidxy)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">enum</span> SEARCHRES</span><br><span class="line">    &#123;</span><br><span class="line">        LOCKED = <span class="number">0</span>,</span><br><span class="line">        UNLOCKED = <span class="number">1</span>,</span><br><span class="line">        REACHEDGE = <span class="number">2</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function">SEARCHRES <span class="title">search</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        Point cpt, <span class="comment">// 搜索起始点</span></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> rotate, <span class="comment">// 旋转方向</span></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> lastarea, <span class="comment">// 第一次搜索时应为 0, 第二次为 outarea</span></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> &amp; crosses, <span class="comment">// 穿越数, 初始化值为 0</span></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> &amp; outarea <span class="comment">// 首次穿出的区域, 初始化值为 0</span></span></span></span><br><span class="line"><span class="function"><span class="params">    )</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> xoffs[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> yoffs[] = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> oppomove[] = &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line">        Point firstpt = cpt;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 搜索起始方向, 当 y == y1 时应为 6(←), 否则若 y2 &lt; y1 应为 0(↓); 若 y2 &gt; y1 应为 4(↑).</span></span><br><span class="line">        <span class="keyword">int</span> currmove = (cpt.y == y1) ? <span class="number">6</span> : ((y2 &lt; y1)? <span class="number">0</span> : <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 上次搜索的点是否在线内</span></span><br><span class="line">        <span class="keyword">bool</span> lastIn = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(;;)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 找到搜索起始方向 = 前一个方向的对向</span></span><br><span class="line">            <span class="keyword">bool</span> foundNew = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 八联通方向搜索(四联通移动,八联通即可封锁)</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; ++i)</span><br><span class="line">            &#123;</span><br><span class="line">                currmove += rotate;</span><br><span class="line">                <span class="keyword">if</span>(currmove &gt;= <span class="number">8</span>)</span><br><span class="line">                    currmove -= <span class="number">8</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(currmove &lt;= <span class="number">0</span>)</span><br><span class="line">                    currmove += <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">                <span class="function">Point <span class="title">npt</span><span class="params">(cpt.x + xoffs[currmove], cpt.y + yoffs[currmove])</span></span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(npt.x == firstpt.x &amp;&amp; npt.y == firstpt.y)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// 返回了初始点，绕了回来</span></span><br><span class="line">                    <span class="comment">// 如果出的方向与进的方向不同, 则算作一次穿越</span></span><br><span class="line">                    <span class="keyword">if</span>(<span class="built_in">abs</span>(lastarea - outarea) == <span class="number">2</span>)</span><br><span class="line">                        crosses += <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span>((crosses &amp; <span class="number">1</span>) == <span class="number">0</span>) <span class="comment">// 偶数次, 没包起来</span></span><br><span class="line">                        <span class="keyword">return</span> UNLOCKED;</span><br><span class="line">                    <span class="keyword">else</span> <span class="comment">// 奇数次, 把原点 or 目标点 包了起来</span></span><br><span class="line">                        <span class="keyword">return</span> LOCKED;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(!INBOARD(npt.x,npt.y))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">int</span> currArea = AREA(npt.x,npt.y) ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">                    <span class="keyword">if</span>(<span class="built_in">abs</span>(lastarea - currArea) == <span class="number">2</span> &amp;&amp; lastIn)</span><br><span class="line">                        crosses += <span class="number">1</span>; <span class="comment">// 两次在不同半区且经过原始路线算作穿越</span></span><br><span class="line">                    lastarea = currArea;</span><br><span class="line">                    <span class="keyword">if</span>(outarea == <span class="number">0</span>)</span><br><span class="line">                        outarea = currArea;</span><br><span class="line">                    lastIn = <span class="literal">false</span>;</span><br><span class="line">                    <span class="keyword">return</span> REACHEDGE;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="built_in">set</span>&lt;Point&gt;::iterator it = pts.find(npt);</span><br><span class="line">                    <span class="keyword">if</span>(it != pts.end())</span><br><span class="line">                    &#123;</span><br><span class="line">                        foundNew = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span>((!INPATH(it-&gt;x,it-&gt;y)))</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">int</span> currArea = AREA(it-&gt;x,it-&gt;y) ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">                            <span class="keyword">if</span>(<span class="built_in">abs</span>(currArea - lastarea) == <span class="number">2</span> &amp;&amp; lastIn)</span><br><span class="line">                                crosses += <span class="number">1</span>; <span class="comment">// 两次在不同半区且经过原始路线算作穿越</span></span><br><span class="line">                            lastarea = currArea;  </span><br><span class="line">                            <span class="keyword">if</span>(outarea == <span class="number">0</span>)</span><br><span class="line">                                outarea = currArea;</span><br><span class="line">                            lastIn = <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                        &#123;</span><br><span class="line">                            lastIn = <span class="literal">true</span>;</span><br><span class="line">                            updateExt(npt);</span><br><span class="line">                        &#125;</span><br><span class="line">                        </span><br><span class="line">                        cpt = *it;</span><br><span class="line">                        currmove = oppomove[currmove] + rotate;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(!foundNew)</span><br><span class="line">                <span class="keyword">return</span> UNLOCKED; <span class="comment">// 孤点, 不能起到封锁作用</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEscapePossible</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; blocked, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; source, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; target)</span> </span>&#123;</span><br><span class="line">        l = <span class="number">0</span>, r = <span class="number">1e6</span> - <span class="number">1</span>;</span><br><span class="line">        x1 = source[<span class="number">0</span>], y1 = source[<span class="number">1</span>], x2 = target[<span class="number">0</span>], y2 = target[<span class="number">1</span>];</span><br><span class="line">        minx = min(x1,x2), maxx = max(x1,x2), miny = min(y1,y2), maxy = max(y1,y2);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(x2 &lt; x1)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 交换 source 和 target</span></span><br><span class="line">            <span class="keyword">int</span> tmp = x1; x1 = x2; x2 = tmp;</span><br><span class="line">            tmp = y1; y1 = y2; y2 = tmp;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        extidxx = x1, extidxy = y1;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>-&gt;pts.clear();</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b :blocked)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(pts.find(Point(b[<span class="number">0</span>],b[<span class="number">1</span>])) == pts.end())</span><br><span class="line">                pts.insert(Point(b[<span class="number">0</span>],b[<span class="number">1</span>]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">set</span>&lt;Point&gt;::iterator it = pts.begin();</span><br><span class="line">        <span class="built_in">set</span>&lt;Point&gt;::reverse_iterator rit = pts.rbegin();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(;;)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 在初始路径上找到起始点</span></span><br><span class="line">            <span class="function">Point <span class="title">cpt</span><span class="params">(<span class="number">0</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 当 y2 &lt; y1 且 x 走到 x2 时, y 应当沿着 y减小 的方向走</span></span><br><span class="line">            <span class="keyword">if</span>(extidxx == x2 &amp;&amp; y2 &lt; y1)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(;; ++rit)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span>(rit == pts.rend())</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span>(INPATH(rit-&gt;x, rit-&gt;y) &amp;&amp; notSearched(*rit))</span><br><span class="line">                    &#123;</span><br><span class="line">                        updateExt(*rit);</span><br><span class="line">                        cpt = *rit;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="comment">// 否则应沿着 x 增大 或 y 增大 的方向走</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(;; ++it)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span>(it == pts.end())</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span>(INPATH(it-&gt;x, it-&gt;y) &amp;&amp; notSearched(*it))</span><br><span class="line">                    &#123;</span><br><span class="line">                        updateExt(*it);</span><br><span class="line">                        cpt = *it;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> crosses = <span class="number">0</span>, outarea = <span class="number">0</span>, t = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 正向搜索</span></span><br><span class="line">            SEARCHRES res = search(cpt,<span class="number">1</span>,<span class="number">0</span>,crosses,outarea);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(res == UNLOCKED)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(res == LOCKED)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//REACHEDGE,则再进行反向搜索</span></span><br><span class="line">            res = search(cpt,<span class="number">-1</span>,outarea,crosses,t);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(res == UNLOCKED)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(res == LOCKED)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(crosses &amp; <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/dfs/" rel="tag"><i class="fa fa-tag"></i> dfs</a>
+          
+            <a href="/tags/bfs/" rel="tag"><i class="fa fa-tag"></i> bfs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/18/871-Minimum-Number-of-Refueling-Stops/" rel="next" title="871. Minimum Number of Refueling Stops">
+                <i class="fa fa-chevron-left"></i> 871. Minimum Number of Refueling Stops
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/19/920-Number-of-Music-Playlists/" rel="prev" title="920. Number of Music Playlists">
+                920. Number of Music Playlists <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1036-escape-a-large-maze"><span class="nav-number">1.</span> <span class="nav-text">¶1036. Escape a Large Maze</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">1.1.</span> <span class="nav-text">¶Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#法一-dfs-用栈模拟dfs"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">¶法一 dfs（用栈模拟dfs）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#法二-bfs"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">¶法二 bfs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#法三-bfs"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">¶法三 bfs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#另类解法-模拟法"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">¶另类解法（模拟法）</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
+
+  
+
+</body>
+</html>

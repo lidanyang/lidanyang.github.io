@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>1125. Smallest Sufficient Team | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/24/1125-Smallest-Sufficient-Team/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">1125. Smallest Sufficient Team</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-24T23:17:00+08:00">2020-02-24</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-25T01:08:39+08:00">2020-02-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1125-smallest-sufficient-team"><a class="header-anchor" href="#1125-smallest-sufficient-team">¶</a><a href="https://leetcode.com/problems/smallest-sufficient-team/" target="_blank" rel="noopener">1125. Smallest Sufficient Team</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>In a project, you have a list of required skills <code>req_skills</code>, and a list of <code>people</code>.  The i-th person <code>people[i]</code> contains a list of skills that person has.</p>
+<p>Consider a <em>sufficient team</em>: a set of people such that for every required skill in <code>req_skills</code>, there is at least one person in the team who has that skill.  We can represent these teams by the index of each person: for example, <code>team = [0, 1, 3]</code> represents the people with skills <code>people[0]</code>, <code>people[1]</code>, and <code>people[3]</code>.</p>
+<p>Return <strong>any</strong> sufficient team of the smallest possible size, represented by the index of each person.</p>
+<p>You may return the answer in any order.  It is guaranteed an answer exists.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: req_skills = [&quot;java&quot;,&quot;nodejs&quot;,&quot;reactjs&quot;], people = [[&quot;java&quot;],[&quot;nodejs&quot;],[&quot;nodejs&quot;,&quot;reactjs&quot;]]</span><br><span class="line">Output: [0,2]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: req_skills = [&quot;algorithms&quot;,&quot;math&quot;,&quot;java&quot;,&quot;reactjs&quot;,&quot;csharp&quot;,&quot;aws&quot;], people = [[&quot;algorithms&quot;,&quot;math&quot;,&quot;java&quot;],[&quot;algorithms&quot;,&quot;math&quot;,&quot;reactjs&quot;],[&quot;java&quot;,&quot;csharp&quot;,&quot;aws&quot;],[&quot;reactjs&quot;,&quot;csharp&quot;],[&quot;csharp&quot;,&quot;math&quot;],[&quot;aws&quot;,&quot;java&quot;]]</span><br><span class="line">Output: [1,2]</span><br></pre></td></tr></table></figure>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= req_skills.length &lt;= 16</code></li>
+<li><code>1 &lt;= people.length &lt;= 60</code></li>
+<li><code>1 &lt;= people[i].length, req_skills[i].length, people[i][j].length &lt;= 16</code></li>
+<li>Elements of <code>req_skills</code> and <code>people[i]</code> are (respectively) distinct.</li>
+<li><code>req_skills[i][j], people[i][j][k]</code> are lowercase English letters.</li>
+<li>Every skill in <code>people[i]</code> is a skill in <code>req_skills</code>.</li>
+<li>It is guaranteed a sufficient team exists.</li>
+</ul>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h6 id="法一-dp"><a class="header-anchor" href="#法一-dp">¶</a>法一 dp</h6>
+<p>  状态压缩dp，dp的过程中用prv数组维护状态转移的信息用来还原最小队伍。每个技能对应状态的一个位，每个人的技能也可以用一个数（每一位对应是否掌握某项技能）来表示。<code>dp[i]</code>中代表当前队伍的技能的掌握情况为<code>i</code>时队伍的最少人数，<code>prv[i]</code>当前队伍的技能的掌握情况为<code>i</code>时队伍的最少人数为<code>dp[i]</code>的上一个入选的人和上一个状态。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; smallestSufficientTeam(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; req_skills, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; people) &#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; um;</span><br><span class="line">        <span class="keyword">int</span> n = req_skills.size(), m = people.size(), t=(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(m), ans, dp(t+<span class="number">1</span>, INT_MAX), prv(t+<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i= <span class="number">0</span>; i &lt; n; ++i) </span><br><span class="line">            um[req_skills[i]] = i;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;m ;++i) </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; people[i].size(); ++j) </span><br><span class="line">                a[i] |= <span class="number">1</span>&lt;&lt;um[people[i][j]];</span><br><span class="line">        </span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m;++i) </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = t; j &gt;= <span class="number">0</span>; --j) </span><br><span class="line">                <span class="keyword">if</span>(dp[j] != INT_MAX &amp;&amp; dp[j]+<span class="number">1</span> &lt; dp[a[i]|j])&#123;</span><br><span class="line">                    prv[a[i]|j] = i&lt;&lt;<span class="number">16</span>|j;</span><br><span class="line">                    dp[a[i]|j] = dp[j]+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">int</span> d = t;</span><br><span class="line">        <span class="keyword">while</span>(prv[d] != <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> nc = prv[d]&gt;&gt;<span class="number">16</span>, nd=<span class="number">0xffff</span>&amp;prv[d];</span><br><span class="line">            ans.push_back(nc);</span><br><span class="line">            d =nd;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面的dp解法和我自己的解法类似，但感觉维护状态转换信息的方式比我的更好。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; smallestSufficientTeam(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; req_skills, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; people) &#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; skills;</span><br><span class="line">        <span class="keyword">int</span> n = req_skills.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; req_skills.size(); ++i)</span><br><span class="line">            skills[req_skills[i]] = i;</span><br><span class="line">        <span class="keyword">int</span> m = people.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; people_skill(m);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; people[i].size(); ++j)&#123;</span><br><span class="line">                <span class="keyword">int</span> temp = skills[people[i][j]];</span><br><span class="line">                people_skill[i]|=(<span class="number">1</span>&lt;&lt;temp);</span><br><span class="line">        &#125;</span><br><span class="line">         <span class="keyword">int</span> s = <span class="number">1</span>&lt;&lt;n; </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(s, INT_MAX);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent(s,<span class="number">-1</span>);<span class="comment">//加入最后一个人之前的上一个技能状态</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent_state(s);<span class="comment">//最后一个加入的人</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;<span class="comment">//技能状态-&gt;队伍人数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt;(<span class="number">1</span>&lt;&lt;n); ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span> (dp[i]==INT_MAX) <span class="keyword">continue</span>;</span><br><span class="line">               <span class="keyword">int</span> temp = i | people_skill[j];</span><br><span class="line">               <span class="keyword">if</span> (dp[temp]&gt;dp[i]+<span class="number">1</span>) &#123;parent[temp]=j; parent_state[temp]=i; dp[temp]=dp[i]+<span class="number">1</span>;&#125;         </span><br><span class="line">        &#125;</span><br><span class="line">       </span><br><span class="line">        <span class="keyword">int</span> temp = (<span class="number">1</span>&lt;&lt;n) <span class="number">-1</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ret;</span><br><span class="line">        <span class="keyword">while</span> (parent[temp]!=<span class="number">-1</span>)&#123;</span><br><span class="line">            ret.push_back(parent[temp]);</span><br><span class="line">            temp = parent_state[temp];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>同样是dp，用uint64_t的每一位来代表一个人，最后统计<code>(1&lt;&lt;n) - 1</code>对应的值哪些位上有1即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> <span class="keyword">int</span> MX=<span class="number">16</span>;</span><br><span class="line"><span class="keyword">uint64_t</span> dp[<span class="number">1</span>&lt;&lt;MX];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; skill_to_idx;</span><br><span class="line">    <span class="keyword">int</span> N, M;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">calc_skills</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; req_skills)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            skill_to_idx[req_skills[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">uint64_t</span>&gt; p_skills;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">calc_people_skills</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; people)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        p_skills.resize(M);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;M; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">uint64_t</span> curr=<span class="number">0U</span>LL;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> skill: people[i])</span><br><span class="line">            &#123;</span><br><span class="line">                curr |= <span class="number">1U</span>LL&lt;&lt;skill_to_idx[skill];</span><br><span class="line">            &#125;</span><br><span class="line">            p_skills[i] = curr;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">uint64_t</span> solve()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> MAXMASK=(<span class="number">1</span>&lt;&lt;N);</span><br><span class="line">        <span class="comment">//for(int i=0; i&lt;(1&lt;&lt;N); i++) dp[i]=(1ULL&lt;&lt;M)-1ULL;</span></span><br><span class="line">        <span class="built_in">memset</span>(dp, <span class="number">255</span>, MAXMASK*<span class="keyword">sizeof</span>(dp[<span class="number">0</span>]));</span><br><span class="line">        dp[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> skillset=<span class="number">0</span>; skillset&lt;MAXMASK; skillset++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">uint64_t</span> peopleset = dp[skillset];</span><br><span class="line">            <span class="keyword">if</span>(peopleset==UINT64_MAX) <span class="keyword">continue</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;M; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>((peopleset&gt;&gt;i)&amp;<span class="number">1</span>==<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">int</span> new_skillset=skillset|(p_skills[i]);</span><br><span class="line">                <span class="keyword">if</span>(skillset==new_skillset) <span class="keyword">continue</span>;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">uint64_t</span> new_peopleset = peopleset ^ (<span class="number">1U</span>LL &lt;&lt; i);</span><br><span class="line">                <span class="keyword">uint64_t</span>* ptr=dp+new_skillset;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(__builtin_popcountll(*ptr) &gt; __builtin_popcountll(new_peopleset)) *ptr=new_peopleset;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[(<span class="number">1</span>&lt;&lt;N)<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; smallestSufficientTeam(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; req_skills, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; people) &#123;</span><br><span class="line">        N=req_skills.size();</span><br><span class="line">        M=people.size();</span><br><span class="line">        </span><br><span class="line">        calc_skills(req_skills);</span><br><span class="line">        calc_people_skills(people);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">uint64_t</span> res=solve();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;M; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> ((res&gt;&gt;i)&amp;<span class="number">1</span>) result.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法二-bfs"><a class="header-anchor" href="#法二-bfs">¶</a>法二 bfs</h6>
+<p>最快的解法是bfs，将寻找最小队伍看成寻找0（没有技能）到(1&lt;&lt;n)-1（所有技能都有）的最短路的问题。队列用有0号技能的人初始化，然后每轮bfs都至少多添加一项新技能，直到所有技能都添加。另外，这个解法的位操作运用的炉火纯青，值得借鉴。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> ull = <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line">    <span class="keyword">using</span> us = <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> ull <span class="title">add</span><span class="params">(ull t, us i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> t | (<span class="number">1u</span>ll &lt;&lt; i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> us <span class="title">rem</span><span class="params">(us a, us b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ~((~a) | b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">has</span><span class="params">(ull t, us i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> t &amp; (<span class="number">1u</span>ll &lt;&lt; i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; getPpl(ull p) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">64</span>; ++i) <span class="keyword">if</span> (has(p, i)) ans.push_back(i);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; smallestSufficientTeam(</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; &amp;reqs,</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; &amp;ppls) &#123;</span><br><span class="line"></span><br><span class="line">        us sk(0), psize(ppls.size()), ssize(reqs.size()), mask_all(0);</span><br><span class="line">        <span class="built_in">vector</span>&lt;us&gt; ppl(psize);</span><br><span class="line">        <span class="built_in">queue</span>&lt;pair&lt;us, ull&gt;&gt; q;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, us&gt; m;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;s: reqs) mask_all = add(mask_all, m[s] = sk++);</span><br><span class="line">        <span class="keyword">for</span> (us i = <span class="number">0</span>; i &lt; psize; ++i) </span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">auto</span> &amp;s: ppls[i]) ppl[i] = add(ppl[i], m[s]);</span><br><span class="line">        <span class="keyword">for</span> (us i = <span class="number">0</span>; i &lt; psize; ++i) </span><br><span class="line">			<span class="keyword">if</span> (has(ppl[i], <span class="number">0</span>)) q.emplace(rem(mask_all, ppl[i]), add(<span class="number">0</span>, i));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            us s = q.front().first;</span><br><span class="line">            ull p = q.front().second;</span><br><span class="line">            q.pop();</span><br><span class="line">            <span class="keyword">if</span> (!s) <span class="keyword">return</span> getPpl(p);</span><br><span class="line">            us skill = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ssize; ++i) &#123;</span><br><span class="line">				<span class="keyword">if</span> (has(s, i)) &#123; skill = i; <span class="keyword">break</span>; &#125;<span class="comment">//下一个所需要的技能</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (us j = <span class="number">0</span>; j &lt; psize; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!has(ppl[j], skill)) <span class="keyword">continue</span>;</span><br><span class="line">                ull ns = rem(s, ppl[j]);</span><br><span class="line">                <span class="keyword">if</span> (!ns) <span class="keyword">return</span> getPpl(add(p,j));</span><br><span class="line">                q.emplace(ns, add(p,j));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法三-dfs"><a class="header-anchor" href="#法三-dfs">¶</a>法三 dfs</h6>
+<p>既然能用bfs做，那也肯定能用dfs做。__builtin_popcountll计算long long类型整数二进制表示中1的个数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; people;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; skills_i;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&gt; dp;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> unvisited = <span class="number">-2L</span>L;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> impossible = <span class="number">-1L</span>L;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; smallestSufficientTeam(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; req_skills, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; p) &#123;</span><br><span class="line">        people=p;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// let dp[i][j] = a smallest team that has all skills in the bitmask j; this team can only include</span></span><br><span class="line">        <span class="comment">// people[n] where n &gt;= i</span></span><br><span class="line">        <span class="comment">// teams are stored as 64 bit ints where bit i is 1 if person[i] is in the team.</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// the i-th bit in the bitmask j is 1 if the skill is required/needed.</span></span><br><span class="line">        <span class="comment">// create a mask that has all skills we're looking for.</span></span><br><span class="line">        <span class="keyword">int</span> all_skills_mask = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt; req_skills.size(); i++) &#123;</span><br><span class="line">            all_skills_mask |= (<span class="number">1</span> &lt;&lt; i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        dp = <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&gt;(people.size() + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(all_skills_mask + <span class="number">1</span>, unvisited));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// m maps all the possible skills to integers.</span></span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; req_skills.size(); i++) &#123;</span><br><span class="line">            <span class="built_in">string</span> skill = req_skills[i];</span><br><span class="line">            m[skill] = i;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// map each person[i] to a mask representing their skills.</span></span><br><span class="line">        skills_i = <span class="built_in">vector</span>(people.size(), <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;p.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> skills = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> skill : people[i]) &#123;</span><br><span class="line">                skills_i[i] |= (<span class="number">1</span> &lt;&lt; m[skill]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// compute an optimal team, where all skills in req_skills are needed and any person can join</span></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = dfs(<span class="number">0</span>, all_skills_mask);</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="comment">// convert optimal team to desired output format.</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;p.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (((<span class="number">1L</span>L &lt;&lt; i) &amp; ans) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                res.push_back(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// compute dp[i][j].</span></span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (dp[i][j] != unvisited) <span class="keyword">return</span> dp[i][j];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> res = <span class="number">0L</span>L;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i == people.size()) &#123;</span><br><span class="line">            <span class="comment">// we've taken a look at all people, so unless there are no more skills to fill,</span></span><br><span class="line">            <span class="comment">// the answer is impossible. otherwise we need an empty team since all reqs are met.</span></span><br><span class="line">            res = j == <span class="number">0</span> ? res : impossible;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// let remaining_needed_skills = the mask of needed skills if we were to pick up person[i].</span></span><br><span class="line">            <span class="keyword">int</span> remaining_needed_skills = j &amp; ~skills_i[i];</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// path1 = we take person[i].</span></span><br><span class="line">            <span class="comment">// path2 = we send person[i] an email saying their experience is impressive but we moved forward</span></span><br><span class="line">            <span class="comment">// with other candidates.</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// if we pick up person[i], then the rest of our search only needs to look for remaining needed skills.</span></span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> path1 = dfs(i+<span class="number">1</span>, remaining_needed_skills);</span><br><span class="line">            <span class="keyword">if</span> (path1 == impossible) &#123;</span><br><span class="line">                <span class="comment">// if this search is impossible either way, then let's stop.</span></span><br><span class="line">                <span class="keyword">return</span> dp[i][j] = impossible;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// make sure to add person[i] to the team that has the rest of the skills they don't have</span></span><br><span class="line">            path1 |= (<span class="number">1L</span>L &lt;&lt; i);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// here, the skills mask j is unchanged since we didn't pick up person[i].</span></span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> path2 = dfs(i+<span class="number">1</span>, j);</span><br><span class="line">            <span class="keyword">if</span> (path2 == impossible) &#123;</span><br><span class="line">                res = path1;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// now, either taking or not taking person[i] will work, but we need to take</span></span><br><span class="line">                <span class="comment">// the best path. __builtin_popcountll counts the set bits (ie, number of persons)</span></span><br><span class="line">                <span class="comment">// in the team returned by each path.</span></span><br><span class="line">                <span class="keyword">if</span> (__builtin_popcountll(path1) &lt; __builtin_popcountll(path2)) res = path1;</span><br><span class="line">                <span class="keyword">else</span> res = path2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[i][j] = res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a class="header-anchor" href="#总结">¶</a>总结</h3>
+<p>leetcode评论区有人说此题本质上可以看成Bellman-Ford算法（<code>This is so thought-provoking! The interpretation as Bellman-Ford searching for shortest-path here is really insightful. I just have a little different understanding here. skill_set is more like node here, and people are like edges. We are looking for a shortest path (using the least number of people) to get from node 00...00 (no required skills in the team) to 11..11 (has all the required skills in the team).</code>）也很有启发性。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+          
+            <a href="/tags/bit-manipulation/" rel="tag"><i class="fa fa-tag"></i> bit manipulation</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/24/879-Profitable-Schemes/" rel="next" title="879. Profitable Schemes">
+                <i class="fa fa-chevron-left"></i> 879. Profitable Schemes
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/25/517-Super-Washing-Machines/" rel="prev" title="517. Super Washing Machines">
+                517. Super Washing Machines <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1125-smallest-sufficient-team"><span class="nav-number">1.</span> <span class="nav-text">¶1125. Smallest Sufficient Team</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">1.1.</span> <span class="nav-text">¶Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#法一-dp"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">¶法一 dp</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#法二-bfs"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">¶法二 bfs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#法三-dfs"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">¶法三 dfs</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">¶总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
+
+  
+
+</body>
+</html>

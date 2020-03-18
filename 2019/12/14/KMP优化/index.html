@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:30.696Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="分类">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/categories/">
 
 
 
@@ -290,7 +290,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-14T18:04:10+08:00">2019-12-14</time>
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-17T17:31:05+08:00">2020-03-17</time>
             
           </span>
 
@@ -357,11 +357,7 @@
       
         <p>  在别人代码里看到了一段关于KMP的代码，但是看了半天看不懂，手动执行了一下还是没懂，后来突然想起之前看过KMP可以继续优化。比如如果<code>abbab</code>在匹配到<strong>最后一个b</strong>时失配了，即当前正在匹配的串为<code>abbax(x!='b')</code>，那么按照朴素的KMP的做法:<code>abba</code>的lps为1，所以应该从<strong>第二个b</strong>继续匹配，此时就应该注意到了，因为失配的字符是<code>x(x!='bb)</code>，再次匹配又是<strong>用b去匹配x</strong>，所以毫无疑问肯定会失配，所以需要继续对a再进行一次朴素KMP的过程，此时x最终要和第一个a进行匹配。</p>
 <p><a href="https://blog.csdn.net/Jaihk662/article/details/79504670" target="_blank" rel="noopener">代码</a>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//下面的代码默认字符串下标从1开始</span><br><span class="line">//注意优化后的next数组的值就不是最长公共前后缀的长度了</span><br><span class="line">int i=1, j=0;</span><br><span class="line">next[1]=0;//next[i]为0说明匹配完全失败，该位置废弃，要从下一个位置重新匹配；next[i]&gt;0，则把当前字符和s[next[i]]匹配</span><br><span class="line">while(i&lt;=m)&#123;</span><br><span class="line">	if(j==0||pat[i]==pat[j])&#123;</span><br><span class="line">    ++i,++j;</span><br><span class="line">    if(pat[i]==pat[j]) next[i]=next[j];//朴素的KMP会设置next[i]为j，但是实际运行的时候失配的字符是pat[i]才会去匹配j，但是如果pat[i]==pat[j]，肯定会继续失配，则要继续匹配next[j]，所以next[i]=next[j]</span><br><span class="line">    else next[i]=j;</span><br><span class="line">   &#125;</span><br><span class="line">   else&#123;</span><br><span class="line">		j=next[j];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>下标从0开始的版本:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">1</span>, j=<span class="number">0</span>;</span><br><span class="line">next[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(i&lt;m)&#123;</span><br><span class="line">    <span class="keyword">if</span>(j==<span class="number">0</span>||pat[i]==pat[j])&#123;</span><br><span class="line">        <span class="keyword">if</span>(pat[i]!=pat[j]) next[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(pat[i+<span class="number">1</span>]==pat[j+<span class="number">1</span>]) next[i]=next[j];</span><br><span class="line">        <span class="keyword">else</span> next[i]=++j;</span><br><span class="line">        ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> j=next[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对比一下朴素KMP:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">1</span>, j=<span class="number">0</span>;</span><br><span class="line">next[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(i&lt;m)&#123;</span><br><span class="line">    <span class="keyword">if</span>(j==<span class="number">0</span>||pat[i]==pat[j])&#123;</span><br><span class="line">        <span class="keyword">if</span>(pat[i]!=pat[j]) next[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> next[i]=++j;</span><br><span class="line">        ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> j=next[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//下面的代码默认字符串下标从1开始</span><br><span class="line">//注意优化后的next数组的值就不是最长公共前后缀的长度了</span><br><span class="line">int i=1, j=0;</span><br><span class="line">next[1]=0;//next[i]为0说明匹配完全失败，该位置废弃，要从下一个位置重新匹配；next[i]&gt;0，则把当前字符和s[next[i]]匹配</span><br><span class="line">while(i&lt;=m)&#123;</span><br><span class="line">  if(j==0||pat[i]==pat[j])&#123;</span><br><span class="line">    ++i,++j;</span><br><span class="line">    if(pat[i]==pat[j]) next[i]=next[j];//朴素的KMP会设置next[i]为j，但是实际运行的时候失配的字符是pat[i]才会去匹配j，但是如果pat[i]==pat[j]，肯定会继续失配，则要继续匹配next[j]，所以next[i]=next[j]</span><br><span class="line">    else next[i]=j;</span><br><span class="line">   &#125;</span><br><span class="line">   else&#123;</span><br><span class="line">    j=next[j];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -471,7 +467,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">246</span>
+                  <span class="site-state-item-count">441</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -482,7 +478,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -493,7 +489,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -546,7 +542,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -76,13 +76,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="Just a blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T06:22:30.696Z">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="分类">
 
 
 
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/categories/">
 
 
 
@@ -290,7 +290,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-26T22:05:23+08:00">2019-12-26</time>
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-13T10:54:46+08:00">2020-01-13</time>
             
           </span>
 
@@ -338,7 +338,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Given s = &quot;[123,[456,[789]]]&quot;,</span><br><span class="line"></span><br><span class="line">Return a NestedInteger object containing a nested list with 2 elements:</span><br><span class="line"></span><br><span class="line">1\. An integer containing value 123.</span><br><span class="line">2\. A nested list containing two elements:</span><br><span class="line">    i.  An integer containing value 456.</span><br><span class="line">    ii. A nested list with one element:</span><br><span class="line">         a. An integer containing value 789.</span><br></pre></td></tr></table></figure>
 <h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
 <h5 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h5>
-<p>  这个写法太漂亮了，实在是把C++的库用的恰到好处。注意in.clear()这一句必不可少，貌似是清楚错误标志位，以便之后的读取不会出错。</p>
+<p>  这个写法太漂亮了，实在是把C++的库用的恰到好处。注意in.clear()这一句必不可少，作用貌似是清除错误标志位，以便之后的读取不会出错。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">NestedInteger <span class="title">deserialize</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">istringstream</span> <span class="title">in</span><span class="params">(s)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> deserialize1(in);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function">NestedInteger <span class="title">deserialize1</span><span class="params">(<span class="built_in">istringstream</span> &amp;in)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> number;</span><br><span class="line">        <span class="keyword">if</span> (in &gt;&gt; number) </span><br><span class="line">            <span class="keyword">return</span> NestedInteger(number);</span><br><span class="line">        in.clear();</span><br><span class="line">        in.get();</span><br><span class="line">        NestedInteger <span class="built_in">list</span>;</span><br><span class="line">        <span class="keyword">while</span> (in.peek() != <span class="string">']'</span>) &#123;</span><br><span class="line">            <span class="built_in">list</span>.add(deserialize1(in));</span><br><span class="line">            <span class="keyword">if</span> (in.peek() == <span class="string">','</span>)</span><br><span class="line">                in.get();</span><br><span class="line">        &#125;</span><br><span class="line">        in.get();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h5 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h5>
 <p>  这个是我的解法，代码可读性还行，主要是耗时有点长，说明还是不熟练。</p>
@@ -455,7 +455,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">246</span>
+                  <span class="site-state-item-count">441</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -466,7 +466,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -477,7 +477,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -546,7 +546,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

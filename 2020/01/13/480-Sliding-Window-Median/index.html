@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>480. Sliding Window Median | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/480-Sliding-Window-Median/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">480. Sliding Window Median</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-13T22:18:00+08:00">2020-01-13</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-13T22:58:26+08:00">2020-01-13</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="480-sliding-window-median"><a class="header-anchor" href="#480-sliding-window-median">¶</a><a href="https://leetcode.com/problems/sliding-window-median/" target="_blank" rel="noopener">480. Sliding Window Median</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.</p>
+<p>Examples:</p>
+<p><code>[2,3,4]</code> , the median is <code>3</code></p>
+<p><code>[2,3]</code>, the median is <code>(2 + 3) / 2 = 2.5</code></p>
+<p>Given an array <em>nums</em>, there is a sliding window of size <em>k</em> which is moving from the very left of the array to the very right. You can only see the <em>k</em> numbers in the window. Each time the sliding window moves right by one position. Your job is to output the median array for each window in the original array.</p>
+<p>For example,<br>
+Given <em>nums</em> = <code>[1,3,-1,-3,5,3,6,7]</code>, and <em>k</em> = 3.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Window position                Median</span><br><span class="line">---------------               -----</span><br><span class="line">[1  3  -1] -3  5  3  6  7       1</span><br><span class="line"> 1 [3  -1  -3] 5  3  6  7       -1</span><br><span class="line"> 1  3 [-1  -3  5] 3  6  7       -1</span><br><span class="line"> 1  3  -1 [-3  5  3] 6  7       3</span><br><span class="line"> 1  3  -1  -3 [5  3  6] 7       5</span><br><span class="line"> 1  3  -1  -3  5 [3  6  7]      6</span><br></pre></td></tr></table></figure>
+<p>Therefore, return the median sliding window as <code>[1,-1,-1,3,5,6]</code>.</p>
+<p><strong>Note:</strong><br>
+You may assume <code>k</code> is always valid, ie: <code>k</code> is always smaller than input array’s size for non-empty array.</p>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>  用multiset来维护窗口中元素的顺序，根据<code>if(nums[i] &gt;= *pt) pt++;if(nums[i-k] &gt;= *pt) pt--;</code>动态获取中间值的位置。</p>
+<ul>
+<li>有注释的版本</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. we only compute the median once,  in the rest, we adjust the mid iteration based the new added element</span></span><br><span class="line"><span class="comment">//    and to be deleted element in the array relationship; which is one of the key feature in this algorithm; </span></span><br><span class="line"><span class="comment">// 2. the second key point is how to remove the the window left element to avoid duplicate ones; </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; medianSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; res;</span><br><span class="line">        <span class="comment">// sort the elements in the sliding window </span></span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">double</span>&gt; ms(nums.begin(), nums.begin() + k);</span><br><span class="line">        <span class="comment">// the mid exact or the upper bound of the mid range (two cased here)</span></span><br><span class="line">        <span class="keyword">auto</span> mid = next(ms.begin(), k/<span class="number">2</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k; ; ++i) &#123;</span><br><span class="line">            <span class="comment">// for the previous window of size k, </span></span><br><span class="line">            <span class="comment">// if k is odd, it is the computed mid, </span></span><br><span class="line">            <span class="comment">// if k is even, it is (mid + pre_mid)/2.</span></span><br><span class="line">            <span class="comment">// the second parameter of pre/next is 1 by default. this push is for the preceeding window. </span></span><br><span class="line">            res.push_back((*mid + *prev(mid,  <span class="number">1</span> - k % <span class="number">2</span>)) / <span class="number">2.0</span>);  </span><br><span class="line">            </span><br><span class="line">            <span class="comment">// if reach the end of the given array.</span></span><br><span class="line">            <span class="keyword">if</span> (i == nums.size()) <span class="keyword">return</span> res;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// for the current element nums[i], </span></span><br><span class="line">            ms.insert(nums[i]);</span><br><span class="line">            <span class="comment">// for the new add element, adjust the mid element. </span></span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; *mid) --mid;  </span><br><span class="line">            </span><br><span class="line">            <span class="comment">// rease the first element that &gt;= nums[i-k]; indee, here, it is equal to nums[i - k]</span></span><br><span class="line">            <span class="comment">// since there may be duplication, so, we use lower bound. </span></span><br><span class="line">            <span class="keyword">if</span> (nums[i - k] &lt;= *mid) ++mid;</span><br><span class="line">            ms.erase(ms.lower_bound(nums[i - k]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无注释清爽版</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; medianSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; med(len - k + <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt; window;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++)&#123;</span><br><span class="line">            window.insert(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">bool</span> isOdd = k % <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">auto</span> pt = next(window.begin(), k/<span class="number">2</span>);</span><br><span class="line">        med[<span class="number">0</span>] = isOdd ? *pt : (*pt / <span class="number">2.0</span> + *next(pt, <span class="number">-1</span>) / <span class="number">2.0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt; len; i++)&#123;</span><br><span class="line">            window.insert(nums[i]);</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt;= *pt) pt++;</span><br><span class="line">            <span class="keyword">if</span>(nums[i-k] &gt;= *pt) pt--; </span><br><span class="line">            window.erase(next(window.upper_bound(nums[i-k]), <span class="number">-1</span>));</span><br><span class="line">            med[i - k + <span class="number">1</span>] = isOdd ? *pt : (*pt / <span class="number">2.0</span> + *next(pt, <span class="number">-1</span>) / <span class="number">2.0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> med;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="法二-大小堆"><a class="header-anchor" href="#法二-大小堆">¶</a>法二 大小堆</h5>
+<p>  将窗口分为两半，分别用大顶堆和小顶堆维护，中位数可从窗口的边界值算出。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; medianSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; s1;<span class="comment">//小顶堆,保存上半部</span></span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; s2;<span class="comment">//大顶堆，保存下半部</span></span><br><span class="line">        <span class="comment">//保证s1.size()+1==s2.size()或者s1.size()==s2.size()</span></span><br><span class="line">        <span class="keyword">int</span> n=nums.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;=k)&#123;</span><br><span class="line">                <span class="keyword">auto</span> it1=s1.find(nums[i-k]), it2=s2.find(nums[i-k]);</span><br><span class="line">                <span class="keyword">if</span>(it1!=s1.end()) s1.erase(it1);</span><br><span class="line">                <span class="keyword">else</span> s2.erase(it2);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s2.empty()||nums[i]&lt;=*prev(s2.end())) s2.insert(nums[i]);</span><br><span class="line">            <span class="keyword">else</span> s1.insert(nums[i]);</span><br><span class="line">            <span class="keyword">while</span>(!s1.empty()&amp;&amp;s1.size()&gt;s2.size()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> n1=*s1.begin();</span><br><span class="line">                s1.erase(s1.begin());</span><br><span class="line">                s2.insert(n1);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(!s2.empty()&amp;&amp;s1.size()&lt;s2.size()<span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="keyword">auto</span> n2=*prev(s2.end());</span><br><span class="line">                s2.erase(prev(s2.end()));</span><br><span class="line">                s1.insert(n2);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i&lt;k<span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(s1.size()==s2.size()) ans.push_back((*s1.begin()+*(prev(s2.end())))/<span class="number">2.0</span>);</span><br><span class="line">            <span class="keyword">else</span> ans.push_back(<span class="keyword">double</span>(*(prev(s2.end()))));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>从leetcode讨论区看到了一种更简洁的写法如下:</p>
+<ul>
+<li>java版</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">double</span>[] medianSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">       <span class="keyword">double</span>[] result = <span class="keyword">new</span> <span class="keyword">double</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">       <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">       PriorityQueue&lt;Integer&gt; lo = <span class="keyword">new</span> PriorityQueue&lt;&gt;(Collections.reverseOrder());</span><br><span class="line">       PriorityQueue&lt;Integer&gt; hi = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            lo.add(nums[i]);</span><br><span class="line">            hi.add(lo.poll());</span><br><span class="line">            <span class="keyword">if</span>(hi.size()&gt;lo.size()) lo.add(hi.poll());</span><br><span class="line">            <span class="keyword">if</span> (lo.size() + hi.size() == k) &#123;</span><br><span class="line">                result[j]=lo.size()==hi.size()?(<span class="keyword">double</span>)((<span class="keyword">long</span>) lo.peek()+(<span class="keyword">long</span>)hi.peek())/<span class="number">2</span>:(<span class="keyword">double</span>) lo.peek();</span><br><span class="line">                <span class="keyword">if</span> (!lo.remove(nums[j])) hi.remove(nums[j]);</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>c++版</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; medianSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; s1;<span class="comment">//小顶堆,保存上半部</span></span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; s2;<span class="comment">//大顶堆，保存下半部</span></span><br><span class="line">        <span class="comment">//保证s1.size()+1==s2.size()或者s1.size()==s2.size()</span></span><br><span class="line">        <span class="keyword">int</span> n=nums.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">            s2.insert(nums[i]);</span><br><span class="line">            s1.insert(*(prev(s2.end())));</span><br><span class="line">            s2.erase(prev(s2.end()));</span><br><span class="line">            <span class="comment">// if(i&gt;=k)&#123;</span></span><br><span class="line">            <span class="comment">//     auto it1=s1.find(nums[i-k]), it2=s2.find(nums[i-k]);</span></span><br><span class="line">            <span class="comment">//     if(it2!=s2.end()) s2.erase(it2);</span></span><br><span class="line">            <span class="comment">//     else s1.erase(it1);    </span></span><br><span class="line">            <span class="comment">// &#125;</span></span><br><span class="line">            <span class="comment">// if(s2.size()&lt;s1.size()) &#123;</span></span><br><span class="line">            <span class="comment">//     auto n1=*s1.begin();</span></span><br><span class="line">            <span class="comment">//     s1.erase(s1.begin());</span></span><br><span class="line">            <span class="comment">//     s2.insert(n1);</span></span><br><span class="line">            <span class="comment">// &#125;</span></span><br><span class="line">            <span class="comment">// if(s1.size()+s2.size()==k)&#123;</span></span><br><span class="line">            <span class="comment">//     if(s1.size()==s2.size()) ans.push_back((*s1.begin()+*(prev(s2.end())))/2.0);</span></span><br><span class="line">            <span class="comment">//     else ans.push_back(double(*(prev(s2.end()))));</span></span><br><span class="line">            <span class="comment">// &#125; </span></span><br><span class="line">            <span class="keyword">if</span>(s2.size()&lt;s1.size()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> n1=*s1.begin();</span><br><span class="line">                s1.erase(s1.begin());</span><br><span class="line">                s2.insert(n1);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s1.size()+s2.size()==k)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s1.size()==s2.size()) ans.push_back((*s1.begin()+*(prev(s2.end())))/<span class="number">2.0</span>);</span><br><span class="line">                <span class="keyword">else</span> ans.push_back(<span class="keyword">double</span>(*(prev(s2.end()))));</span><br><span class="line">                <span class="keyword">auto</span> it1=s1.find(nums[i-k+<span class="number">1</span>]), it2=s2.find(nums[i-k+<span class="number">1</span>]);</span><br><span class="line">                <span class="keyword">if</span>(it2!=s2.end()) s2.erase(it2);</span><br><span class="line">                <span class="keyword">else</span> s1.erase(it1);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="关于中位数迭代器更新规则的解释"><a class="header-anchor" href="#关于中位数迭代器更新规则的解释">¶</a>关于中位数迭代器更新规则的解释</h6>
+<p>the code to move the mid can also be written like:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Insert nums[i].</span></span><br><span class="line">window.insert(nums[i]);</span><br><span class="line"><span class="keyword">if</span> (nums[i] &gt; *mid)</span><br><span class="line">    mid++;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Erase nums[i-k].</span></span><br><span class="line"><span class="keyword">if</span> (nums[i - k] &gt;= *mid)</span><br><span class="line">    mid--;</span><br></pre></td></tr></table></figure>
+<p>this is because there are only 4 cases after insertion and erasure. (use m for median, N for insertion, X for erasure, O for other elements)<br>
+case 1. NXOmO<br>
+case 2. OmONX<br>
+case 3. NOmOX<br>
+case 4. XOmON</p>
+<p>in case 1&amp;2, insertion &amp; erasure will cancel out each other, so we have nothing to do.<br>
+in case 3, mid needs to move left, i.e., m-- because X will erase one O in this case)<br>
+in case 4, mid needs to move right, i.e., m++ for the same reason as case 3)</p>
+<p>if N appears on left, it will be canceled out if X is on left, otherwise mid needs to move left.<br>
+so in the original code</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">window.insert(nums[i]);</span><br><span class="line"><span class="keyword">if</span> (nums[i] &lt; *mid)</span><br><span class="line">    mid--;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Erase nums[i-k].</span></span><br><span class="line"><span class="keyword">if</span> (nums[i-k] &lt;= *mid)</span><br><span class="line">    mid++;</span><br></pre></td></tr></table></figure>
+<p>does exactly this thing by move mid to left if N is on left, then checking if X is on left, it moves mid back to right.</p>
+<p>this logic applies to the situation when k is even, considering the cases:<br>
+case 1. NXOOmO<br>
+case 2. OOmONX<br>
+case 3. NOOmOX<br>
+case 4. XOOmON</p>
+<p>in case 3. after insertion on left NOOmO, move mid left leads to NOmOO<br>
+if erasure happens on left =&gt; XNOOmO =&gt; OOmO (X cancels out N)<br>
+if erasure happens on right =&gt; NOmOOX =&gt; OOmO (X cancels out O, N becomes O)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/heap/" rel="tag"><i class="fa fa-tag"></i> heap</a>
+          
+            <a href="/tags/sliding-window/" rel="tag"><i class="fa fa-tag"></i> sliding window</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/13/C-hash表实现/" rel="next" title="C++hash表实现">
+                <i class="fa fa-chevron-left"></i> C++hash表实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/14/1130-Minimum-Cost-Tree-From-Leaf-Values/" rel="prev" title="1130. Minimum Cost Tree From Leaf Values">
+                1130. Minimum Cost Tree From Leaf Values <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#480-sliding-window-median"><span class="nav-number">1.</span> <span class="nav-text">¶480. Sliding Window Median</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">1.1.</span> <span class="nav-text">¶Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#法二-大小堆"><span class="nav-number">1.1.1.</span> <span class="nav-text">¶法二 大小堆</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#关于中位数迭代器更新规则的解释"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">¶关于中位数迭代器更新规则的解释</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
+
+  
+
+</body>
+</html>

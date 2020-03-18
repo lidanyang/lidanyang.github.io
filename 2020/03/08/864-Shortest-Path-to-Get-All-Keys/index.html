@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:site_name" content="Just a blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T06:22:34.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/">
+
+
+
+
+
+  <title>864. Shortest Path to Get All Keys | Just a blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/864-Shortest-Path-to-Get-All-Keys/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">864. Shortest Path to Get All Keys</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-08T01:02:00+08:00">2020-03-08</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-08T01:21:00+08:00">2020-03-08</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="864-shortest-path-to-get-all-keys"><a class="header-anchor" href="#864-shortest-path-to-get-all-keys">¶</a><a href="https://leetcode.com/problems/shortest-path-to-get-all-keys/" target="_blank" rel="noopener">864. Shortest Path to Get All Keys</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>We are given a 2-dimensional <code>grid</code>. <code>&quot;.&quot;</code> is an empty cell, <code>&quot;#&quot;</code> is a wall, <code>&quot;@&quot;</code> is the starting point, (<code>&quot;a&quot;</code>, <code>&quot;b&quot;</code>, …) are keys, and (<code>&quot;A&quot;</code>, <code>&quot;B&quot;</code>, …) are locks.</p>
+<p>We start at the starting point, and one move consists of walking one space in one of the 4 cardinal directions.  We cannot walk outside the grid, or walk into a wall.  If we walk over a key, we pick it up.  We can’t walk over a lock unless we have the corresponding key.</p>
+<p>For some <font face="monospace" style="display: inline;">1 &lt;= K &lt;= 6</font>, there is exactly one lowercase and one uppercase letter of the first <code>K</code> letters of the English alphabet in the grid.  This means that there is exactly one key for each lock, and one lock for each key; and also that the letters used to represent the keys and locks were chosen in the same order as the English alphabet.</p>
+<p>Return the lowest number of moves to acquire all keys.  If it’s impossible, return <code>-1</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;@.a.#&quot;,&quot;###.#&quot;,&quot;b.A.B&quot;]</span><br><span class="line">Output: 8</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;@..aA&quot;,&quot;..B#.&quot;,&quot;....b&quot;]</span><br><span class="line">Output: 6</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1 &lt;= grid.length &lt;= 30</code></li>
+<li><code>1 &lt;= grid[0].length &lt;= 30</code></li>
+<li><code>grid[i][j]</code> contains only <code>'.'</code>, <code>'#'</code>, <code>'@'</code>, <code>'a'-``'f``'</code> and <code>'A'-'F'</code></li>
+<li>The number of keys is in <code>[1, 6]</code>.  Each key has a different letter and opens exactly one lock.</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>Language: <strong>C++</strong></p>
+<h6 id="法一-bfs"><a class="header-anchor" href="#法一-bfs">¶</a>法一 bfs</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">state</span>&#123;</span></span><br><span class="line">        <span class="keyword">int</span> x, y, bm;</span><br><span class="line">        state(<span class="keyword">int</span> x_, <span class="keyword">int</span> y_, <span class="keyword">int</span> bm_): x(x_), y(y_), bm(bm_)&#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">int</span> dx[<span class="number">4</span>] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> dy[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">shortestPathAllKeys</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = grid.size(), n = grid.back().size(), targ = <span class="number">0</span>, sx, sy, vis[m][n][<span class="number">1</span>&lt;&lt;<span class="number">6</span>]&#123;&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) <span class="keyword">for</span>(<span class="keyword">int</span> j =<span class="number">0</span>; j &lt; n; ++j)&#123;</span><br><span class="line">            <span class="keyword">char</span> c = grid[i][j];</span><br><span class="line">            <span class="keyword">if</span>(c &gt;= <span class="string">'a'</span> &amp;&amp; c &lt;= <span class="string">'f'</span>) targ |= <span class="number">1</span>&lt;&lt;(c-<span class="string">'a'</span>);</span><br><span class="line">            <span class="keyword">if</span>(c == <span class="string">'@'</span>) sx = i, sy = j;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[sx][sy] = <span class="string">'.'</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;state&gt; q;</span><br><span class="line">        q.emplace(sx,sy,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ans = <span class="number">0</span>; !q.empty(); ++ans)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> sz = q.size(); sz &gt; <span class="number">0</span>; --sz)&#123;</span><br><span class="line">                <span class="keyword">auto</span> sta = q.front();q.pop();</span><br><span class="line">                <span class="keyword">int</span> x = sta.x, y=sta.y, bm = sta.bm;</span><br><span class="line">                <span class="keyword">if</span>(bm == targ) <span class="keyword">return</span> ans;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span> ;i &lt; <span class="number">4</span>; ++i)&#123;</span><br><span class="line">                    <span class="keyword">int</span> nx = x+dx[i], ny = y+dy[i];</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">if</span>(nx &lt; <span class="number">0</span>||nx&gt;=m||ny&lt;<span class="number">0</span>||ny&gt;=n||grid[nx][ny] == <span class="string">'#'</span>) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">char</span> c = grid[nx][ny];</span><br><span class="line">                    <span class="keyword">if</span>(c &gt;= <span class="string">'a'</span> &amp;&amp; c &lt;= <span class="string">'f'</span>&amp;&amp;!vis[nx][ny][bm|<span class="number">1</span>&lt;&lt;(c - <span class="string">'a'</span>)])</span><br><span class="line">                        q.emplace(nx, ny, bm|<span class="number">1</span>&lt;&lt;(c - <span class="string">'a'</span>)),vis[nx][ny][bm|<span class="number">1</span>&lt;&lt;(c- <span class="string">'a'</span>)]=<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span>(c &gt;= <span class="string">'A'</span> &amp;&amp; c &lt;= <span class="string">'F'</span> &amp;&amp; (bm&amp;<span class="number">1</span>&lt;&lt;(c-<span class="string">'A'</span>)) &amp;&amp; !vis[nx][ny][bm])</span><br><span class="line">                        q.emplace(nx, ny, bm),vis[nx][ny][bm]=<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span>(c == <span class="string">'.'</span> &amp;&amp; !vis[nx][ny][bm])</span><br><span class="line">                        q.emplace(nx, ny, bm),vis[nx][ny][bm]=<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法二-dijiskra"><a class="header-anchor" href="#法二-dijiskra">¶</a>法二 dijiskra</h6>
+<p>可以把该问题看成最短路问题。每个特殊点（大小写字母和‘@’）之间的距离可以预处理出来，把特殊点的位置和持有钥匙的状态视作结点，那么只需要求’@’（没有钥匙）到任何一个持有所有钥匙的结点的最短距离即可。代码超长，感觉还是法一更好。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.awt.Point;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> INF = Integer.MAX_VALUE;</span><br><span class="line">    String[] grid;</span><br><span class="line">    <span class="keyword">int</span> R, C;</span><br><span class="line">    Map&lt;Character, Point&gt; location;</span><br><span class="line">    <span class="keyword">int</span>[] dr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span>[] dc = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">shortestPathAllKeys</span><span class="params">(String[] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.grid = grid;</span><br><span class="line">        R = grid.length;</span><br><span class="line">        C = grid[<span class="number">0</span>].length();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//location : the points of interest</span></span><br><span class="line">        location = <span class="keyword">new</span> HashMap();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; R; ++r)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; C; ++c) &#123;</span><br><span class="line">                <span class="keyword">char</span> v = grid[r].charAt(c);</span><br><span class="line">                <span class="keyword">if</span> (v != <span class="string">'.'</span> &amp;&amp; v != <span class="string">'#'</span>)</span><br><span class="line">                    location.put(v, <span class="keyword">new</span> Point(r, c));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> targetState = (<span class="number">1</span> &lt;&lt; (location.size() / <span class="number">2</span>)) - <span class="number">1</span>;</span><br><span class="line">        Map&lt;Character, Map&lt;Character, Integer&gt;&gt; dists = <span class="keyword">new</span> HashMap();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> place: location.keySet())</span><br><span class="line">            dists.put(place, bfsFrom(place));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//Dijkstra</span></span><br><span class="line">        PriorityQueue&lt;ANode&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;ANode&gt;((a, b) -&gt;</span><br><span class="line">                Integer.compare(a.dist, b.dist));</span><br><span class="line">        pq.offer(<span class="keyword">new</span> ANode(<span class="keyword">new</span> Node(<span class="string">'@'</span>, <span class="number">0</span>), <span class="number">0</span>));</span><br><span class="line">        Map&lt;Node, Integer&gt; finalDist = <span class="keyword">new</span> HashMap();</span><br><span class="line">        finalDist.put(<span class="keyword">new</span> Node(<span class="string">'@'</span>, <span class="number">0</span>), <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!pq.isEmpty()) &#123;</span><br><span class="line">            ANode anode = pq.poll();</span><br><span class="line">            Node node = anode.node;</span><br><span class="line">            <span class="keyword">int</span> d = anode.dist;</span><br><span class="line">            <span class="keyword">if</span> (finalDist.getOrDefault(node, INF) &lt; d) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (node.state == targetState) <span class="keyword">return</span> d;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> destination: dists.get(node.place).keySet()) &#123;</span><br><span class="line">                <span class="keyword">int</span> d2 = dists.get(node.place).get(destination);</span><br><span class="line">                <span class="keyword">int</span> state2 = node.state;</span><br><span class="line">                <span class="keyword">if</span> (Character.isLowerCase(destination)) <span class="comment">//key</span></span><br><span class="line">                    state2 |= (<span class="number">1</span> &lt;&lt; (destination - <span class="string">'a'</span>));</span><br><span class="line">                <span class="keyword">if</span> (Character.isUpperCase(destination)) <span class="comment">//lock</span></span><br><span class="line">                    <span class="keyword">if</span> ((node.state &amp; (<span class="number">1</span> &lt;&lt; (destination - <span class="string">'A'</span>))) == <span class="number">0</span>) <span class="comment">// no key</span></span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (d + d2 &lt; finalDist.getOrDefault(<span class="keyword">new</span> Node(destination, state2), INF)) &#123;</span><br><span class="line">                    finalDist.put(<span class="keyword">new</span> Node(destination, state2), d + d2);</span><br><span class="line">                    pq.offer(<span class="keyword">new</span> ANode(<span class="keyword">new</span> Node(destination, state2), d+d2));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map&lt;Character, Integer&gt; <span class="title">bfsFrom</span><span class="params">(<span class="keyword">char</span> source)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sr = location.get(source).x;</span><br><span class="line">        <span class="keyword">int</span> sc = location.get(source).y;</span><br><span class="line">        <span class="keyword">boolean</span>[][] seen = <span class="keyword">new</span> <span class="keyword">boolean</span>[R][C];</span><br><span class="line">        seen[sr][sc] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> curDepth = <span class="number">0</span>;</span><br><span class="line">        Queue&lt;Point&gt; queue = <span class="keyword">new</span> LinkedList();</span><br><span class="line">        queue.offer(<span class="keyword">new</span> Point(sr, sc));</span><br><span class="line">        queue.offer(<span class="keyword">null</span>);</span><br><span class="line">        Map&lt;Character, Integer&gt; dist = <span class="keyword">new</span> HashMap();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            Point p = queue.poll();</span><br><span class="line">            <span class="keyword">if</span> (p == <span class="keyword">null</span>) &#123;</span><br><span class="line">                curDepth++;</span><br><span class="line">                <span class="keyword">if</span> (!queue.isEmpty())</span><br><span class="line">                    queue.offer(<span class="keyword">null</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> r = p.x, c = p.y;</span><br><span class="line">            <span class="keyword">if</span> (grid[r].charAt(c) != source &amp;&amp; grid[r].charAt(c) != <span class="string">'.'</span>) &#123;</span><br><span class="line">                dist.put(grid[r].charAt(c), curDepth);</span><br><span class="line">                <span class="keyword">continue</span>; <span class="comment">// Stop walking from here if we reach a point of interest</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i) &#123;</span><br><span class="line">                <span class="keyword">int</span> cr = r + dr[i];</span><br><span class="line">                <span class="keyword">int</span> cc = c + dc[i];</span><br><span class="line">                <span class="keyword">if</span> (<span class="number">0</span> &lt;= cr &amp;&amp; cr &lt; R &amp;&amp; <span class="number">0</span> &lt;= cc &amp;&amp; cc &lt; C &amp;&amp; !seen[cr][cc])&#123;</span><br><span class="line">                    <span class="keyword">if</span> (grid[cr].charAt(cc) != <span class="string">'#'</span>) &#123;</span><br><span class="line">                        queue.offer(<span class="keyword">new</span> Point(cr, cc));</span><br><span class="line">                        seen[cr][cc] = <span class="keyword">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dist;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ANode: Annotated Node</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ANode</span> </span>&#123;</span><br><span class="line">    Node node;</span><br><span class="line">    <span class="keyword">int</span> dist;</span><br><span class="line"></span><br><span class="line">    ANode(Node n, <span class="keyword">int</span> d) &#123;</span><br><span class="line">        node = n;</span><br><span class="line">        dist = d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> place;</span><br><span class="line">    <span class="keyword">int</span> state;</span><br><span class="line"></span><br><span class="line">    Node(<span class="keyword">char</span> p, <span class="keyword">int</span> s) &#123;</span><br><span class="line">        place = p;</span><br><span class="line">        state = s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == o) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Node)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        Node other = (Node) o;</span><br><span class="line">        <span class="keyword">return</span> (place == other.place &amp;&amp; state == other.state);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">256</span> * state + place;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/bfs/" rel="tag"><i class="fa fa-tag"></i> bfs</a>
+          
+            <a href="/tags/heap/" rel="tag"><i class="fa fa-tag"></i> heap</a>
+          
+            <a href="/tags/dijiskra/" rel="tag"><i class="fa fa-tag"></i> dijiskra</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/08/1373-Maximum-Sum-BST-in-Binary-Tree/" rel="next" title="1373. Maximum Sum BST in Binary Tree">
+                <i class="fa fa-chevron-left"></i> 1373. Maximum Sum BST in Binary Tree
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/08/1263-Minimum-Moves-to-Move-a-Box-to-Their-Target-Location/" rel="prev" title="1263. Minimum Moves to Move a Box to Their Target Location">
+                1263. Minimum Moves to Move a Box to Their Target Location <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lidanyang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lidanyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1261727840@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#864-shortest-path-to-get-all-keys"><span class="nav-number">1.</span> <span class="nav-text">¶864. Shortest Path to Get All Keys</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">1.1.</span> <span class="nav-text">¶Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#法一-bfs"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">¶法一 bfs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#法二-dijiskra"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">¶法二 dijiskra</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lidanyang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.0.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.0.0"></script>
+
+
+  
+
+</body>
+</html>
