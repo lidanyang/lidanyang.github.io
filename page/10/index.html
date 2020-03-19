@@ -772,6 +772,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/06/741-Cherry-Pickup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/06/741-Cherry-Pickup/" itemprop="url">741. Cherry Pickup</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T00:42:00+08:00">2020-02-06</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-19T15:46:27+08:00">2020-03-19</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="741-cherry-pickup"><a class="header-anchor" href="#741-cherry-pickup">¶</a><a href="https://leetcode.com/problems/cherry-pickup/" target="_blank" rel="noopener">741. Cherry Pickup</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>In a N x N <code>grid</code> representing a field of cherries, each cell is one of three possible integers.</p>
+<ul>
+<li>0 means the cell is empty, so you can pass through;</li>
+<li>1 means the cell contains a cherry, that you can pick up and pass through;</li>
+<li>-1 means the cell contains a thorn that blocks your way.</li>
+</ul>
+<p>Your task is to collect maximum number of cherries possible by following the rules below:</p>
+<ul>
+<li>Starting at the position (0, 0) and reaching (N-1, N-1) by moving right or down through valid path cells (cells with value 0 or 1);</li>
+<li>After reaching (N-1, N-1), returning to (0, 0) by moving left or up through valid path cells;</li>
+<li>When passing through a path cell containing a cherry, you pick it up and the cell becomes an empty cell (0);</li>
+<li>If there is no valid path between (0, 0) and (N-1, N-1), then no cherries can be collected.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: grid =</span><br><span class="line">[[0, 1, -1],</span><br><span class="line"> [1, 0, -1],</span><br><span class="line"> [1, 1,  1]]</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: </span><br><span class="line">The player started at (0, 0) and went down, down, right right to reach (2, 2).</span><br><span class="line">4 cherries were picked up during this single trip, and the matrix becomes [[0,1,-1],[0,0,-1],[0,0,0]].</span><br><span class="line">Then, the player went left, up, up, left to return home, picking up one more cherry.</span><br><span class="line">The total number of cherries picked up is 5, and this is the maximum possible.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>grid</code> is an <code>N</code> by <code>N</code> 2D array, with <code>1 &lt;= N &lt;= 50</code>.</li>
+<li>Each <code>grid[i][j]</code> is an integer in the set <code>{-1, 0, 1}</code>.</li>
+<li>It is guaranteed that grid[0][0] and grid[N-1][N-1] are not -1.</li>
+</ul>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>Language: <strong>C++</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">cherryPickup</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = grid.size(), b;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&gt; dp(N, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(N, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">2</span>, <span class="number">-1</span>)));</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = grid[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt; dir&#123;&#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">2</span> * N - <span class="number">1</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> s = max(i - N + <span class="number">1</span>, <span class="number">0</span>), e = min(N - <span class="number">1</span>, i);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = s; j &lt;= e; ++j)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = j; k &lt;= e; ++k)&#123;</span><br><span class="line">                    dp[j][k][i&amp;<span class="number">1</span>] = <span class="number">-1</span>;</span><br><span class="line">                    <span class="keyword">if</span>(grid[j][i-j] == <span class="number">-1</span> || grid[k][i-k] == <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">if</span>( j == k ) b = grid[j][i-j];</span><br><span class="line">                    <span class="keyword">else</span> b = grid[j][i-j] + grid[k][i-k];</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> d = <span class="number">0</span>; d &lt; <span class="number">4</span>; ++d)&#123;</span><br><span class="line">                        <span class="keyword">int</span> nj = j+dir[d].first, nk = k+dir[d].second;</span><br><span class="line">                        <span class="keyword">if</span>(nj &gt;= <span class="number">0</span> &amp;&amp; nk &gt;= <span class="number">0</span> &amp;&amp; dp[nj][nk][!(i&amp;<span class="number">1</span>)] != <span class="number">-1</span>)&#123;</span><br><span class="line">                            dp[j][k][i&amp;<span class="number">1</span>] = max(dp[j][k][i&amp;<span class="number">1</span>], b + dp[nj][nk][!(i&amp;<span class="number">1</span>)]);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = dp[N<span class="number">-1</span>][N<span class="number">-1</span>][(<span class="number">2</span>*N<span class="number">-2</span>)&amp;<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">return</span> ans == <span class="number">-1</span> ? <span class="number">0</span>: ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/05/1106-Parsing-A-Boolean-Expression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1690,175 +1864,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/01/1186-Maximum-Subarray-Sum-with-One-Deletion/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/01/1186-Maximum-Subarray-Sum-with-One-Deletion/" itemprop="url">1186. Maximum Subarray Sum with One Deletion</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-01T15:50:00+08:00">2020-02-01</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-01T22:43:00+08:00">2020-02-01</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1186-maximum-subarray-sum-with-one-deletion"><a class="header-anchor" href="#1186-maximum-subarray-sum-with-one-deletion">¶</a><a href="https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/" target="_blank" rel="noopener">1186. Maximum Subarray Sum with One Deletion</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Given an array of integers, return the maximum sum for a <strong>non-empty</strong> subarray (contiguous elements) with at most one element deletion. In other words, you want to choose a subarray and optionally delete one element from it so that there is still at least one element left and the sum of the remaining elements is maximum possible.</p>
-<p>Note that the subarray needs to be <strong>non-empty</strong> after deleting one element.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: arr = [1,-2,0,3]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: Because we can choose [1, -2, 0, 3] and drop -2, thus the subarray [1, 0, 3] becomes the maximum value.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: arr = [1,-2,-2,3]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: We just choose [3] and it&apos;s the maximum sum.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: arr = [-1,-1,-1,-1]</span><br><span class="line">Output: -1</span><br><span class="line">Explanation: The final subarray needs to be non-empty. You can&apos;t choose [-1] and delete -1 from it, then get an empty subarray to make the sum equals to 0.</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= arr.length &lt;= 10^5</code></li>
-<li><code>-10^4 &lt;= arr[i] &lt;= 10^4</code></li>
-</ul>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<h6 id="法一-dp-one-pass"><a class="header-anchor" href="#法一-dp-one-pass">¶</a>法一 dp one pass</h6>
-<p>  dp1是&quot;中间有个洞&quot;的以当前元素结尾的子数组的最大和，dp2是连续子数组的最大和。注意从第二个元素开始，如果从第一个元素就不能保证dp1有意义（因为题目要求非空子数组）。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maximumSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp1 = arr[<span class="number">0</span>], dp2 = arr[<span class="number">0</span>], ans = arr[<span class="number">0</span>];<span class="comment">//也可以将dp2初值设置为-1e9</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.size(); ++i)&#123;</span><br><span class="line">            dp1 = max(dp1 + arr[i], dp2); </span><br><span class="line">            dp2 = max(dp2 + arr[i], arr[i]);</span><br><span class="line">            ans = max(ans, max(dp1, dp2));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="法二-dp-two-pass"><a class="header-anchor" href="#法二-dp-two-pass">¶</a>法二 dp two pass</h5>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maximumSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = arr.size(), ans = INT_MIN;</span><br><span class="line">        <span class="keyword">int</span> dp_l[n]&#123;&#125;, dp_r[n]&#123;&#125;;</span><br><span class="line">        dp_l[<span class="number">0</span>] = arr[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) dp_l[i] = max(dp_l[i<span class="number">-1</span>] + arr[i], arr[i]);</span><br><span class="line">        </span><br><span class="line">        dp_r[n<span class="number">-1</span>] = arr[n<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i) dp_r[i] = max(dp_r[i+<span class="number">1</span>] + arr[i], arr[i]);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n - <span class="number">2</span>; ++i)&#123;</span><br><span class="line">            ans = max(ans, dp_l[i]);</span><br><span class="line">            ans = max(ans, dp_l[i<span class="number">-1</span>]+dp_r[i+<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max(&#123;ans, dp_l[<span class="number">0</span>], dp_l[n<span class="number">-1</span>]&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1909,7 +1914,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-count">442</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1920,7 +1925,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

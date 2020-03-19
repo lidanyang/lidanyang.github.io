@@ -248,6 +248,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/27/802-Find-Eventual-Safe-States/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/27/802-Find-Eventual-Safe-States/" itemprop="url">802. Find Eventual Safe States</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-27T00:09:00+08:00">2020-01-27</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-27T01:49:38+08:00">2020-01-27</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="802-find-eventual-safe-states"><a class="header-anchor" href="#802-find-eventual-safe-states">¶</a><a href="https://leetcode.com/problems/find-eventual-safe-states/" target="_blank" rel="noopener">802. Find Eventual Safe States</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>In a directed graph, we start at some node and every turn, walk along a directed edge of the graph.  If we reach a node that is terminal (that is, it has no outgoing directed edges), we stop.</p>
+<p>Now, say our starting node is _eventually safe _if and only if we must eventually walk to a terminal node.  More specifically, there exists a natural number <code>K</code> so that for any choice of where to walk, we must have stopped at a terminal node in less than <code>K</code> steps.</p>
+<p>Which nodes are eventually safe?  Return them as an array in sorted order.</p>
+<p>The directed graph has <code>N</code> nodes with labels <code>0, 1, ..., N-1</code>, where <code>N</code> is the length of <code>graph</code>.  The graph is given in the following form: <code>graph[i]</code> is a list of labels <code>j</code> such that <code>(i, j)</code> is a directed edge of the graph.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">Input: graph = [[1,2],[2,3],[5],[0],[5],[],[]]</span><br><span class="line">Output: [2,4,5,6]</span><br><span class="line">Here is a diagram of the above graph.</span><br></pre></td></tr></table></figure>
+<p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/17/picture1.png" alt="Illustration of graph"></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>graph</code> will have length at most <code>10000</code>.</li>
+<li>The number of edges in the graph will not exceed <code>32000</code>.</li>
+<li>Each <code>graph[i]</code> will be a sorted list of different integers, chosen within the range <code>[0, graph.length - 1]</code>.</li>
+</ul>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h6 id="法一-拓扑排序"><a class="header-anchor" href="#法一-拓扑排序">¶</a>法一 拓扑排序</h6>
+<p>  把所有边倒过来，然后拓扑排序，所有被删掉的点都是safe的，留下来的点都不是safe的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; eventualSafeNodes(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; rgraph(graph.size());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ind(graph.size()), safe(graph.size()), ans;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;graph.size();++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;n:graph[i])&#123;</span><br><span class="line">                rgraph[n].push_back(i);</span><br><span class="line">                ind[i]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(graph[i].empty()) q.push(i), safe[i]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">auto</span> x=q.front();q.pop();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;n:rgraph[x])&#123;</span><br><span class="line">                <span class="keyword">if</span>(--ind[n]==<span class="number">0</span>) q.push(n), safe[n]=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;graph.size();++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(safe[i]==<span class="number">1</span>)</span><br><span class="line">                ans.push_back(i);   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法二-染色法"><a class="header-anchor" href="#法二-染色法">¶</a>法二 染色法</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; eventualSafeNodes(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = graph.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; color(n,<span class="number">0</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dfs(i,color,graph)) ans.push_back(i); </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> node,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; color, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(color[node] &gt; <span class="number">0</span>) <span class="keyword">return</span> color[node] == <span class="number">2</span>;</span><br><span class="line">        color[node] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> n : graph[node]) &#123;</span><br><span class="line">            <span class="keyword">if</span>(color[n] == <span class="number">2</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(color[n] == <span class="number">1</span> || !dfs(n,color,graph)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        color[node] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/26/427-Construct-Quad-Tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1595,161 +1763,6 @@ Input:</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/23/430-Flatten-a-Multilevel-Doubly-Linked-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/23/430-Flatten-a-Multilevel-Doubly-Linked-List/" itemprop="url">430. Flatten a Multilevel Doubly Linked List</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-23T20:56:00+08:00">2020-01-23</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-23T20:59:38+08:00">2020-01-23</time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="430-flatten-a-multilevel-doubly-linked-list"><a class="header-anchor" href="#430-flatten-a-multilevel-doubly-linked-list">¶</a><a href="https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/" target="_blank" rel="noopener">430. Flatten a Multilevel Doubly Linked List</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>You are given a doubly linked list which in addition to the next and previous pointers, it could have a child pointer, which may or may not point to a separate doubly linked list. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure, as shown in the example below.</p>
-<p>Flatten the list so that all the nodes appear in a single-level, doubly linked list. You are given the head of the first level of the list.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]</span><br><span class="line">Output: [1,2,3,7,8,11,12,9,10,4,5,6]</span><br><span class="line">Explanation:</span><br><span class="line"></span><br><span class="line">The multilevel linked list in the input is as follows:</span><br><span class="line"></span><br><span class="line">After flattening the multilevel linked list it becomes:</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: head = [1,2,null,3]</span><br><span class="line">Output: [1,3,2]</span><br><span class="line">Explanation:</span><br><span class="line"></span><br><span class="line">The input multilevel linked list is as follows:</span><br><span class="line"></span><br><span class="line">  1---2---NULL</span><br><span class="line">  |</span><br><span class="line">  3---NULL</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: head = []</span><br><span class="line">Output: []</span><br></pre></td></tr></table></figure>
-<p><strong>How multilevel linked list is represented in test case:</strong></p>
-<p>We use the multilevel linked list from <strong>Example 1</strong> above:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1---2---3---4---5---6--NULL</span><br><span class="line">        |</span><br><span class="line">        7---8---9---10--NULL</span><br><span class="line">            |</span><br><span class="line">            11--12--NULL</span><br></pre></td></tr></table></figure>
-<p>The serialization of each level is as follows:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,4,5,6,null]</span><br><span class="line">[7,8,9,10,null]</span><br><span class="line">[11,12,null]</span><br></pre></td></tr></table></figure>
-<p>To serialize all levels together we will add nulls in each level to signify no node connects to the upper node of the previous level. The serialization becomes:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,4,5,6,null]</span><br><span class="line">[null,null,7,8,9,10,null]</span><br><span class="line">[null,11,12,null]</span><br></pre></td></tr></table></figure>
-<p>Merging the serialization of each level and removing trailing nulls we obtain:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li>Number of Nodes will not exceed 1000.</li>
-<li><code>1 &lt;= Node.val &lt;= 10^5</code></li>
-</ul>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<h5 id="法一-栈"><a class="header-anchor" href="#法一-栈">¶</a>法一 栈</h5>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">public:</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node* prev;</span></span><br><span class="line"><span class="comment">    Node* next;</span></span><br><span class="line"><span class="comment">    Node* child;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">flatten</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;Node *&gt; st;</span><br><span class="line">        <span class="keyword">if</span>(!head) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        Node *cur=head;</span><br><span class="line">        <span class="keyword">while</span>(cur)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;child)&#123;<span class="comment">//has next level, push cur-&gt;next if exists</span></span><br><span class="line">                <span class="keyword">if</span>(cur-&gt;next) st.push(cur-&gt;next);</span><br><span class="line">                cur-&gt;next=cur-&gt;child;</span><br><span class="line">                cur-&gt;child-&gt;prev=cur;</span><br><span class="line">                cur-&gt;child=<span class="literal">NULL</span>;<span class="comment">// necessary</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(!cur-&gt;next&amp;&amp;!st.empty())&#123;<span class="comment">//hasn't next, pop node from stack as next</span></span><br><span class="line">                Node *t=st.top();st.pop();</span><br><span class="line">                cur-&gt;next=t;</span><br><span class="line">                t-&gt;prev=cur;</span><br><span class="line">            &#125;</span><br><span class="line">            cur=cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="法二-递归"><a class="header-anchor" href="#法二-递归">¶</a>法二 递归</h5>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="function">Node *<span class="title">getEndOfList</span><span class="params">(Node *head)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Node *p = head;</span><br><span class="line">        <span class="keyword">if</span> (!p)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">        &#123;   </span><br><span class="line">            <span class="keyword">while</span> (!p-&gt;child &amp;&amp; p-&gt;next)</span><br><span class="line">                p=p-&gt;next;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (p-&gt;child)</span><br><span class="line">            &#123;</span><br><span class="line">                Node *pNext = p-&gt;next;</span><br><span class="line">                p-&gt;next = p-&gt;child;</span><br><span class="line">                p-&gt;child-&gt;prev = p;</span><br><span class="line">                p-&gt;child = <span class="literal">nullptr</span>;</span><br><span class="line">                p = getEndOfList(p-&gt;next);</span><br><span class="line">                p-&gt;next = pNext;</span><br><span class="line">                <span class="keyword">if</span> (pNext)</span><br><span class="line">                    pNext-&gt;prev = p;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">while</span> (p-&gt;next);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function">Node* <span class="title">flatten</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">                </span><br><span class="line">        getEndOfList(head);</span><br><span class="line">        <span class="keyword">return</span> head;        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1800,7 +1813,7 @@ Input:</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-count">442</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1811,7 +1824,7 @@ Input:</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

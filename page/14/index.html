@@ -248,6 +248,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/22/668-Kth-Smallest-Number-in-Multiplication-Table/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/22/668-Kth-Smallest-Number-in-Multiplication-Table/" itemprop="url">668. Kth Smallest Number in Multiplication Table</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T00:48:18+08:00">2020-01-22</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-22T00:56:15+08:00">2020-01-22</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="668-kth-smallest-number-in-multiplication-table"><a class="header-anchor" href="#668-kth-smallest-number-in-multiplication-table">¶</a><a href="https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/" target="_blank" rel="noopener">668. Kth Smallest Number in Multiplication Table</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Nearly every one have used the . But could you find out the <code>k-th</code> smallest number quickly from the multiplication table?</p>
+<p>Given the height <code>m</code> and the length <code>n</code> of a <code>m * n</code> Multiplication Table, and a positive integer <code>k</code>, you need to return the <code>k-th</code> smallest number in this table.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: m = 3, n = 3, k = 5</span><br><span class="line">Output: </span><br><span class="line">Explanation: </span><br><span class="line">The Multiplication Table:</span><br><span class="line">1	2	3</span><br><span class="line">2	4	6</span><br><span class="line">3	6	9</span><br><span class="line"></span><br><span class="line">The 5-th smallest number is 3 (1, 2, 2, 3, 3).</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: m = 2, n = 3, k = 6</span><br><span class="line">Output: </span><br><span class="line">Explanation: </span><br><span class="line">The Multiplication Table:</span><br><span class="line">1	2	3</span><br><span class="line">2	4	6</span><br><span class="line"></span><br><span class="line">The 6-th smallest number is 6 (1, 2, 2, 3, 4, 6).</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The <code>m</code> and <code>n</code> will be in the range [1, 30000].</li>
+<li>The <code>k</code> will be in the range [1, m * n]</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h6 id="标准解法"><a class="header-anchor" href="#标准解法">¶</a>标准解法</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=m; ++i) ans+=min(n, k/i);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthNumber</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low=<span class="number">0</span>, high=m*n;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = low+((high-low)&gt;&gt;<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(count(m, n, mid) &lt; k) low=mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> high=mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> low;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="数学解法"><a class="header-anchor" href="#数学解法">¶</a>数学解法</h6>
+<p>  <code>find_approx</code>这个函数可以直接找到非常接近结果的一个值，然后从这个值开始向上向下找第一个大于和不大于k的边界，然后二分找准确值。</p>
+<p>  猜测这个解法的思路应该是来源于讨论区的<a href="https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/discuss/283204/Optimization-with-Calculus-for-even-larger-inputs" target="_blank" rel="noopener">这个帖子</a>，不过<code>C=1.0+log((rl)(m*n)) + 0.5/n + 0.5/m;</code>和<code>RHS=k+0.5*m+0.5*n;</code>中的<code>+ 0.5/n + 0.5/m;</code>和<code>+0.5*m+0.5*n;</code>这两个余项还不太清楚有什么作用，可能是<a href="https://baike.baidu.com/item/%E6%AC%A7%E6%8B%89%E5%B8%B8%E6%95%B0/5371177?fr=aladdin" target="_blank" rel="noopener">欧拉常数</a>的余项把，因为是用连续模拟离散，中间差了一个调和级数和自然对数的余项。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> ui;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span> ,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; pll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> rl;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _x first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _y second</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbg(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">": "</span> &lt;&lt; (x) &lt;&lt; endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbg(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//#define assert(x) </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ff</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) cnt+=min(m, val/i);</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find_approx</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        rl C=<span class="number">1.0</span>+<span class="built_in">log</span>((rl)(m*n)) + <span class="number">0.5</span>/n + <span class="number">0.5</span>/m;</span><br><span class="line">        </span><br><span class="line">        rl L=<span class="number">1.0</span>, R=m*n;</span><br><span class="line">        rl RHS=k+<span class="number">0.5</span>*m+<span class="number">0.5</span>*n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            rl M=<span class="number">0.5</span>*(L+R);</span><br><span class="line">            rl f=M*(C-<span class="built_in">log</span>(M));</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(f&lt;RHS) L=M;</span><br><span class="line">            <span class="keyword">else</span>    R=M;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        dbg(L*(C-<span class="built_in">log</span>(L)));</span><br><span class="line">        dbg(RHS);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">ceil</span>(L);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthNumber</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&gt;m) swap(n, m);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> start=find_approx(m,n,k);</span><br><span class="line">        dbg(start);</span><br><span class="line">        dbg(ff(m,n,start));</span><br><span class="line">        dbg(<span class="string">"-----------"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> L=start;</span><br><span class="line">        <span class="comment">//assert(ff(m,n,start)&lt;=k);</span></span><br><span class="line">        <span class="keyword">int</span> R=start;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(ff(m, n, R)&lt;k)</span><br><span class="line">        &#123;</span><br><span class="line">            R+=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(ff(m, n, L)&gt;=k)</span><br><span class="line">        &#123;</span><br><span class="line">            L-=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//assert(ff(m, n, L)&lt;=k);</span></span><br><span class="line">        <span class="comment">//assert(ff(m, n, R)&gt;=k);</span></span><br><span class="line">        dbg(L);</span><br><span class="line">        dbg(R);</span><br><span class="line">        dbg(R-L);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(L&lt;R)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> M=(L+R)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(ff(m,n,M)&gt;=k) R=M;</span><br><span class="line">            <span class="keyword">else</span>             L=M+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//assert(L==R);</span></span><br><span class="line">        <span class="comment">//assert(ff(m,n,L)&gt;=k);</span></span><br><span class="line">        <span class="comment">//assert(ff(m,n,L-1)&lt;k);</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> L;</span><br><span class="line">        <span class="comment">// return -1;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/21/378-Kth-Smallest-Element-in-a-Sorted-Matrix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1660,176 +1806,6 @@ Could you do both operations in <strong>O(1)</strong> time complexity?</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/19/1003-Check-If-Word-Is-Valid-After-Substitutions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/19/1003-Check-If-Word-Is-Valid-After-Substitutions/" itemprop="url">1003. Check If Word Is Valid After Substitutions</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-19T00:22:00+08:00">2020-01-19</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-19T17:56:35+08:00">2020-01-19</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1003-check-if-word-is-valid-after-substitutions"><a class="header-anchor" href="#1003-check-if-word-is-valid-after-substitutions">¶</a><a href="https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/" target="_blank" rel="noopener">1003. Check If Word Is Valid After Substitutions</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>We are given that the string <code>&quot;abc&quot;</code> is valid.</p>
-<p>From any valid string <code>V</code>, we may split <code>V</code> into two pieces <code>X</code> and <code>Y</code> such that <code>X + Y</code> (<code>X</code> concatenated with <code>Y</code>) is equal to <code>V</code>.  (<code>X</code> or <code>Y</code> may be empty.)  Then, <code>X + &quot;abc&quot; + Y</code> is also valid.</p>
-<p>If for example <code>S = &quot;abc&quot;</code>, then examples of valid strings are: <code>&quot;abc&quot;, &quot;aabcbc&quot;, &quot;abcabc&quot;, &quot;abcabcababcc&quot;</code>.  Examples of <strong>invalid</strong> strings are: <code>&quot;abccba&quot;</code>, <code>&quot;ab&quot;</code>, <code>&quot;cababc&quot;</code>, <code>&quot;bac&quot;</code>.</p>
-<p>Return <code>true</code> if and only if the given string <code>S</code> is valid.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;aabcbc&quot;</span><br><span class="line">Output: true</span><br><span class="line">Explanation: </span><br><span class="line">We start with the valid string &quot;abc&quot;.</span><br><span class="line">Then we can insert another &quot;abc&quot; between &quot;a&quot; and &quot;bc&quot;, resulting in &quot;a&quot; + &quot;abc&quot; + &quot;bc&quot; which is &quot;aabcbc&quot;.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abcabcababcc&quot;</span><br><span class="line">Output: true</span><br><span class="line">Explanation: </span><br><span class="line">&quot;abcabcabc&quot; is valid after consecutive insertings of &quot;abc&quot;.</span><br><span class="line">Then we can insert &quot;abc&quot; before the last letter, resulting in &quot;abcabcab&quot; + &quot;abc&quot; + &quot;c&quot; which is &quot;abcabcababcc&quot;.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abccba&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Example 4:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;cababc&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>1 &lt;= S.length &lt;= 20000</code></li>
-<li><code>S[i]</code> is <code>'a'</code>, <code>'b'</code>, or <code>'c'</code></li>
-</ol>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>Language: <strong>C++</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(index&lt;S.size())&#123;</span><br><span class="line">            <span class="keyword">if</span>(S[index]==<span class="string">'c'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(top&gt;=<span class="number">1</span> &amp;&amp; S[top<span class="number">-1</span>]==<span class="string">'a'</span> &amp;&amp; S[top]==<span class="string">'b'</span>)&#123;</span><br><span class="line">                    top -= <span class="number">2</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                S[++top] = S[index];</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> top==<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1880,7 +1856,7 @@ Could you do both operations in <strong>O(1)</strong> time complexity?</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-count">442</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1891,7 +1867,7 @@ Could you do both operations in <strong>O(1)</strong> time complexity?</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

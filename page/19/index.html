@@ -248,6 +248,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/04/659-Split-Array-into-Consecutive-Subsequences/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/04/659-Split-Array-into-Consecutive-Subsequences/" itemprop="url">659. Split Array into Consecutive Subsequences</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-04T20:15:00+08:00">2020-01-04</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-04T21:53:31+08:00">2020-01-04</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="659-split-array-into-consecutive-subsequences"><a class="header-anchor" href="#659-split-array-into-consecutive-subsequences">¶</a><a href="https://leetcode.com/problems/split-array-into-consecutive-subsequences/" target="_blank" rel="noopener">659. Split Array into Consecutive Subsequences</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given an array <code>nums</code> sorted in ascending order, return <code>true</code> if and only if you can split it into 1 or more subsequences such that each subsequence consists of consecutive integers and has length at least 3.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,3,4,5]</span><br><span class="line">Output: True</span><br><span class="line">Explanation:</span><br><span class="line">You can split them into two consecutive subsequences : </span><br><span class="line">1, 2, 3</span><br><span class="line">3, 4, 5</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,3,4,4,5,5]</span><br><span class="line">Output: True</span><br><span class="line">Explanation:</span><br><span class="line">You can split them into two consecutive subsequences : </span><br><span class="line">1, 2, 3, 4, 5</span><br><span class="line">3, 4, 5</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,4,4,5]</span><br><span class="line">Output: False</span><br></pre></td></tr></table></figure>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 10000</code></li>
+</ul>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h6 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h6>
+<p>  贪心法，如果当前值的前一个值有长度大于等于三的链，则把当前值添加到该链之后，更新一个链的终点。否则以当前值为起点往后找看看是否有长度大于三的链，如果没有直接返回false，如果有则添加新的链的终点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPossible</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; count, tail;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:nums) count[x]++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:nums)&#123;</span><br><span class="line">            <span class="keyword">auto</span> it=count.find(x), it1=tail.find(x), it2=count.find(x+<span class="number">1</span>), it3=count.find(x+<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span>(it-&gt;second==<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(it1!=tail.end()&amp;&amp;it1-&gt;second&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                it1-&gt;second--;</span><br><span class="line">                tail[x+<span class="number">1</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(it2!=count.end()&amp;&amp;it3!=count.end()&amp;&amp;it2-&gt;second&gt;<span class="number">0</span>&amp;&amp;it3-&gt;second&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                it2-&gt;second--;it3-&gt;second--;</span><br><span class="line">                tail[x+<span class="number">3</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            it-&gt;second--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h6>
+<p>  当前一个数的计数值大于当前数的计数值，则代表肯定有在前一个数终结的序列；反之，则肯定有在当前数开始的序列。终点和起点的匹配要按小终点匹配小起点，大终点匹配大起点的规则。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> boolean <span class="title">isPossible</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Integer prev = null;</span><br><span class="line">        <span class="keyword">int</span> prevCount = <span class="number">0</span>;</span><br><span class="line">        Queue&lt;Integer&gt; starts = <span class="keyword">new</span> LinkedList();</span><br><span class="line">        <span class="keyword">int</span> anchor = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> t = nums[i];</span><br><span class="line">            <span class="keyword">if</span> (i == nums.length - <span class="number">1</span> || nums[i+<span class="number">1</span>] != t) &#123;</span><br><span class="line">                <span class="keyword">int</span> count = i - anchor + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (prev != null &amp;&amp; t - prev != <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">while</span> (prevCount-- &gt; <span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">if</span> (prev &lt; starts.poll() + <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                    prev = null;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (prev == null || t - prev == <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">while</span> (prevCount &gt; count) &#123;</span><br><span class="line">                        prevCount--;</span><br><span class="line">                        <span class="keyword">if</span> (t<span class="number">-1</span> &lt; starts.poll() + <span class="number">2</span>)</span><br><span class="line">                            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">while</span> (prevCount++ &lt; count)</span><br><span class="line">                        starts.add(t);</span><br><span class="line">                &#125;</span><br><span class="line">                prev = t;</span><br><span class="line">                prevCount = count;</span><br><span class="line">                anchor = i+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (prevCount-- &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> (nums[nums.length - <span class="number">1</span>] &lt; starts.poll() + <span class="number">2</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPossible</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; top;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; size;</span><br><span class="line">        top.push_back(nums[<span class="number">0</span>]);</span><br><span class="line">        size.push_back(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid,begin=<span class="number">0</span>,end=top.size()<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(begin&lt;end)&#123;</span><br><span class="line">                mid=(begin+end+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(top[mid]&lt;=nums[i]<span class="number">-1</span>)&#123;</span><br><span class="line">                    begin=mid;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    end=mid<span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(top[begin]==nums[i]<span class="number">-1</span>)&#123;</span><br><span class="line">                top[begin]=nums[i];</span><br><span class="line">                size[begin]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                top.push_back(nums[i]);</span><br><span class="line">                size.push_back(<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(size[i]&lt;<span class="number">3</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/03/678-Valid-Parenthesis-String/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1655,175 +1825,6 @@ The input is an array of integers. Only the <strong>least significant 8 bits</st
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/01/388-Longest-Absolute-File-Path/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/01/388-Longest-Absolute-File-Path/" itemprop="url">388. Longest Absolute File Path</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-01T18:51:00+08:00">2020-01-01</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-01T19:35:29+08:00">2020-01-01</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="388-longest-absolute-file-path"><a class="header-anchor" href="#388-longest-absolute-file-path">¶</a><a href="https://leetcode.com/problems/longest-absolute-file-path/" target="_blank" rel="noopener">388. Longest Absolute File Path</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Suppose we abstract our file system by a string in the following manner:</p>
-<p>The string <code>&quot;dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext&quot;</code> represents:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dir</span><br><span class="line">    subdir1</span><br><span class="line">    subdir2</span><br><span class="line">        file.ext</span><br></pre></td></tr></table></figure>
-<p>The directory <code>dir</code> contains an empty sub-directory <code>subdir1</code> and a sub-directory <code>subdir2</code> containing a file <code>file.ext</code>.</p>
-<p>The string <code>&quot;dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext&quot;</code> represents:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dir</span><br><span class="line">    subdir1</span><br><span class="line">        file1.ext</span><br><span class="line">        subsubdir1</span><br><span class="line">    subdir2</span><br><span class="line">        subsubdir2</span><br><span class="line">            file2.ext</span><br></pre></td></tr></table></figure>
-<p>The directory <code>dir</code> contains two sub-directories <code>subdir1</code> and <code>subdir2</code>. <code>subdir1</code> contains a file <code>file1.ext</code> and an empty second-level sub-directory <code>subsubdir1</code>. <code>subdir2</code> contains a second-level sub-directory <code>subsubdir2</code> containing a file <code>file2.ext</code>.</p>
-<p>We are interested in finding the longest (number of characters) absolute path to a file within our file system. For example, in the second example above, the longest absolute path is <code>&quot;dir/subdir2/subsubdir2/file2.ext&quot;</code>, and its length is <code>32</code> (not including the double quotes).</p>
-<p>Given a string representing the file system in the above format, return the length of the longest absolute path to file in the abstracted file system. If there is no file in the system, return <code>0</code>.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>The name of a file contains at least a <code>.</code> and an extension.</li>
-<li>The name of a directory or sub-directory will not contain a <code>.</code>.</li>
-</ul>
-<p>Time complexity required: <code>O(n)</code> where <code>n</code> is the size of the input string.</p>
-<p>Notice that <code>a/aa/aaa/file1.txt</code> is not the longest file path, if there is another path <code>aaaaaaaaaaaaaaaaaaaaa/sth.png</code>.</p>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  ‘\n’,’\t’是一个字符不是两个！文件名可以包含空格！文件目录名的第一个字符的上一个可以是’\n’，也可以是’\t’！</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthLongestPath</span><span class="params">(<span class="built_in">string</span> input)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; p(<span class="number">100</span>);</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        input.append(<span class="number">1</span>, <span class="string">'\n'</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>, dep=<span class="number">0</span>, prev=<span class="number">0</span>, isfile=<span class="number">0</span>;i&lt;input.size();++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(input[i]==<span class="string">'\t'</span>)&#123;</span><br><span class="line">                ++dep;</span><br><span class="line">                prev=i+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(input[i]==<span class="string">'\n'</span>)&#123;</span><br><span class="line">                p[dep+<span class="number">1</span>]=i-prev+p[dep]+(dep==<span class="number">0</span>?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(isfile) ans=max(p[dep+<span class="number">1</span>], ans);</span><br><span class="line">                isfile=<span class="number">0</span>;</span><br><span class="line">                dep=<span class="number">0</span>;</span><br><span class="line">                prev=i+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(input[i]==<span class="string">'.'</span>) isfile=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1874,7 +1875,7 @@ The input is an array of integers. Only the <strong>least significant 8 bits</st
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-count">442</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1885,7 +1886,7 @@ The input is an array of integers. Only the <strong>least significant 8 bits</st
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

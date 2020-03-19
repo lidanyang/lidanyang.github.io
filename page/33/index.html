@@ -248,6 +248,146 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/264-Ugly-Number-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/06/264-Ugly-Number-II/" itemprop="url">264. Ugly Number II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-06T21:29:23+08:00">2019-11-06</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-07T10:56:00+08:00">2019-11-07</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><a href="https://leetcode.com/problems/ugly-number-ii/" target="_blank" rel="noopener">264. Ugly Number II</a></h1>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Write a program to find the <code>n</code>-th ugly number.</p>
+<p>Ugly numbers are <strong>positive numbers</strong> whose prime factors only include <code>2, 3, 5</code>.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 10</span><br><span class="line">Output: 12</span><br><span class="line">Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1</code> is typically treated as an ugly number.</li>
+<li><code>n</code> <strong>does not exceed 1690</strong>.</li>
+</ol>
+<h1>解法</h1>
+<p>Language: <strong>C++</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">nthUglyNumber</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i =<span class="number">0</span>, j=<span class="number">0</span>, k =<span class="number">0</span>, count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ugly[n] = &#123;<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">while</span>(count &lt; n - <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = min(ugly[i]*<span class="number">2</span>, min(ugly[j]*<span class="number">3</span>, ugly[k]*<span class="number">5</span>));</span><br><span class="line">            <span class="keyword">if</span>(tmp == ugly[i]*<span class="number">2</span>) i++;</span><br><span class="line">            <span class="keyword">if</span>(tmp == ugly[j]*<span class="number">3</span>) j++;</span><br><span class="line">            <span class="keyword">if</span>(tmp == ugly[k]*<span class="number">5</span>) k++;</span><br><span class="line">            ugly[++count] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ugly[n - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/279-Perfect-Squares/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1781,165 +1921,6 @@ Can you do it in O(<em>n</em>) time?</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/MIT-HAKMEM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/30/MIT-HAKMEM/" itemprop="url">countbits</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-30T16:57:00+08:00">2019-10-30</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-30T17:46:06+08:00">2019-10-30</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>  两种求二进数表示中1的个数的算法。</p>
-<h4 id="mit-hakmem"><a class="header-anchor" href="#mit-hakmem">¶</a>MIT HAKMEM</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bitcount</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> tmp;</span><br><span class="line"></span><br><span class="line">    tmp = n</span><br><span class="line">        - ((n &gt;&gt; <span class="number">1</span>) &amp; <span class="number">033333333333</span>)</span><br><span class="line">        - ((n &gt;&gt; <span class="number">2</span>) &amp; <span class="number">011111111111</span>);</span><br><span class="line"></span><br><span class="line">    tmp = (tmp + (tmp &gt;&gt; <span class="number">3</span>)) &amp; <span class="number">030707070707</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (tmp%<span class="number">63</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h5>
-<p><a href="https://blog.csdn.net/msquare/article/details/4536388#commentBox" target="_blank" rel="noopener">https://blog.csdn.net/msquare/article/details/4536388#commentBox</a></p>
-<h4 id="variable-precision-swar"><a class="header-anchor" href="#variable-precision-swar">¶</a>variable-precision SWAR</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">numberOfSetBits</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	i = i - ((i &gt;&gt; <span class="number">1</span>) &amp; <span class="number">0x55555555</span>);</span><br><span class="line">	i = (i &amp; <span class="number">0x33333333</span>) + ((i &gt;&gt; <span class="number">2</span>) &amp; <span class="number">0x33333333</span>);</span><br><span class="line">	<span class="keyword">return</span> (((i + (i &gt;&gt; <span class="number">4</span>)) &amp; <span class="number">0x0F0F0F0F</span>) * <span class="number">0x01010101</span>) &gt;&gt; <span class="number">24</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h5 id="参考-v2"><a class="header-anchor" href="#参考-v2">¶</a>参考</h5>
-<p><a href="https://blog.csdn.net/popvip44/article/details/51718621" target="_blank" rel="noopener">https://blog.csdn.net/popvip44/article/details/51718621</a><br>
-<a href="https://blog.csdn.net/zuoyouzouzou/article/details/88739118" target="_blank" rel="noopener">https://blog.csdn.net/zuoyouzouzou/article/details/88739118</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1990,7 +1971,7 @@ Can you do it in O(<em>n</em>) time?</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-count">442</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2001,7 +1982,7 @@ Can you do it in O(<em>n</em>) time?</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

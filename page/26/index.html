@@ -248,6 +248,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/336-Palindrome-Pairs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/10/336-Palindrome-Pairs/" itemprop="url">336. Palindrome Pairs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-10T23:52:52+08:00">2019-12-10</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-10T23:53:01+08:00">2019-12-10</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="336-palindrome-pairs"><a class="header-anchor" href="#336-palindrome-pairs">¶</a><a href="https://leetcode.com/problems/palindrome-pairs/" target="_blank" rel="noopener">336. Palindrome Pairs</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given a list of <strong>unique</strong> words, find all pairs of <strong><em>distinct</em></strong> indices <code>(i, j)</code> in the given list, so that the concatenation of the two words, i.e. <code>words[i] + words[j]</code> is a palindrome.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;abcd&quot;,&quot;dcba&quot;,&quot;lls&quot;,&quot;s&quot;,&quot;sssll&quot;]</span><br><span class="line">Output: [[0,1],[1,0],[3,2],[2,4]] </span><br><span class="line">Explanation: The palindromes are [&quot;dcbaabcd&quot;,&quot;abcddcba&quot;,&quot;slls&quot;,&quot;llssssll&quot;]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;bat&quot;,&quot;tab&quot;,&quot;cat&quot;]</span><br><span class="line">Output: [[0,1],[1,0]] </span><br><span class="line">Explanation: The palindromes are [&quot;battab&quot;,&quot;tabbat&quot;]</span><br></pre></td></tr></table></figure>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>Language: <strong>C++</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> r=<span class="number">13</span>, mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; palindromePairs(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words) &#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;words.size();++i)&#123;</span><br><span class="line">            m[words[i]]=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> check=[](<span class="keyword">const</span> <span class="built_in">string</span> &amp;s, <span class="keyword">int</span> b, <span class="keyword">int</span> e)&#123;</span><br><span class="line">            <span class="keyword">int</span> i=b,j=e;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;=j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s[i]!=s[j]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                ++i,--j;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;words.size();++i)&#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> h1=<span class="number">0</span>, h2=<span class="number">0</span>, h3=<span class="number">0</span>, h4=<span class="number">0</span>, t=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">auto</span> w=words[i];</span><br><span class="line">            <span class="keyword">auto</span> f=w;</span><br><span class="line">            reverse(f.begin(), f.end());</span><br><span class="line">            <span class="keyword">auto</span> p=m.find(f);</span><br><span class="line">            <span class="keyword">if</span>(p!=m.end()&amp;&amp;p-&gt;second!=i) &#123;</span><br><span class="line">                s.insert(to_string(p-&gt;second)+<span class="string">"$"</span>+to_string(i));</span><br><span class="line">                s.insert(to_string(i)+<span class="string">"$"</span>+to_string(p-&gt;second));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;w.size();++j)&#123;</span><br><span class="line">                h1=(t*(w[j]-<span class="string">'a'</span>)+h1)%mod;</span><br><span class="line">                h2=(h2*r+w[j]-<span class="string">'a'</span>)%mod;</span><br><span class="line">                h3=(t*(w[w.size()<span class="number">-1</span>-j]-<span class="string">'a'</span>)+h3)%mod;</span><br><span class="line">                h4=(h4*r+w[w.size()<span class="number">-1</span>-j]-<span class="string">'a'</span>)%mod;</span><br><span class="line">                t=(r*t)%mod;</span><br><span class="line">                <span class="keyword">if</span>(h1==h2&amp;&amp;check(w, <span class="number">0</span>, j))&#123;</span><br><span class="line">                    <span class="keyword">auto</span> f=w.substr(j+<span class="number">1</span>);</span><br><span class="line">                    reverse(f.begin(), f.end());</span><br><span class="line">                    <span class="keyword">auto</span> p=m.find(f);</span><br><span class="line">                    <span class="keyword">if</span>(p!=m.end()&amp;&amp;p-&gt;second!=i) &#123;</span><br><span class="line">                        s.insert(to_string(p-&gt;second)+<span class="string">"$"</span>+to_string(i));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(h3==h4&amp;&amp;check(w, w.size()<span class="number">-1</span>-j, w.size()<span class="number">-1</span>))&#123;</span><br><span class="line">                    <span class="keyword">auto</span> f=w.substr(<span class="number">0</span>, w.size()<span class="number">-1</span>-j);</span><br><span class="line">                    reverse(f.begin(), f.end());</span><br><span class="line">                    <span class="keyword">auto</span> p=m.find(f);</span><br><span class="line">                    <span class="keyword">if</span>(p!=m.end()&amp;&amp;p-&gt;second!=i) &#123;</span><br><span class="line">                        s.insert(to_string(i)+<span class="string">"$"</span>+to_string(p-&gt;second));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:s)&#123;</span><br><span class="line">            <span class="keyword">int</span> i=x.find(<span class="string">'$'</span>);</span><br><span class="line">            <span class="keyword">int</span> a=atoi(x.data()),b=atoi(x.data()+i+<span class="number">1</span>);</span><br><span class="line">            ans.push_back(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;a,b&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/1278-Palindrome-Partitioning-III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1671,172 +1807,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/05/290-Word-Pattern/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/05/290-Word-Pattern/" itemprop="url">290. Word Pattern</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-05T21:37:00+08:00">2019-12-05</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-05T21:38:22+08:00">2019-12-05</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="290-word-pattern"><a class="header-anchor" href="#290-word-pattern">¶</a><a href="https://leetcode.com/problems/word-pattern/" target="_blank" rel="noopener">290. Word Pattern</a></h3>
-<p>Difficulty: <strong>Easy</strong></p>
-<p>Given a <code>pattern</code> and a string <code>str</code>, find if <code>str</code> follows the same pattern.</p>
-<p>Here <strong>follow</strong> means a full match, such that there is a bijection between a letter in <code>pattern</code> and a <strong>non-empty</strong> word in <code>str</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: pattern = &quot;abba&quot;, str = &quot;dog cat cat dog&quot;</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:pattern = &quot;abba&quot;, str = &quot;dog cat cat fish&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: pattern = &quot;aaaa&quot;, str = &quot;dog cat cat dog&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Example 4:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: pattern = &quot;abba&quot;, str = &quot;dog dog dog dog&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Notes:</strong><br>
-You may assume <code>pattern</code> contains only lowercase letters, and <code>str</code> contains lowercase letters that may be separated by a single space.</p>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>Language: <strong>C++</strong><br>
-  注意istringstream的用法，以及判断映射合法性是看字符和字串映射的是不是之前的同一下标；</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">wordPattern</span><span class="params">(<span class="built_in">string</span> pattern, <span class="built_in">string</span> str)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; p2i;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; w2i;</span><br><span class="line">        <span class="function"><span class="built_in">istringstream</span> <span class="title">in</span><span class="params">(str)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, n = pattern.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> word; in &gt;&gt; word; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == n || p2i[pattern[i]] != w2i[word])</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            p2i[pattern[i]] = w2i[word] = i + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> i == n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1887,7 +1857,7 @@ You may assume <code>pattern</code> contains only lowercase letters, and <code>s
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-count">442</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1898,7 +1868,7 @@ You may assume <code>pattern</code> contains only lowercase letters, and <code>s
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

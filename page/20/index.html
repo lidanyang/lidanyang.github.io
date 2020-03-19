@@ -248,6 +248,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/01/388-Longest-Absolute-File-Path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/01/388-Longest-Absolute-File-Path/" itemprop="url">388. Longest Absolute File Path</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-01T18:51:00+08:00">2020-01-01</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-01T19:35:29+08:00">2020-01-01</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="388-longest-absolute-file-path"><a class="header-anchor" href="#388-longest-absolute-file-path">¶</a><a href="https://leetcode.com/problems/longest-absolute-file-path/" target="_blank" rel="noopener">388. Longest Absolute File Path</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Suppose we abstract our file system by a string in the following manner:</p>
+<p>The string <code>&quot;dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext&quot;</code> represents:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dir</span><br><span class="line">    subdir1</span><br><span class="line">    subdir2</span><br><span class="line">        file.ext</span><br></pre></td></tr></table></figure>
+<p>The directory <code>dir</code> contains an empty sub-directory <code>subdir1</code> and a sub-directory <code>subdir2</code> containing a file <code>file.ext</code>.</p>
+<p>The string <code>&quot;dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext&quot;</code> represents:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dir</span><br><span class="line">    subdir1</span><br><span class="line">        file1.ext</span><br><span class="line">        subsubdir1</span><br><span class="line">    subdir2</span><br><span class="line">        subsubdir2</span><br><span class="line">            file2.ext</span><br></pre></td></tr></table></figure>
+<p>The directory <code>dir</code> contains two sub-directories <code>subdir1</code> and <code>subdir2</code>. <code>subdir1</code> contains a file <code>file1.ext</code> and an empty second-level sub-directory <code>subsubdir1</code>. <code>subdir2</code> contains a second-level sub-directory <code>subsubdir2</code> containing a file <code>file2.ext</code>.</p>
+<p>We are interested in finding the longest (number of characters) absolute path to a file within our file system. For example, in the second example above, the longest absolute path is <code>&quot;dir/subdir2/subsubdir2/file2.ext&quot;</code>, and its length is <code>32</code> (not including the double quotes).</p>
+<p>Given a string representing the file system in the above format, return the length of the longest absolute path to file in the abstracted file system. If there is no file in the system, return <code>0</code>.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The name of a file contains at least a <code>.</code> and an extension.</li>
+<li>The name of a directory or sub-directory will not contain a <code>.</code>.</li>
+</ul>
+<p>Time complexity required: <code>O(n)</code> where <code>n</code> is the size of the input string.</p>
+<p>Notice that <code>a/aa/aaa/file1.txt</code> is not the longest file path, if there is another path <code>aaaaaaaaaaaaaaaaaaaaa/sth.png</code>.</p>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>  ‘\n’,’\t’是一个字符不是两个！文件名可以包含空格！文件目录名的第一个字符的上一个可以是’\n’，也可以是’\t’！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthLongestPath</span><span class="params">(<span class="built_in">string</span> input)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; p(<span class="number">100</span>);</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        input.append(<span class="number">1</span>, <span class="string">'\n'</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>, dep=<span class="number">0</span>, prev=<span class="number">0</span>, isfile=<span class="number">0</span>;i&lt;input.size();++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(input[i]==<span class="string">'\t'</span>)&#123;</span><br><span class="line">                ++dep;</span><br><span class="line">                prev=i+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(input[i]==<span class="string">'\n'</span>)&#123;</span><br><span class="line">                p[dep+<span class="number">1</span>]=i-prev+p[dep]+(dep==<span class="number">0</span>?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(isfile) ans=max(p[dep+<span class="number">1</span>], ans);</span><br><span class="line">                isfile=<span class="number">0</span>;</span><br><span class="line">                dep=<span class="number">0</span>;</span><br><span class="line">                prev=i+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(input[i]==<span class="string">'.'</span>) isfile=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/01/355-Design-Twitter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1759,188 +1928,6 @@ The graph contains <code>n</code> nodes which are labeled from <code>0</code> to
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/29/5298-Verbal-Arithmetic-Puzzle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/29/5298-Verbal-Arithmetic-Puzzle/" itemprop="url">5298. Verbal Arithmetic Puzzle</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-29T17:00:00+08:00">2019-12-29</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-29T17:17:28+08:00">2019-12-29</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="5298-verbal-arithmetic-puzzle"><a class="header-anchor" href="#5298-verbal-arithmetic-puzzle">¶</a><a href="https://leetcode.com/problems/verbal-arithmetic-puzzle/" target="_blank" rel="noopener">5298. Verbal Arithmetic Puzzle</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Given an equation, represented by <code>words</code> on left side and the <code>result</code> on right side.</p>
-<p>You need to check if the equation is solvable under the following rules:</p>
-<ul>
-<li>Each character is decoded as one digit (0 - 9).</li>
-<li>Every pair of different characters they must map to different digits.</li>
-<li>Each <code>words[i]</code> and <code>result</code> are decoded as one number <strong>without</strong> leading zeros.</li>
-<li>Sum of numbers on left side (<code>words</code>) will equal to the number on right side (<code>result</code>).</li>
-</ul>
-<p>Return <code>True</code> if the equation is solvable otherwise return <code>False</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: words = [&quot;SEND&quot;,&quot;MORE&quot;], result = &quot;MONEY&quot;</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Map &apos;S&apos;-&gt; 9, &apos;E&apos;-&gt;5, &apos;N&apos;-&gt;6, &apos;D&apos;-&gt;7, &apos;M&apos;-&gt;1, &apos;O&apos;-&gt;0, &apos;R&apos;-&gt;8, &apos;Y&apos;-&gt;&apos;2&apos;</span><br><span class="line">Such that: &quot;SEND&quot; + &quot;MORE&quot; = &quot;MONEY&quot; ,  9567 + 1085 = 10652</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: words = [&quot;SIX&quot;,&quot;SEVEN&quot;,&quot;SEVEN&quot;], result = &quot;TWENTY&quot;</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Map &apos;S&apos;-&gt; 6, &apos;I&apos;-&gt;5, &apos;X&apos;-&gt;0, &apos;E&apos;-&gt;8, &apos;V&apos;-&gt;7, &apos;N&apos;-&gt;2, &apos;T&apos;-&gt;1, &apos;W&apos;-&gt;&apos;3&apos;, &apos;Y&apos;-&gt;4</span><br><span class="line">Such that: &quot;SIX&quot; + &quot;SEVEN&quot; + &quot;SEVEN&quot; = &quot;TWENTY&quot; ,  650 + 68782 + 68782 = 138214</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: words = [&quot;THIS&quot;,&quot;IS&quot;,&quot;TOO&quot;], result = &quot;FUNNY&quot;</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
-<p><strong>Example 4:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: words = [&quot;LEET&quot;,&quot;CODE&quot;], result = &quot;POINT&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>2 &lt;= words.length &lt;= 5</code></li>
-<li><code>1 &lt;= words[i].length, results.length &lt;= 7</code></li>
-<li><code>words[i], result</code> contains only upper case English letters.</li>
-<li>Number of different characters used on the expression is at most 10.</li>
-</ul>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<h6 id="法一-16ms"><a class="header-anchor" href="#法一-16ms">¶</a>法一 16ms</h6>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">bool</span> ok = <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">string</span> result;</span><br><span class="line">    <span class="keyword">int</span> ma;</span><br><span class="line">    <span class="built_in">vector</span> &lt; <span class="built_in">string</span> &gt; all;</span><br><span class="line">    <span class="built_in">vector</span> &lt; <span class="built_in">string</span> &gt; words;</span><br><span class="line">    <span class="built_in">vector</span> &lt; <span class="keyword">int</span> &gt; digits;</span><br><span class="line">    <span class="built_in">vector</span> &lt; <span class="keyword">int</span> &gt; chars;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">rec</span><span class="params">(<span class="keyword">int</span> word, <span class="keyword">int</span> idx, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ok) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(idx == ma <span class="keyword">and</span> word == words.size()) &#123;</span><br><span class="line">            <span class="keyword">if</span>(sum) &#123;</span><br><span class="line">                <span class="keyword">if</span>(result.size() == ma + <span class="number">1</span> <span class="keyword">and</span> digits[sum] == <span class="number">-1</span> <span class="keyword">and</span> chars[result[ma] - <span class="string">'A'</span>] == <span class="number">-1</span>) &#123;</span><br><span class="line">                    ok = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(result.size() == ma + <span class="number">1</span> <span class="keyword">and</span> digits[sum] == result[ma]) &#123;</span><br><span class="line">                    ok = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(result.size() == ma) &#123;</span><br><span class="line">                    ok = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(word == words.size()) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = sum % <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(chars[result[idx] - <span class="string">'A'</span>] == <span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(digits[x] != <span class="number">-1</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                digits[x] = result[idx];</span><br><span class="line">                chars[result[idx] - <span class="string">'A'</span>] = x;</span><br><span class="line">                </span><br><span class="line">                rec(<span class="number">0</span>, idx + <span class="number">1</span>, sum / <span class="number">10</span>);</span><br><span class="line">                </span><br><span class="line">                chars[result[idx] - <span class="string">'A'</span>] = <span class="number">-1</span>;</span><br><span class="line">                digits[x] = <span class="number">-1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(chars[result[idx] - <span class="string">'A'</span>] != x) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
-<h6 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h6>
-<p>  每个字母对应的位的权值计算出来，words记正权值（比如ABC中，A的权值为100，B为10，C为1），result记负权值，然后分别给每个字母赋一个数字，dfs找是否有使他们和为0的赋值方式。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">bool</span> ng[<span class="number">26</span>];</span><br><span class="line">    <span class="keyword">int</span> ten[<span class="number">8</span>];</span><br><span class="line">    <span class="keyword">int</span> kiyo[<span class="number">26</span>];</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; vc;</span><br><span class="line">    <span class="keyword">bool</span> ret = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> used, <span class="keyword">int</span> sum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == vc.size())&#123;</span><br><span class="line">            ret |= sum==<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((used&gt;&gt;j)&amp;<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">0</span> &amp;&amp; ng[vc[i]-<span class="string">'A'</span>]) <span class="keyword">continue</span>;</span><br><span class="line">            dfs(i+<span class="number">1</span>, used|(<span class="number">1</span>&lt;&lt;j), sum+j*kiyo[vc[i]-<span class="string">'A'</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSolvable</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words, <span class="built_in">string</span> result)</span> </span>&#123;</span><br><span class="line">        ten[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">8</span>; i++)&#123;</span><br><span class="line">            ten[i] = ten[i<span class="number">-1</span>]*<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        words.push_back(result);</span><br><span class="line">        <span class="keyword">int</span> n = words.size();</span><br><span class="line">            <span class="comment">// init</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) ng[i] = kiyo[i] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; words[i].length(); j++)&#123;</span><br><span class="line">                    vc.push_back(words[i][j]);</span><br><span class="line">                    kiyo[words[i][j]-<span class="string">'A'</span>] += (i==n<span class="number">-1</span> ? <span class="number">-1</span> : <span class="number">1</span>) * ten[words[i].length()<span class="number">-1</span>-j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(words[i].length() &gt; <span class="number">1</span>)   ng[words[i][<span class="number">0</span>]-<span class="string">'A'</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            sort(vc.begin(), vc.end());</span><br><span class="line">            vc.erase(unique(vc.begin(),vc.end()), vc.end());</span><br><span class="line">        dfs(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h6 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h6>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> islead, used;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words, <span class="built_in">string</span> &amp;result, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;ht)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>, carry=<span class="number">0</span>, sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(;i&lt;<span class="number">7</span>;++i)&#123;</span><br><span class="line">            sum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">bool</span> f=<span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;words.size();++j)&#123;</span><br><span class="line">                <span class="keyword">int</span> t=words[j].size()<span class="number">-1</span>-i;</span><br><span class="line">                <span class="keyword">if</span>(t&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">                    f=<span class="literal">true</span>;</span><br><span class="line">                    sum+=ht[words[j][t]-<span class="string">'A'</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> t=result.size()<span class="number">-1</span>-i;</span><br><span class="line">            sum+=carry;</span><br><span class="line">            carry=sum/<span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>((t&lt;<span class="number">0</span>&amp;&amp;f)||(t&gt;=<span class="number">0</span>&amp;&amp;sum%<span class="number">10</span>!=ht[result[t]-<span class="string">'A'</span>]))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words, <span class="built_in">string</span> &amp;result, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;ht, <span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; c, <span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s==c.size())&#123;</span><br><span class="line">            <span class="keyword">auto</span> f=check(words, result, ht);</span><br><span class="line">            <span class="keyword">if</span>(f) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=(islead&amp;(<span class="number">1</span>&lt;&lt;c[s]-<span class="string">'A'</span>))?<span class="number">1</span>:<span class="number">0</span>;i&lt;=<span class="number">9</span>;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>((used&amp;(<span class="number">1</span>&lt;&lt;i))==<span class="number">0</span>)&#123;</span><br><span class="line">                used^=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">                ht[c[s]-<span class="string">'A'</span>]=i;</span><br><span class="line">                <span class="keyword">auto</span> f=search(words, result, ht, c, s+<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(f) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                used^=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSolvable</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words, <span class="built_in">string</span> result)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ht(<span class="number">26</span>, <span class="number">-1</span>);</span><br><span class="line">        used=islead=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ma=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;w:words)&#123;</span><br><span class="line">            islead|=<span class="number">1</span>&lt;&lt;w[<span class="number">0</span>]-<span class="string">'A'</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;c:w)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="number">-1</span>==ht[c-<span class="string">'A'</span>])&#123;</span><br><span class="line">                    ht[c-<span class="string">'A'</span>]=<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ma=max(ma, (<span class="keyword">int</span>)w.size());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> t=result;</span><br><span class="line">        <span class="keyword">if</span>(t.size() &lt; ma||t.size()&gt;ma+<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;c:t)</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">-1</span>==ht[c-<span class="string">'A'</span>])&#123;</span><br><span class="line">                ht[c-<span class="string">'A'</span>]=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        islead|=<span class="number">1</span>&lt;&lt;result[<span class="number">0</span>]-<span class="string">'A'</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; c;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ht[i]!=<span class="number">-1</span>) &#123;</span><br><span class="line">                c.push_back(i+<span class="string">'A'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> search(words, result, ht, c, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1991,7 +1978,7 @@ The graph contains <code>n</code> nodes which are labeled from <code>0</code> to
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">441</span>
+                  <span class="site-state-item-count">442</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2002,7 +1989,7 @@ The graph contains <code>n</code> nodes which are labeled from <code>0</code> to
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
