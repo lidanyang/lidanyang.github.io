@@ -248,6 +248,471 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/472-Concatenated-Words/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/13/472-Concatenated-Words/" itemprop="url">472. Concatenated Words</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-13T21:20:47+08:00">2020-01-13</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-13T21:39:49+08:00">2020-01-13</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="472-concatenated-words"><a class="header-anchor" href="#472-concatenated-words">¶</a><a href="https://leetcode.com/problems/concatenated-words/" target="_blank" rel="noopener">472. Concatenated Words</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given a list of words (<strong>without duplicates</strong>), please write a program that returns all concatenated words in the given list of words.</p>
+<p>A concatenated word is defined as a string that is comprised entirely of at least two shorter words in the given array.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;cat&quot;,&quot;cats&quot;,&quot;catsdogcats&quot;,&quot;dog&quot;,&quot;dogcatsdog&quot;,&quot;hippopotamuses&quot;,&quot;rat&quot;,&quot;ratcatdogcat&quot;]</span><br><span class="line"></span><br><span class="line">Output: [&quot;catsdogcats&quot;,&quot;dogcatsdog&quot;,&quot;ratcatdogcat&quot;]</span><br><span class="line"></span><br><span class="line">Explanation: &quot;catsdogcats&quot; can be concatenated by &quot;cats&quot;, &quot;dog&quot; and &quot;cats&quot;;  &quot;dogcatsdog&quot; can be concatenated by &quot;dog&quot;, &quot;cats&quot; and &quot;dog&quot;; &quot;ratcatdogcat&quot; can be concatenated by &quot;rat&quot;, &quot;cat&quot;, &quot;dog&quot; and &quot;cat&quot;.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The number of elements of the given array will not exceed <code>10,000</code></li>
+<li>The length sum of elements in the given array will not exceed <code>600,000</code>.</li>
+<li>All the input string will only include lower case letters.</li>
+<li>The returned elements order does not matter.</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h5 id="法一-字符串hash-dfs"><a class="header-anchor" href="#法一-字符串hash-dfs">¶</a>法一 字符串hash+dfs</h5>
+<p>  要注意含有空字符串的情况，空字符串可以直接剔除，因为如果当前字符串s是由s1,s2构成(其中一个是&quot;&quot;)，即s=s1+s2。不妨设s1=&quot;&quot;，则当前s=s2，与<strong>题设不含重复字符串</strong>矛盾，所以s必须要由两个非空字符串构成才合法。</p>
+<p>  因为不含重复字符串，所以<code>isConcatenated</code>函数中<code>if (dict.count(word))</code>可以直接返回<code>true</code>，因为<code>word[i]</code>本身肯定不能使得<code>dict.count(word)</code>为<code>true</code>，所以<code>isConcatenated</code>肯定是在至少第二次递归调用时才能返回<code>true</code>，即保证了是由<strong>两个以上字符串</strong>构成。</p>
+<p>  <strong>剪枝策略</strong>:<code>for (int i =  min_len; i &lt; word.size() - min_len + 1 ; ++ i)</code>中从min_len开始遍历，因为要在<code>word</code>数组中搜索前缀字符串，所以前缀至少要比<code>word</code>中最短的字符串要长才可能搜索的到。<code>i &lt; word.size() - min_len + 1</code>同理，也是为了保证<code>isConcatenated(word.substr(i, word.size() - i))</code>中的<code>word.size()-i</code>不比<code>min_len</code>小，这样<code>word.substr(i, word.size() - i)</code>才有可能在<code>word</code>数组中找到。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; results;</span><br><span class="line">    <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; dict;</span><br><span class="line">    <span class="keyword">int</span> min_len = <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isConcatenated</span><span class="params">(<span class="built_in">string</span> <span class="keyword">const</span> &amp; word)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (dict.count(word)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i =  min_len; i &lt; word.size() - min_len + <span class="number">1</span> ; ++ i)</span><br><span class="line">            <span class="keyword">if</span> (dict.count(word.substr(<span class="number">0</span>, i)) &gt; <span class="number">0</span> &amp;&amp; isConcatenated(word.substr(i, word.size() - i)))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; findAllConcatenatedWordsInADict(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words) &#123;</span><br><span class="line">        dict.clear();</span><br><span class="line">        sort(words.begin(), words.end(), [](<span class="keyword">const</span> <span class="built_in">string</span> &amp;lhs, <span class="keyword">const</span> <span class="built_in">string</span> &amp;rhs)&#123;<span class="keyword">return</span> lhs.size() &lt; rhs.size();&#125;);</span><br><span class="line">        min_len = max(<span class="number">1u</span>l, words.front().size());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.size(); dict.insert(words[i++]))</span><br><span class="line">            <span class="keyword">if</span> (words[i].size() &gt;= min_len * <span class="number">2</span> &amp;&amp; isConcatenated(words[i]))</span><br><span class="line">                results.push_back(words[i]);</span><br><span class="line">        <span class="keyword">return</span> results;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="法二-字典树-dfs"><a class="header-anchor" href="#法二-字典树-dfs">¶</a>法二 字典树+dfs</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">        Node *nxt[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">bool</span> f;</span><br><span class="line">        Node(<span class="keyword">bool</span> fl=<span class="literal">false</span>):f(fl)&#123; fill(nxt,nxt+<span class="number">26</span>,<span class="literal">nullptr</span>); &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    Node *root;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur=root;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;c:s)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;nxt[c-<span class="string">'a'</span>]==<span class="literal">nullptr</span>) </span><br><span class="line">                cur-&gt;nxt[c-<span class="string">'a'</span>]=<span class="keyword">new</span> Node();</span><br><span class="line">            cur=cur-&gt;nxt[c-<span class="string">'a'</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;f=<span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s, <span class="keyword">int</span> p, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur=root;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=p;i&lt;s.size();++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;nxt[s[i]-<span class="string">'a'</span>]==<span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            cur=cur-&gt;nxt[s[i]-<span class="string">'a'</span>];</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;f&amp;&amp;dfs(s, i+<span class="number">1</span>, d+<span class="number">1</span>)) <span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(d&gt;=<span class="number">1</span>&amp;&amp;cur-&gt;f) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; findAllConcatenatedWordsInADict(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words) &#123;</span><br><span class="line">        root=<span class="keyword">new</span> Node();</span><br><span class="line">        sort(words.begin(), words.end(), [](<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)&#123; <span class="keyword">return</span> s1.size() &lt; s2.size(); &#125;);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:words)&#123; <span class="keyword">if</span>(dfs(x, <span class="number">0</span>, <span class="number">0</span>)) ans.push_back(x); add(x); &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/1005-Maximize-Sum-Of-Array-After-K-Negations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/13/1005-Maximize-Sum-Of-Array-After-K-Negations/" itemprop="url">1005. Maximize Sum Of Array After K Negations</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-13T20:37:57+08:00">2020-01-13</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-13T20:51:04+08:00">2020-01-13</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1005-maximize-sum-of-array-after-k-negations"><a class="header-anchor" href="#1005-maximize-sum-of-array-after-k-negations">¶</a><a href="https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/" target="_blank" rel="noopener">1005. Maximize Sum Of Array After K Negations</a></h3>
+<p>Difficulty: <strong>Easy</strong></p>
+<p>Given an array <code>A</code> of integers, we <strong>must</strong> modify the array in the following way: we choose an <code>i</code> and replace <code>A[i]</code> with <code>-A[i]</code>, and we repeat this process <code>K</code> times in total.  (We may choose the same index <code>i</code> multiple times.)</p>
+<p>Return the largest possible sum of the array after modifying it in this way.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: A = [4,2,3], K = 1</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: Choose indices (1,) and A becomes [4,-2,3].</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: A = [3,-1,0,2], K = 3</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: Choose indices (1, 2, 2) and A becomes [3,1,0,2].</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: A = [2,-3,-1,5,-4], K = 2</span><br><span class="line">Output: 13</span><br><span class="line">Explanation: Choose indices (1, 4) and A becomes [2,3,-1,5,4].</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1 &lt;= A.length &lt;= 10000</code></li>
+<li><code>1 &lt;= K &lt;= 10000</code></li>
+<li><code>-100 &lt;= A[i] &lt;= 100</code></li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>  贪心法，将尽可能多的负数变成正数，最后剩下的次数k如果是偶数，因为偶数次作用在同一个元素上会正负抵消，所以可以直接返回结果，如果是奇数（因为奇数k必定大于0，说明将所有负数都翻转过了次数还没用完，此时数组肯定全是正数），则必须要多翻转一个元素，为了使得损失最小，需要选择最小的正数翻转。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">largestSumAfterKNegations</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> K)</span> </span>&#123;</span><br><span class="line">        sort(A.begin(), A.end());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; K &gt; <span class="number">0</span> &amp;&amp; i &lt; A.size() &amp;&amp; A[i] &lt; <span class="number">0</span>; ++i, --K)</span><br><span class="line">            A[i] = -A[i];</span><br><span class="line">        <span class="keyword">return</span> accumulate(A.begin(), A.end(), <span class="number">0</span>) - (K%<span class="number">2</span>) * *min_element(A.begin(), A.end()) * <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>  另外，此题还可以用堆来做。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestSumAfterKNegations</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:A) q.push(x);</span><br><span class="line">        <span class="keyword">while</span>(k--&gt;<span class="number">0</span>) &#123;<span class="keyword">int</span> x=-q.top();q.pop();q.push(x);&#125;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;ans+=q.top();q.pop();&#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/432-All-O-one-Data-Structure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/13/432-All-O-one-Data-Structure/" itemprop="url">432. All O`one Data Structure</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-13T14:44:00+08:00">2020-01-13</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-13T16:06:39+08:00">2020-01-13</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="432-all-o-one-data-structure"><a class="header-anchor" href="#432-all-o-one-data-structure">¶</a>[432. All O`one Data Structure]</h3>
+<p>(<a href="https://leetcode.com/problems/all-oone-data-structure/" target="_blank" rel="noopener">https://leetcode.com/problems/all-oone-data-structure/</a>)</p>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Implement a data structure supporting the following operations:</p>
+<ol>
+<li>Inc(Key) - Inserts a new key <key style="display: inline;">with value 1. Or increments an existing key by 1. Key is guaranteed to be a <strong>non-empty</strong> string.</key></li>
+<li>Dec(Key) - If Key’s value is 1, remove it from the data structure. Otherwise decrements an existing key by 1. If the key does not exist, this function does nothing. Key is guaranteed to be a <strong>non-empty</strong> string.</li>
+<li>GetMaxKey() - Returns one of the keys with maximal value. If no element exists, return an empty string <code>&quot;&quot;</code>.</li>
+<li>GetMinKey() - Returns one of the keys with minimal value. If no element exists, return an empty string <code>&quot;&quot;</code>.</li>
+</ol>
+<p>Challenge: Perform all these in O(1) time complexity.</p>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h5 id="法一-非o-1-解法"><a class="header-anchor" href="#法一-非o-1-解法">¶</a>法一 非O(1)解法</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AllOne</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; hash;</span><br><span class="line">    AllOne() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Inserts a new key &lt;Key&gt; with value 1. Or increments an existing key by 1. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inc</span><span class="params">(<span class="built_in">string</span> key)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(hash.find(key) == hash.end())</span><br><span class="line">         &#123;hash[key] = <span class="number">1</span>;&#125;</span><br><span class="line">         <span class="keyword">else</span></span><br><span class="line">         &#123;hash[key] += <span class="number">1</span>;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dec</span><span class="params">(<span class="built_in">string</span> key)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(hash.find(key) != hash.end())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(hash[key] == <span class="number">1</span>)</span><br><span class="line">            &#123;hash.erase(key);&#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;hash[key] -= <span class="number">1</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns one of the keys with maximal value. */</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getMaxKey</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(hash.size() &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> max_util = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">string</span> key = <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;i : hash)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i.second &gt;= max_util)</span><br><span class="line">                &#123;</span><br><span class="line">                    max_util = i.second;</span><br><span class="line">                    key = i.first;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> key;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="法二-非o-1-解法"><a class="header-anchor" href="#法二-非o-1-解法">¶</a>法二 非O(1)解法</h5>
+<p>  有点像O(1)，但是插入字符串的时候是O(logn)复杂度的，把<code>std::set&lt;std::string&gt; keys;</code>改成<code>std::unordered_set&lt;std::string&gt; keys;</code>就是O(1)了吧。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AllOne</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    AllOne() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Inserts a new key &lt;Key&gt; with value 1. Or increments an existing key by 1. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inc</span><span class="params">(<span class="built_in">string</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it = _m.find(key);</span><br><span class="line">        inc((it == _m.end() ? _cache.end() : it-&gt;second), key);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dec</span><span class="params">(<span class="built_in">string</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it = _m.find(key);</span><br><span class="line">        <span class="keyword">if</span> (it == _m.end()) <span class="keyword">return</span>;</span><br><span class="line">        dec(it-&gt;second, key);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns one of the keys with maximal value. */</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getMaxKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (_m.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">return</span> *_cache.back().keys.begin();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns one of the keys with Minimal value. */</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getMinKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (_m.empty())</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">return</span> *_cache.front().keys.begin();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; keys;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inc</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">list</span>&lt;Node&gt;::iterator it, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (it == _cache.end()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (_cache.empty() || _cache.front().val != <span class="number">1</span>)</span><br><span class="line">                _cache.emplace_front(Node&#123;<span class="number">1</span>, &#123;key&#125;&#125;);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                _cache.front().keys.insert(key);</span><br><span class="line">            _m.emplace(key, _cache.begin());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">auto</span> next = <span class="built_in">std</span>::next(it);</span><br><span class="line">        <span class="keyword">if</span> (next != _cache.end() &amp;&amp; next-&gt;val == it-&gt;val + <span class="number">1</span>) &#123;</span><br><span class="line">            next-&gt;keys.insert(key);</span><br><span class="line">            _m[key] = next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            _cache.insert(next, Node&#123;it-&gt;val + <span class="number">1</span>,&#123;key&#125;&#125;);</span><br><span class="line">            _m[key] = <span class="built_in">std</span>::next(it);</span><br><span class="line">        &#125;</span><br><span class="line">        it-&gt;keys.erase(key);</span><br><span class="line">        <span class="keyword">if</span> (it-&gt;keys.empty()) _cache.erase(it);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dec</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">list</span>&lt;Node&gt;::iterator it, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;key)</span> </span>&#123;</span><br><span class="line">        it-&gt;keys.erase(key);</span><br><span class="line">        <span class="keyword">if</span> (it-&gt;val == <span class="number">1</span>) &#123;</span><br><span class="line">            _m.erase(key);</span><br><span class="line">            <span class="keyword">if</span> (it-&gt;keys.empty()) _cache.erase(it);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (it == _cache.begin()) &#123;</span><br><span class="line">            _cache.emplace_front(Node&#123;it-&gt;val - <span class="number">1</span>, &#123;key&#125;&#125;);</span><br><span class="line">            _m[key] = _cache.begin();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">auto</span> prev = <span class="built_in">std</span>::prev(it);</span><br><span class="line">            <span class="keyword">if</span> (prev-&gt;val == it-&gt;val - <span class="number">1</span>) &#123;</span><br><span class="line">                prev-&gt;keys.insert(key);</span><br><span class="line">                _m[key] = prev;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                _cache.emplace(it, Node&#123;it-&gt;val - <span class="number">1</span>, &#123;key&#125;&#125;);</span><br><span class="line">                _m[key] = <span class="built_in">std</span>::prev(it);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (it-&gt;keys.empty()) _cache.erase(it);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>, <span class="built_in">std</span>::<span class="built_in">list</span>&lt;Node&gt;::iterator&gt; _m;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">list</span>&lt;Node&gt; _cache;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="法三-o-1-解法"><a class="header-anchor" href="#法三-o-1-解法">¶</a>法三 O(1)解法</h5>
+<p>  每个值维护一个桶，然后用一个unordered_map维护key到桶中位置的映射关系，为了O(1)能取到最大最小，需要用list存放所有值桶。我个人最喜欢这个解法，因为代码风格很好。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AllOne</span> &#123;</span></span><br><span class="line">  <span class="keyword">typedef</span> <span class="built_in">string</span> <span class="keyword">key_t</span>;</span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">int</span> <span class="keyword">val_t</span>;</span><br><span class="line">  <span class="keyword">typedef</span> <span class="built_in">list</span>&lt;<span class="keyword">key_t</span>&gt; <span class="keyword">keylist_t</span>;</span><br><span class="line">  <span class="keyword">typedef</span> <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">val_t</span>, <span class="keyword">keylist_t</span>&gt;&gt; <span class="keyword">vallist_t</span>;</span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">keylist_t</span>::iterator <span class="keyword">keyiter_t</span>;</span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">vallist_t</span>::iterator <span class="keyword">valiter_t</span>;</span><br><span class="line"> <span class="keyword">protected</span>:</span><br><span class="line">  <span class="keyword">vallist_t</span> vallist;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">key_t</span>, pair&lt;<span class="keyword">valiter_t</span>, <span class="keyword">keyiter_t</span>&gt;&gt; keymap;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  AllOne() &#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">inc</span><span class="params">(<span class="built_in">string</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> it = keymap.find(key);</span><br><span class="line">    <span class="keyword">valiter_t</span> vit;</span><br><span class="line">    <span class="keyword">keyiter_t</span> eit;</span><br><span class="line">    <span class="keyword">if</span> (it == keymap.end()) &#123;</span><br><span class="line">      <span class="keyword">if</span> (vallist.empty() || vallist.front().first != <span class="number">1</span>)</span><br><span class="line">        vit = vallist.insert(vallist.begin(), make_pair(<span class="number">1</span>, <span class="keyword">keylist_t</span>()));</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        vit = vallist.begin();</span><br><span class="line">      eit = vit-&gt;second.insert(vit-&gt;second.begin(), key);</span><br><span class="line">      keymap[key] = make_pair(vit, eit);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      vit = it-&gt;second.first;</span><br><span class="line">      eit = it-&gt;second.second;</span><br><span class="line">      <span class="keyword">auto</span> val = vit-&gt;first + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">auto</span> nvit = next(vit);</span><br><span class="line">      <span class="keyword">if</span> (nvit == vallist.end() || nvit-&gt;first != val)</span><br><span class="line">        nvit = vallist.insert(nvit, make_pair(val, <span class="keyword">keylist_t</span>()));</span><br><span class="line">      <span class="keyword">auto</span> neit = nvit-&gt;second.insert(nvit-&gt;second.begin(), *eit);</span><br><span class="line">      vit-&gt;second.erase(eit);</span><br><span class="line">      <span class="keyword">if</span> (vit-&gt;second.empty())</span><br><span class="line">        vallist.erase(vit);</span><br><span class="line">      it-&gt;second = make_pair(nvit, neit);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">dec</span><span class="params">(<span class="built_in">string</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">valiter_t</span> vit, pvit;</span><br><span class="line">    <span class="keyword">keyiter_t</span> eit, peit;</span><br><span class="line">    <span class="keyword">auto</span> it = keymap.find(key);</span><br><span class="line">    <span class="keyword">if</span> (it == keymap.end()) <span class="keyword">return</span>;</span><br><span class="line">    vit = it-&gt;second.first;</span><br><span class="line">    eit = it-&gt;second.second;</span><br><span class="line">    <span class="keyword">auto</span> val = vit-&gt;first - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (val) &#123;</span><br><span class="line">      <span class="keyword">if</span> (vit == vallist.begin() || prev(vit)-&gt;first != val)</span><br><span class="line">        pvit = vallist.insert(vit, make_pair(val, <span class="keyword">keylist_t</span>()));</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        pvit = prev(vit);</span><br><span class="line">      peit = pvit-&gt;second.insert(pvit-&gt;second.begin(), *eit);</span><br><span class="line">      it-&gt;second = make_pair(pvit, peit);</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">      keymap.erase(it);</span><br><span class="line">    vit-&gt;second.erase(eit);</span><br><span class="line">    <span class="keyword">if</span> (vit-&gt;second.empty())</span><br><span class="line">      vallist.erase(vit);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="built_in">string</span> <span class="title">getMaxKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> vallist.empty() ? <span class="string">""</span> : vallist.back().second.front();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="built_in">string</span> <span class="title">getMinKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> vallist.empty() ? <span class="string">""</span> : vallist.front().second.front();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//作者：sinstar</span></span><br><span class="line"><span class="comment">//链接：https://leetcode-cn.com/problems/all-oone-data-structure/solution/shi-zi-lian-biao-ha-xi-biao-quan-o1-by-sinstar/</span></span><br><span class="line"><span class="comment">//来源：力扣（LeetCode）</span></span><br><span class="line"><span class="comment">//著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span></span><br></pre></td></tr></table></figure>
+<h5 id="法四-o-1-解法"><a class="header-anchor" href="#法四-o-1-解法">¶</a>法四 O(1)解法</h5>
+<p>&amp;esmp; 借鉴了https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/ 中的O(1)vector，实现key插入删除为O(1)复杂度的词频vector。代码里的DLList维护的是词频值的双向链表，是为了方便O(1)时间获取最大最小词频值。其实不要这个双向链表，也是可以进行正常的插入删除的，不过在获取最大最小词频对应的key时，需要遍历value_freq，因此为了O(1)获得最大最小需要这个双向链表。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DLNode</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> freq;</span><br><span class="line">    DLNode* prev;</span><br><span class="line">    DLNode* next;</span><br><span class="line">    DLNode() : freq(<span class="number">0</span>), prev(<span class="literal">nullptr</span>), next(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    DLNode(<span class="keyword">int</span> f) : freq(f), prev(<span class="literal">nullptr</span>), next(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DLList</span> &#123;</span></span><br><span class="line">    DLNode* head;</span><br><span class="line">    DLNode* tail;</span><br><span class="line">    DLList() &#123;</span><br><span class="line">        head = <span class="keyword">new</span> DLNode();</span><br><span class="line">        tail = <span class="keyword">new</span> DLNode();</span><br><span class="line">        head-&gt;next = tail;</span><br><span class="line">        tail-&gt;prev = head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">erase</span><span class="params">(DLNode* node)</span> </span>&#123;</span><br><span class="line">        node-&gt;next-&gt;prev = node-&gt;prev;</span><br><span class="line">        node-&gt;prev-&gt;next = node-&gt;next;</span><br><span class="line">        <span class="keyword">delete</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(DLNode* left, DLNode* right, DLNode* node)</span> </span>&#123;</span><br><span class="line">        left-&gt;next = node;</span><br><span class="line">        right-&gt;prev = node;</span><br><span class="line">        node-&gt;prev = left;</span><br><span class="line">        node-&gt;next = right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMaxFreq</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> tail-&gt;prev-&gt;freq;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMinFreq</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head-&gt;next-&gt;freq;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AllOne</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    DLList* dl;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; value_freq;<span class="comment">//单词-&gt;词频</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; &gt; freq_values;<span class="comment">//词频-&gt;该词频下的所有单词的vector数组</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; value_index;<span class="comment">//单词-&gt;在词频数组中的下标</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, DLNode*&gt; freq_node;<span class="comment">//词频-&gt;在双链表中的节点地址</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">incrKey</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (value_freq.count(key) == <span class="number">0</span>) &#123;</span><br><span class="line">            value_freq[key] = <span class="number">1</span>;</span><br><span class="line">            freq_values[<span class="number">1</span>].push_back(key);</span><br><span class="line">            value_index[key] = freq_values[<span class="number">1</span>].size() - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// remove old info</span></span><br><span class="line">            <span class="keyword">int</span> freq = value_freq[key];</span><br><span class="line">            <span class="keyword">int</span> ind = value_index[key];</span><br><span class="line">            <span class="built_in">string</span> tail_key = freq_values[freq].back();</span><br><span class="line">            <span class="keyword">if</span>(tail_key!=key)&#123;</span><br><span class="line">                freq_values[freq][ind] = tail_key;</span><br><span class="line">                value_index[tail_key] = ind;</span><br><span class="line">            &#125;</span><br><span class="line">            freq_values[freq].pop_back();</span><br><span class="line">            <span class="comment">// add new info</span></span><br><span class="line">            ++value_freq[key];</span><br><span class="line">            ++freq;</span><br><span class="line">            freq_values[freq].push_back(key);</span><br><span class="line">            value_index[key] = freq_values[freq].size() - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">decrKey</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (value_freq.count(key) == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> freq = value_freq[key];</span><br><span class="line">        <span class="keyword">int</span> ind = value_index[key];</span><br><span class="line">        <span class="built_in">string</span> tail_key = freq_values[freq].back();</span><br><span class="line">        <span class="keyword">if</span>(tail_key!=key)&#123;</span><br><span class="line">            freq_values[freq][ind] = tail_key;</span><br><span class="line">            value_index[tail_key] = ind;</span><br><span class="line">        &#125;</span><br><span class="line">        freq_values[freq].pop_back();</span><br><span class="line">        <span class="comment">// update info</span></span><br><span class="line">        --freq;</span><br><span class="line">        <span class="keyword">if</span> (freq == <span class="number">0</span>) &#123;</span><br><span class="line">            value_freq.erase(key);</span><br><span class="line">            value_index.erase(key);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            value_freq[key] = freq;</span><br><span class="line">            freq_values[freq].push_back(key);</span><br><span class="line">            value_index[key] = freq_values[freq].size() - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateFreq</span><span class="params">(<span class="keyword">int</span> old_freq, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> new_freq = old_freq + d;</span><br><span class="line">        <span class="keyword">auto</span> cur=freq_node[old_freq];</span><br><span class="line">        <span class="keyword">auto</span> right = d==<span class="number">1</span>?cur-&gt;next:cur;</span><br><span class="line">        <span class="keyword">auto</span> left = d==<span class="number">1</span>?cur:cur-&gt;prev;</span><br><span class="line">        <span class="keyword">if</span> (freq_node.count(new_freq) == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">auto</span> node = <span class="keyword">new</span> DLNode(new_freq);</span><br><span class="line">            freq_node[new_freq] = node;</span><br><span class="line">            dl-&gt;add(left, right, node);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (old_freq != <span class="number">0</span> &amp;&amp; freq_values[old_freq].empty()) &#123;</span><br><span class="line">            dl-&gt;erase(cur);</span><br><span class="line">            freq_node.erase(old_freq);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getValueofFreq</span><span class="params">(<span class="keyword">int</span> freq)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (freq == <span class="number">0</span> || freq_values[freq].empty()) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">return</span> freq_values[freq][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    AllOne() &#123;</span><br><span class="line">        dl = <span class="keyword">new</span> DLList();</span><br><span class="line">        freq_node[<span class="number">0</span>] = dl-&gt;head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Inserts a new key &lt;Key&gt; with value 1. Or increments an existing key by 1. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inc</span><span class="params">(<span class="built_in">string</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> old_freq = value_freq.count(key) ? value_freq[key] : <span class="number">0</span>;</span><br><span class="line">        incrKey(key);</span><br><span class="line">        updateFreq(old_freq, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dec</span><span class="params">(<span class="built_in">string</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (value_freq.count(key) == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> old_freq = value_freq[key];</span><br><span class="line">        decrKey(key);</span><br><span class="line">        updateFreq(old_freq,<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns one of the keys with maximal value. */</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getMaxKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getValueofFreq(dl-&gt;getMaxFreq());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns one of the keys with Minimal value. */</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getMinKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getValueofFreq(dl-&gt;getMinFreq());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/630-Course-Schedule-III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1379,512 +1844,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/10/898-Bitwise-ORs-of-Subarrays/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/10/898-Bitwise-ORs-of-Subarrays/" itemprop="url">898. Bitwise ORs of Subarrays</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-10T11:28:00+08:00">2020-01-10</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-10T11:32:31+08:00">2020-01-10</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="898-bitwise-ors-of-subarrays"><a class="header-anchor" href="#898-bitwise-ors-of-subarrays">¶</a><a href="https://leetcode.com/problems/bitwise-ors-of-subarrays/" target="_blank" rel="noopener">898. Bitwise ORs of Subarrays</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>We have an array <code>A</code> of non-negative integers.</p>
-<p>For every (contiguous) subarray <code>B = [A[i], A[i+1], ..., A[j]]</code> (with <code>i &lt;= j</code>), we take the bitwise OR of all the elements in <code>B</code>, obtaining a result <font face="monospace" style="display: inline;"><code>A[i] | A[i+1] | ... | A[j]</code>.</font></p>
-<p>Return the number of possible results.  (Results that occur more than once are only counted once in the final answer.)</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [0]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: </span><br><span class="line">There is only one possible result: 0.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,1,2]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: </span><br><span class="line">The possible subarrays are [1], [1], [2], [1, 1], [1, 2], [1, 1, 2].</span><br><span class="line">These yield the results 1, 1, 2, 1, 3, 3.</span><br><span class="line">There are 3 unique values, so the answer is 3.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,4]</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: </span><br><span class="line">The possible results are 1, 2, 3, 4, 6, and 7.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>1 &lt;= A.length &lt;= 50000</code></li>
-<li><code>0 &lt;= A[i] &lt;= 10^9</code></li>
-</ol>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  基本思路就是维护一个以当前元素结尾的所有<strong>后缀子数组</strong>的或值，然后遇到下一个元素就用下一个元素来更新这个集合(因为假设<code>result(i, j) = A[i] | A[i+1] | ... | A[j]</code>，则有<code>result(i, j+1) = result(i, j) | A[j+1]</code>)，结果就是所有这些集合的并集。</p>
-<h5 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h5>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">subarrayBitwiseORs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; P; P.clear();</span><br><span class="line">        <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; C; C.clear();</span><br><span class="line">        <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; R; R.clear();</span><br><span class="line">        <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; T; T.clear();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="keyword">int</span>)A.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="keyword">int</span>)P.size();j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> kei = (A[i]|P[j]);</span><br><span class="line">                C.push_back(kei);</span><br><span class="line">            &#125;</span><br><span class="line">            C.push_back(A[i]);</span><br><span class="line">            C.erase(unique(C.begin(),C.end()),C.end());</span><br><span class="line">            P.clear();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="keyword">int</span>)C.size();j++)</span><br><span class="line">            &#123;</span><br><span class="line">                P.push_back(C[j]); R.push_back(C[j]);</span><br><span class="line">            &#125;</span><br><span class="line">            C.clear();</span><br><span class="line">        &#125;</span><br><span class="line">        radix_sort(R,T);</span><br><span class="line">        R.erase(unique(R.begin(),R.end()),R.end());</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)R.size();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">radix_sort</span><span class="params">(<span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; &amp;R,<span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; &amp;T)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> co[<span class="number">65536</span>] = &#123;<span class="number">0</span>&#125;; T.resize(R.size());</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;R.size();i++) co[R[i]&amp;<span class="number">65535</span>]++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;<span class="number">65536</span>;i++) co[i] += co[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;R.size();i++) T[--co[R[i]&amp;<span class="number">65535</span>]] = R[i];</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">65536</span>;i++) co[i] = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h5>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">subarrayBitwiseORs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; S;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.size(); ++i) &#123;</span><br><span class="line">            S.insert(A[i]);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; (A[j] | A[i]) != A[j]; --j) &#123;</span><br><span class="line">                A[j] |= A[i];</span><br><span class="line">                <span class="keyword">if</span>(S.count(A[j]) == <span class="number">0</span>) S.insert(A[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> S.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/09/984-String-Without-AAA-or-BBB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/09/984-String-Without-AAA-or-BBB/" itemprop="url">984. String Without AAA or BBB</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-09T20:35:00+08:00">2020-01-09</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-09T20:48:09+08:00">2020-01-09</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="984-string-without-aaa-or-bbb"><a class="header-anchor" href="#984-string-without-aaa-or-bbb">¶</a><a href="https://leetcode.com/problems/string-without-aaa-or-bbb/" target="_blank" rel="noopener">984. String Without AAA or BBB</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Given two integers <code>A</code> and <code>B</code>, return <strong>any</strong> string <code>S</code> such that:</p>
-<ul>
-<li><code>S</code> has length <code>A + B</code> and contains exactly <code>A</code> <code>'a'</code> letters, and exactly <code>B</code> <code>'b'</code> letters;</li>
-<li>The substring <code>'aaa'</code> does not occur in <code>S</code>;</li>
-<li>The substring <code>'bbb'</code> does not occur in <code>S</code>.</li>
-</ul>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: A = 1, B = 2</span><br><span class="line">Output: &quot;abb&quot;</span><br><span class="line">Explanation: &quot;abb&quot;, &quot;bab&quot; and &quot;bba&quot; are all correct answers.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: A = 4, B = 1</span><br><span class="line">Output: &quot;aabaa&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>0 &lt;= A &lt;= 100</code></li>
-<li><code>0 &lt;= B &lt;= 100</code></li>
-<li>It is guaranteed such an <code>S</code> exists for the given <code>A</code> and <code>B</code>.</li>
-</ol>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<h5 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h5>
-<p>  不妨设A&gt;B，则可以每次添一组<code>&quot;aab&quot;</code>，这样每次A减2，B减1，直到A和B相等时就可以每次添一组<code>&quot;ab&quot;</code>，否则只添加剩下的<code>&quot;a&quot;</code>即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">strWithout3a3b</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n1=A, n2=B, a=<span class="string">'a'</span>, b=<span class="string">'b'</span>;</span><br><span class="line">        <span class="keyword">if</span>(n1 &lt; n2) swap(n1,n2),swap(a,b);</span><br><span class="line">        <span class="built_in">string</span> ans=<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">while</span>(n1&gt;n2&amp;&amp;n2)&#123;</span><br><span class="line">                ans.append(<span class="number">2</span>, a);</span><br><span class="line">                n1-=<span class="number">2</span>;</span><br><span class="line">                ans.append(<span class="number">1</span>, b);</span><br><span class="line">                n2--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!n2) ans.append(n1, a);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(n1)&#123;</span><br><span class="line">                ans.append(<span class="number">1</span>, a);</span><br><span class="line">                --n1;</span><br><span class="line">                ans.append(<span class="number">1</span>, b);    </span><br><span class="line">                --n2;</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h5>
-<p>  最后两个字符不同，则写数目最多的那个字符；最后两个字符相同，则换字符写，直到所有字符都用完。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">strWithout3a3b</span><span class="params">(self, A, B)</span>:</span></span><br><span class="line">        ans = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> A <span class="keyword">or</span> B:</span><br><span class="line">            <span class="keyword">if</span> len(ans) &gt;= <span class="number">2</span> <span class="keyword">and</span> ans[<span class="number">-1</span>] == ans[<span class="number">-2</span>]:</span><br><span class="line">                writeA = ans[<span class="number">-1</span>] == <span class="string">'b'</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                writeA = A &gt;= B</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> writeA:</span><br><span class="line">                A -= <span class="number">1</span></span><br><span class="line">                ans.append(<span class="string">'a'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                B -= <span class="number">1</span></span><br><span class="line">                ans.append(<span class="string">'b'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>.join(ans)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/09/316-Remove-Duplicate-Letters/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/09/316-Remove-Duplicate-Letters/" itemprop="url">316. Remove Duplicate Letters</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-09T16:26:00+08:00">2020-01-09</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-09T16:33:12+08:00">2020-01-09</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="316-remove-duplicate-letters"><a class="header-anchor" href="#316-remove-duplicate-letters">¶</a><a href="https://leetcode.com/problems/remove-duplicate-letters/" target="_blank" rel="noopener">316. Remove Duplicate Letters</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Given a string which contains only lowercase letters, remove duplicate letters so that every letter appears once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;bcabc&quot;</span><br><span class="line">Output: &quot;abc&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;cbacdcbc&quot;</span><br><span class="line">Output: &quot;acdb&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<h5 id="法一-栈-贪心"><a class="header-anchor" href="#法一-栈-贪心">¶</a>法一 栈+贪心</h5>
-<p>  每次遇到不在栈中的字符，就拿该字符和栈顶字符比较，如果小于栈顶字符并且栈顶字符在后面还有剩余的可用就弹出栈顶字符，直到栈空或者栈顶字符<strong>小于</strong>（不可能等于因为是当前字符是不在栈中的字符）当前字符或者栈顶字符只剩这一个了，重复这个过程直到字符串结束。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">removeDuplicateLetters</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> k = <span class="number">26</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; remaining(k);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; c : s) &#123;</span><br><span class="line">            ++remaining[c - <span class="string">'a'</span>];</span><br><span class="line">        &#125;</span><br><span class="line">​</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; in_stack(k);</span><br><span class="line">        <span class="built_in">string</span> stk;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; c : s) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!in_stack[c - <span class="string">'a'</span>]) &#123;</span><br><span class="line">                <span class="keyword">while</span> (!stk.empty() &amp;&amp; stk.back() &gt; c &amp;&amp; remaining[stk.back() - <span class="string">'a'</span>]) &#123;</span><br><span class="line">                    in_stack[stk.back() - <span class="string">'a'</span>] = <span class="literal">false</span>;</span><br><span class="line">                    stk.pop_back();</span><br><span class="line">                &#125;</span><br><span class="line">                stk.push_back(c);</span><br><span class="line">                in_stack[c - <span class="string">'a'</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            --remaining[c - <span class="string">'a'</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stk; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="法二-空间优化"><a class="header-anchor" href="#法二-空间优化">¶</a>法二 空间优化</h5>
-<p>  可以利用原字符串的开头部分当栈，维护一个栈顶指针即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">removeDuplicateLetters</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cnt[<span class="number">26</span>]&#123;&#125;, j=<span class="number">-1</span>, has[<span class="number">26</span>]&#123;&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:s) cnt[x-<span class="string">'a'</span>]++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.size();++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!has[s[i]-<span class="string">'a'</span>])&#123;</span><br><span class="line">                <span class="keyword">while</span>(j&gt;=<span class="number">0</span>&amp;&amp;s[j]&gt;s[i]&amp;&amp;cnt[s[j]-<span class="string">'a'</span>]&gt;<span class="number">0</span>) has[s[j--]-<span class="string">'a'</span>]=<span class="number">0</span>;</span><br><span class="line">                s[++j]=s[i];</span><br><span class="line">                has[s[i]-<span class="string">'a'</span>]=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            --cnt[s[i]-<span class="string">'a'</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.substr(<span class="number">0</span>, j+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1935,7 +1894,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">442</span>
+                  <span class="site-state-item-count">445</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1946,7 +1905,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1957,7 +1916,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

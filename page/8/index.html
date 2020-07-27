@@ -248,6 +248,514 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/18/939-Minimum-Area-Rectangle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/18/939-Minimum-Area-Rectangle/" itemprop="url">939. Minimum Area Rectangle</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-18T00:13:00+08:00">2020-02-18</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-18T00:20:18+08:00">2020-02-18</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="939-minimum-area-rectangle"><a class="header-anchor" href="#939-minimum-area-rectangle">¶</a><a href="https://leetcode.com/problems/minimum-area-rectangle/" target="_blank" rel="noopener">939. Minimum Area Rectangle</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a set of points in the xy-plane, determine the minimum area of a rectangle formed from these points, with sides parallel to the x and y axes.</p>
+<p>If there isn’t any rectangle, return 0.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [[1,1],[1,3],[3,1],[3,3],[2,2]]</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [[1,1],[1,3],[3,1],[3,3],[4,1],[4,3]]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p><strong>Note</strong>:</p>
+<ol>
+<li><code>1 &lt;= points.length &lt;= 500</code></li>
+<li><code>0 &lt;= points[i][0] &lt;= 40000</code></li>
+<li><code>0 &lt;= points[i][1] &lt;= 40000</code></li>
+<li>All points are distinct.</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h6 id="法一-按列收集"><a class="header-anchor" href="#法一-按列收集">¶</a>法一 按列收集</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minAreaRect</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : points) s.insert(x[<span class="number">0</span>]*<span class="number">40001</span>+x[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">int</span> ans = INT_MAX;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; points.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> a = points[i][<span class="number">0</span>], b = points[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; points.size(); ++j)&#123;</span><br><span class="line">                <span class="keyword">int</span> c = points[j][<span class="number">0</span>], d = points[j][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span>(a != c &amp;&amp; b != d &amp;&amp; s.count(a*<span class="number">40001</span>+d) &amp;&amp; s.count(c*<span class="number">40001</span>+b))&#123;</span><br><span class="line">                    ans = min(ans, <span class="built_in">abs</span>((a-c)*(d-b)));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans  == INT_MAX ? <span class="number">0</span>: ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法二-遍历对角线"><a class="header-anchor" href="#法二-遍历对角线">¶</a>法二 遍历对角线</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minAreaRect</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; m1;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m2;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : points) m1[x[<span class="number">1</span>]].push_back(x[<span class="number">0</span>]);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> ans = INT_MAX;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;p : m1)&#123;</span><br><span class="line">            <span class="keyword">int</span> y = p.first;</span><br><span class="line">            <span class="keyword">auto</span> &amp;r = p.second;</span><br><span class="line">            sort(r.begin(), r.end());</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r.size(); ++i)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; r.size(); ++j)&#123;</span><br><span class="line">                    <span class="keyword">int</span> code = r[i]*<span class="number">40001</span>+r[j];</span><br><span class="line">                    <span class="keyword">if</span>(m2.count(code)) ans = min(ans, (y - m2[code]) * (r[j] - r[i]));</span><br><span class="line">                    m2[code] = y;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans == INT_MAX?<span class="number">0</span>:ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法三-双指针"><a class="header-anchor" href="#法三-双指针">¶</a>法三 双指针</h6>
+<p>  按列收集然后把每列上的的点排好序后，对两个列计算最小的矩形。因为要求矩形最小，所以两个公共的y应该尽可能的靠近，又因为每个列中的y都是有序的，所以可以把所有相同的y用双指针法按顺序一个个找出来，而且都是最靠近的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minAreaRect</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; m;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;p : points) m[p[<span class="number">0</span>]].push_back(p[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;x : m) sort(x.second.begin(), x.second.end());</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> result = INT_MAX;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> x=m.begin(); x != m.end(); x++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (x-&gt;second.size()==<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> y=next(x); y != m.end(); y++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (y-&gt;second.size() == <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>, last=<span class="number">-1</span>, len1=x-&gt;second.size(), len2=y-&gt;second.size();</span><br><span class="line">                <span class="keyword">while</span> (i&lt;len1 &amp;&amp; j&lt;len2) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (x-&gt;second[i] &lt; y-&gt;second[j]) i++;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (x-&gt;second[i] &gt; y-&gt;second[j]) j++;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">if</span> (last&gt;=<span class="number">0</span>) &#123;</span><br><span class="line">                            <span class="keyword">int</span> t = <span class="built_in">abs</span>(y-&gt;first - x-&gt;first) * (x-&gt;second[i]-last);</span><br><span class="line">                            result = min(result, t);</span><br><span class="line">                        &#125;</span><br><span class="line">                        last = x-&gt;second[i++], j++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result == INT_MAX ? <span class="number">0</span> : result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>详细注释版:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="comment">// Find two diagonal points:  time O(n^2)</span></span><br><span class="line">    <span class="comment">//      1) pair all points with each other</span></span><br><span class="line">    <span class="comment">//      2) skip all vertical (x1 == x2) and horizatal lines (y1 == y2)</span></span><br><span class="line">    <span class="comment">//      3) skip if these diagonal points do not have other points to form a rectangle. for diagonal points (x1, y1) and (x2, y2), there shall be another points (x1, y2) and (x2, y1)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Hashmap and search vertical or horizatal lines:  time O(different x ^ 2 * different y sharing same x)</span></span><br><span class="line">    <span class="comment">//      1) store all points that share the same x together in sorted order</span></span><br><span class="line">    <span class="comment">//      2) pair all x coordinidates, x1 and x2.  for each x1 and x2 pair</span></span><br><span class="line">    <span class="comment">//          a) skip the x coordinates if the count of points sharing this x coordinates &lt; 2</span></span><br><span class="line">    <span class="comment">//          b) find a common y coordinate of both x1 and x2 with two pointers, mark it a poissble candidate</span></span><br><span class="line">    <span class="comment">//          c) if we have too candidates, check min area</span></span><br><span class="line">    <span class="comment">//          d) since y is sorted, the min area shall be the common y closest to each other</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minAreaRect</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Hashmap and search horizatal lines</span></span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; y_share_x;</span><br><span class="line">        <span class="keyword">int</span> min_area = INT_MAX;</span><br><span class="line">        <span class="comment">// 1)</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;point:points)</span><br><span class="line">            y_share_x[point[<span class="number">0</span>]].push_back(point[<span class="number">1</span>]);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// sort the y coordinates</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;ys:y_share_x)</span><br><span class="line">            sort(ys.second.begin(), ys.second.end());</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it1 = y_share_x.begin(); it1 != y_share_x.end(); ++it1)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 2a)</span></span><br><span class="line">            <span class="keyword">if</span> (it1-&gt;second.size() &lt; <span class="number">2</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="comment">// try to find another x2 that share the two y coordinates with x1</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> it2 = next(it1); it2 != y_share_x.end(); ++it2)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 2a)</span></span><br><span class="line">                <span class="keyword">if</span> (it2-&gt;second.size() &lt; <span class="number">2</span>)</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="comment">// record the previously found y1</span></span><br><span class="line">                <span class="keyword">int</span> prev_found_y = <span class="number">-1</span>;</span><br><span class="line">                <span class="comment">// search common y with two pointers</span></span><br><span class="line">                <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>(i &lt; it1-&gt;second.size() &amp;&amp; j &lt; it2-&gt;second.size())</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// if found a common y</span></span><br><span class="line">                    <span class="keyword">if</span> (it1-&gt;second[i] == it2-&gt;second[j])</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">// check if this is the 2nd common y, if so a rectangel is formed</span></span><br><span class="line">                        <span class="keyword">if</span> (prev_found_y != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            min_area = min(min_area, <span class="built_in">abs</span>(it1-&gt;first - it2-&gt;first) * <span class="built_in">abs</span>(it1-&gt;second[i] - prev_found_y));</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="comment">// update prev found y for the next common y</span></span><br><span class="line">                        prev_found_y = it1-&gt;second[i];</span><br><span class="line">                        <span class="comment">// advance two pointer since the min difference shall be the two ys close to each other</span></span><br><span class="line">                        ++i;</span><br><span class="line">                        ++j;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (it1-&gt;second[i] &lt; it2-&gt;second[j])</span><br><span class="line">                        ++i;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (it1-&gt;second[i] &gt; it2-&gt;second[j])</span><br><span class="line">                        ++j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> min_area == INT_MAX ? <span class="number">0</span> : min_area;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/17/1079-Letter-Tile-Possibilities/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/17/1079-Letter-Tile-Possibilities/" itemprop="url">1079. Letter Tile Possibilities</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-17T23:44:00+08:00">2020-02-17</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-17T23:54:56+08:00">2020-02-17</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1079-letter-tile-possibilities"><a class="header-anchor" href="#1079-letter-tile-possibilities">¶</a><a href="https://leetcode.com/problems/letter-tile-possibilities/" target="_blank" rel="noopener">1079. Letter Tile Possibilities</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>You have a set of <code>tiles</code>, where each tile has one letter <code>tiles[i]</code> printed on it.  Return the number of possible non-empty sequences of letters you can make.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;AAB&quot;</span><br><span class="line">Output: 8</span><br><span class="line">Explanation: The possible sequences are &quot;A&quot;, &quot;B&quot;, &quot;AA&quot;, &quot;AB&quot;, &quot;BA&quot;, &quot;AAB&quot;, &quot;ABA&quot;, &quot;BAA&quot;.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;AAABBC&quot;</span><br><span class="line">Output: 188</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1 &lt;= tiles.length &lt;= 7</code></li>
+<li><code>tiles</code> consists of uppercase English letters.</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>回溯法。回溯的时候可以不用把每个字符串都记录到一个unordered_set里，因为回溯的过程可以保证不会出现重复的字符串。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(<span class="built_in">map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; &amp; m, <span class="keyword">int</span> &amp; cnt)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp; p : m) &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">0</span> == p.second)<span class="keyword">continue</span>;</span><br><span class="line">            cnt ++;</span><br><span class="line">            p.second --;</span><br><span class="line">            visit(m, cnt);</span><br><span class="line">            p.second ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numTilePossibilities</span><span class="params">(<span class="built_in">string</span> tiles)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; tile_map;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp; tile : tiles) &#123;</span><br><span class="line">            tile_map[tile] ++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        visit(tile_map, count);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>另一种写法:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numTilePossibilities</span><span class="params">(<span class="built_in">string</span> tiles)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; M;</span><br><span class="line">        <span class="keyword">int</span> n = tiles.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> ch : tiles)</span><br><span class="line">            M[ch]++;</span><br><span class="line">        <span class="keyword">return</span> dfs(M,n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;&amp; M, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; p:M)&#123;</span><br><span class="line">            <span class="keyword">if</span> (p.second)&#123;</span><br><span class="line">                p.second--;</span><br><span class="line">                sum += (<span class="number">1</span>+dfs(M,n<span class="number">-1</span>));</span><br><span class="line">                p.second++; <span class="comment">//backtrack</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>  我自己的解法如下。刚开始还用了一个set把所有形成的字符串插入进去，其实没必要。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> cnt ;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s, <span class="keyword">int</span> bm)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bm1=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; s.size(); ++i) <span class="keyword">if</span>(!(<span class="number">1</span>&lt;&lt;i&amp;bm) &amp;&amp; !(<span class="number">1</span>&lt;&lt;s[i]-<span class="string">'A'</span>&amp;bm1))&#123;</span><br><span class="line">            bm1 |= <span class="number">1</span>&lt;&lt;s[i]-<span class="string">'A'</span>;</span><br><span class="line">            cnt++;</span><br><span class="line">            backtrack(s, bm|<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numTilePossibilities</span><span class="params">(<span class="built_in">string</span> tiles)</span> </span>&#123;</span><br><span class="line">        cnt = <span class="number">0</span>;</span><br><span class="line">        backtrack(tiles, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/17/1081-Smallest-Subsequence-of-Distinct-Characters/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/17/1081-Smallest-Subsequence-of-Distinct-Characters/" itemprop="url">1081. Smallest Subsequence of Distinct Characters</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-17T15:33:00+08:00">2020-02-17</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-17T17:53:53+08:00">2020-02-17</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1081-smallest-subsequence-of-distinct-characters"><a class="header-anchor" href="#1081-smallest-subsequence-of-distinct-characters">¶</a><a href="https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/" target="_blank" rel="noopener">1081. Smallest Subsequence of Distinct Characters</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Return the lexicographically smallest subsequence of <code>text</code> that contains all the distinct characters of <code>text</code> exactly once.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;cdadabcc&quot;</span><br><span class="line">Output: &quot;adbc&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abcd&quot;</span><br><span class="line">Output: &quot;abcd&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;ecbacba&quot;</span><br><span class="line">Output: &quot;eacb&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;leetcode&quot;</span><br><span class="line">Output: &quot;letcod&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1 &lt;= text.length &lt;= 1000</code></li>
+<li><code>text</code> consists of lowercase English letters.</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>  官方给的提示:<code>Greedily try to add one missing character. How to check if adding some character will not cause problems ? Use bit-masks to check whether you will be able to complete the sub-sequence if you add the character at some index i.</code></p>
+<p>  这道题要从前往后依次找能放的最小的字母，放完一个字母要保证剩下的还没放的字母后面还有。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countbits</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(n&amp;<span class="number">1</span>&lt;&lt;i) ++b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">smallestSubsequence</span><span class="params">(<span class="built_in">string</span> text)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bm[text.size()]&#123;&#125;;</span><br><span class="line">        bm[text.size() - <span class="number">1</span>] = <span class="number">1</span>&lt;&lt;text.back()-<span class="string">'a'</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = text.size() <span class="number">-2</span>; i &gt;= <span class="number">0</span>; --i) bm[i] = bm[i+<span class="number">1</span>] | (<span class="number">1</span>&lt;&lt;text[i] - <span class="string">'a'</span>);</span><br><span class="line">        <span class="keyword">int</span> cnt = countbits(bm[<span class="number">0</span>]), cur = <span class="number">0</span>, ncur, b = bm[<span class="number">0</span>];<span class="comment">//b代表还需要哪些字母,cur代表搜索的起点</span></span><br><span class="line">        <span class="built_in">string</span> ans = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        <span class="keyword">while</span>(cnt--)&#123;</span><br><span class="line">            c = <span class="string">'z'</span>+<span class="number">1</span>, ncur = <span class="number">-1</span>;<span class="comment">//ncur记录当前最小的字母</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = cur; i &lt; text.size(); ++i)&#123;</span><br><span class="line">                <span class="keyword">if</span>(b&amp;<span class="number">1</span> &lt;&lt; text[i] - <span class="string">'a'</span>&amp;&amp;text[i]&lt;c&amp;&amp;!(~bm[i]&amp;b))&#123;<span class="comment">//!(~bm[i]&amp;b)检查剩下的字母是否能包含所有所需的字母，b&amp;1 &lt;&lt; text[i] - 'a'检查当前字母是否是所需要的</span></span><br><span class="line">                    c = text[i]; ncur = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans += c;</span><br><span class="line">            b ^= (<span class="number">1</span>&lt;&lt;(c-<span class="string">'a'</span>));<span class="comment">//更新所需字母位图</span></span><br><span class="line">            cur = ncur+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/17/973-K-Closest-Points-to-Origin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1434,504 +1942,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/15/803-Bricks-Falling-When-Hit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/15/803-Bricks-Falling-When-Hit/" itemprop="url">803. Bricks Falling When Hit</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-15T18:36:00+08:00">2020-02-15</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-15T18:42:17+08:00">2020-02-15</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="803-bricks-falling-when-hit"><a class="header-anchor" href="#803-bricks-falling-when-hit">¶</a><a href="https://leetcode.com/problems/bricks-falling-when-hit/" target="_blank" rel="noopener">803. Bricks Falling When Hit</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>We have a grid of 1s and 0s; the 1s in a cell represent bricks.  A brick will not drop if and only if it is directly connected to the top of the grid, or at least one of its (4-way) adjacent bricks will not drop.</p>
-<p>We will do some erasures sequentially. Each time we want to do the erasure at the location (i, j), the brick (if it exists) on that location will disappear, and then some other bricks may drop because of that erasure.</p>
-<p>Return an array representing the number of bricks that will drop after each erasure in sequence.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line">Input: </span><br><span class="line">grid = [[1,0,0,0],[1,1,1,0]]</span><br><span class="line">hits = [[1,0]]</span><br><span class="line">Output: [2]</span><br><span class="line">Explanation: </span><br><span class="line">If we erase the brick at (1, 0), the brick at (1, 1) and (1, 2) will drop. So we should return 2.</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Example 2:</span><br><span class="line">Input: </span><br><span class="line">grid = [[1,0,0,0],[1,1,0,0]]</span><br><span class="line">hits = [[1,1],[1,0]]</span><br><span class="line">Output: [0,0]</span><br><span class="line">Explanation: </span><br><span class="line">When we erase the brick at (1, 0), the brick at (1, 1) has already disappeared due to the last move. So each erasure will cause no bricks dropping.  Note that the erased brick (1, 0) will not be counted as a dropped brick.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li>The number of rows and columns in the grid will be in the range [1, 200].</li>
-<li>The number of erasures will not exceed the area of the grid.</li>
-<li>It is guaranteed that each erasure will be different from any other erasure, and located inside the grid.</li>
-<li>An erasure may refer to a location with no brick - if it does, no bricks drop.</li>
-</ul>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  先把该打掉的砖块全都打掉，然后反过来一个一个添上就可以用并查集实现类似于删除边的操作了，不过这个是离线操作。</p>
-<p>  另外题目中说不会打掉同一个位置的砖，所以可以稍微简化一下。如果能打同一块砖，那么倒着添加边会出问题。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">DisjointSet</span> &#123;</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent;</span><br><span class="line">        <span class="comment">// vector&lt;int&gt; rank;</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sz_;</span><br><span class="line">        <span class="keyword">int</span> sz;</span><br><span class="line"></span><br><span class="line">        DisjointSet(<span class="keyword">int</span> n) &#123;</span><br><span class="line">            sz = n;</span><br><span class="line">            parent = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n);</span><br><span class="line">            <span class="comment">// rank = vector&lt;int&gt;(n, 0);</span></span><br><span class="line">            sz_ = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n ,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">                parent[i] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> x == parent[x]?x:parent[x] = find(parent[x]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getsz</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> sz_[find(x)];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">union_</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> rx = find(x), ry = find(y);</span><br><span class="line">            <span class="keyword">if</span> (rx != ry) &#123;</span><br><span class="line">                --sz;</span><br><span class="line">                <span class="comment">// if (rank[rx] &lt; rank[ry]) &#123;</span></span><br><span class="line">                <span class="comment">//     swap(rx, ry);</span></span><br><span class="line">                <span class="comment">// &#125;</span></span><br><span class="line">                parent[ry] = rx;</span><br><span class="line">                sz_[rx] += sz_[ry];</span><br><span class="line">                <span class="comment">// if (rank[rx] == rank[ry]) &#123;</span></span><br><span class="line">                <span class="comment">//     ++rank[rx];</span></span><br><span class="line">                <span class="comment">// &#125;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> sz;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; hitBricks(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; hits) &#123;</span><br><span class="line">        <span class="keyword">int</span> r = grid.size(), c = grid[<span class="number">0</span>].size();</span><br><span class="line">        <span class="function">DisjointSet <span class="title">d</span><span class="params">(r*c+<span class="number">1</span>)</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; hits.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(grid[hits[i][<span class="number">0</span>]][hits[i][<span class="number">1</span>]] == <span class="number">1</span>) grid[hits[i][<span class="number">0</span>]][hits[i][<span class="number">1</span>]] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> hits[i][<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans(hits.size());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, x, y; i &lt;= r*c; ++i)&#123;</span><br><span class="line">            x = (i<span class="number">-1</span>)/c, y = (i<span class="number">-1</span>)%c;</span><br><span class="line">            <span class="keyword">if</span>(grid[x][y] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(x == <span class="number">0</span>) d.union_(i, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">if</span>(x &gt; <span class="number">0</span> &amp;&amp; grid[x<span class="number">-1</span>][y] == <span class="number">1</span>) d.union_(i, i - c);</span><br><span class="line">            <span class="keyword">if</span>(y &gt; <span class="number">0</span> &amp;&amp; grid[x][y<span class="number">-1</span>] == <span class="number">1</span>) d.union_(i, i - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cur = d.getsz(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> dir[<span class="number">5</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = hits.size() - <span class="number">1</span>, x, y, t; i &gt;= <span class="number">0</span>; --i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(hits[i][<span class="number">0</span>] &lt; <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            x = hits[i][<span class="number">0</span>], y = hits[i][<span class="number">1</span>];</span><br><span class="line">            grid[x][y] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(x==<span class="number">0</span>) d.union_(<span class="number">0</span>, x*c+y+<span class="number">1</span>);<span class="comment">//连着房顶</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; ++j)&#123;</span><br><span class="line">                <span class="keyword">int</span> nx = x+dir[j], ny = y+dir[j+<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span>(nx &gt;= <span class="number">0</span> &amp;&amp; nx &lt; r &amp;&amp; ny &gt;= <span class="number">0</span> &amp;&amp; ny &lt; c &amp;&amp; grid[nx][ny] == <span class="number">1</span>)&#123;</span><br><span class="line">                    d.union_(nx*c+ny+<span class="number">1</span>, x*c+y+<span class="number">1</span>);   <span class="comment">// 记得+1，因为0代表房顶                </span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            t = d.getsz(<span class="number">0</span>);</span><br><span class="line">            ans[i] = max(<span class="number">0</span>, t - cur - <span class="number">1</span>); cur = t;  <span class="comment">//记得-1，不要把连接点也计入</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [[1,0,0,0],[1,1,0,0]]</span></span><br><span class="line"><span class="comment">// [[1,1],[1,0]]</span></span><br><span class="line"><span class="comment">// [[1],[1],[1],[1],[1]]</span></span><br><span class="line"><span class="comment">// [[3,0],[4,0],[1,0],[2,0],[0,0]]</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/15/并查集模板/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/15/并查集模板/" itemprop="url">并查集模板</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-15T16:01:00+08:00">2020-02-15</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-04T18:55:05+08:00">2020-03-04</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h6 id="普通并查集"><a class="header-anchor" href="#普通并查集">¶</a>普通并查集</h6>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DisjointSet</span> &#123;</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rank;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">int</span> sz;</span><br><span class="line"></span><br><span class="line">        DisjointSet(<span class="keyword">int</span> n) &#123;</span><br><span class="line">            sz = n;</span><br><span class="line">            parent = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n);</span><br><span class="line">            rank = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n, <span class="number">0</span>);</span><br><span class="line">            cnt = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">                parent[i] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (parent[x] != x) &#123;</span><br><span class="line">                parent[x] = parent[parent[x]];</span><br><span class="line">                x = parent[x];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">isroot</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; </span><br><span class="line">            <span class="keyword">return</span> parent[x] == x; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">union_sets</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> rx = find(x), ry = find(y);</span><br><span class="line">            <span class="keyword">if</span> (rx != ry) &#123;</span><br><span class="line">                --sz;</span><br><span class="line">                <span class="keyword">if</span> (rank[rx] &lt; rank[ry]) &#123;</span><br><span class="line">                    swap(rx, ry);</span><br><span class="line">                &#125;</span><br><span class="line">                parent[ry] = rx;</span><br><span class="line">                cnt[rx] += cnt[ry];</span><br><span class="line">                <span class="keyword">if</span> (rank[rx] == rank[ry]) &#123;</span><br><span class="line">                    ++rank[rx];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> sz;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> cnt[find(x)];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
-<h6 id="可持久化并查集"><a class="header-anchor" href="#可持久化并查集">¶</a>可持久化并查集</h6>
-<p><a href="https://www.cnblogs.com/peng-ym/p/9357220.html" target="_blank" rel="noopener">https://www.cnblogs.com/peng-ym/p/9357220.html</a></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> p;p=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> c;c=getchar();</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))&#123;<span class="keyword">if</span>(c==<span class="string">'-'</span>)p=<span class="number">-1</span>;c=getchar();&#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c)) &#123;x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+(c<span class="number">-48</span>);c=getchar();&#125;</span><br><span class="line">    x*=p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> L[N*<span class="number">30</span>],R[N*<span class="number">30</span>],fa[N*<span class="number">30</span>],dep[N*<span class="number">30</span>];</span><br><span class="line"><span class="keyword">int</span> root[N*<span class="number">30</span>];</span><br><span class="line"><span class="keyword">namespace</span> Persistant_Union_Set</span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Mid ((l+r)&gt;&gt;1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lson L[rt],l,Mid</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rson R[rt],Mid+1,r</span></span><br><span class="line">    <span class="keyword">int</span> cnt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> &amp;rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        rt=++cnt;</span><br><span class="line">        <span class="keyword">if</span>(l==r)&#123;fa[rt]=l;<span class="keyword">return</span> ;&#125;</span><br><span class="line">        build(lson);build(rson);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> last,<span class="keyword">int</span> &amp;rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> pos,<span class="keyword">int</span> Fa)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        rt=++cnt;L[rt]=L[last],R[rt]=R[last];</span><br><span class="line">        <span class="keyword">if</span>(l==r)</span><br><span class="line">        &#123;</span><br><span class="line">            fa[rt]=Fa;</span><br><span class="line">            dep[rt]=dep[last];</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(pos&lt;=Mid)merge(L[last],lson,pos,Fa);</span><br><span class="line">        <span class="keyword">else</span> merge(R[last],rson,pos,Fa);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l==r)&#123;dep[rt]++;<span class="keyword">return</span> ;&#125;</span><br><span class="line">        <span class="keyword">if</span>(pos&lt;=Mid)update(lson,pos);</span><br><span class="line">        <span class="keyword">else</span> update(rson,pos);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l==r)<span class="keyword">return</span> rt;</span><br><span class="line">        <span class="keyword">if</span>(pos&lt;=Mid)<span class="keyword">return</span> query(lson,pos);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> query(rson,pos);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> now=query(rt,<span class="number">1</span>,n,pos);</span><br><span class="line">        <span class="keyword">if</span>(fa[now]==pos)<span class="keyword">return</span> now;</span><br><span class="line">        <span class="keyword">return</span> find(rt,fa[now]);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> Mid</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> lson</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> rson</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Persistant_Union_Set;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(n);read(m);</span><br><span class="line">    build(root[<span class="number">0</span>],<span class="number">1</span>,n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">int</span> opt,x,y;</span><br><span class="line">        read(opt);read(x);</span><br><span class="line">        <span class="keyword">if</span>(opt==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            read(y);</span><br><span class="line">            <span class="keyword">static</span> <span class="keyword">int</span> posx,posy;</span><br><span class="line">            root[i]=root[i<span class="number">-1</span>];</span><br><span class="line">            posx=find(root[i],x);posy=find(root[i],y);</span><br><span class="line">            <span class="keyword">if</span>(fa[posx]!=fa[posy])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(dep[posx]&gt;dep[posy])swap(posx,posy);</span><br><span class="line">                merge(root[i<span class="number">-1</span>],root[i],<span class="number">1</span>,n,fa[posx],fa[posy]);</span><br><span class="line">                <span class="keyword">if</span>(dep[posx]==dep[posy])update(root[i],<span class="number">1</span>,n,fa[posy]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(opt==<span class="number">2</span>)root[i]=root[x];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(opt==<span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            read(y);</span><br><span class="line">            root[i]=root[i<span class="number">-1</span>];</span><br><span class="line">            <span class="keyword">static</span> <span class="keyword">int</span> posx,posy;</span><br><span class="line">            posx=find(root[i],x);posy=find(root[i],y);</span><br><span class="line">            <span class="keyword">if</span>(fa[posx]==fa[posy])<span class="built_in">puts</span>(<span class="string">"1"</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"0"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/15/839-Similar-String-Groups/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/15/839-Similar-String-Groups/" itemprop="url">839. Similar String Groups</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-15T15:52:00+08:00">2020-02-15</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-15T16:01:32+08:00">2020-02-15</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="839-similar-string-groups"><a class="header-anchor" href="#839-similar-string-groups">¶</a><a href="https://leetcode.com/problems/similar-string-groups/" target="_blank" rel="noopener">839. Similar String Groups</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Two strings <code>X</code> and <code>Y</code> are similar if we can swap two letters (in different positions) of <code>X</code>, so that it equals <code>Y</code>. Also two strings <code>X</code> and <code>Y</code> are similar if they are equal.</p>
-<p>For example, <code>&quot;tars&quot;</code> and <code>&quot;rats&quot;</code> are similar (swapping at positions <code>0</code> and <code>2</code>), and <code>&quot;rats&quot;</code> and <code>&quot;arts&quot;</code> are similar, but <code>&quot;star&quot;</code> is not similar to <code>&quot;tars&quot;</code>, <code>&quot;rats&quot;</code>, or <code>&quot;arts&quot;</code>.</p>
-<p>Together, these form two connected groups by similarity: <code>{&quot;tars&quot;, &quot;rats&quot;, &quot;arts&quot;}</code> and <code>{&quot;star&quot;}</code>.  Notice that <code>&quot;tars&quot;</code> and <code>&quot;arts&quot;</code> are in the same group even though they are not similar.  Formally, each group is such that a word is in the group if and only if it is similar to at least one other word in the group.</p>
-<p>We are given a list <code>A</code> of strings.  Every string in <code>A</code> is an anagram of every other string in <code>A</code>.  How many groups are there?</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: A = [&quot;tars&quot;,&quot;rats&quot;,&quot;arts&quot;,&quot;star&quot;]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= A.length &lt;= 2000</code></li>
-<li><code>1 &lt;= A[i].length &lt;= 1000</code></li>
-<li><code>A.length * A[i].length &lt;= 20000</code></li>
-<li>All words in <code>A</code> consist of lowercase letters only.</li>
-<li>All words in <code>A</code> have the same length and are anagrams of each other.</li>
-<li>The judging time limit has been increased for this question.</li>
-</ul>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  设<code>N=A.length, W=A[0].length</code>。此题的trick在于当A特别大时，说明A[i]的长度就很小，那么直接列举所有交换后的可能更方便，时间复杂度<code>O(N * W^3)</code>；而A特别小时，直接暴力检查数组中各个字符串对更快，时间复杂度<code>O(N^2 * W)</code>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">DisjointSet</span> &#123;</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rank;</span><br><span class="line">        <span class="keyword">int</span> sz;</span><br><span class="line">        </span><br><span class="line">        DisjointSet(<span class="keyword">int</span> n) &#123;</span><br><span class="line">            sz = n;</span><br><span class="line">            parent = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n);</span><br><span class="line">            rank = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">                parent[i] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (parent[x] != x) &#123;</span><br><span class="line">                parent[x] = parent[parent[x]];</span><br><span class="line">                x = parent[x];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">union_sets</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> rx = find(x), ry = find(y);</span><br><span class="line">            <span class="keyword">if</span> (rx != ry) &#123;</span><br><span class="line">                --sz;</span><br><span class="line">                <span class="keyword">if</span> (rank[rx] &lt; rank[ry]) &#123;</span><br><span class="line">                    swap(rx, ry);</span><br><span class="line">                &#125;</span><br><span class="line">                parent[ry] = rx;</span><br><span class="line">                <span class="keyword">if</span> (rank[rx] == rank[ry]) &#123;</span><br><span class="line">                    ++rank[rx];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> sz;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">similar</span><span class="params">(<span class="keyword">int</span> m, <span class="built_in">string</span>&amp; a, <span class="built_in">string</span>&amp; b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> diff = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] != b[i]) &#123;</span><br><span class="line">                ++diff;</span><br><span class="line">                <span class="keyword">if</span> (diff &gt; <span class="number">2</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> diff &lt;= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSimilarGroups</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        sort(A.begin(), A.end());</span><br><span class="line">        A.erase(unique(A.begin(), A.end()), A.end());</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = A[<span class="number">0</span>].length();</span><br><span class="line">        <span class="function">DisjointSet <span class="title">ds</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">100</span>*m) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (similar(m, A[i], A[j])) &#123;</span><br><span class="line">                        ds.union_sets(i, j);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> ds.size();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">            mp[A[<span class="number">0</span>]] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">                <span class="built_in">string</span> s = A[i];</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; ++j) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> k = j+<span class="number">1</span>; k &lt; m; ++k) &#123;</span><br><span class="line">                        swap(s[j], s[k]);</span><br><span class="line">                        <span class="keyword">if</span> (mp.count(s) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                            ds.union_sets(i, mp[s]);</span><br><span class="line">                        &#125;</span><br><span class="line">                        swap(s[j], s[k]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                mp[A[i]] = i;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> ds.size();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1982,7 +1992,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">442</span>
+                  <span class="site-state-item-count">445</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1993,7 +2003,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2004,7 +2014,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

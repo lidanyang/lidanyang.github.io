@@ -248,6 +248,449 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/24/单调栈例题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/24/单调栈例题/" itemprop="url">单调栈例题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-24T17:29:00+08:00">2020-02-24</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-26T17:37:12+08:00">2020-02-26</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><a href="https://ac.nowcoder.com/acm/problem/15815" target="_blank" rel="noopener">https://ac.nowcoder.com/acm/problem/15815</a></li>
+</ol>
+<p>  用单调栈对每个数求以其为最大或最小值的最大区间。一开始以为重复数字需要特殊处理，结果其实就按普通的严格单调的单调栈的操作来就行，可以证明这样处理是正确的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> N;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; N)&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt; h(N);</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">long</span>&gt; st;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt; l(N), r(N);</span><br><span class="line">        <span class="keyword">long</span> MA = <span class="number">0</span>, MI = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i) <span class="built_in">cin</span>&gt;&gt;h[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!st.empty() &amp;&amp; h[st.top()] &lt; h[i] ) r[st.top()] = i, st.pop();</span><br><span class="line">            <span class="keyword">if</span>(st.empty()) l[i] = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">else</span> l[i] = st.top();</span><br><span class="line">            st.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!st.empty())&#123; r[st.top()] = N; st.pop(); &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i  =<span class="number">0</span> ;i &lt; N; ++i) &#123;</span><br><span class="line">            MA += (r[i] -i)*(i- l[i])*h[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!st.empty() &amp;&amp; h[st.top()] &gt; h[i] ) r[st.top()] = i, st.pop();</span><br><span class="line">            <span class="keyword">if</span>(st.empty()) l[i] = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">else</span> l[i] = st.top();</span><br><span class="line">            st.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!st.empty())&#123; r[st.top()] = N; st.pop(); &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i  =<span class="number">0</span> ;i &lt; N; ++i)&#123;</span><br><span class="line">            MI += (r[i] -i)*(i- l[i])*h[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; MA - MI &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/23/75-Odd-Even-Jump/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/23/75-Odd-Even-Jump/" itemprop="url">975. Odd Even Jump</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-23T22:06:17+08:00">2020-02-23</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-24T21:18:18+08:00">2020-02-24</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="975-odd-even-jump"><a class="header-anchor" href="#975-odd-even-jump">¶</a><a href="https://leetcode.com/problems/odd-even-jump/" target="_blank" rel="noopener">975. Odd Even Jump</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>You are given an integer array <code>A</code>.  From some starting index, you can make a series of jumps.  The (1st, 3rd, 5th, …) jumps in the series are called <em>odd numbered jumps</em>, and the (2nd, 4th, 6th, …) jumps in the series are called <em>even numbered jumps</em>.</p>
+<p>You may from index <code>i</code> jump forward to index <code>&lt;font face=&quot;monospace&quot; style=&quot;display: inline;&quot;&gt;j&lt;/font&gt;</code> (with <code>i &lt; j</code>) in the following way:</p>
+<ul>
+<li>During odd numbered jumps (ie. jumps 1, 3, 5, …), you jump to the index <font face="monospace" style="display: inline;">j</font> such that <code>A[i] &lt;= A[j]</code> and <code>A[j]</code> is the smallest possible value.  If there are multiple such indexes <code>&lt;font face=&quot;monospace&quot; style=&quot;display: inline;&quot;&gt;j&lt;/font&gt;</code>, you can only jump to the <strong>smallest</strong> such index <code>&lt;font face=&quot;monospace&quot; style=&quot;display: inline;&quot;&gt;j&lt;/font&gt;</code>.</li>
+<li>During even numbered jumps (ie. jumps 2, 4, 6, …), you jump to the index <font face="monospace" style="display: inline;">j</font> such that <code>A[i] &gt;= A[j]</code> and <code>A[j]</code> is the largest possible value.  If there are multiple such indexes <code>&lt;font face=&quot;monospace&quot; style=&quot;display: inline;&quot;&gt;j&lt;/font&gt;</code>, you can only jump to the <strong>smallest</strong> such index <code>&lt;font face=&quot;monospace&quot; style=&quot;display: inline;&quot;&gt;j&lt;/font&gt;</code>.</li>
+<li>(It may be the case that for some index <code>&lt;font face=&quot;monospace&quot; style=&quot;display: inline;&quot;&gt;i&lt;/font&gt;,</code> there are no legal jumps.)</li>
+</ul>
+<p>A starting index is <em>good</em> if, starting from that index, you can reach the end of the array (index <code>A.length - 1</code>) by jumping some number of times (possibly 0 or more than once.)</p>
+<p>Return the number of good starting indexes.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: [10,13,12,14,15]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: </span><br><span class="line">From starting index i = 0, we can jump to i = 2 (since A[2] is the smallest among A[1], A[2], A[3], A[4] that is greater or equal to A[0]), then we can&apos;t jump any more.</span><br><span class="line">From starting index i = 1 and i = 2, we can jump to i = 3, then we can&apos;t jump any more.</span><br><span class="line">From starting index i = 3, we can jump to i = 4, so we&apos;ve reached the end.</span><br><span class="line">From starting index i = 4, we&apos;ve reached the end already.</span><br><span class="line">In total, there are 2 different starting indexes (i = 3, i = 4) where we can reach the end with some number of jumps.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,3,1,1,4]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: </span><br><span class="line">From starting index i = 0, we make jumps to i = 1, i = 2, i = 3:</span><br><span class="line"></span><br><span class="line">During our 1st jump (odd numbered), we first jump to i = 1 because A[1] is the smallest value in (A[1], A[2], A[3], A[4]) that is greater than or equal to A[0].</span><br><span class="line"></span><br><span class="line">During our 2nd jump (even numbered), we jump from i = 1 to i = 2 because A[2] is the largest value in (A[2], A[3], A[4]) that is less than or equal to A[1].  A[3] is also the largest value, but 2 is a smaller index, so we can only jump to i = 2 and not i = 3.</span><br><span class="line"></span><br><span class="line">During our 3rd jump (odd numbered), we jump from i = 2 to i = 3 because A[3] is the smallest value in (A[3], A[4]) that is greater than or equal to A[2].</span><br><span class="line"></span><br><span class="line">We can&apos;t jump from i = 3 to i = 4, so the starting index i = 0 is not good.</span><br><span class="line"></span><br><span class="line">In a similar manner, we can deduce that:</span><br><span class="line">From starting index i = 1, we jump to i = 4, so we reach the end.</span><br><span class="line">From starting index i = 2, we jump to i = 3, and then we can&apos;t jump anymore.</span><br><span class="line">From starting index i = 3, we jump to i = 4, so we reach the end.</span><br><span class="line">From starting index i = 4, we are already at the end.</span><br><span class="line">In total, there are 3 different starting indexes (i = 1, i = 3, i = 4) where we can reach the end with some number of jumps.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [5,1,3,4,2]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: </span><br><span class="line">We can reach the end from starting indexes 1, 2, and 4.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1 &lt;= A.length &lt;= 20000</code></li>
+<li><code>0 &lt;= A[i] &lt; 100000</code></li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>  这道题有个陷阱，步数是从第1步开始的，没有第0步这一说。</p>
+<h6 id="法一-ordered-map-dp"><a class="header-anchor" href="#法一-ordered-map-dp">¶</a>法一 ordered_map + dp</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">oddEvenJumps</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N =  A.size();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> dp[N][<span class="number">2</span>]&#123;&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m;</span><br><span class="line">        </span><br><span class="line">        dp[N<span class="number">-1</span>][<span class="number">0</span>] = dp[N<span class="number">-1</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = N<span class="number">-1</span>;i &gt;= <span class="number">0</span>; --i)&#123;</span><br><span class="line">            <span class="keyword">auto</span> it = m.lower_bound(A[i]);</span><br><span class="line">            <span class="keyword">if</span>(it != m.end()) dp[i][<span class="number">1</span>] = dp[it-&gt;second][<span class="number">0</span>];</span><br><span class="line">            it = m.upper_bound(A[i]);</span><br><span class="line">            <span class="keyword">if</span>(it!=m.begin()) dp[i][<span class="number">0</span>] = dp[(--it)-&gt;second][<span class="number">1</span>];</span><br><span class="line">            m[A[i]]= i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i) <span class="keyword">if</span>(dp[i][<span class="number">1</span>]) ++ans;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法二-单调栈"><a class="header-anchor" href="#法二-单调栈">¶</a>法二 单调栈</h6>
+<p>  数组右边大于等于某个数的最小值可以换个角度来看，首先是值大于等于当前值的最小值，其次是对应索引大于当前索引，如果将整个数组按大小给下标排序，那么数组右边大于等于某个数的最小值就相当于这个排序后的数组中找对应下标右边第一个大于当前下标的下标，这是单调栈的经典用法。代码中用stale_sort是因为题目要求如果有多个相同的大于等于当前数的最小值选其中下标小的一个。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; odd_next;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; even_next;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">make_next</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;idx, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; next)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; _stack;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> j : idx) &#123;</span><br><span class="line">            <span class="keyword">while</span>(_stack.size() &amp;&amp; _stack.top() &lt; j) &#123;</span><br><span class="line">                <span class="keyword">int</span> i = _stack.top(); _stack.pop();</span><br><span class="line">                next[i] = j;</span><br><span class="line">            &#125;</span><br><span class="line">            _stack.push(j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(_stack.size()) &#123;</span><br><span class="line">            <span class="keyword">int</span> i = _stack.top(); _stack.pop();</span><br><span class="line">            next[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init_next_array</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; idx(n);</span><br><span class="line">        </span><br><span class="line">        odd_next.resize(n);</span><br><span class="line">        even_next.resize(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i= <span class="number">0</span>; i&lt; n; i++) &#123;</span><br><span class="line">            idx[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        stable_sort(idx.begin(), idx.end(),</span><br><span class="line">        [&amp;A](<span class="keyword">int</span> i1, <span class="keyword">int</span> i2) &#123;<span class="keyword">return</span> A[i1] &lt; A[i2];&#125;);</span><br><span class="line">        make_next(idx, odd_next);</span><br><span class="line">        </span><br><span class="line">        stable_sort(idx.begin(), idx.end(),</span><br><span class="line">        [&amp;A](<span class="keyword">int</span> i1, <span class="keyword">int</span> i2) &#123;<span class="keyword">return</span> A[i1] &gt; A[i2];&#125;);</span><br><span class="line"></span><br><span class="line">        make_next(idx, even_next);</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">oddEvenJumps</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = A.size();</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; odd(n, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; even(n, <span class="number">0</span>);</span><br><span class="line">        odd[n<span class="number">-1</span>] = <span class="number">1</span>;</span><br><span class="line">        even[n<span class="number">-1</span>] = <span class="number">1</span>;</span><br><span class="line">        init_next_array(A);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = n<span class="number">-2</span>; j &gt;=<span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">auto</span> next = odd_next[j];</span><br><span class="line">            <span class="keyword">if</span> (next != j &amp;&amp; even[next] == <span class="number">1</span>) &#123;</span><br><span class="line">                odd[j] = <span class="number">1</span>;</span><br><span class="line">                result++;</span><br><span class="line">            &#125;</span><br><span class="line">            next = even_next[j];</span><br><span class="line">            <span class="keyword">if</span> (next != j &amp;&amp; odd[next] == <span class="number">1</span>) &#123;</span><br><span class="line">                even[j] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法三-bst"><a class="header-anchor" href="#法三-bst">¶</a>法三 BST</h6>
+<p>  这个解法有点惊艳，可以从中学到怎么在二叉搜索树中找到第一个大于等于或小于等于要插入的值的值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	Node* left = <span class="literal">NULL</span>, * right = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">bool</span> oddJump, evenJump;</span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">	Node(<span class="keyword">int</span> _val) : val(_val) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findUsingBST</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="keyword">const</span> &amp; A)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = A.size() - <span class="number">1</span>, res = <span class="number">1</span>, num;</span><br><span class="line">	Node root(A[n]), * t;</span><br><span class="line">	root.oddJump = <span class="literal">true</span>, root.evenJump = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">bool</span> oddJump, evenJump;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (n--) </span><br><span class="line">	&#123;</span><br><span class="line">		t = &amp;root, oddJump = evenJump = <span class="literal">false</span>, num = A[n];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (<span class="literal">true</span>) </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (num &lt; t-&gt;val) </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (!t-&gt;left) </span><br><span class="line">				&#123;</span><br><span class="line">					t-&gt;left = <span class="keyword">new</span> Node(num);</span><br><span class="line">					t-&gt;left-&gt;oddJump = t-&gt;evenJump;</span><br><span class="line">					t-&gt;left-&gt;evenJump = oddJump;</span><br><span class="line">					<span class="keyword">if</span> (t-&gt;left-&gt;oddJump) res++;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				evenJump = t-&gt;evenJump;</span><br><span class="line">				t = t-&gt;left;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (num &gt; t-&gt;val) </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (!t-&gt;right)</span><br><span class="line">				&#123;</span><br><span class="line">					t-&gt;right = <span class="keyword">new</span> Node(num);</span><br><span class="line">					t-&gt;right-&gt;oddJump = evenJump;</span><br><span class="line">					t-&gt;right-&gt;evenJump = t-&gt;oddJump;</span><br><span class="line">					<span class="keyword">if</span> (t-&gt;right-&gt;oddJump) res++;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				oddJump = t-&gt;oddJump;</span><br><span class="line">				t = t-&gt;right;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">std</span>::swap(t-&gt;oddJump, t-&gt;evenJump);</span><br><span class="line">				<span class="keyword">if</span> (t-&gt;oddJump) res++;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">oddEvenJumps</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="keyword">const</span> &amp; A)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> findUsingBST(A);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/23/903-Valid-Permutations-for-DI-Sequence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/23/903-Valid-Permutations-for-DI-Sequence/" itemprop="url">903. Valid Permutations for DI Sequence</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-23T15:34:33+08:00">2020-02-23</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-23T15:50:29+08:00">2020-02-23</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="903-valid-permutations-for-di-sequence"><a class="header-anchor" href="#903-valid-permutations-for-di-sequence">¶</a><a href="https://leetcode.com/problems/valid-permutations-for-di-sequence/" target="_blank" rel="noopener">903. Valid Permutations for DI Sequence</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>We are given <code>S</code>, a length <code>n</code> string of characters from the set <code>{'D', 'I'}</code>. (These letters stand for “decreasing” and “increasing”.)</p>
+<p>A <em>valid permutation</em> is a permutation <code>P[0], P[1], ..., P[n]</code> of integers <code>{0, 1, ..., n}</code>, such that for all <code>i</code>:</p>
+<ul>
+<li>If <code>S[i] == 'D'</code>, then <code>P[i] &gt; P[i+1]</code>, and;</li>
+<li>If <code>S[i] == 'I'</code>, then <code>P[i] &lt; P[i+1]</code>.</li>
+</ul>
+<p>How many valid permutations are there?  Since the answer may be large, <strong>return your answer modulo <code>10^9 + 7</code></strong>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;DID&quot;</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: </span><br><span class="line">The 5 valid permutations of (0, 1, 2, 3) are:</span><br><span class="line">(1, 0, 3, 2)</span><br><span class="line">(2, 0, 3, 1)</span><br><span class="line">(2, 1, 3, 0)</span><br><span class="line">(3, 0, 2, 1)</span><br><span class="line">(3, 1, 2, 0)</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1 &lt;= S.length &lt;= 200</code></li>
+<li><code>S</code> consists only of characters from the set <code>{'D', 'I'}</code>.</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h6 id="法一-dp-分治"><a class="header-anchor" href="#法一-dp-分治">¶</a>法一 dp+分治</h6>
+<p>  比如0，1，2，3，4，5。5附近的序列肯定是&quot;ID&quot;，然后从剩余的元素中选几个放左边，然后别的放右边，左右的更短的序列和所选数字的组合对应子问题。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">constexpr</span> <span class="keyword">static</span> <span class="keyword">int</span> p = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">    <span class="keyword">long</span> c[<span class="number">201</span>][<span class="number">201</span>]&#123;&#125;, dp[<span class="number">201</span>][<span class="number">201</span>]&#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">C</span><span class="params">(<span class="keyword">long</span> N, <span class="keyword">long</span> k)</span></span>&#123;<span class="comment">//用dp算组合数</span></span><br><span class="line">        <span class="keyword">if</span>(c[N][k] != <span class="number">0</span>) <span class="keyword">return</span> c[N][k];</span><br><span class="line">        <span class="keyword">if</span>(k == <span class="number">0</span> || k==N) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(k == <span class="number">1</span> || k == N<span class="number">-1</span>) <span class="keyword">return</span> N;</span><br><span class="line">        c[N][k] = (C(N<span class="number">-1</span>, k<span class="number">-1</span>)+C(N<span class="number">-1</span>,k))%p;</span><br><span class="line">        <span class="keyword">return</span> c[N][k]; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">DP</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;S, <span class="keyword">int</span> s, <span class="keyword">int</span> e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s&gt;=e) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(dp[s][e] != <span class="number">0</span>) <span class="keyword">return</span> dp[s][e];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">long</span> ans = <span class="number">0</span>, l = e-s+<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(S[s] == <span class="string">'D'</span>) ans = (ans + DP(S, s+<span class="number">1</span>, e))%p;</span><br><span class="line">        <span class="keyword">if</span>(S[e] == <span class="string">'I'</span>) ans = (ans + DP(S, s, e<span class="number">-1</span>))%p;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = s; i &lt; e; ++i) <span class="keyword">if</span>(S[i] == <span class="string">'I'</span>&amp;&amp;S[i+<span class="number">1</span>] == <span class="string">'D'</span>) ans = (ans + C(l<span class="number">-1</span>, i-s+<span class="number">1</span>)%p * DP(S, s, i<span class="number">-1</span>)%p * DP(S, i+<span class="number">2</span>, e)%p)%p;</span><br><span class="line">        <span class="keyword">return</span> dp[s][e] = ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numPermsDISequence</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> DP(S, <span class="number">0</span>, S.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>官方的解法求组合数是用阶乘和逆元求的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">from functools import lru_cache</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def numPermsDISequence(self, S):</span><br><span class="line">        MOD = 10**9 + 7</span><br><span class="line"></span><br><span class="line">        fac = [1, 1]</span><br><span class="line">        for x in range(2, 201):</span><br><span class="line">            fac.append(fac[-1] * x % MOD)</span><br><span class="line">        facinv = [pow(f, MOD-2, MOD) for f in fac]</span><br><span class="line"></span><br><span class="line">        def binom(n, k):</span><br><span class="line">            return fac[n] * facinv[n-k] % MOD * facinv[k] % MOD</span><br><span class="line"></span><br><span class="line">        @lru_cache(None)</span><br><span class="line">        def dp(i, j):</span><br><span class="line">            if i &gt;= j: return 1</span><br><span class="line">            ans = 0</span><br><span class="line">            n = j - i + 2</span><br><span class="line">            if S[i] == &apos;I&apos;: ans += dp(i+1, j)</span><br><span class="line">            if S[j] == &apos;D&apos;: ans += dp(i, j-1)</span><br><span class="line"></span><br><span class="line">            for k in range(i+1, j+1):</span><br><span class="line">                if S[k-1:k+1] == &apos;DI&apos;:</span><br><span class="line">                    ans += binom(n-1, k-i) * dp(i, k-2) % MOD * dp(k+1, j) % MOD</span><br><span class="line">                    ans %= MOD</span><br><span class="line">            return ans</span><br><span class="line"></span><br><span class="line">        return dp(0, len(S) - 1)</span><br></pre></td></tr></table></figure>
+<h6 id="法一-dp"><a class="header-anchor" href="#法一-dp">¶</a>法一 dp</h6>
+<p><a href="https://leetcode-cn.com/problems/valid-permutations-for-di-sequence/solution/n2-c-solution-by-georgeljc/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/valid-permutations-for-di-sequence/solution/n2-c-solution-by-georgeljc/</a></p>
+<p>  dp的索引维护<strong>相对大小</strong>的信息，意识到从相对大小的角度思考也是本题的一个关键。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numPermsDISequence</span><span class="params">(<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp[<span class="number">205</span>][<span class="number">205</span>],n=S.size(),mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">        <span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;++i) dp[<span class="number">0</span>][i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(S.at(i<span class="number">-1</span>)==<span class="string">'D'</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> suf=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=n-i;j&gt;=<span class="number">0</span>;--j)&#123;</span><br><span class="line">                    dp[i][j]=(suf+dp[i<span class="number">-1</span>][j+<span class="number">1</span>])%mod;</span><br><span class="line">                    suf=dp[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> pre=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=n-i;++j)&#123;</span><br><span class="line">                    dp[i][j]=(pre+dp[i<span class="number">-1</span>][j])%mod;</span><br><span class="line">                    pre=dp[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//作者：georgeljc</span></span><br><span class="line"><span class="comment">//链接：https://leetcode-cn.com/problems/valid-permutations-for-di-sequence/solution/n2-c-solution-by-georgeljc/</span></span><br><span class="line"><span class="comment">//来源：力扣（LeetCode）</span></span><br><span class="line"><span class="comment">//著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span></span><br></pre></td></tr></table></figure>
+<p>官方的优化解:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from functools import lru_cache</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def numPermsDISequence(self, S):</span><br><span class="line">        MOD = 10**9 + 7</span><br><span class="line">        N = len(S)</span><br><span class="line"></span><br><span class="line">        @lru_cache(None)</span><br><span class="line">        def dp(i, j):</span><br><span class="line">            # How many ways to place P_i with relative rank j?</span><br><span class="line">            if not(0 &lt;= j &lt;= i):</span><br><span class="line">                return 0</span><br><span class="line">            if i == 0:</span><br><span class="line">                return 1</span><br><span class="line">            elif S[i-1] == &apos;D&apos;:</span><br><span class="line">                return (dp(i, j+1) + dp(i-1, j)) % MOD</span><br><span class="line">            else:</span><br><span class="line">                return (dp(i, j-1) + dp(i-1, j-1)) % MOD</span><br><span class="line"></span><br><span class="line">        return sum(dp(N, j) for j in range(N+1)) % MOD</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/23/1360-Number-of-Days-Between-Two-Dates/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1352,491 +1795,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/21/924-Minimize-Malware-Spread/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/21/924-Minimize-Malware-Spread/" itemprop="url">924. Minimize Malware Spread</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-21T21:18:00+08:00">2020-02-21</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T21:23:55+08:00">2020-02-21</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="924-minimize-malware-spread"><a class="header-anchor" href="#924-minimize-malware-spread">¶</a><a href="https://leetcode.com/problems/minimize-malware-spread/" target="_blank" rel="noopener">924. Minimize Malware Spread</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>In a network of nodes, each node <code>i</code> is directly connected to another node <code>j</code> if and only if <code>graph[i][j] = 1</code>.</p>
-<p>Some nodes <code>initial</code> are initially infected by malware.  Whenever two nodes are directly connected and at least one of those two nodes is infected by malware, both nodes will be infected by malware.  This spread of malware will continue until no more nodes can be infected in this manner.</p>
-<p>Suppose <code>M(initial)</code> is the final number of nodes infected with malware in the entire network, after the spread of malware stops.</p>
-<p>We will remove one node from the initial list.  Return the node that if removed, would minimize <code>M(initial)</code>.  If multiple nodes could be removed to minimize <code>M(initial)</code>, return such a node with the smallest index.</p>
-<p>Note that if a node was removed from the <code>initial</code> list of infected nodes, it may still be infected later as a result of the malware spread.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: graph = [[1,1,0],[1,1,0],[0,0,1]], initial = [0,1]</span><br><span class="line">Output: 0</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: graph = [[1,0,0],[0,1,0],[0,0,1]], initial = [0,2]</span><br><span class="line">Output: 0</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: graph = [[1,1,1],[1,1,1],[1,1,1]], initial = [1,2]</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>1 &lt; graph.length = graph[0].length &lt;= 300</code></li>
-<li><code>0 &lt;= graph[i][j] == graph[j][i] &lt;= 1</code></li>
-<li><code>graph[i][i] = 1</code></li>
-<li><code>1 &lt;= initial.length &lt; graph.length</code></li>
-<li><code>0 &lt;= initial[i] &lt; graph.length</code></li>
-</ol>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  考察并查集。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">DisjointSet</span> &#123;</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rank;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">int</span> sz;</span><br><span class="line"></span><br><span class="line">        DisjointSet(<span class="keyword">int</span> n) &#123;</span><br><span class="line">            sz = n;</span><br><span class="line">            parent = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n);</span><br><span class="line">            rank = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n);</span><br><span class="line">            cnt = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">                parent[i] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (parent[x] != x) &#123;</span><br><span class="line">                parent[x] = parent[parent[x]];</span><br><span class="line">                x = parent[x];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">union_sets</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> rx = find(x), ry = find(y);</span><br><span class="line">            <span class="keyword">if</span> (rx != ry) &#123;</span><br><span class="line">                --sz;</span><br><span class="line">                <span class="keyword">if</span> (rank[rx] &lt; rank[ry]) &#123;</span><br><span class="line">                    swap(rx, ry);</span><br><span class="line">                &#125;</span><br><span class="line">                parent[ry] = rx;</span><br><span class="line">                cnt[rx] += cnt[ry];</span><br><span class="line">                <span class="keyword">if</span> (rank[rx] == rank[ry]) &#123;</span><br><span class="line">                    ++rank[rx];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> sz;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getCnt</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> cnt[find(x)];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMalwareSpread</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; initial)</span> </span>&#123;</span><br><span class="line">        <span class="function">DisjointSet <span class="title">d</span><span class="params">(graph.size())</span></span>;</span><br><span class="line">        sort(initial.begin(), initial.end());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.size(); ++i) <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; graph.size(); ++j) <span class="keyword">if</span>(graph[i][j] == <span class="number">1</span>)  d.union_sets(i, j);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> a[graph.size()]&#123;&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> node = <span class="number">-1</span>, sz= INT_MIN, b = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : initial)&#123;</span><br><span class="line">            <span class="keyword">int</span> r = d.find(x), t = d.getCnt(r);</span><br><span class="line">            <span class="keyword">if</span>(sz &lt; t) sz = t, node = x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>还可以用dfs做，思路是给节点染色，然后统计颜色数量最多的那个或者索引最小的那个:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minMalwareSpread</span><span class="params">(<span class="keyword">int</span>[][] graph, <span class="keyword">int</span>[] initial)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1. Color each component.</span></span><br><span class="line">        <span class="comment">// colors[node] = the color of this node.</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> N = graph.length;</span><br><span class="line">        <span class="keyword">int</span>[] colors = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        Arrays.fill(colors, -<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> C = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> node = <span class="number">0</span>; node &lt; N; ++node)</span><br><span class="line">            <span class="keyword">if</span> (colors[node] == -<span class="number">1</span>)</span><br><span class="line">                dfs(graph, colors, node, C++);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. Size of each color.</span></span><br><span class="line">        <span class="keyword">int</span>[] size = <span class="keyword">new</span> <span class="keyword">int</span>[C];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> color: colors)</span><br><span class="line">            size[color]++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. Find unique colors.</span></span><br><span class="line">        <span class="keyword">int</span>[] colorCount = <span class="keyword">new</span> <span class="keyword">int</span>[C];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> node: initial)</span><br><span class="line">            colorCount[colors[node]]++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4. Answer</span></span><br><span class="line">        <span class="keyword">int</span> ans = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> node: initial) &#123;</span><br><span class="line">            <span class="keyword">int</span> c = colors[node];</span><br><span class="line">            <span class="keyword">if</span> (colorCount[c] == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (ans == Integer.MAX_VALUE)</span><br><span class="line">                    ans = node;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (size[c] &gt; size[colors[ans]])</span><br><span class="line">                    ans = node;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (size[c] == size[colors[ans]] &amp;&amp; node &lt; ans)</span><br><span class="line">                    ans = node;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (ans == Integer.MAX_VALUE)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> node: initial)</span><br><span class="line">                ans = Math.min(ans, node);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] graph, <span class="keyword">int</span>[] colors, <span class="keyword">int</span> node, <span class="keyword">int</span> color)</span> </span>&#123;</span><br><span class="line">        colors[node] = color;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> nei = <span class="number">0</span>; nei &lt; graph.length; ++nei)</span><br><span class="line">            <span class="keyword">if</span> (graph[node][nei] == <span class="number">1</span> &amp;&amp; colors[nei] == -<span class="number">1</span>)</span><br><span class="line">                dfs(graph, colors, nei, color);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/21/815-Bus-Routes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/21/815-Bus-Routes/" itemprop="url">815. Bus Routes</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-21T15:57:45+08:00">2020-02-21</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T15:58:18+08:00">2020-02-21</time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="815-bus-routes"><a class="header-anchor" href="#815-bus-routes">¶</a><a href="https://leetcode.com/problems/bus-routes/" target="_blank" rel="noopener">815. Bus Routes</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>We have a list of bus routes. Each <code>routes[i]</code> is a bus route that the i-th bus repeats forever. For example if <code>routes[0] = [1, 5, 7]</code>, this means that the first bus (0-th indexed) travels in the sequence 1-&gt;5-&gt;7-&gt;1-&gt;5-&gt;7-&gt;1-&gt;… forever.</p>
-<p>We start at bus stop <code>S</code> (initially not on a bus), and we want to go to bus stop <code>T</code>. Travelling by buses only, what is the least number of buses we must take to reach our destination? Return -1 if it is not possible.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">Input: </span><br><span class="line">routes = [[1, 2, 7], [3, 6, 7]]</span><br><span class="line">S = 1</span><br><span class="line">T = 6</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: </span><br><span class="line">The best strategy is take the first bus to the bus stop 7, then take the second bus to the bus stop 6.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>1 &lt;= routes.length &lt;= 500</code>.</li>
-<li><code>1 &lt;= routes[i].length &lt;= 500</code>.</li>
-<li><code>0 &lt;= routes[i][j] &lt; 10 ^ 6</code>.</li>
-</ul>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>Language: <strong>C++</strong></p>
-<h6 id="法一-类似地铁换乘站的思路bfs"><a class="header-anchor" href="#法一-类似地铁换乘站的思路bfs">¶</a>法一 类似地铁换乘站的思路bfs</h6>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numBusesToDestination</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; routes, <span class="keyword">int</span> S, <span class="keyword">int</span> T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(S == T) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt;&gt; um;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; s, t;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; new_routes(routes.size());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; routes.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; routes[i].size(); ++j)&#123;</span><br><span class="line">                um[routes[i][j]].insert(i);<span class="comment">//每个站点可以换乘到哪几条路线</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;p : um) <span class="keyword">if</span>(p.second.size() != <span class="number">1</span>) <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : p.second) new_routes[x].push_back(p.first);<span class="comment">//每一条路线有哪几个换乘站，如果一个站点只能换乘到一条路线，那这个站点就不是换乘站，所以可以不用统计</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : um[S])&#123; s.insert(x);q.push(x); &#125;<span class="comment">//将S所在的路线push进队列</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : um[T]) t.insert(x);<span class="comment">//终点T所在的路线</span></span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> sz=q.size();</span><br><span class="line">            <span class="keyword">while</span>(sz--)&#123;</span><br><span class="line">                <span class="keyword">auto</span> n = q.front(); q.pop();</span><br><span class="line">                <span class="keyword">if</span>(t.count(n)) <span class="keyword">return</span> ans;<span class="comment">//到达T所在的路线</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : new_routes[n])&#123;<span class="comment">//枚举换乘站</span></span><br><span class="line">                    <span class="keyword">if</span>(x == n) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;y : um[x])&#123;<span class="comment">//枚举每个换乘站的路线</span></span><br><span class="line">                        <span class="keyword">if</span>(s.count(y)) <span class="keyword">continue</span>;</span><br><span class="line">                        s.insert(y);</span><br><span class="line">                        q.push(y);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ++ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h6 id="法二-路线bfs"><a class="header-anchor" href="#法二-路线bfs">¶</a>法二 路线bfs</h6>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numBusesToDestination</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; routes, <span class="keyword">int</span> S, <span class="keyword">int</span> T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(S == T) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> N = routes.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;&gt; m(N);</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; targ,vis;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; G(N);</span><br><span class="line">        <span class="built_in">queue</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i) <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:routes[i]) m[i].insert(x);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N ; ++i) <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; N; ++j) <span class="keyword">if</span>(isIntersect(m[i], m[j])) G[i].push_back(j), G[j].push_back(i);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(m[i].count(S)) q.push(&#123;<span class="number">0</span>, i&#125;), vis.insert(i);</span><br><span class="line">            <span class="keyword">if</span>(m[i].count(T)) targ.insert(i);</span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">auto</span> [d, node] = q.front(); q.pop();</span><br><span class="line">            <span class="keyword">if</span>(targ.count(node)) <span class="keyword">return</span> d+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : G[node])&#123;</span><br><span class="line">                <span class="keyword">if</span>(vis.count(x)) <span class="keyword">continue</span>;</span><br><span class="line">                q.push(&#123;d+<span class="number">1</span>, x&#125;);</span><br><span class="line">                vis.insert(x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isIntersect</span><span class="params">(<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; &amp;s1, <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; &amp;s2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it1 = s1.begin(), it2= s2.begin();</span><br><span class="line">        <span class="keyword">while</span>(it1 != s1.end() &amp;&amp; it2 != s2.end())&#123;</span><br><span class="line">            <span class="keyword">if</span>(*it1 == *it2) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span>(*it1 &lt; *it2) ++it1; <span class="keyword">else</span> ++it2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h6 id="法三-坐公交车bfs"><a class="header-anchor" href="#法三-坐公交车bfs">¶</a>法三 坐公交车bfs</h6>
-<p>  就像平时坐公交车一样，首先从S出发时，先看S处的站牌有哪几趟公交，然后每趟公交能到哪些地方，把这些地方放入队列，同时标记这些已经坐过的公交，这是一步，按照这个步骤bfs下去即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numBusesToDestination</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; routes, <span class="keyword">int</span> S, <span class="keyword">int</span> T)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> noOfBuses = routes.size();</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; hashTable;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (S == T)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; noOfBuses ; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span> ; j &lt; routes[i].size() ; ++j)&#123;   </span><br><span class="line">                hashTable[routes[i][j]].push_back(i);</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; buses;</span><br><span class="line">        <span class="keyword">bool</span> visited[noOfBuses] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        buses.push(S);</span><br><span class="line">        <span class="keyword">int</span> numBuses = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (!buses.empty())&#123;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> size = buses.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size ; ++i)&#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">int</span> currCity = buses.front();</span><br><span class="line">                buses.pop();</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> bus : hashTable[currCity])&#123;</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">if</span> (visited[bus])&#123;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    visited[bus] = <span class="literal">true</span>;</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> city : routes[bus])&#123;</span><br><span class="line">                        <span class="keyword">if</span> (city == T)&#123;</span><br><span class="line">                            <span class="keyword">return</span> numBuses;</span><br><span class="line">                        &#125;</span><br><span class="line">                        buses.push(city);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                    </span><br><span class="line">            &#125;</span><br><span class="line">            numBuses++;</span><br><span class="line">      &#125; </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/21/899-Orderly-Queue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/21/899-Orderly-Queue/" itemprop="url">899. Orderly Queue</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-21T15:55:00+08:00">2020-02-21</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T16:00:37+08:00">2020-02-21</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="899-orderly-queue"><a class="header-anchor" href="#899-orderly-queue">¶</a><a href="https://leetcode.com/problems/orderly-queue/" target="_blank" rel="noopener">899. Orderly Queue</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>A string <code>S</code> of lowercase letters is given.  Then, we may make any number of <em>moves</em>.</p>
-<p>In each move, we choose one of the first <code>K</code> letters (starting from the left), remove it, and place it at the end of the string.</p>
-<p>Return the lexicographically smallest string we could have after any number of moves.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: S = &quot;cba&quot;, K = 1</span><br><span class="line">Output: &quot;acb&quot;</span><br><span class="line">Explanation: </span><br><span class="line">In the first move, we move the 1st character (&quot;c&quot;) to the end, obtaining the string &quot;bac&quot;.</span><br><span class="line">In the second move, we move the 1st character (&quot;b&quot;) to the end, obtaining the final result &quot;acb&quot;.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: S = &quot;baaca&quot;, K = 3</span><br><span class="line">Output: &quot;aaabc&quot;</span><br><span class="line">Explanation: </span><br><span class="line">In the first move, we move the 1st character (&quot;b&quot;) to the end, obtaining the string &quot;aacab&quot;.</span><br><span class="line">In the second move, we move the 3rd character (&quot;c&quot;) to the end, obtaining the final result &quot;aaabc&quot;.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>1 &lt;= K &lt;= S.length &lt;= 1000</code></li>
-<li><code>S</code> consists of lowercase letters only.</li>
-</ol>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  思维题。如果K==1，相当于求字符串最小表示；当K&gt;1，则可以将任意字符放到任意位置，第一个字符不动，后面的像回转寿司一样转到它想插入的位置即可，既然可以把任意字符放到任意位置，那么这样最小的就是排序后的字符串。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">orderlyQueue</span><span class="params">(<span class="built_in">string</span> S, <span class="keyword">int</span> K)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(K &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            sort(S.begin(), S.end());</span><br><span class="line">            <span class="keyword">return</span> S;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>,k=<span class="number">0</span>, n =S.size();</span><br><span class="line">        <span class="keyword">while</span>(i  &lt;n &amp;&amp; j &lt; n&amp;&amp; k &lt;n )&#123;</span><br><span class="line">            <span class="keyword">int</span> t =  S[(i+k)%n] - S[(j+k)%n];</span><br><span class="line">            <span class="keyword">if</span>(!t) k++;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(t &lt;<span class="number">0</span>) j += k+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> i += k+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(j == i) j++;</span><br><span class="line">                k = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> r = min(i, j);</span><br><span class="line">        <span class="keyword">return</span> S.substr(r) + S.substr(<span class="number">0</span>, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1887,7 +1845,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">442</span>
+                  <span class="site-state-item-count">445</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1898,7 +1856,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1909,7 +1867,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

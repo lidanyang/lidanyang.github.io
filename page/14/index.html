@@ -248,6 +248,506 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/22/552-Student-Attendance-Record-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/22/552-Student-Attendance-Record-II/" itemprop="url">552. Student Attendance Record II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T19:37:00+08:00">2020-01-22</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-22T19:42:30+08:00">2020-01-22</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="552-student-attendance-record-ii"><a class="header-anchor" href="#552-student-attendance-record-ii">¶</a><a href="https://leetcode.com/problems/student-attendance-record-ii/" target="_blank" rel="noopener">552. Student Attendance Record II</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given a positive integer <strong>n</strong>, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 10<sup>9</sup> + 7.</p>
+<p>A student attendance record is a string that only contains the following three characters:</p>
+<ol>
+<li><strong>‘A’</strong> : Absent.</li>
+<li><strong>‘L’</strong> : Late.</li>
+<li><strong>‘P’</strong> : Present.</li>
+</ol>
+<p>A record is regarded as rewardable if it doesn’t contain <strong>more than one ‘A’ (absent)</strong> or <strong>more than two continuous ‘L’ (late)</strong>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 2</span><br><span class="line">Output: 8 </span><br><span class="line">Explanation:</span><br><span class="line">There are 8 records with length 2 will be regarded as rewardable:</span><br><span class="line">&quot;PP&quot; , &quot;AP&quot;, &quot;PA&quot;, &quot;LP&quot;, &quot;PL&quot;, &quot;AL&quot;, &quot;LA&quot;, &quot;LL&quot;</span><br><span class="line">Only &quot;AA&quot; won&apos;t be regarded as rewardable owing to more than one absent times.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong> The value of <strong>n</strong> won’t exceed 100,000.</p>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h5 id="法一-dp"><a class="header-anchor" href="#法一-dp">¶</a>法一 dp</h5>
+<p>  下面代码里<code>ailj</code>代表有<code>i</code>个A和以<code>j</code>个L结尾。</p>
+<p>  详细解释见lc讨论区:<a href="https://leetcode.com/problems/student-attendance-record-ii/discuss/101651/Python-Straightforward-DP-with-Explanation" target="_blank" rel="noopener">https://leetcode.com/problems/student-attendance-record-ii/discuss/101651/Python-Straightforward-DP-with-Explanation</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">checkRecord</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> a0l0 = <span class="number">1</span>, a0l1 = <span class="number">1</span>, a0l2 = <span class="number">0</span>, a1l0 = <span class="number">1</span>, a1l1 = <span class="number">0</span>, a1l2 = <span class="number">0</span>, m = <span class="number">1000000007</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a0l0 = (a0l0 + a0l1 + a0l2) % m;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a0l1 = a0l0;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a0l2 = a0l1;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a1l0 = (a0l0 + a0l1 + a0l2 + a1l0 + a1l1 + a1l2) % m;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a1l1 = a1l0;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a1l2 = a1l1;</span><br><span class="line">            a0l0 = n_a0l0, a0l1 = n_a0l1, a0l2 = n_a0l2, a1l0 = n_a1l0, a1l1 = n_a1l1, a1l2 = n_a1l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (a0l0 + a0l1 + a0l2 + a1l0 + a1l1 + a1l2)%m;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="法二-dp-矩阵快速幂运算"><a class="header-anchor" href="#法二-dp-矩阵快速幂运算">¶</a>法二 dp+矩阵快速幂运算</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD=<span class="number">1000000007</span>;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">mat</span> &#123;</span></span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&gt;m;</span><br><span class="line">		<span class="keyword">int</span> n;</span><br><span class="line">		mat(<span class="keyword">int</span> nn,<span class="keyword">int</span> dia) &#123;</span><br><span class="line">			n=nn;</span><br><span class="line">			m=<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&gt;(n,<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(n,<span class="number">0</span>));</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">				m[i][i]=dia;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		mat <span class="keyword">operator</span>*(mat b)<span class="keyword">const</span> &#123;</span><br><span class="line">			<span class="keyword">int</span> i,j,k;</span><br><span class="line">			<span class="function">mat <span class="title">res</span><span class="params">(n,<span class="number">0</span>)</span></span>;</span><br><span class="line">			<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					<span class="keyword">for</span> (k=<span class="number">0</span>;k&lt;n;k++) &#123;</span><br><span class="line">						res.m[i][j]=(res.m[i][j]+m[i][k]*b.m[k][j])%MOD;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> res;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function">mat <span class="title">exp</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">			<span class="function">mat <span class="title">res</span><span class="params">(n,<span class="number">1</span>)</span></span>;</span><br><span class="line">			mat b=*<span class="keyword">this</span>;</span><br><span class="line">			<span class="keyword">while</span>(x&gt;<span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span>(x%<span class="number">2</span>==<span class="number">1</span>) &#123;</span><br><span class="line">					res=res*b;</span><br><span class="line">				&#125;</span><br><span class="line">				b=b*b;</span><br><span class="line">				x&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> res;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;leftdot(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v) &#123;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;res=<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n,<span class="number">0</span>);</span><br><span class="line">			<span class="keyword">int</span> i,j;</span><br><span class="line">			<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					res[i]=(res[i]+v[i]*m[j][i])%MOD;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> res;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">checkRecord</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		<span class="function">mat <span class="title">t</span><span class="params">(<span class="number">6</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">		t.m=<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&gt; &#123; </span><br><span class="line">            &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;, </span><br><span class="line">            &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;, </span><br><span class="line">            &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;, </span><br><span class="line">            &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;, </span><br><span class="line">            &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;, </span><br><span class="line">            &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;s=<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">		t=t.<span class="built_in">exp</span>(n);</span><br><span class="line">		s=t.leftdot(s);</span><br><span class="line">		<span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++) &#123;</span><br><span class="line">			res=(res+s[i])%MOD;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/22/600-Non-negative-Integers-without-Consecutive-Ones/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/22/600-Non-negative-Integers-without-Consecutive-Ones/" itemprop="url">600. Non-negative Integers without Consecutive Ones</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T01:46:00+08:00">2020-01-22</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-22T02:05:03+08:00">2020-01-22</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="600-non-negative-integers-without-consecutive-ones"><a class="header-anchor" href="#600-non-negative-integers-without-consecutive-ones">¶</a><a href="https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/" target="_blank" rel="noopener">600. Non-negative Integers without Consecutive Ones</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given a positive integer n, find the number of <strong>non-negative</strong> integers less than or equal to n, whose binary representations do NOT contain <strong>consecutive ones</strong>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: </span><br><span class="line">Here are the non-negative integers &lt;= 5 with their corresponding binary representations:</span><br><span class="line">0 : 0</span><br><span class="line">1 : 1</span><br><span class="line">2 : 10</span><br><span class="line">3 : 11</span><br><span class="line">4 : 100</span><br><span class="line">5 : 101</span><br><span class="line">Among them, only integer 3 disobeys the rule (two consecutive ones) and the other 5 satisfy the rule.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong> 1 &lt;= n &lt;= 10<sup>9</sup></p>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h5 id="法一-dp"><a class="header-anchor" href="#法一-dp">¶</a>法一 dp</h5>
+<p>  观察整数从0开始增加的过程:比如1010这个数，可以看成0加上1000变成1000，然后加上10变成1010，可以发现每次都加一个2的从高位到低位的幂次，如果每次加的2的幂次对应位上的1和前一个加的不是连续的，那么<strong>小于</strong>当前幂次的所有的不含连续1的整数都可以和前一个幂次组成的数都是合法值。比如对于1010来说，1000加上所有小于100的不含连续1的值，肯定也不含连续1；</p>
+<p>  根据上面的分析，可以先求出所有<strong>小于</strong>2的各种幂次的情况，存到dp数组里。假设dp1是最高位为0的情况对应的个数，dp2是最高位为1的情况对应的个数，则<code>dp1,dp2=dp1+dp2,dp1</code>刚好是斐波那契数列。然后用这个数组求任意整数的情况:</p>
+<ol>
+<li>当遇到<code>....10...</code>这种情况时，则计数值直接加上dp数组对应位的上的值；</li>
+<li>当遇到<code>....11...</code>这种情况时，加上当前位对应的dp值之后，数字再往后增加二进制表示都会带上这个前缀，肯定不合法，直接返回；</li>
+<li><code>....100000..0</code>加到最后一个1的时候，如果没有出现2的情况，则计数值加1后返回。注意，dp数组存的是小于当前位幂次的合法值，比如10000，在对应的dp数组中是存放在第5位中，代表0-1111的所有中的合法值，其中没有包括该幂次本身，所以当该幂次也是一个合法值时也需要加到计数值里去。为什么一定要是最后一个2的幂次？因为比如<code>10...0100...</code>在加第二个1对应的dp值时，统计的是<code>10...0000...</code>到<code>10...0011...</code>这个区间中的合法值，其中包含了前一个幂次<code>10...0000...</code>。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findIntegers</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp[<span class="number">32</span>]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">13</span>,<span class="number">21</span>,<span class="number">34</span>,<span class="number">55</span>,<span class="number">89</span>,<span class="number">144</span>,<span class="number">233</span>,<span class="number">377</span>,<span class="number">610</span>,<span class="number">987</span>,<span class="number">1597</span>,<span class="number">2584</span>,<span class="number">4181</span>,<span class="number">6765</span>,<span class="number">10946</span>,<span class="number">17711</span>,<span class="number">28657</span>,<span class="number">46368</span>,<span class="number">75025</span>,<span class="number">121393</span>,<span class="number">196418</span>,<span class="number">317811</span>,<span class="number">514229</span>,<span class="number">832040</span>,<span class="number">1346269</span>,<span class="number">2178309</span>,<span class="number">3524578</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(num)&#123;</span><br><span class="line">            b.push_back(num&amp;<span class="number">1</span>);</span><br><span class="line">            num&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=b.size()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;--i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(b[i]==<span class="number">1</span>)&#123;</span><br><span class="line">                ans+=dp[i];</span><br><span class="line">                <span class="keyword">if</span>(i+<span class="number">1</span>&lt;b.size()&amp;&amp;<span class="number">1</span>==b[i+<span class="number">1</span>]) </span><br><span class="line">                    <span class="keyword">return</span> ans;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/22/719-Find-K-th-Smallest-Pair-Distance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/22/719-Find-K-th-Smallest-Pair-Distance/" itemprop="url">719. Find K-th Smallest Pair Distance</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T00:56:00+08:00">2020-01-22</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-22T01:14:46+08:00">2020-01-22</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="668-kth-smallest-number-in-multiplication-table"><a class="header-anchor" href="#668-kth-smallest-number-in-multiplication-table">¶</a><a href="https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/" target="_blank" rel="noopener">668. Kth Smallest Number in Multiplication Table</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Nearly every one have used the . But could you find out the <code>k-th</code> smallest number quickly from the multiplication table?</p>
+<p>Given the height <code>m</code> and the length <code>n</code> of a <code>m * n</code> Multiplication Table, and a positive integer <code>k</code>, you need to return the <code>k-th</code> smallest number in this table.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: m = 3, n = 3, k = 5</span><br><span class="line">Output: </span><br><span class="line">Explanation: </span><br><span class="line">The Multiplication Table:</span><br><span class="line">1	2	3</span><br><span class="line">2	4	6</span><br><span class="line">3	6	9</span><br><span class="line"></span><br><span class="line">The 5-th smallest number is 3 (1, 2, 2, 3, 3).</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: m = 2, n = 3, k = 6</span><br><span class="line">Output: </span><br><span class="line">Explanation: </span><br><span class="line">The Multiplication Table:</span><br><span class="line">1	2	3</span><br><span class="line">2	4	6</span><br><span class="line"></span><br><span class="line">The 6-th smallest number is 6 (1, 2, 2, 3, 4, 6).</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The <code>m</code> and <code>n</code> will be in the range [1, 30000].</li>
+<li>The <code>k</code> will be in the range [1, m * n]</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h5 id="标准解法"><a class="header-anchor" href="#标准解法">¶</a>标准解法</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=m; ++i) ans+=min(n, k/i);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthNumber</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low=<span class="number">0</span>, high=m*n;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = low+((high-low)&gt;&gt;<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(count(m, n, mid) &lt; k) low=mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> high=mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> low;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="数学解法"><a class="header-anchor" href="#数学解法">¶</a>数学解法</h5>
+<p>  <code>find_approx</code>查找近似值，<code>ff</code>查找小于某个值的数的数。找到近似值后，向上向下找使得ff大于和小于等于k的第一个值作为接下来二分的上下界，然后二分找精确值即可。<br>
+  思路有可能来源于<a href="https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/discuss/283204/Optimization-with-Calculus-for-even-larger-inputs" target="_blank" rel="noopener">leetcode讨论区</a>。<code>C=1.0+log((rl)(m*n)) + 0.5/n + 0.5/m;</code>和<code>rl RHS=k+0.5*m+0.5*n;</code>中的<code>+ 0.5/n + 0.5/m;</code>和<code>+0.5*m+0.5*n;</code>这两个余项可能是为了弥补自然对数和调和级数的偏差而取了渐进式中的第一项(<code>Hn - lnn ≈ 1/2n+γ</code>)。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> ui;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span> ,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; pll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> rl;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _x first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _y second</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbg(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">": "</span> &lt;&lt; (x) &lt;&lt; endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbg(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//#define assert(x) </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ff</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) cnt+=min(m, val/i);</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find_approx</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        rl C=<span class="number">1.0</span>+<span class="built_in">log</span>((rl)(m*n)) + <span class="number">0.5</span>/n + <span class="number">0.5</span>/m;</span><br><span class="line">        </span><br><span class="line">        rl L=<span class="number">1.0</span>, R=m*n;</span><br><span class="line">        rl RHS=k+<span class="number">0.5</span>*m+<span class="number">0.5</span>*n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            rl M=<span class="number">0.5</span>*(L+R);</span><br><span class="line">            rl f=M*(C-<span class="built_in">log</span>(M));</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(f&lt;RHS) L=M;</span><br><span class="line">            <span class="keyword">else</span>    R=M;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        dbg(L*(C-<span class="built_in">log</span>(L)));</span><br><span class="line">        dbg(RHS);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">ceil</span>(L);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthNumber</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&gt;m) swap(n, m);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> start=find_approx(m,n,k);</span><br><span class="line">        dbg(start);</span><br><span class="line">        dbg(ff(m,n,start));</span><br><span class="line">        dbg(<span class="string">"-----------"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> L=start;</span><br><span class="line">        <span class="comment">//assert(ff(m,n,start)&lt;=k);</span></span><br><span class="line">        <span class="keyword">int</span> R=start;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(ff(m, n, R)&lt;k)</span><br><span class="line">        &#123;</span><br><span class="line">            R+=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(ff(m, n, L)&gt;=k)</span><br><span class="line">        &#123;</span><br><span class="line">            L-=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//assert(ff(m, n, L)&lt;=k);</span></span><br><span class="line">        <span class="comment">//assert(ff(m, n, R)&gt;=k);</span></span><br><span class="line">        dbg(L);</span><br><span class="line">        dbg(R);</span><br><span class="line">        dbg(R-L);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(L&lt;R)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> M=(L+R)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(ff(m,n,M)&gt;=k) R=M;</span><br><span class="line">            <span class="keyword">else</span>             L=M+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//assert(L==R);</span></span><br><span class="line">        <span class="comment">//assert(ff(m,n,L)&gt;=k);</span></span><br><span class="line">        <span class="comment">//assert(ff(m,n,L-1)&lt;k);</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> L;</span><br><span class="line">        <span class="comment">// return -1;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/22/668-Kth-Smallest-Number-in-Multiplication-Table/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1291,521 +1791,6 @@ You may assume k is always valid, 1 ≤ k ≤ n<sup>2</sup>.</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/20/583-Delete-Operation-for-Two-Strings-LCS-空间复杂度优化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/20/583-Delete-Operation-for-Two-Strings-LCS-空间复杂度优化/" itemprop="url">583. Delete Operation for Two Strings(LCS 空间复杂度优化)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-20T02:34:00+08:00">2020-01-20</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-20T02:34:58+08:00">2020-01-20</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="583-delete-operation-for-two-strings"><a class="header-anchor" href="#583-delete-operation-for-two-strings">¶</a><a href="https://leetcode.com/problems/delete-operation-for-two-strings/" target="_blank" rel="noopener">583. Delete Operation for Two Strings</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Given two words <em>word1</em> and <em>word2</em>, find the minimum number of steps required to make <em>word1</em> and <em>word2</em> the same, where in each step you can delete one character in either string.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;sea&quot;, &quot;eat&quot;</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: You need one step to make &quot;sea&quot; to &quot;ea&quot; and another step to make &quot;eat&quot; to &quot;ea&quot;.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li>The length of given words won’t exceed 500.</li>
-<li>Characters in given words can only be lower-case letters.</li>
-</ol>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>Language: <strong>C++</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(<span class="built_in">string</span> word1, <span class="built_in">string</span> word2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> m = word1.size();</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = word2.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n+<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i)</span><br><span class="line">            dp[i] = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> pre = dp[<span class="number">0</span>];</span><br><span class="line">            dp[<span class="number">0</span>] = i;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123; </span><br><span class="line">                <span class="keyword">int</span> temp = dp[j];</span><br><span class="line">                <span class="keyword">if</span>(word1[i<span class="number">-1</span>] == word2[j<span class="number">-1</span>])</span><br><span class="line">                    dp[j] = pre;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    dp[j] = min(dp[j], dp[j<span class="number">-1</span>]) + <span class="number">1</span>;</span><br><span class="line">                pre = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/20/460-LFU-Cache/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/20/460-LFU-Cache/" itemprop="url">460. LFU Cache</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-20T00:18:30+08:00">2020-01-20</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-20T01:48:42+08:00">2020-01-20</time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="460-lfu-cache"><a class="header-anchor" href="#460-lfu-cache">¶</a><a href="https://leetcode.com/problems/lfu-cache/" target="_blank" rel="noopener">460. LFU Cache</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Design and implement a data structure for cache. It should support the following operations: <code>get</code> and <code>put</code>.</p>
-<p><code>get(key)</code> - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br>
-<code>put(key, value)</code> - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least frequently used item before inserting a new item. For the purpose of this problem, when there is a tie (i.e., two or more keys that have the same frequency), the least <strong>recently</strong> used key would be evicted.</p>
-<p>Note that the number of times an item is used is the number of calls to the <code>get</code> and <code>put</code> functions for that item since it was inserted. This number is set to zero when the item is removed.</p>
-<p><strong>Follow up:</strong><br>
-Could you do both operations in <strong>O(1)</strong> time complexity?</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">LFUCache cache = new LFUCache( 2 /* capacity */ );</span><br><span class="line"></span><br><span class="line">cache.put(1, 1);</span><br><span class="line">cache.put(2, 2);</span><br><span class="line">cache.get(1);       // returns 1</span><br><span class="line">cache.put(3, 3);    // evicts key 2</span><br><span class="line">cache.get(2);       // returns -1 (not found)</span><br><span class="line">cache.get(3);       // returns 3.</span><br><span class="line">cache.put(4, 4);    // evicts key 1.</span><br><span class="line">cache.get(1);       // returns -1 (not found)</span><br><span class="line">cache.get(3);       // returns 3</span><br><span class="line">cache.get(4);       // returns 4</span><br></pre></td></tr></table></figure>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<h5 id="法一-unordered-map-list"><a class="header-anchor" href="#法一-unordered-map-list">¶</a>法一 unordered_map+list</h5>
-<p>  相同频次的构成一个列表<code>list&lt;pair&lt;int, int&gt;&gt;</code>，这样的不同频次对应的列表再构成一个频次列表的列表<code>list&lt;pair&lt;int, list&lt;pair&lt;int, int&gt;&gt;&gt;&gt;</code>，key到频次列表和频次列表中的键值对的映射用<code>unordered_map&lt;int, pair&lt;t1, t2&gt;&gt; m_it</code>；</p>
-<p>  第一次调试的时候，在<code>auto &amp;lt=it1-&gt;second;//这里一定要用引用，否则会拷贝整个list!!!!</code>这一句上摔了个大跟头，因为忘了加引用，导致每次都复制整个list，运行时间从110ms飙升到1400ms。并且不加引用的话，也无法真正删除原频次列表中的某个键值对，因为删除操作是在复制来的列表上进行的，没有影响原列表，虽然不会影响返回值的正确性（因为是根据key到迭代器的映射直接找到键值对），但是会增加空间复杂度。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> t1=<span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&gt;&gt;::iterator;</span><br><span class="line">    <span class="keyword">using</span> t2=<span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt;::iterator;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, pair&lt;t1, t2&gt;&gt; m_it;</span><br><span class="line">    <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&gt;&gt; l;</span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">        c=capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it=m_it.find(key);</span><br><span class="line">        <span class="keyword">if</span>(it==m_it.end()||c==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">auto</span> it1=it-&gt;second.first;<span class="comment">//&#123;频率, 频率表&#125; </span></span><br><span class="line">        <span class="keyword">auto</span> it2=it-&gt;second.second;<span class="comment">//key在频率表中的位置</span></span><br><span class="line">        <span class="keyword">int</span> val=it2-&gt;second;</span><br><span class="line">        <span class="keyword">int</span> frq=it1-&gt;first;</span><br><span class="line">        <span class="keyword">auto</span> &amp;lt=it1-&gt;second;<span class="comment">//这里一定要用引用，否则会拷贝整个list!!!!</span></span><br><span class="line">        <span class="keyword">if</span>(next(it1)==l.end()||next(it1)-&gt;first!=frq+<span class="number">1</span>)&#123;</span><br><span class="line">            l.insert(next(it1), &#123;frq+<span class="number">1</span>, <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt;()&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        next(it1)-&gt;second.push_front(&#123;key, val&#125;);</span><br><span class="line">        it-&gt;second=make_pair(next(it1), next(it1)-&gt;second.begin());</span><br><span class="line">        lt.erase(it2);</span><br><span class="line">        <span class="keyword">if</span>(lt.size()==<span class="number">0</span>) l.erase(it1);</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">auto</span> it=m_it.find(key);</span><br><span class="line">        <span class="keyword">if</span>(it==m_it.end())&#123;</span><br><span class="line">            <span class="keyword">if</span>(m_it.size()==c)&#123;</span><br><span class="line">                <span class="keyword">auto</span> it1=l.begin();</span><br><span class="line">                <span class="keyword">auto</span> old=it1-&gt;second.back();</span><br><span class="line">                m_it.erase(old.first);</span><br><span class="line">                it1-&gt;second.pop_back();</span><br><span class="line">                <span class="keyword">if</span>(it1-&gt;second.size()==<span class="number">0</span>) l.erase(it1);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(l.size()==<span class="number">0</span>||l.begin()-&gt;first!=<span class="number">1</span>)&#123;</span><br><span class="line">                l.insert(l.begin(), &#123;<span class="number">1</span>, <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt;()&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            l.begin()-&gt;second.push_front(&#123;key, value&#125;);</span><br><span class="line">            m_it[key]=make_pair(l.begin(), l.begin()-&gt;second.begin());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">auto</span> it1=it-&gt;second.first;<span class="comment">//&#123;频率, 频率表&#125; </span></span><br><span class="line">            <span class="keyword">auto</span> it2=it-&gt;second.second;<span class="comment">//key在频率表中的位置</span></span><br><span class="line">            <span class="keyword">int</span> frq=it1-&gt;first;</span><br><span class="line">            <span class="keyword">auto</span> &amp;lt=it1-&gt;second;<span class="comment">//这里一定要用引用，否则会拷贝整个list!!!!</span></span><br><span class="line">            <span class="keyword">if</span>(next(it1)==l.end()||next(it1)-&gt;first!=frq+<span class="number">1</span>)&#123;</span><br><span class="line">                l.insert(next(it1), &#123;frq+<span class="number">1</span>, <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt;()&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            next(it1)-&gt;second.push_front(&#123;key, value&#125;);</span><br><span class="line">            it-&gt;second=make_pair(next(it1), next(it1)-&gt;second.begin());</span><br><span class="line">            lt.erase(it2);</span><br><span class="line">            <span class="keyword">if</span>(lt.size()==<span class="number">0</span>) l.erase(it1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your LFUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * LFUCache* obj = new LFUCache(capacity);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj-&gt;get(key);</span></span><br><span class="line"><span class="comment"> * obj-&gt;put(key,value);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-<h5 id="法二-双向链表-vector-unordered-map"><a class="header-anchor" href="#法二-双向链表-vector-unordered-map">¶</a>法二 双向链表+vector+unordered_map</h5>
-<p>  链表维护同频次键值对，用vector&lt;NodeQueue*&gt;维护链表，用unordered_map&lt;int, Node*&gt; map;维护key到结点的映射。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> key;</span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        Node *next, *pre;</span><br><span class="line">        Node(<span class="keyword">int</span> k, <span class="keyword">int</span> v, Node *n): key(k),val(v),next(n) &#123;</span><br><span class="line">            count = <span class="number">0</span>;</span><br><span class="line">            pre = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">NodeQueue</span> &#123;</span></span><br><span class="line">        Node *head, *tail;</span><br><span class="line">        NodeQueue() &#123;</span><br><span class="line">            head = <span class="literal">NULL</span>;</span><br><span class="line">            tail = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        NodeQueue(Node *n) &#123;</span><br><span class="line">            head = n;</span><br><span class="line">            tail = n;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">int</span> cap=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, Node*&gt; <span class="built_in">map</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;NodeQueue*&gt; q;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">map</span>[key]-&gt;pre) <span class="built_in">map</span>[key]-&gt;pre-&gt;next = <span class="built_in">map</span>[key]-&gt;next;</span><br><span class="line">        <span class="keyword">else</span> q[<span class="built_in">map</span>[key]-&gt;count<span class="number">-1</span>]-&gt;head = <span class="built_in">map</span>[key]-&gt;next;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">map</span>[key]-&gt;next) <span class="built_in">map</span>[key]-&gt;next-&gt;pre = <span class="built_in">map</span>[key]-&gt;pre;</span><br><span class="line">        <span class="keyword">else</span> q[<span class="built_in">map</span>[key]-&gt;count<span class="number">-1</span>]-&gt;tail = <span class="built_in">map</span>[key]-&gt;pre;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (q.size() &lt;= <span class="built_in">map</span>[key]-&gt;count) &#123;</span><br><span class="line">            q.push_back(<span class="keyword">new</span> NodeQueue(<span class="built_in">map</span>[key]));</span><br><span class="line">            <span class="built_in">map</span>[key]-&gt;pre = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="built_in">map</span>[key]-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">map</span>[key]-&gt;pre = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="built_in">map</span>[key]-&gt;next = q[<span class="built_in">map</span>[key]-&gt;count]-&gt;head;</span><br><span class="line">            <span class="keyword">if</span> (q[<span class="built_in">map</span>[key]-&gt;count]-&gt;head)</span><br><span class="line">                q[<span class="built_in">map</span>[key]-&gt;count]-&gt;head-&gt;pre = <span class="built_in">map</span>[key];</span><br><span class="line">            <span class="keyword">else</span> q[<span class="built_in">map</span>[key]-&gt;count]-&gt;tail = <span class="built_in">map</span>[key];</span><br><span class="line">            q[<span class="built_in">map</span>[key]-&gt;count]-&gt;head = <span class="built_in">map</span>[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">        <span class="built_in">map</span>.clear();</span><br><span class="line">        q.push_back(<span class="keyword">new</span> NodeQueue());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">map</span>.count(key))</span><br><span class="line">            <span class="built_in">map</span>[key]-&gt;count++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        update(key);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">map</span>[key]-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">map</span>.count(key)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cap==<span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">auto</span> nq: q) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (nq-&gt;tail) &#123;</span><br><span class="line">                        <span class="built_in">map</span>.erase(nq-&gt;tail-&gt;key);</span><br><span class="line">                        <span class="keyword">if</span> (nq-&gt;tail-&gt;pre) &#123;</span><br><span class="line">                            nq-&gt;tail = nq-&gt;tail-&gt;pre;</span><br><span class="line">                            nq-&gt;tail-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            nq-&gt;tail = <span class="literal">NULL</span>;</span><br><span class="line">                            nq-&gt;head = <span class="literal">NULL</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        flag = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (flag) cap++; </span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">map</span>[key] = <span class="keyword">new</span> Node(key, value, q[<span class="number">0</span>]-&gt;head);</span><br><span class="line">            <span class="keyword">if</span> (!q[<span class="number">0</span>]-&gt;tail)</span><br><span class="line">                q[<span class="number">0</span>]-&gt;tail = <span class="built_in">map</span>[key];</span><br><span class="line">            <span class="keyword">else</span> q[<span class="number">0</span>]-&gt;head-&gt;pre = <span class="built_in">map</span>[key];</span><br><span class="line">            q[<span class="number">0</span>]-&gt;head = <span class="built_in">map</span>[key];</span><br><span class="line">            cap--;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">map</span>[key]-&gt;val = value;</span><br><span class="line">            <span class="built_in">map</span>[key]-&gt;count++;</span><br><span class="line">            update(key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="法三-双向循环链表-vector-unordered-map"><a class="header-anchor" href="#法三-双向循环链表-vector-unordered-map">¶</a>法三 双向循环链表+vector+unordered_map</h5>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity): cap(capacity), sz(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">    ~LFUCache()&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> p : lists)</span><br><span class="line">            <span class="keyword">delete</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nodemap.find(key) == nodemap.end())</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            DoubleLinkedList::ListNode* node = nodemap[key];</span><br><span class="line">            lists[node-&gt;freq]-&gt;del(node);</span><br><span class="line">            node-&gt;freq++;</span><br><span class="line">            insert(node);</span><br><span class="line">            <span class="keyword">return</span> node-&gt;val;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cap == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        DoubleLinkedList::ListNode* node;</span><br><span class="line">        <span class="keyword">if</span>(nodemap.find(key) != nodemap.end())&#123;</span><br><span class="line">            node = nodemap[key];</span><br><span class="line">            lists[node-&gt;freq]-&gt;del(node);</span><br><span class="line">            node-&gt;val = value;</span><br><span class="line">            node-&gt;freq++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(cap == sz)&#123;</span><br><span class="line">                <span class="keyword">int</span> minfreq = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>(lists[minfreq]-&gt;empty())</span><br><span class="line">                    minfreq++;</span><br><span class="line">                node = lists[minfreq]-&gt;last();</span><br><span class="line">                lists[minfreq]-&gt;dellast();</span><br><span class="line">                nodemap.erase(node-&gt;key);</span><br><span class="line">                node-&gt;key = key;</span><br><span class="line">                node-&gt;val = value;</span><br><span class="line">                node-&gt;freq = <span class="number">0</span>;</span><br><span class="line">                nodemap[key] = node;   </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                node = <span class="keyword">new</span> DoubleLinkedList::ListNode(key,value);</span><br><span class="line">                nodemap[key] = node;</span><br><span class="line">                sz++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        insert(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">DoubleLinkedList</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>&#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            <span class="keyword">int</span> key;</span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">            <span class="keyword">int</span> freq;</span><br><span class="line">            ListNode* next;</span><br><span class="line">            ListNode* prev;</span><br><span class="line">            ListNode(<span class="keyword">int</span> k, <span class="keyword">int</span> v) : key(k), val(v), freq(<span class="number">0</span>), next(<span class="literal">nullptr</span>), prev(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">            ListNode(<span class="keyword">int</span> k, <span class="keyword">int</span> v, ListNode *next_, ListNode *prev_) :</span><br><span class="line">                    key(k), val(v), freq(<span class="number">0</span>), next(next_), prev(prev_) &#123;&#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        DoubleLinkedList()&#123;</span><br><span class="line">            dumhead = <span class="keyword">new</span> ListNode(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">            dumhead-&gt;next = dumhead;</span><br><span class="line">            dumhead-&gt;prev = dumhead;</span><br><span class="line">        &#125;</span><br><span class="line">        ~DoubleLinkedList()&#123;</span><br><span class="line">            ListNode* tmp1 = dumhead-&gt;next;</span><br><span class="line">            ListNode* tmp2;</span><br><span class="line">            <span class="keyword">while</span>(tmp1 != dumhead)&#123;</span><br><span class="line">                tmp2 = tmp1-&gt;next;</span><br><span class="line">                <span class="keyword">delete</span> tmp1;</span><br><span class="line">                tmp1 = tmp2;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">delete</span> dumhead;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(ListNode* node)</span></span>&#123;</span><br><span class="line">            node-&gt;next-&gt;prev = node-&gt;prev;</span><br><span class="line">            node-&gt;prev-&gt;next = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">dellast</span><span class="params">()</span></span>&#123; del(dumhead-&gt;prev); &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">addfirst</span><span class="params">(ListNode* node)</span></span>&#123;</span><br><span class="line">            node-&gt;next = dumhead-&gt;next;</span><br><span class="line">            node-&gt;next-&gt;prev = node;</span><br><span class="line">            dumhead-&gt;next = node;</span><br><span class="line">            node-&gt;prev = dumhead;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> dumhead-&gt;next == dumhead; &#125;</span><br><span class="line">        <span class="function">ListNode* <span class="title">last</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> dumhead-&gt;prev; &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        ListNode* dumhead;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(DoubleLinkedList::ListNode* node)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(lists.size() &lt; node-&gt;freq + <span class="number">1</span>)</span><br><span class="line">            lists.push_back(<span class="keyword">new</span> DoubleLinkedList());</span><br><span class="line">        lists[node-&gt;freq]-&gt;addfirst(node);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;DoubleLinkedList*&gt; lists;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, DoubleLinkedList::ListNode*&gt; nodemap;</span><br><span class="line">    <span class="keyword">int</span> sz;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="法四"><a class="header-anchor" href="#法四">¶</a>法四</h5>
-<p>  法四精髓在于如何维护最小的频率。</p>
-<ol>
-<li>调用get时，如果刚好最小频次f的那个列表因为删掉一个元素而变成空，那么最小频次一定是f+1，因为删掉的结点一定会放到f+1对应的列表中，如果调用get删掉的不是最小频次列表中的元素，那么最小频次不变。</li>
-<li>调用put时，如果添加一个新key，则无论如何最小频次都是1，因为新key的频次是1；如果不是新key，则又回到1中的情况。</li>
-</ol>
-<p>  综上最小频次要么加1（某个元素频次加1的时候），要么直接设为1（添加新key）；</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> minFreq;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt;frequency_map;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, pair&lt;<span class="keyword">int</span>, pair&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator&gt;&gt;&gt; p_map;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">increaseFreqCount</span><span class="params">(<span class="keyword">int</span> key)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">        p_map[key].second.first++;</span><br><span class="line">        </span><br><span class="line">        count = p_map[key].second.first;</span><br><span class="line">        it = p_map[key].second.second;</span><br><span class="line">        </span><br><span class="line">        frequency_map[count<span class="number">-1</span>].erase(it);</span><br><span class="line">        <span class="keyword">if</span> (frequency_map[count<span class="number">-1</span>].size() == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            frequency_map.erase(count<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">if</span> (count<span class="number">-1</span> == minFreq)</span><br><span class="line">                minFreq = count;</span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">        frequency_map[count].push_back(key);</span><br><span class="line">        p_map[key].second.second = --(frequency_map[count].end());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity) </span><br><span class="line">    &#123;</span><br><span class="line">        n = capacity;</span><br><span class="line">        frequency_map.erase(frequency_map.begin(), frequency_map.end());</span><br><span class="line">        p_map.erase(p_map.begin(), p_map.end());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans;</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (n ==<span class="number">0</span> || (p_map.find(key) == p_map.end()))</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        </span><br><span class="line">        ans = p_map[key].first;</span><br><span class="line">        increaseFreqCount(key);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = p_map.size();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (p_map.find(key) == p_map.end())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (p_map.size() == n)</span><br><span class="line">            &#123;</span><br><span class="line">                p_map.erase(frequency_map[minFreq].front());</span><br><span class="line">                frequency_map[minFreq].pop_front();</span><br><span class="line">            &#125;</span><br><span class="line">            frequency_map[<span class="number">1</span>].push_back(key);</span><br><span class="line">            p_map[key] = &#123;value, &#123;<span class="number">1</span>, --(frequency_map[<span class="number">1</span>].end())&#125;&#125;;</span><br><span class="line">            minFreq = <span class="number">1</span>;</span><br><span class="line">        &#125;    </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p_map[key].first = value;</span><br><span class="line">            increaseFreqCount(key);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a class="header-anchor" href="#总结">¶</a>总结</h2>
-<p>  LFU的get、put函数的逻辑结构:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it = mp_.find(key);</span><br><span class="line">        <span class="keyword">if</span> (it == mp_.end()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        mp_[key] = promote(key);  <span class="comment">// freq++, age -&gt; most recently, update position</span></span><br><span class="line">        <span class="comment">//增加当前key的频次</span></span><br><span class="line">        <span class="keyword">return</span> mp_[key].second-&gt;second;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (capacity_ &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">auto</span> it = mp_.find(key);</span><br><span class="line">        <span class="keyword">if</span> (it != mp_.end()) mp_[key] = promote(key, value);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (capacity_ == mp_.size()) evict();<span class="comment">//删除最小频次的元素</span></span><br><span class="line">            mp_[key] = insert_front(key, value);<span class="comment">//在频次1的列表前加一个kv对</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>  主要实现3个函数:</p>
-<ol>
-<li>删除一个(k,v,f)对</li>
-<li>获取使用次数最小的least recently used结点(k,v,fmin)</li>
-<li>添加一个(k,v,f)对</li>
-</ol>
-<p>  则上面代码里:</p>
-<ol>
-<li>promote相当于删除(k,v,f)，添加(k,v,f+1)</li>
-<li>evice相当于获取(k,v,fmin)，删除(k,v,fmin)</li>
-<li>insert_front()相当于添加(k,v,1)</li>
-</ol>
-<p>  LFU的数据结构设计的关键在于:</p>
-<ol>
-<li>key按频次分类，相同频次的在同一个列表中；</li>
-<li>节点按顺序加入列表，这样最远不使用的节点就是列表的第一个节点，因此必须是顺序结构；</li>
-</ol>
-<p>  get和set实现O(1)时间复杂度的关键在于:</p>
-<ol>
-<li>能O(1)时间找到k所在的列表和其在该列表中的位置；</li>
-<li>能根据列表位置和列表中key的位置O(1)时间删除某个列表或者某个列表中的key；</li>
-<li>能O(1)时间获取最小频次；</li>
-</ol>
-<p>  为了实现O(1)时间找到k所在的列表和其在该列表中的位置需要一个key到其位置的hashmap；</p>
-<p>  由于要求频次列表是顺序结构并且删除元素的复杂度是O(1)，所以需要用双向链表来存放相同频次的key；</p>
-<p>  为了O(1)时间找最小频次，可以像法四一样动态更新minFreq(这样就不用按顺序存放频次list，可以直接维护频次到频次list的映射），也可以像法一一样按顺序组织频次列表，然后删除空的频次列表，这样第一个频次列表对应的频次就是最小的频次（这样需要两个<code>list&lt;list&gt;</code>的嵌套，内层是频次列表，外层是按频次大小顺序排列的频次列表的列表）。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/19/853-Car-Fleet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/19/853-Car-Fleet/" itemprop="url">853. Car Fleet</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-19T17:56:00+08:00">2020-01-19</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-19T18:01:02+08:00">2020-01-19</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="853-car-fleet"><a class="header-anchor" href="#853-car-fleet">¶</a><a href="https://leetcode.com/problems/car-fleet/" target="_blank" rel="noopener">853. Car Fleet</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p><code>N</code> cars are going to the same destination along a one lane road.  The destination is <code>target</code> miles away.</p>
-<p>Each car <code>i</code> has a constant speed <code>speed[i]</code> (in miles per hour), and initial position <code>position[i]</code> miles towards the target along the road.</p>
-<p>A car can never pass another car ahead of it, but it can catch up to it, and drive bumper to bumper at the same speed.</p>
-<p>The distance between these two cars is ignored - they are assumed to have the same position.</p>
-<p>A <em>car fleet</em> is some non-empty set of cars driving at the same position and same speed.  Note that a single car is also a car fleet.</p>
-<p>If a car catches up to a car fleet right at the destination point, it will still be considered as one car fleet.</p>
-<p>How many car fleets will arrive at the destination?</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">The cars starting at 10 and 8 become a fleet, meeting each other at 12.</span><br><span class="line">The car starting at 0 doesn&apos;t catch up to any other car, so it is a fleet by itself.</span><br><span class="line">The cars starting at 5 and 3 become a fleet, meeting each other at 6.</span><br><span class="line">Note that no other cars meet these fleets before the destination, so the answer is 3.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>0 &lt;= N &lt;= 10 ^ 4</code></li>
-<li><code>0 &lt; target &lt;= 10 ^ 6</code></li>
-<li><code>0 &lt; speed[i] &lt;= 10 ^ 6</code></li>
-<li><code>0 &lt;= position[i] &lt; target</code></li>
-<li>All initial positions are different.</li>
-</ol>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  由于后面的车追上前面的车之后会减速（即后面的车会把前面的车挡住），所以要从离终点最近的车开始往前遍历，看看之前的车能不能追上，如果能就可以合并到一支车队中；如果前一辆车不能追上当前车，则说明前面所有的车都不可能追上该车（因为这辆车会把前面的车挡住），所以要新开一支车队。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">carFleet</span><span class="params">(<span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; position, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; speed)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N=position.size(), ans=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(N==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi(N);</span><br><span class="line">        iota(vi.begin(), vi.end(), <span class="number">0</span>);</span><br><span class="line">        sort(vi.begin(), vi.end(), [&amp;](<span class="keyword">int</span> i, <span class="keyword">int</span> j)&#123; <span class="keyword">return</span> position[i] &gt; position[j]; &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> cur=vi[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;N;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">static_cast</span>&lt;<span class="keyword">int64_t</span>&gt;(target-position[cur])*speed[vi[i]] &lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">int64_t</span>&gt;(target-position[vi[i]])*speed[cur])&#123;</span><br><span class="line">                ++ans;</span><br><span class="line">                cur=vi[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//0 3 5 8 10</span></span><br><span class="line">    <span class="comment">//1 3 1 4 2</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1856,7 +1841,7 @@ Could you do both operations in <strong>O(1)</strong> time complexity?</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">442</span>
+                  <span class="site-state-item-count">445</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1867,7 +1852,7 @@ Could you do both operations in <strong>O(1)</strong> time complexity?</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1878,7 +1863,7 @@ Could you do both operations in <strong>O(1)</strong> time complexity?</p>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

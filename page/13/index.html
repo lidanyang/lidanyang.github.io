@@ -248,6 +248,462 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/24/732-My-Calendar-III/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/24/732-My-Calendar-III/" itemprop="url">732. My Calendar III</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-24T02:50:58+08:00">2020-01-24</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-24T02:57:37+08:00">2020-01-24</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="732-my-calendar-iii"><a class="header-anchor" href="#732-my-calendar-iii">¶</a><a href="https://leetcode.com/problems/my-calendar-iii/" target="_blank" rel="noopener">732. My Calendar III</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Implement a <code>MyCalendarThree</code> class to store your events. A new event can <strong>always</strong> be added.</p>
+<p>Your class will have one method, <code>book(int start, int end)</code>. Formally, this represents a booking on the half open interval <code>[start, end)</code>, the range of real numbers <code>x</code> such that <code>start &lt;= x &lt; end</code>.</p>
+<p>A <em>K-booking</em> happens when <strong>K</strong> events have some non-empty intersection (ie., there is some time that is common to all K events.)</p>
+<p>For each call to the method <code>MyCalendar.book</code>, return an integer <code>K</code> representing the largest integer such that there exists a <code>K</code>-booking in the calendar.</p>
+<p>Your class will be called like this: <code>MyCalendarThree cal = new MyCalendarThree();</code> <code>MyCalendarThree.book(start, end)</code></p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MyCalendarThree();</span><br><span class="line">MyCalendarThree.book(10, 20); // returns 1</span><br><span class="line">MyCalendarThree.book(50, 60); // returns 1</span><br><span class="line">MyCalendarThree.book(10, 40); // returns 2</span><br><span class="line">MyCalendarThree.book(5, 15); // returns 3</span><br><span class="line">MyCalendarThree.book(5, 10); // returns 3</span><br><span class="line">MyCalendarThree.book(25, 55); // returns 3</span><br><span class="line">Explanation: </span><br><span class="line">The first two events can be booked and are disjoint, so the maximum K-booking is a 1-booking.</span><br><span class="line">The third event [10, 40) intersects the first event, and the maximum K-booking is a 2-booking.</span><br><span class="line">The remaining events cause the maximum K-booking to be only a 3-booking.</span><br><span class="line">Note that the last event locally causes a 2-booking, but the answer is still 3 because</span><br><span class="line">eg. [10, 20), [10, 40), and [5, 15) are still triple booked.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The number of calls to <code>MyCalendarThree.book</code> per test case will be at most <code>400</code>.</li>
+<li>In calls to <code>MyCalendarThree.book(start, end)</code>, <code>start</code> and <code>end</code> are integers in the range <code>[0, 10^9]</code>.</li>
+</ul>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h5 id="法一-差分"><a class="header-anchor" href="#法一-差分">¶</a>法一 差分</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCalendarThree</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m;</span><br><span class="line">    MyCalendarThree() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">book</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        ++m[start];</span><br><span class="line">        --m[end];</span><br><span class="line">        <span class="keyword">int</span> n=<span class="number">0</span>, ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:m)&#123;</span><br><span class="line">            n+=x.second;</span><br><span class="line">            ans=max(ans, n);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="法二-二分查找-差分"><a class="header-anchor" href="#法二-二分查找-差分">¶</a>法二 二分查找+差分</h5>
+<p>  <strong>在map的开头加一个-1时间点，便于处理边界情况</strong>。贴几种不同的写法:</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCalendarThree</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m;</span><br><span class="line">    <span class="keyword">int</span> ans;</span><br><span class="line">    MyCalendarThree() &#123;</span><br><span class="line">        m[<span class="number">-1</span>]=<span class="number">0</span>;</span><br><span class="line">        ans=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">book</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it1=m.lower_bound(start);</span><br><span class="line">        <span class="keyword">if</span>(it1==m.end()||it1-&gt;first&gt;start)&#123;</span><br><span class="line">            --it1;</span><br><span class="line">            it1=m.insert(&#123;start, it1-&gt;second&#125;).first;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> it2=m.lower_bound(end);</span><br><span class="line">        <span class="keyword">if</span>(it2==m.end()||it2-&gt;first&gt;end)&#123;</span><br><span class="line">            --it2;</span><br><span class="line">            it2=m.insert(&#123;end, it2-&gt;second&#125;).first;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> it=it1;it!=it2;++it)&#123;</span><br><span class="line">            ++(it-&gt;second);</span><br><span class="line">            ans = max(ans, it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">​</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MyCalendarThree object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MyCalendarThree* obj = new MyCalendarThree();</span></span><br><span class="line"><span class="comment"> * int param_1 = obj-&gt;book(start,end);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCalendarThree</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m;</span><br><span class="line">    <span class="keyword">int</span> ans;</span><br><span class="line">    MyCalendarThree() &#123;</span><br><span class="line">        m[<span class="number">-1</span>]=<span class="number">0</span>;</span><br><span class="line">        ans=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">book</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it1=m.lower_bound(start);</span><br><span class="line">        <span class="keyword">if</span>(it1==m.end()||it1-&gt;first&gt;start)&#123;</span><br><span class="line">            --it1;</span><br><span class="line">            it1=m.insert(&#123;start, it1-&gt;second&#125;).first;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> it2=m.lower_bound(end);</span><br><span class="line">        <span class="keyword">if</span>(it2==m.end()||it2-&gt;first&gt;end)&#123;</span><br><span class="line">            --it2;</span><br><span class="line">            it2=m.insert(&#123;end, it2-&gt;second&#125;).first;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> it=it1;it!=it2;++it)&#123;</span><br><span class="line">            ++(it-&gt;second);</span><br><span class="line">            ans = max(ans, it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCalendarThree</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">    <span class="keyword">int</span> ans;</span><br><span class="line">    MyCalendarThree() &#123;</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line">        m.clear();</span><br><span class="line">        m[<span class="number">-1</span>]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">book</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> s = m.emplace(start, (--m.upper_bound(start))-&gt;second);</span><br><span class="line">        <span class="keyword">auto</span> e = m.emplace(end, (--m.upper_bound(end))-&gt;second);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i=s.first; i!=e.first; i++)&#123;</span><br><span class="line">            ans = max(ans, ++(i-&gt;second));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/24/591-Tag-Validator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/24/591-Tag-Validator/" itemprop="url">591. Tag Validator</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-24T00:52:15+08:00">2020-01-24</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-24T00:54:29+08:00">2020-01-24</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="591-tag-validator"><a class="header-anchor" href="#591-tag-validator">¶</a><a href="https://leetcode.com/problems/tag-validator/" target="_blank" rel="noopener">591. Tag Validator</a></h3>
+<p>Difficulty: <strong>Hard</strong></p>
+<p>Given a string representing a code snippet, you need to implement a tag validator to parse the code and return whether it is valid. A code snippet is valid if all the following rules hold:</p>
+<ol>
+<li>The code must be wrapped in a <strong>valid closed tag</strong>. Otherwise, the code is invalid.</li>
+<li>A <strong>closed tag</strong> (not necessarily valid) has exactly the following format : <code>&lt;TAG_NAME&gt;TAG_CONTENT&lt;/TAG_NAME&gt;</code>. Among them, <code>&lt;TAG_NAME&gt;</code> is the start tag, and <code>&lt;/TAG_NAME&gt;</code> is the end tag. The TAG_NAME in start and end tags should be the same. A closed tag is <strong>valid</strong> if and only if the TAG_NAME and TAG_CONTENT are valid.</li>
+<li>A <strong>valid</strong> <code>TAG_NAME</code> only contain <strong>upper-case letters</strong>, and has length in range [1,9]. Otherwise, the <code>TAG_NAME</code> is <strong>invalid</strong>.</li>
+<li>A <strong>valid</strong> <code>TAG_CONTENT</code> may contain other <strong>valid closed tags</strong>, <strong>cdata</strong> and any characters (see note1) <strong>EXCEPT</strong> unmatched <code>&lt;</code>, unmatched start and end tag, and unmatched or closed tags with invalid TAG_NAME. Otherwise, the <code>TAG_CONTENT</code> is <strong>invalid</strong>.</li>
+<li>A start tag is unmatched if no end tag exists with the same TAG_NAME, and vice versa. However, you also need to consider the issue of unbalanced when tags are nested.</li>
+<li>A <code>&lt;</code> is unmatched if you cannot find a subsequent <code>&gt;</code>. And when you find a <code>&lt;</code> or <code>&lt;/</code>, all the subsequent characters until the next <code>&gt;</code> should be parsed as TAG_NAME (not necessarily valid).</li>
+<li>The cdata has the following format : <code>&lt;![CDATA[CDATA_CONTENT]]&gt;</code>. The range of <code>CDATA_CONTENT</code> is defined as the characters between <code>&lt;![CDATA[</code> and the <strong>first subsequent</strong> <code>]]&gt;</code>.</li>
+<li><code>CDATA_CONTENT</code> may contain <strong>any characters</strong>. The function of cdata is to forbid the validator to parse <code>CDATA_CONTENT</code>, so even it has some characters that can be parsed as tag (no matter valid or invalid), you should treat it as <strong>regular characters</strong>.</li>
+</ol>
+<p><strong>Valid Code Examples:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;</span><br><span class="line"></span><br><span class="line">This is the first line ]]&gt;</span><br><span class="line"></span><br><span class="line">&quot;</span><br><span class="line">Output: True</span><br><span class="line">Explanation: </span><br><span class="line">The code is wrapped in a closed tag : </span><br><span class="line"></span><br><span class="line"> and </span><br><span class="line"></span><br><span class="line">. </span><br><span class="line">The TAG_NAME is valid, the TAG_CONTENT consists of some characters and cdata. </span><br><span class="line">Although CDATA_CONTENT has unmatched start tag with invalid TAG_NAME, it should be considered as plain text, not parsed as tag.</span><br><span class="line">So TAG_CONTENT is valid, and then the code is valid. Thus return true.</span><br><span class="line"></span><br><span class="line">Input: &quot;</span><br><span class="line"></span><br><span class="line">&gt;&gt;  ![cdata[]] ]&gt;]]&gt;]]&gt;&gt;]</span><br><span class="line"></span><br><span class="line">&quot;</span><br><span class="line">Output: True</span><br><span class="line">Explanation:</span><br><span class="line">We first separate the code into : start_tag|tag_content|end_tag.</span><br><span class="line">start_tag -&gt; &quot;</span><br><span class="line"></span><br><span class="line">&quot;</span><br><span class="line">end_tag -&gt; &quot;</span><br><span class="line"></span><br><span class="line">&quot;</span><br><span class="line">tag_content could also be separated into : text1|cdata|text2.</span><br><span class="line">text1 -&gt; &quot;&gt;&gt;  ![cdata[]] &quot;</span><br><span class="line">cdata -&gt; &quot;]&gt;]]&gt;&quot;, where the CDATA_CONTENT is &quot;</span><br><span class="line"></span><br><span class="line">]&gt;&quot;</span><br><span class="line">text2 -&gt; &quot;]]&gt;&gt;]&quot;</span><br><span class="line"></span><br><span class="line">The reason why start_tag is NOT &quot;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&quot; is because of the rule 6.</span><br><span class="line">The reason why cdata is NOT &quot;]&gt;]]&gt;]]&gt;&quot; is because of the rule 7.</span><br></pre></td></tr></table></figure>
+<p><strong>Invalid Code Examples:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot; &lt;a&gt;&lt;/a&gt;&quot;</span><br><span class="line">Output: False</span><br><span class="line">Explanation: Unbalanced. If &quot;&lt;a&gt;&quot; is closed, then &quot;**&quot; must be unmatched, and vice versa.</span><br><span class="line"></span><br><span class="line">Input: &quot;</span><br><span class="line"></span><br><span class="line">  div tag is not closed  </span><br><span class="line"></span><br><span class="line">&quot;</span><br><span class="line">Output: False</span><br><span class="line"></span><br><span class="line">Input: &quot;</span><br><span class="line"></span><br><span class="line">  unmatched &lt;  </span><br><span class="line"></span><br><span class="line">&quot;</span><br><span class="line">Output: False</span><br><span class="line"></span><br><span class="line">Input: &quot;</span><br><span class="line"></span><br><span class="line"> closed tags with invalid tag name  **123** </span><br><span class="line"></span><br><span class="line">&quot;</span><br><span class="line">Output: False</span><br><span class="line"></span><br><span class="line">Input: &quot;</span><br><span class="line"></span><br><span class="line"> unmatched tags with invalid tag name   and &lt;cdata[[]]&gt;&lt;/cdata[[]]&gt; </span><br><span class="line"></span><br><span class="line">&quot;</span><br><span class="line">Output: False</span><br><span class="line"></span><br><span class="line">Input: &quot;</span><br><span class="line"></span><br><span class="line">  unmatched start tag **and unmatched end tag** </span><br><span class="line"></span><br><span class="line">**&quot;</span><br><span class="line">Output: False** </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">**&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>For simplicity, you could assume the input code (including the <strong>any characters</strong> mentioned above) only contain <code>letters</code>, <code>digits</code>, <code>'&lt;'</code>,<code>'&gt;'</code>,<code>'/'</code>,<code>'!'</code>,<code>'['</code>,<code>']'</code> and <code>' '</code>.</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h6 id="法一-栈"><a class="header-anchor" href="#法一-栈">¶</a>法一 栈</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(<span class="built_in">string</span> code)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="built_in">string</span>&gt; st;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; code.size(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; st.empty()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (code.substr(i, <span class="number">9</span>) == <span class="string">"&lt;![CDATA["</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> j = i + <span class="number">9</span>;</span><br><span class="line">                i = code.find(<span class="string">"]]&gt;"</span>, j);</span><br><span class="line">                <span class="keyword">if</span> (i &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                i += <span class="number">2</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (code.substr(i, <span class="number">2</span>) == <span class="string">"&lt;/"</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> j = i + <span class="number">2</span>;</span><br><span class="line">                i = code.find(<span class="string">"&gt;"</span>, j);</span><br><span class="line">                <span class="keyword">if</span> (i &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                <span class="built_in">string</span> tag = code.substr(j, i - j);</span><br><span class="line">                <span class="keyword">if</span> (st.empty() || st.top() != tag) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                st.pop();</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (code.substr(i, <span class="number">1</span>) == <span class="string">"&lt;"</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> j = i + <span class="number">1</span>;</span><br><span class="line">                i = code.find(<span class="string">"&gt;"</span>, j);</span><br><span class="line">                <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i == j || i - j &gt; <span class="number">9</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = j; k &lt; i; ++k) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (code[k] &lt; <span class="string">'A'</span> || code[k] &gt; <span class="string">'Z'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">string</span> tag = code.substr(j, i - j);</span><br><span class="line">                st.push(tag);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> st.empty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="法二-栈"><a class="header-anchor" href="#法二-栈">¶</a>法二 栈</h6>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkTagName</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.size() &lt; <span class="number">3</span> || s.size() &gt; <span class="number">11</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; s.size() - <span class="number">1</span>; ++k)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">isupper</span>(s[k])) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">matchTag</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;lh, <span class="keyword">const</span> <span class="built_in">string</span> &amp;rh)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> lh == rh.substr(<span class="number">0</span>,<span class="number">1</span>) + rh.substr(<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkCdata</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;code, <span class="keyword">int</span> &amp;i)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> j = code.find(<span class="string">"]]&gt;"</span>, i);</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="built_in">string</span>::npos) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        i = j + <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkTag</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;code, <span class="keyword">int</span> &amp;i, <span class="built_in">stack</span>&lt;<span class="built_in">string</span>&gt; &amp;st, <span class="keyword">bool</span> start)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> j = code.find(<span class="string">'&gt;'</span>, i);</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="built_in">string</span>::npos) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">string</span> tag = code.substr(i, j - i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(start)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!checkTagName(tag)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            st.push(tag);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!matchTag(st.top(), tag)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            st.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        i = j + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(<span class="built_in">string</span> &amp;code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(code.size() == <span class="number">0</span> || code[<span class="number">0</span>] != <span class="string">'&lt;'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> f = <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="built_in">string</span>&gt; st;</span><br><span class="line">        checkTag(code, i, st, <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">while</span>(f &amp;&amp; i &lt; code.size() &amp;&amp; !st.empty())&#123;  </span><br><span class="line">            <span class="keyword">if</span>(i != <span class="number">0</span> &amp;&amp; code.substr(i, <span class="number">9</span>) == <span class="string">"&lt;![CDATA["</span>) &#123;</span><br><span class="line">                f = checkCdata(code, i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(code[i] == <span class="string">'&lt;'</span>)&#123;</span><br><span class="line">                f = checkTag(code, i, st, code.substr(i,<span class="number">2</span>) != <span class="string">"&lt;/"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f &amp;&amp; i == code.size() &amp;&amp; st.empty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/23/740-Delete-and-Earn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/23/740-Delete-and-Earn/" itemprop="url">740. Delete and Earn</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-23T22:38:17+08:00">2020-01-23</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-23T22:49:52+08:00">2020-01-23</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="740-delete-and-earn"><a class="header-anchor" href="#740-delete-and-earn">¶</a><a href="https://leetcode.com/problems/delete-and-earn/" target="_blank" rel="noopener">740. Delete and Earn</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given an array <code>nums</code> of integers, you can perform operations on the array.</p>
+<p>In each operation, you pick any <code>nums[i]</code> and delete it to earn <code>nums[i]</code> points. After, you must delete <strong>every</strong> element equal to <code>nums[i] - 1</code> or <code>nums[i] + 1</code>.</p>
+<p>You start with 0 points. Return the maximum number of points you can earn by applying such operations.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [3, 4, 2]</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: </span><br><span class="line">Delete 4 to earn 4 points, consequently 3 is also deleted.</span><br><span class="line">Then, delete 2 to earn 2 points. 6 total points are earned.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [2, 2, 3, 3, 3, 4]</span><br><span class="line">Output: 9</span><br><span class="line">Explanation: </span><br><span class="line">Delete 3 to earn 3 points, deleting both 2&apos;s and the 4.</span><br><span class="line">Then, delete 3 again to earn 3 points, and 3 again to earn 3 points.</span><br><span class="line">9 total points are earned.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The length of <code>nums</code> is at most <code>20000</code>.</li>
+<li>Each element <code>nums[i]</code> is an integer in the range <code>[1, 10000]</code>.</li>
+</ul>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h5 id="法一-dp-o-n-空间度复杂度"><a class="header-anchor" href="#法一-dp-o-n-空间度复杂度">¶</a>法一 dp O(n)空间度复杂度</h5>
+<p>  <code>dp</code>用来计数，<code>dp2[i]</code>代表到i为止的最大值，这个解法和法二有些不同。这个解法把计数为0的数也当成数组中的数，只不过它们的权值为0，但并不影响整个动态规划过程的正确性，所以可以不用判断前后数是否连续，因为整个数组就可以看成一个连续数组（有的数的个数为0）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; dp)</span></span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp2(dp.size(),<span class="number">0</span>);</span><br><span class="line">        dp2[<span class="number">0</span>]=dp[<span class="number">0</span>];</span><br><span class="line">        dp2[<span class="number">1</span>]=max(dp[<span class="number">0</span>],dp[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;dp.size();i++)&#123;</span><br><span class="line">            dp2[i]=max(dp2[i<span class="number">-1</span>],dp2[i<span class="number">-2</span>]+dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp2.back();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">deleteAndEarn</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> MAX=*max_element(nums.begin(),nums.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(MAX+<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            dp[nums[i]]+=nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> helper(dp);</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="法二-dp-o-1-空间复杂度-标程"><a class="header-anchor" href="#法二-dp-o-1-空间复杂度-标程">¶</a>法二 dp O(1)空间复杂度（标程）</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">deleteAndEarn</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; count(<span class="number">10001</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            count[nums[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> prev = <span class="number">-1</span>, avoid = <span class="number">0</span>, use = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> n = <span class="number">1</span>; n &lt;= <span class="number">10000</span>; n++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(count[n] &gt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> m = max(avoid,use);</span><br><span class="line">                <span class="keyword">int</span> curr = n*count[n];</span><br><span class="line">                use = (n==prev+<span class="number">1</span>) ? avoid + curr : m + curr;</span><br><span class="line">                avoid = m;</span><br><span class="line">                prev = n;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max(avoid,use);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/23/430-Flatten-a-Multilevel-Doubly-Linked-List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -882,7 +1338,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T23:17:38+08:00">2020-01-22</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T23:17:00+08:00">2020-01-22</time>
             
 
             
@@ -896,10 +1352,32 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-23T00:56:06+08:00">2020-01-23</time>
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-26T18:12:09+08:00">2020-03-26</time>
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1304,506 +1782,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/22/552-Student-Attendance-Record-II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/22/552-Student-Attendance-Record-II/" itemprop="url">552. Student Attendance Record II</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T19:37:00+08:00">2020-01-22</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-22T19:42:30+08:00">2020-01-22</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="552-student-attendance-record-ii"><a class="header-anchor" href="#552-student-attendance-record-ii">¶</a><a href="https://leetcode.com/problems/student-attendance-record-ii/" target="_blank" rel="noopener">552. Student Attendance Record II</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Given a positive integer <strong>n</strong>, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 10<sup>9</sup> + 7.</p>
-<p>A student attendance record is a string that only contains the following three characters:</p>
-<ol>
-<li><strong>‘A’</strong> : Absent.</li>
-<li><strong>‘L’</strong> : Late.</li>
-<li><strong>‘P’</strong> : Present.</li>
-</ol>
-<p>A record is regarded as rewardable if it doesn’t contain <strong>more than one ‘A’ (absent)</strong> or <strong>more than two continuous ‘L’ (late)</strong>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 2</span><br><span class="line">Output: 8 </span><br><span class="line">Explanation:</span><br><span class="line">There are 8 records with length 2 will be regarded as rewardable:</span><br><span class="line">&quot;PP&quot; , &quot;AP&quot;, &quot;PA&quot;, &quot;LP&quot;, &quot;PL&quot;, &quot;AL&quot;, &quot;LA&quot;, &quot;LL&quot;</span><br><span class="line">Only &quot;AA&quot; won&apos;t be regarded as rewardable owing to more than one absent times.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong> The value of <strong>n</strong> won’t exceed 100,000.</p>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<h5 id="法一-dp"><a class="header-anchor" href="#法一-dp">¶</a>法一 dp</h5>
-<p>  下面代码里<code>ailj</code>代表有<code>i</code>个A和以<code>j</code>个L结尾。</p>
-<p>  详细解释见lc讨论区:<a href="https://leetcode.com/problems/student-attendance-record-ii/discuss/101651/Python-Straightforward-DP-with-Explanation" target="_blank" rel="noopener">https://leetcode.com/problems/student-attendance-record-ii/discuss/101651/Python-Straightforward-DP-with-Explanation</a></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">checkRecord</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> a0l0 = <span class="number">1</span>, a0l1 = <span class="number">1</span>, a0l2 = <span class="number">0</span>, a1l0 = <span class="number">1</span>, a1l1 = <span class="number">0</span>, a1l2 = <span class="number">0</span>, m = <span class="number">1000000007</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a0l0 = (a0l0 + a0l1 + a0l2) % m;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a0l1 = a0l0;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a0l2 = a0l1;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a1l0 = (a0l0 + a0l1 + a0l2 + a1l0 + a1l1 + a1l2) % m;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a1l1 = a1l0;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> n_a1l2 = a1l1;</span><br><span class="line">            a0l0 = n_a0l0, a0l1 = n_a0l1, a0l2 = n_a0l2, a1l0 = n_a1l0, a1l1 = n_a1l1, a1l2 = n_a1l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (a0l0 + a0l1 + a0l2 + a1l0 + a1l1 + a1l2)%m;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="法二-dp-矩阵快速幂运算"><a class="header-anchor" href="#法二-dp-矩阵快速幂运算">¶</a>法二 dp+矩阵快速幂运算</h5>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD=<span class="number">1000000007</span>;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">mat</span> &#123;</span></span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&gt;m;</span><br><span class="line">		<span class="keyword">int</span> n;</span><br><span class="line">		mat(<span class="keyword">int</span> nn,<span class="keyword">int</span> dia) &#123;</span><br><span class="line">			n=nn;</span><br><span class="line">			m=<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&gt;(n,<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(n,<span class="number">0</span>));</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">				m[i][i]=dia;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		mat <span class="keyword">operator</span>*(mat b)<span class="keyword">const</span> &#123;</span><br><span class="line">			<span class="keyword">int</span> i,j,k;</span><br><span class="line">			<span class="function">mat <span class="title">res</span><span class="params">(n,<span class="number">0</span>)</span></span>;</span><br><span class="line">			<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					<span class="keyword">for</span> (k=<span class="number">0</span>;k&lt;n;k++) &#123;</span><br><span class="line">						res.m[i][j]=(res.m[i][j]+m[i][k]*b.m[k][j])%MOD;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> res;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function">mat <span class="title">exp</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">			<span class="function">mat <span class="title">res</span><span class="params">(n,<span class="number">1</span>)</span></span>;</span><br><span class="line">			mat b=*<span class="keyword">this</span>;</span><br><span class="line">			<span class="keyword">while</span>(x&gt;<span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span>(x%<span class="number">2</span>==<span class="number">1</span>) &#123;</span><br><span class="line">					res=res*b;</span><br><span class="line">				&#125;</span><br><span class="line">				b=b*b;</span><br><span class="line">				x&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> res;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;leftdot(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v) &#123;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;res=<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n,<span class="number">0</span>);</span><br><span class="line">			<span class="keyword">int</span> i,j;</span><br><span class="line">			<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					res[i]=(res[i]+v[i]*m[j][i])%MOD;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> res;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">checkRecord</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		<span class="function">mat <span class="title">t</span><span class="params">(<span class="number">6</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">		t.m=<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&gt; &#123; </span><br><span class="line">            &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;, </span><br><span class="line">            &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;, </span><br><span class="line">            &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;, </span><br><span class="line">            &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;, </span><br><span class="line">            &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;, </span><br><span class="line">            &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;s=<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">		t=t.<span class="built_in">exp</span>(n);</span><br><span class="line">		s=t.leftdot(s);</span><br><span class="line">		<span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++) &#123;</span><br><span class="line">			res=(res+s[i])%MOD;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/22/600-Non-negative-Integers-without-Consecutive-Ones/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/22/600-Non-negative-Integers-without-Consecutive-Ones/" itemprop="url">600. Non-negative Integers without Consecutive Ones</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T01:46:00+08:00">2020-01-22</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-22T02:05:03+08:00">2020-01-22</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="600-non-negative-integers-without-consecutive-ones"><a class="header-anchor" href="#600-non-negative-integers-without-consecutive-ones">¶</a><a href="https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/" target="_blank" rel="noopener">600. Non-negative Integers without Consecutive Ones</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Given a positive integer n, find the number of <strong>non-negative</strong> integers less than or equal to n, whose binary representations do NOT contain <strong>consecutive ones</strong>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: </span><br><span class="line">Here are the non-negative integers &lt;= 5 with their corresponding binary representations:</span><br><span class="line">0 : 0</span><br><span class="line">1 : 1</span><br><span class="line">2 : 10</span><br><span class="line">3 : 11</span><br><span class="line">4 : 100</span><br><span class="line">5 : 101</span><br><span class="line">Among them, only integer 3 disobeys the rule (two consecutive ones) and the other 5 satisfy the rule.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong> 1 &lt;= n &lt;= 10<sup>9</sup></p>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<h5 id="法一-dp"><a class="header-anchor" href="#法一-dp">¶</a>法一 dp</h5>
-<p>  观察整数从0开始增加的过程:比如1010这个数，可以看成0加上1000变成1000，然后加上10变成1010，可以发现每次都加一个2的从高位到低位的幂次，如果每次加的2的幂次对应位上的1和前一个加的不是连续的，那么<strong>小于</strong>当前幂次的所有的不含连续1的整数都可以和前一个幂次组成的数都是合法值。比如对于1010来说，1000加上所有小于100的不含连续1的值，肯定也不含连续1；</p>
-<p>  根据上面的分析，可以先求出所有<strong>小于</strong>2的各种幂次的情况，存到dp数组里。假设dp1是最高位为0的情况对应的个数，dp2是最高位为1的情况对应的个数，则<code>dp1,dp2=dp1+dp2,dp1</code>刚好是斐波那契数列。然后用这个数组求任意整数的情况:</p>
-<ol>
-<li>当遇到<code>....10...</code>这种情况时，则计数值直接加上dp数组对应位的上的值；</li>
-<li>当遇到<code>....11...</code>这种情况时，加上当前位对应的dp值之后，数字再往后增加二进制表示都会带上这个前缀，肯定不合法，直接返回；</li>
-<li><code>....100000..0</code>加到最后一个1的时候，如果没有出现2的情况，则计数值加1后返回。注意，dp数组存的是小于当前位幂次的合法值，比如10000，在对应的dp数组中是存放在第5位中，代表0-1111的所有中的合法值，其中没有包括该幂次本身，所以当该幂次也是一个合法值时也需要加到计数值里去。为什么一定要是最后一个2的幂次？因为比如<code>10...0100...</code>在加第二个1对应的dp值时，统计的是<code>10...0000...</code>到<code>10...0011...</code>这个区间中的合法值，其中包含了前一个幂次<code>10...0000...</code>。</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findIntegers</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp[<span class="number">32</span>]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">13</span>,<span class="number">21</span>,<span class="number">34</span>,<span class="number">55</span>,<span class="number">89</span>,<span class="number">144</span>,<span class="number">233</span>,<span class="number">377</span>,<span class="number">610</span>,<span class="number">987</span>,<span class="number">1597</span>,<span class="number">2584</span>,<span class="number">4181</span>,<span class="number">6765</span>,<span class="number">10946</span>,<span class="number">17711</span>,<span class="number">28657</span>,<span class="number">46368</span>,<span class="number">75025</span>,<span class="number">121393</span>,<span class="number">196418</span>,<span class="number">317811</span>,<span class="number">514229</span>,<span class="number">832040</span>,<span class="number">1346269</span>,<span class="number">2178309</span>,<span class="number">3524578</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(num)&#123;</span><br><span class="line">            b.push_back(num&amp;<span class="number">1</span>);</span><br><span class="line">            num&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=b.size()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;--i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(b[i]==<span class="number">1</span>)&#123;</span><br><span class="line">                ans+=dp[i];</span><br><span class="line">                <span class="keyword">if</span>(i+<span class="number">1</span>&lt;b.size()&amp;&amp;<span class="number">1</span>==b[i+<span class="number">1</span>]) </span><br><span class="line">                    <span class="keyword">return</span> ans;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/22/719-Find-K-th-Smallest-Pair-Distance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/22/719-Find-K-th-Smallest-Pair-Distance/" itemprop="url">719. Find K-th Smallest Pair Distance</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T00:56:00+08:00">2020-01-22</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-22T01:14:46+08:00">2020-01-22</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="668-kth-smallest-number-in-multiplication-table"><a class="header-anchor" href="#668-kth-smallest-number-in-multiplication-table">¶</a><a href="https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/" target="_blank" rel="noopener">668. Kth Smallest Number in Multiplication Table</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Nearly every one have used the . But could you find out the <code>k-th</code> smallest number quickly from the multiplication table?</p>
-<p>Given the height <code>m</code> and the length <code>n</code> of a <code>m * n</code> Multiplication Table, and a positive integer <code>k</code>, you need to return the <code>k-th</code> smallest number in this table.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: m = 3, n = 3, k = 5</span><br><span class="line">Output: </span><br><span class="line">Explanation: </span><br><span class="line">The Multiplication Table:</span><br><span class="line">1	2	3</span><br><span class="line">2	4	6</span><br><span class="line">3	6	9</span><br><span class="line"></span><br><span class="line">The 5-th smallest number is 3 (1, 2, 2, 3, 3).</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: m = 2, n = 3, k = 6</span><br><span class="line">Output: </span><br><span class="line">Explanation: </span><br><span class="line">The Multiplication Table:</span><br><span class="line">1	2	3</span><br><span class="line">2	4	6</span><br><span class="line"></span><br><span class="line">The 6-th smallest number is 6 (1, 2, 2, 3, 4, 6).</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li>The <code>m</code> and <code>n</code> will be in the range [1, 30000].</li>
-<li>The <code>k</code> will be in the range [1, m * n]</li>
-</ol>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<h5 id="标准解法"><a class="header-anchor" href="#标准解法">¶</a>标准解法</h5>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=m; ++i) ans+=min(n, k/i);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthNumber</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low=<span class="number">0</span>, high=m*n;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = low+((high-low)&gt;&gt;<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(count(m, n, mid) &lt; k) low=mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> high=mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> low;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="数学解法"><a class="header-anchor" href="#数学解法">¶</a>数学解法</h5>
-<p>  <code>find_approx</code>查找近似值，<code>ff</code>查找小于某个值的数的数。找到近似值后，向上向下找使得ff大于和小于等于k的第一个值作为接下来二分的上下界，然后二分找精确值即可。<br>
-  思路有可能来源于<a href="https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/discuss/283204/Optimization-with-Calculus-for-even-larger-inputs" target="_blank" rel="noopener">leetcode讨论区</a>。<code>C=1.0+log((rl)(m*n)) + 0.5/n + 0.5/m;</code>和<code>rl RHS=k+0.5*m+0.5*n;</code>中的<code>+ 0.5/n + 0.5/m;</code>和<code>+0.5*m+0.5*n;</code>这两个余项可能是为了弥补自然对数和调和级数的偏差而取了渐进式中的第一项(<code>Hn - lnn ≈ 1/2n+γ</code>)。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> ui;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span> ,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; pll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> rl;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _x first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _y second</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbg(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">": "</span> &lt;&lt; (x) &lt;&lt; endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbg(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//#define assert(x) </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ff</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) cnt+=min(m, val/i);</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find_approx</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        rl C=<span class="number">1.0</span>+<span class="built_in">log</span>((rl)(m*n)) + <span class="number">0.5</span>/n + <span class="number">0.5</span>/m;</span><br><span class="line">        </span><br><span class="line">        rl L=<span class="number">1.0</span>, R=m*n;</span><br><span class="line">        rl RHS=k+<span class="number">0.5</span>*m+<span class="number">0.5</span>*n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            rl M=<span class="number">0.5</span>*(L+R);</span><br><span class="line">            rl f=M*(C-<span class="built_in">log</span>(M));</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(f&lt;RHS) L=M;</span><br><span class="line">            <span class="keyword">else</span>    R=M;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        dbg(L*(C-<span class="built_in">log</span>(L)));</span><br><span class="line">        dbg(RHS);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">ceil</span>(L);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthNumber</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&gt;m) swap(n, m);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> start=find_approx(m,n,k);</span><br><span class="line">        dbg(start);</span><br><span class="line">        dbg(ff(m,n,start));</span><br><span class="line">        dbg(<span class="string">"-----------"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> L=start;</span><br><span class="line">        <span class="comment">//assert(ff(m,n,start)&lt;=k);</span></span><br><span class="line">        <span class="keyword">int</span> R=start;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(ff(m, n, R)&lt;k)</span><br><span class="line">        &#123;</span><br><span class="line">            R+=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(ff(m, n, L)&gt;=k)</span><br><span class="line">        &#123;</span><br><span class="line">            L-=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//assert(ff(m, n, L)&lt;=k);</span></span><br><span class="line">        <span class="comment">//assert(ff(m, n, R)&gt;=k);</span></span><br><span class="line">        dbg(L);</span><br><span class="line">        dbg(R);</span><br><span class="line">        dbg(R-L);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(L&lt;R)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> M=(L+R)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(ff(m,n,M)&gt;=k) R=M;</span><br><span class="line">            <span class="keyword">else</span>             L=M+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//assert(L==R);</span></span><br><span class="line">        <span class="comment">//assert(ff(m,n,L)&gt;=k);</span></span><br><span class="line">        <span class="comment">//assert(ff(m,n,L-1)&lt;k);</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> L;</span><br><span class="line">        <span class="comment">// return -1;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1854,7 +1832,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">442</span>
+                  <span class="site-state-item-count">445</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1865,7 +1843,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1876,7 +1854,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

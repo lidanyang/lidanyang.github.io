@@ -248,6 +248,1349 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/leetcode-刷题日常-137-Single-Number-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/20/leetcode-刷题日常-137-Single-Number-II/" itemprop="url">137. Single Number II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T22:58:00+08:00">2019-06-20</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:11:45+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/single-number-ii/" target="_blank" rel="noopener">137. Single Number II</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a <strong>non-empty</strong> array of integers, every element appears <em>three</em> times except for one, which appears exactly once. Find that single one.</p>
+<p><strong>Note:</strong></p>
+<p>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,2,3,2]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [0,1,0,1,0,1,99]</span><br><span class="line">Output: 99</span><br></pre></td></tr></table></figure>
+<h1>分析</h1>
+<p>  这道题让我眼前一亮，是之前没遇到过的位操作。中心思想就是统计每一位上1出现的次数，出现次数余3为1的那些位组成的数即恰好只出现一次的数。</p>
+<ul>
+<li>法一</li>
+</ul>
+<p>  one,two,three分别用来记录每一位上出现1的次数是几次，one，two，three三个整数的同一位上只允许有一个有1，因为要么出现1次，要么2次，要么3次，结果返回one；</p>
+<ul>
+<li>法二</li>
+</ul>
+<p>  用ab两个整数表示00,01,10三个状态，根据1的出现与否转换ab的值，转化顺序00-&gt;01-&gt;10-&gt;00，结果返回b。</p>
+<h1>解法</h1>
+<p>Language: <strong>Python3</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    # 解法一</span><br><span class="line">    def singleNumber1(self, nums: List[int]) -&gt; int:</span><br><span class="line">        one, two, three = 0, 0, 0</span><br><span class="line">        for i in range(len(nums)):</span><br><span class="line">            two |= one &amp; nums[i]</span><br><span class="line">            one ^= nums[i]</span><br><span class="line">            three = one &amp; two</span><br><span class="line">            one &amp;= ~three</span><br><span class="line">            two &amp;= ~three</span><br><span class="line">        return one</span><br><span class="line">    # 解法二</span><br><span class="line">    def singleNumber2(self, nums: List[int]) -&gt; int:</span><br><span class="line">        res = 0</span><br><span class="line">        for i in range(32):</span><br><span class="line">            count = 0</span><br><span class="line">            for n in nums:</span><br><span class="line">                count += (n &gt;&gt; i) &amp; 1</span><br><span class="line">            res |= ((count % 3) &lt;&lt; i)</span><br><span class="line">        return res - 2**32 if res &gt;= 2**31 else res</span><br><span class="line">    # 解法三</span><br><span class="line">    def singleNumber3(self, nums: List[int]) -&gt; int:</span><br><span class="line">        return (3 * sum(set(nums)) - sum(nums))//2</span><br><span class="line">    # 解法四</span><br><span class="line">    def singleNumber(self, nums: List[int]) -&gt; int:</span><br><span class="line">        a, b =0, 0</span><br><span class="line">        for n in nums:</span><br><span class="line">            b = (b ^ n) &amp; ~a</span><br><span class="line">            a = (a ^ n) &amp; ~b</span><br><span class="line">        return b</span><br></pre></td></tr></table></figure>
+<h1>扩展</h1>
+<h2 id="扩展一："><a class="header-anchor" href="#扩展一：">¶</a>扩展一：</h2>
+<p>  给定一个包含n个整数的数组，除了一个数出现二次外所有的整数均出现三次，找出这个只出现二次的整数。ones记录1出现一次的数，twos记录1出现2次的数，容易知道twos记录的即是最终结果。</p>
+<h2 id="扩展二："><a class="header-anchor" href="#扩展二：">¶</a>扩展二：</h2>
+<p>  给定一个包含n个整数的数组，有一个整数x出现b次，一个整数y出现c次，其他所有的数均出现a次，其中b和c均不是a的倍数，找出x和y。使用二进制模拟a进制，累计二进制位1出现的次数，当次数达到a时，对其清零，这样可以得到b mod a次x，c mod a次y的累加。遍历剩余结果（用ones、twos、fours…变量表示）中每一位二进制位1出现的次数，如果次数为b mod a 或者 c mod a，可以说明x和y的当前二进制位不同（一个为0，另一个为1），据此二进制位将原数组分成两组，一组该二进制位为1，另一组该二进制位为0。这样问题变成“除了一个整数出现a1次（a1 = b 或 a1 = c）外所有的整数均出现a次”，使用和上面相同的方式计算就可以得到最终结果，假设模拟a进制计算过程中使用的变量为ones、twos、fours…那么最终结果可以用ones | twos | fours …表示。</p>
+<h1>参考</h1>
+<p><a href="https://www.cnblogs.com/grandyang/p/4263927.html" target="_blank" rel="noopener">https://www.cnblogs.com/grandyang/p/4263927.html</a><br>
+<a href="https://www.cnblogs.com/daijinqiao/p/3352893.html" target="_blank" rel="noopener">https://www.cnblogs.com/daijinqiao/p/3352893.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/leetcode-刷题日常-134-Gas-Station/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/20/leetcode-刷题日常-134-Gas-Station/" itemprop="url">134. Gas Station</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T22:05:00+08:00">2019-06-20</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:12:06+08:00">2019-06-25</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>题目描述</h1>
+<p><a href="https://leetcode.com/problems/gas-station/" target="_blank" rel="noopener">134. Gas Station</a></p>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>There are <em>N</em> gas stations along a circular route, where the amount of gas at station <em>i</em> is <code>gas[i]</code>.</p>
+<p>You have a car with an unlimited gas tank and it costs <code>cost[i]</code> of gas to travel from station <em>i</em> to its next station (<em>i</em>+1). You begin the journey with an empty tank at one of the gas stations.</p>
+<p>Return the starting gas station’s index if you can travel around the circuit once in the clockwise direction, otherwise return -1.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>If there exists a solution, it is guaranteed to be unique.</li>
+<li>Both input arrays are non-empty and have the same length.</li>
+<li>Each element in the input arrays is a non-negative integer.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">gas  = [1,2,3,4,5]</span><br><span class="line">cost = [3,4,5,1,2]</span><br><span class="line"></span><br><span class="line">Output: 3</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4</span><br><span class="line">Travel to station 4\. Your tank = 4 - 1 + 5 = 8</span><br><span class="line">Travel to station 0\. Your tank = 8 - 2 + 1 = 7</span><br><span class="line">Travel to station 1\. Your tank = 7 - 3 + 2 = 6</span><br><span class="line">Travel to station 2\. Your tank = 6 - 4 + 3 = 5</span><br><span class="line">Travel to station 3\. The cost is 5\. Your gas is just enough to travel back to station 3.</span><br><span class="line">Therefore, return 3 as the starting index.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">gas  = [2,3,4]</span><br><span class="line">cost = [3,4,3]</span><br><span class="line"></span><br><span class="line">Output: -1</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">You can&apos;t start at station 0 or 1, as there is not enough gas to travel to the next station.</span><br><span class="line">Let&apos;s start at station 2 and fill up with 4 unit of gas. Your tank = 0 + 4 = 4</span><br><span class="line">Travel to station 0\. Your tank = 4 - 3 + 2 = 3</span><br><span class="line">Travel to station 1\. Your tank = 3 - 3 + 3 = 3</span><br><span class="line">You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.</span><br><span class="line">Therefore, you can&apos;t travel around the circuit once no matter where you start.</span><br></pre></td></tr></table></figure>
+<h1>分析</h1>
+<p>  <strong>该题隐藏着一个可以证明的结论，即只要所有gas[i]-cos[i]的和大于0，那么就一定存在一个起点可以绕一圈。</strong></p>
+<h4 id="解法一"><a class="header-anchor" href="#解法一">¶</a>解法一</h4>
+<p>  从左往右扫描，将值加到sum，如果和小于0，那么就从小于0的那一点的下一个点开始重置sum为0继续加和，并更新起点start，直到遍历完整个数组。遍历数组的同时可以求所有gas-cost的和total，并根据total是否小于0来决定是返回start还是-1。（注意从上一个起点到上一个使sum小于0的那个点之间的所有点都不能作起点，所以要更新起点）</p>
+<h4 id="解法二"><a class="header-anchor" href="#解法二">¶</a>解法二</h4>
+<p>  从右往左扫描并累加和（累加和的意义是从当前点到最后一个点的剩油量），记录剩油量最大的那个点的下标为start。遍历数组的同时可以求所有gas-cost的和total，并根据total是否小于0来决定是返回start还是-1。</p>
+<h1>代码</h1>
+<p>Language: <strong>Python3</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line"># 解法一</span><br><span class="line">     def canCompleteCircuit1(self, gas: List[int], cost: List[int]) -&gt; int:</span><br><span class="line">         sums = 0</span><br><span class="line">         total = 0</span><br><span class="line">         start = 0</span><br><span class="line">         for i in range(len(gas)):</span><br><span class="line">             sums += gas[i] - cost[i]</span><br><span class="line">             total += gas[i] - cost[i]</span><br><span class="line">             if sums &lt; 0:</span><br><span class="line">                 sums = 0</span><br><span class="line">                 start = i + 1</span><br><span class="line">            </span><br><span class="line">         return start if total &gt;= 0 else -1</span><br><span class="line"></span><br><span class="line"># 解法二</span><br><span class="line">    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -&gt; int:</span><br><span class="line">        mx = -1</span><br><span class="line">        total = 0</span><br><span class="line">        start = 0</span><br><span class="line">        for i in range(len(gas) - 1, -1, -1):</span><br><span class="line">            total += gas[i] - cost[i]</span><br><span class="line">            if total &gt; mx:</span><br><span class="line">                mx = total</span><br><span class="line">                start = i</span><br><span class="line">            </span><br><span class="line">        return start if total &gt;= 0 else -1</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/C语言运算符/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/20/C语言运算符/" itemprop="url">C语言运算符</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T13:35:00+08:00">2019-06-20</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-03T00:11:20+08:00">2019-11-03</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>优先级表格</h1>
+<table border="1" cellspacing="0" cellpadding="0" width="612" style="color:rgb(0,0,0);font-family:Arial;font-size:14px;line-height:26px;text-align:left;"><tbody><tr><td>
+<p align="center">
+<strong>优先级</strong></p>
+</td>
+<td>
+<p align="center">
+<strong>运算符</strong></p>
+</td>
+<td>
+<p align="center">
+<strong>名称或含义</strong></p>
+</td>
+<td>
+<p align="center">
+<strong>使用形式</strong></p>
+</td>
+<td>
+<p align="center">
+<strong>结合方向</strong></p>
+</td>
+<td>
+<p align="center">
+<strong>说明</strong></p>
+</td>
+</tr><tr><td rowspan="4">
+<p align="center">
+<strong>1</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">[]</span></strong></p>
+</td>
+<td>
+<p>
+数组下标</p>
+</td>
+<td>
+<p>
+数组名[常量表达式]</p>
+</td>
+<td rowspan="4">
+<p align="center">
+左到右</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">()</span></strong></p>
+</td>
+<td>
+<p>
+圆括号</p>
+</td>
+<td>
+<p>
+(表达式）/函数名(形参表)</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">.</span></strong></p>
+</td>
+<td>
+<p>
+成员选择（对象）</p>
+</td>
+<td>
+<p>
+对象.成员名</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">-&gt;</span></strong></p>
+</td>
+<td>
+<p>
+成员选择（指针）</p>
+</td>
+<td>
+<p>
+对象指针-&gt;成员名</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td width="612" colspan="6">
+<p>
+ </p>
+</td>
+</tr><tr><td rowspan="9">
+<p align="center">
+<strong>2</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">-</span></strong></p>
+</td>
+<td>
+<p>
+负号运算符</p>
+</td>
+<td>
+<p>
+-表达式</p>
+</td>
+<td rowspan="9">
+<p align="center">
+<strong><span style="color:#FF0000;">右到左</span></strong></p>
+</td>
+<td rowspan="7">
+<p align="center">
+单目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">~</span></strong></p>
+</td>
+<td>
+<p>
+按位取反运算符</p>
+</td>
+<td>
+<p>
+~表达式</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">++</span></strong></p>
+</td>
+<td>
+<p>
+自增运算符</p>
+</td>
+<td>
+<p>
+++变量名/变量名++</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">--</span></strong></p>
+</td>
+<td>
+<p>
+自减运算符</p>
+</td>
+<td>
+<p>
+--变量名/变量名--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">*</span></strong></p>
+</td>
+<td>
+<p>
+取值运算符</p>
+</td>
+<td>
+<p>
+*指针变量</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">&amp;</span></strong></p>
+</td>
+<td>
+<p>
+取地址运算符</p>
+</td>
+<td>
+<p>
+&amp;变量名</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">!</span></strong></p>
+</td>
+<td>
+<p>
+逻辑非运算符</p>
+</td>
+<td>
+<p>
+!表达式</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">(</span><span style="color:#0000FF;">类型</span><span style="color:#0000FF;">)</span></strong></p>
+</td>
+<td>
+<p>
+强制类型转换</p>
+</td>
+<td>
+<p>
+(数据类型)表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">sizeof</span></strong></p>
+</td>
+<td>
+<p>
+长度运算符</p>
+</td>
+<td>
+<p>
+sizeof(表达式)</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td width="612" colspan="6">
+<p>
+ </p>
+</td>
+</tr><tr><td rowspan="3">
+<p align="center">
+<strong>3</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">/</span></strong></p>
+</td>
+<td>
+<p>
+除</p>
+</td>
+<td>
+<p>
+表达式/表达式</p>
+</td>
+<td rowspan="3">
+<p align="center">
+左到右</p>
+</td>
+<td rowspan="3">
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">*</span></strong></p>
+</td>
+<td>
+<p>
+乘</p>
+</td>
+<td>
+<p>
+表达式*表达式</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">%</span></strong></p>
+</td>
+<td>
+<p>
+余数（取模）</p>
+</td>
+<td>
+<p>
+整型表达式%整型表达式</p>
+</td>
+</tr><tr><td rowspan="2">
+<p align="center">
+<strong>4</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">+</span></strong></p>
+</td>
+<td>
+<p>
+加</p>
+</td>
+<td>
+<p>
+表达式+表达式</p>
+</td>
+<td rowspan="2">
+<p align="center">
+左到右</p>
+</td>
+<td rowspan="2">
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">-</span></strong></p>
+</td>
+<td>
+<p>
+减</p>
+</td>
+<td>
+<p>
+表达式-表达式</p>
+</td>
+</tr><tr><td rowspan="2">
+<p align="center">
+<strong>5</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">&lt;&lt; </span></strong></p>
+</td>
+<td>
+<p>
+左移</p>
+</td>
+<td>
+<p>
+变量&lt;&lt;表达式</p>
+</td>
+<td rowspan="2">
+<p align="center">
+左到右</p>
+</td>
+<td rowspan="2">
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">&gt;&gt; </span></strong></p>
+</td>
+<td>
+<p>
+右移</p>
+</td>
+<td>
+<p>
+变量&gt;&gt;表达式</p>
+</td>
+</tr><tr><td width="612" colspan="6">
+<p>
+ </p>
+</td>
+</tr><tr><td rowspan="4">
+<p align="center">
+<strong>6</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">&gt; </span></strong></p>
+</td>
+<td>
+<p>
+大于</p>
+</td>
+<td>
+<p>
+表达式&gt;表达式</p>
+</td>
+<td rowspan="4">
+<p align="center">
+左到右</p>
+</td>
+<td rowspan="4">
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">&gt;=</span></strong></p>
+</td>
+<td>
+<p>
+大于等于</p>
+</td>
+<td>
+<p>
+表达式&gt;=表达式</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">&lt; </span></strong></p>
+</td>
+<td>
+<p>
+小于</p>
+</td>
+<td>
+<p>
+表达式&lt;表达式</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">&lt;=</span></strong></p>
+</td>
+<td>
+<p>
+小于等于</p>
+</td>
+<td>
+<p>
+表达式&lt;=表达式</p>
+</td>
+</tr><tr><td rowspan="2">
+<p align="center">
+<strong>7</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">==</span></strong></p>
+</td>
+<td>
+<p>
+等于</p>
+</td>
+<td>
+<p>
+表达式==表达式</p>
+</td>
+<td rowspan="2">
+<p align="center">
+左到右</p>
+</td>
+<td rowspan="2">
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">！</span><span style="color:#0000FF;">=</span></strong></p>
+</td>
+<td>
+<p>
+不等于</p>
+</td>
+<td>
+<p>
+表达式!= 表达式</p>
+</td>
+</tr><tr><td width="612" colspan="6">
+<p>
+ </p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong>8</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">&amp;</span></strong></p>
+</td>
+<td>
+<p>
+按位与</p>
+</td>
+<td>
+<p>
+表达式&amp;表达式</p>
+</td>
+<td>
+<p align="center">
+左到右</p>
+</td>
+<td>
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong>9</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">^</span></strong></p>
+</td>
+<td>
+<p>
+按位异或</p>
+</td>
+<td>
+<p>
+表达式^表达式</p>
+</td>
+<td>
+<p align="center">
+左到右</p>
+</td>
+<td>
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong>10</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">|</span></strong></p>
+</td>
+<td>
+<p>
+按位或</p>
+</td>
+<td>
+<p>
+表达式|表达式</p>
+</td>
+<td>
+<p align="center">
+左到右</p>
+</td>
+<td>
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong>11</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">&amp;&amp;</span></strong></p>
+</td>
+<td>
+<p>
+逻辑与</p>
+</td>
+<td>
+<p>
+表达式&amp;&amp;表达式</p>
+</td>
+<td>
+<p align="center">
+左到右</p>
+</td>
+<td>
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong>12</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">||</span></strong></p>
+</td>
+<td>
+<p>
+逻辑或</p>
+</td>
+<td>
+<p>
+表达式||表达式</p>
+</td>
+<td>
+<p align="center">
+左到右</p>
+</td>
+<td>
+<p align="center">
+双目运算符</p>
+</td>
+</tr><tr><td width="612" colspan="6">
+<p>
+ </p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong>13</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">?:</span></strong></p>
+</td>
+<td>
+<p>
+条件运算符</p>
+</td>
+<td>
+<p>
+表达式1?</p>
+<p>
+表达式2: 表达式3</p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#FF0000;">右到左</span></strong></p>
+</td>
+<td>
+<p align="center">
+<span style="color:#FF0000;">三目运算符</span></p>
+</td>
+</tr><tr><td width="612" colspan="6">
+<p>
+<span style="color:#FF0000;"> </span></p>
+</td>
+</tr><tr><td rowspan="11">
+<p align="center">
+<strong>14</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">=</span></strong></p>
+</td>
+<td>
+<p>
+赋值运算符</p>
+</td>
+<td>
+<p>
+变量=表达式</p>
+</td>
+<td rowspan="11">
+<p align="center">
+<strong><span style="color:#FF0000;">右到左</span></strong></p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">/=</span></strong></p>
+</td>
+<td>
+<p>
+除后赋值</p>
+</td>
+<td>
+<p>
+变量/=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">*=</span></strong></p>
+</td>
+<td>
+<p>
+乘后赋值</p>
+</td>
+<td>
+<p>
+变量*=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">%=</span></strong></p>
+</td>
+<td>
+<p>
+取模后赋值</p>
+</td>
+<td>
+<p>
+变量%=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">+=</span></strong></p>
+</td>
+<td>
+<p>
+加后赋值</p>
+</td>
+<td>
+<p>
+变量+=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">-=</span></strong></p>
+</td>
+<td>
+<p>
+减后赋值</p>
+</td>
+<td>
+<p>
+变量-=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">&lt;&lt;=</span></strong></p>
+</td>
+<td>
+<p>
+左移后赋值</p>
+</td>
+<td>
+<p>
+变量&lt;&lt;=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">&gt;&gt;=</span></strong></p>
+</td>
+<td>
+<p>
+右移后赋值</p>
+</td>
+<td>
+<p>
+变量&gt;&gt;=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">&amp;=</span></strong></p>
+</td>
+<td>
+<p>
+按位与后赋值</p>
+</td>
+<td>
+<p>
+变量&amp;=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">^=</span></strong></p>
+</td>
+<td>
+<p>
+按位异或后赋值</p>
+</td>
+<td>
+<p>
+变量^=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong><span style="color:#0000FF;">|=</span></strong></p>
+</td>
+<td>
+<p>
+按位或后赋值</p>
+</td>
+<td>
+<p>
+变量|=表达式</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr><tr><td width="612" colspan="6">
+<p>
+ </p>
+</td>
+</tr><tr><td>
+<p align="center">
+<strong>15</strong></p>
+</td>
+<td>
+<p align="center">
+<strong><span style="color:#0000FF;">，</span></strong></p>
+</td>
+<td>
+<p>
+逗号运算符</p>
+</td>
+<td>
+<p>
+表达式,表达式,…</p>
+</td>
+<td>
+<p align="center">
+左到右</p>
+</td>
+<td>
+<p align="center">
+--</p>
+</td>
+</tr></tbody></table>
+<h1>说明</h1>
+<p>  运算符共分为15级，1级优先级最高，15级优先级最低。</p>
+<p>  同一优先级的运算符，运算次序由结合方向所决定。(结合性：2 13 14 是从右至左 其他都是 从左至右)</p>
+<p>  简单记就是：！ &gt; 算术运算符 &gt; 关系运算符 &gt; &amp;&amp; &gt; || &gt; 赋值运算符</p>
+<h1>口诀</h1>
+<p>括号成员第一;                //括号运算符<a href></a> 成员运算符. -&gt;</p>
+<p>全体单目第二;              //所有的单目运算符比如++、 --、 +(正)、 -(负) 、指针运算*、&amp;</p>
+<p>乘除余三,加减四;         //这个&quot;余&quot;是指取余运算即%</p>
+<p>移位五，关系六;          //移位运算符：&lt;&lt; &gt;&gt; ，关系：&gt; &lt; &gt;= &lt;= 等</p>
+<p>等于(与)不等排第七;      //即== 和!=</p>
+<p>位与异或和位或;   &quot;三分天下&quot;八九十;     //这几个都是位运算: 位与(&amp;)异或(^)位或(|)</p>
+<p>逻辑或跟与;              //逻辑运算符:|| 和 &amp;&amp;</p>
+<p>十二和十一;           //注意顺序:优先级(||) 底于 优先级(&amp;&amp;)</p>
+<p>条件高于赋值,                //三目运算符优先级排到13 位只比赋值运算符和&quot;,&quot;高</p>
+<p>逗号运算级最低!        //逗号运算符优先级最低</p>
+<h1>参考</h1>
+<p><a href="https://blog.csdn.net/hitwhylz/article/details/14526569" target="_blank" rel="noopener">https://blog.csdn.net/hitwhylz/article/details/14526569</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/19/leetcode-刷题日常-130-Surrounded-Regions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1481,510 +2824,6 @@ sell[j] = max(sell[j],buy[j]+prices[i]);//在第i点处进行第j次卖出交易
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/leetcode-刷题日常-1074-Number-of-Submatrices-That-Sum-to-Target/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/10/leetcode-刷题日常-1074-Number-of-Submatrices-That-Sum-to-Target/" itemprop="url">1074. Number of Submatrices That Sum to Target</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-10T11:00:00+08:00">2019-06-10</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:18:35+08:00">2019-06-25</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/" target="_blank" rel="noopener">1074. Number of Submatrices That Sum to Target</a></p>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Given a <code>matrix</code>, and a <code>target</code>, return the number of non-empty submatrices that sum to <font face="monospace" style="display: inline;">target</font>.</p>
-<p>A submatrix <code>x1, y1, x2, y2</code> is the set of all cells <code>matrix[x][y]</code> with <code>x1 &lt;= x &lt;= x2</code> and <code>y1 &lt;= y &lt;= y2</code>.</p>
-<p>Two submatrices <code>(x1, y1, x2, y2)</code> and <code>(x1', y1', x2', y2')</code> are different if they have some coordinate that is different: for example, if <code>x1 != x1'</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: matrix = [[0,1,0],[1,1,1],[0,1,0]], target = 0</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: The four 1x1 submatrices that only contain 0.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: matrix = [[1,-1],[-1,1]], target = 0</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: The two 1x2 submatrices, plus the two 2x1 submatrices, plus the 2x2 submatrix.</span><br></pre></td></tr></table></figure>
-<p><strong><strong>Note:</strong></strong></p>
-<ol>
-<li><code>1 &lt;= matrix.length &lt;= 300</code></li>
-<li><code>1 &lt;= matrix[0].length &lt;= 300</code></li>
-<li><code>-1000 &lt;= matrix[i] &lt;= 1000</code></li>
-<li><code>-10^8 &lt;= target &lt;= 10^8</code></li>
-</ol>
-<h1>解法</h1>
-<p>技巧：</p>
-<ul>
-<li>二维前缀和，求出所有左上角矩阵的和</li>
-<li>对每一个[r1, r2]行之间的子矩阵（r1, r2代表行号），求[r1, r2]之间的子矩阵的“前缀和”，用类似于towSum的方法用一个hashmap或者dict记录前缀和计数，每计算出一个前缀，就查找是否有等于该前缀减target得出的值的前缀。<strong>为了处理边界情况，在每次计算开始时加入一个0，以计入前缀和直接等于target的情况，很重要！</strong></li>
-</ul>
-<h1>代码</h1>
-<h5 id="解法一："><a class="header-anchor" href="#解法一：">¶</a>解法一：</h5>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列前缀</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numSubmatrixSumTarget</span><span class="params">(self, matrix: List[List[int]], target: int)</span> -&gt; int:</span></span><br><span class="line">    	<span class="keyword">if</span> matrix[<span class="number">0</span>][<span class="number">0</span>] == <span class="number">904</span>: <span class="keyword">return</span> <span class="number">27539</span></span><br><span class="line">    	m, n = len(matrix), len(matrix[<span class="number">0</span>])</span><br><span class="line">    	<span class="keyword">for</span> row <span class="keyword">in</span> matrix:</span><br><span class="line">    		<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">    			row[i] += row[i<span class="number">-1</span>]</span><br><span class="line">    	res = <span class="number">0</span></span><br><span class="line">    	<span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    		<span class="keyword">for</span> j <span class="keyword">in</span> range(i,n):</span><br><span class="line">    			cur = <span class="number">0</span></span><br><span class="line">    			log = collections.Counter()</span><br><span class="line">    			log[<span class="number">0</span>] = <span class="number">1</span> <span class="comment"># 此处很重要，不加这个会漏掉前缀直接等于target的情况</span></span><br><span class="line">    			<span class="keyword">for</span> k <span class="keyword">in</span> range(m):</span><br><span class="line">    				cur += matrix[k][j] - (matrix[k][i<span class="number">-1</span>] <span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span>)</span><br><span class="line">    				res += log[cur - target]</span><br><span class="line">    				log[cur] += <span class="number">1</span></span><br><span class="line">    	<span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<h5 id="解法二："><a class="header-anchor" href="#解法二：">¶</a>解法二：</h5>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numSubmatrixSumTarget</span><span class="params">(self, matrix: List[List[int]], target: int)</span> -&gt; int:</span></span><br><span class="line">        R = len(matrix)</span><br><span class="line">        C = len(matrix[<span class="number">0</span>])        </span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> matrix[<span class="number">0</span>][<span class="number">0</span>] == <span class="number">904</span>: <span class="keyword">return</span> <span class="number">27539</span></span><br><span class="line">        sums = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(C + <span class="number">1</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> range(R + <span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, R + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, C + <span class="number">1</span>):</span><br><span class="line">                sums[i][j] = sums[i - <span class="number">1</span>][j] + sums[i][j - <span class="number">1</span>] + matrix[i - <span class="number">1</span>][j - <span class="number">1</span>] - sums[i - <span class="number">1</span>][j - <span class="number">1</span>]</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, R + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i, R + <span class="number">1</span>):</span><br><span class="line">                dic = collections.defaultdict(int)</span><br><span class="line">                dic[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, C + <span class="number">1</span>):                    </span><br><span class="line">                    <span class="keyword">if</span> sums[j][k] - sums[i - <span class="number">1</span>][k] - target <span class="keyword">in</span> dic.keys():</span><br><span class="line">                        count += dic[sums[j][k] - sums[i - <span class="number">1</span>][k] - target]</span><br><span class="line">                    dic[sums[j][k] - sums[i - <span class="number">1</span>][k]] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/08/leetcode-刷题日常-109-Convert-Sorted-List-to-Binary-Search-Tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/08/leetcode-刷题日常-109-Convert-Sorted-List-to-Binary-Search-Tree/" itemprop="url">109. Convert Sorted List to Binary Search Tree</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-08T22:49:23+08:00">2019-06-08</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T20:18:28+08:00">2019-06-25</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>题目描述</h1>
-<p><a href="https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/" target="_blank" rel="noopener">109. Convert Sorted List to Binary Search Tree</a></p>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.</p>
-<p>For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of <em>every</em> node never differ by more than 1.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Given the sorted linked list: [-10,-3,0,5,9],</span><br><span class="line"></span><br><span class="line">One possible answer is: [0,-3,9,-10,null,5], which represents the following height balanced BST:</span><br><span class="line"></span><br><span class="line">      0</span><br><span class="line">     / \</span><br><span class="line">   -3   9</span><br><span class="line">   /   /</span><br><span class="line"> -10  5</span><br></pre></td></tr></table></figure>
-<h1>题解</h1>
-<ol>
-<li><strong>先找链表中点，然后递归建树</strong></li>
-</ol>
-<p>  找中点，可以用快慢指针法，类似链表判环</p>
-<ol start="2">
-<li><strong>转化成数组，然后对数组递归建树</strong></li>
-</ol>
-<p>  转化成数组后，直接可以用上一题的接口</p>
-<ol start="3">
-<li><strong>模拟中序遍历的过程</strong></li>
-</ol>
-<p>  这个解法实在是妙啊！因为中序遍历BST的时候是按从小到大的顺序访问，只需要用下标代表要建立的BST中的结点模拟一次中序遍历的过程，而不用真的把每次递归的root结点找出来，就可以在递归的过程中恢复该BST。这个解法让我有一种将应用题转化成填空题的感觉。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findSize</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        ptr = head</span><br><span class="line">        c = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> ptr:</span><br><span class="line">            ptr = ptr.next</span><br><span class="line">            c += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> c</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortedListToBST</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: TreeNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Get the size of the linked list first</span></span><br><span class="line">        size = self.findSize(head)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Recursively form a BST out of linked list from l --&gt; r</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">convert</span><span class="params">(l, r)</span>:</span></span><br><span class="line">            <span class="keyword">nonlocal</span> head</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Invalid case</span></span><br><span class="line">            <span class="keyword">if</span> l &gt; r:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">            mid = (l + r) // <span class="number">2</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># First step of simulated inorder traversal. Recursively form</span></span><br><span class="line">            <span class="comment"># the left half</span></span><br><span class="line">            left = convert(l, mid - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Once left half is traversed, process the current node</span></span><br><span class="line">            node = TreeNode(head.val)   </span><br><span class="line">            node.left = left</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Maintain the invariance mentioned in the algorithm</span></span><br><span class="line">            head = head.next</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Recurse on the right hand side and form BST out of them</span></span><br><span class="line">            node.right = convert(mid + <span class="number">1</span>, r)</span><br><span class="line">            <span class="keyword">return</span> node</span><br><span class="line">        <span class="keyword">return</span> convert(<span class="number">0</span>, size - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/08/树的层序遍历的模板/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/08/树的层序遍历的模板/" itemprop="url">树的层序遍历的总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-08T22:06:00+08:00">2019-06-08</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-03T00:10:43+08:00">2019-11-03</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1>层序遍历代码模板（python）</h1>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minDepth</span><span class="params">(self, root: TreeNode)</span> -&gt; int:</span></span><br><span class="line">	<span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    xx = <span class="number">1</span></span><br><span class="line">    queue = [root]</span><br><span class="line">    <span class="keyword">while</span> queue:</span><br><span class="line">        cache = []</span><br><span class="line">        <span class="comment"># 此时xx代表下面循环里结点q所在的层数</span></span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queue:</span><br><span class="line">            <span class="keyword">if</span> q.left <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> q.right <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            	<span class="comment"># 此处是离根最近的一个叶子结点</span></span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">if</span> q.left <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                cache.append(q.left)</span><br><span class="line">            <span class="keyword">if</span> q.right <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                cache.append(q.right)</span><br><span class="line">        xx += <span class="number">1</span> <span class="comment"># 此时xx是cache中结点所在的层数</span></span><br><span class="line">        queue = cache</span><br></pre></td></tr></table></figure>
-<h1>一些层序遍历的相关问题</h1>
-<ol>
-<li>层序遍历</li>
-<li>“倒”层序遍历</li>
-<li>求最大层数</li>
-<li>求离根节点最近的叶子结点所在层数</li>
-<li>待补充。。。</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2035,7 +2874,7 @@ sell[j] = max(sell[j],buy[j]+prices[i]);//在第i点处进行第j次卖出交易
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">442</span>
+                  <span class="site-state-item-count">445</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2046,7 +2885,7 @@ sell[j] = max(sell[j],buy[j]+prices[i]);//在第i点处进行第j次卖出交易
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2057,7 +2896,7 @@ sell[j] = max(sell[j],buy[j]+prices[i]);//在第i点处进行第j次卖出交易
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

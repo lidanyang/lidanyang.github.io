@@ -248,6 +248,449 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/13/284-Peeking-Iterator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/13/284-Peeking-Iterator/" itemprop="url">284. Peeking Iterator</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-13T10:48:00+08:00">2019-12-13</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-20T23:03:04+08:00">2019-12-20</time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="284-peeking-iterator"><a class="header-anchor" href="#284-peeking-iterator">¶</a><a href="https://leetcode.com/problems/peeking-iterator/" target="_blank" rel="noopener">284. Peeking Iterator</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given an Iterator class interface with methods: <code>next()</code> and <code>hasNext()</code>, design and implement a PeekingIterator that support the <code>peek()</code> operation – it essentially peek() at the element that will be returned by the next call to next().</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Assume that the iterator is initialized to the beginning of the list: [1,2,3].</span><br><span class="line"></span><br><span class="line">Call next() gets you 1, the first element in the list.</span><br><span class="line">Now you call peek() and it returns 2, the next element. Calling next() after that still return 2\. </span><br><span class="line">You call next() the final time and it returns 3, the last element. </span><br><span class="line">Calling hasNext() after that should return false.</span><br></pre></td></tr></table></figure>
+<p><strong>Follow up</strong>: How would you extend your design to be generic and work with all types, not just integer?</p>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<h5 id="法一"><a class="header-anchor" href="#法一">¶</a>法一</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Below is the interface for Iterator, which is already defined for you.</span></span><br><span class="line"><span class="comment">// **DO NOT** modify the interface for Iterator.</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Iterator</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Data</span>;</span></span><br><span class="line">	Data* data;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Iterator(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums);</span><br><span class="line">	Iterator(<span class="keyword">const</span> Iterator&amp; iter);</span><br><span class="line">	<span class="keyword">virtual</span> ~Iterator();</span><br><span class="line">	<span class="comment">// Returns the next element in the iteration.</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// Returns true if the iteration has more elements.</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">hasNext</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PeekingIterator</span> :</span> <span class="keyword">public</span> Iterator</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> m_next;</span><br><span class="line">	<span class="keyword">bool</span> m_hasnext;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    PeekingIterator(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums) : Iterator(nums)</span><br><span class="line">    &#123;</span><br><span class="line">		m_hasnext=Iterator::hasNext();</span><br><span class="line">		<span class="keyword">if</span>(m_hasnext)</span><br><span class="line">			m_next=Iterator::next();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">next</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans=m_next;</span><br><span class="line">		m_hasnext=Iterator::hasNext();</span><br><span class="line">		<span class="keyword">if</span>(m_hasnext)</span><br><span class="line">			m_next=Iterator::next();</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasNext</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_hasnext;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="法二"><a class="header-anchor" href="#法二">¶</a>法二</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PeekingIterator</span> :</span> <span class="keyword">public</span> Iterator</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    PeekingIterator(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums) : Iterator(nums)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Iterator(*<span class="keyword">this</span>).next();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">next</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Iterator::next();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasNext</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Iterator::hasNext();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="法三"><a class="header-anchor" href="#法三">¶</a>法三</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PeekingIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">PeekingIterator</span><span class="params">(Iterator&lt;Integer&gt; iterator)</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">this</span>.iterator = iterator;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">if</span> (cache == <span class="keyword">null</span> &amp;&amp; iterator.hasNext())</span><br><span class="line">	        cache = iterator.next();</span><br><span class="line">        <span class="keyword">return</span> cache;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	    Integer tmp = peek();</span><br><span class="line">	    cache = <span class="keyword">null</span>;</span><br><span class="line">	    <span class="keyword">return</span> tmp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">return</span> peek() != <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> Iterator&lt;Integer&gt; iterator;</span><br><span class="line">	<span class="keyword">private</span> Integer cache;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="法四"><a class="header-anchor" href="#法四">¶</a>法四</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Below is the interface for Iterator, which is already defined for you.</span></span><br><span class="line"><span class="comment">// **DO NOT** modify the interface for Iterator.</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Iterator</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Data</span>;</span></span><br><span class="line">    Data* data;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Iterator(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums);</span><br><span class="line">    Iterator(<span class="keyword">const</span> Iterator&amp; iter);</span><br><span class="line">    <span class="keyword">virtual</span> ~Iterator();</span><br><span class="line">    <span class="comment">// Returns the next element in the iteration.</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// Returns true if the iteration has more elements.</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasNext</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PeekingIterator</span> :</span> <span class="keyword">public</span> Iterator &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator cpi;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator sentinel;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; n;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    PeekingIterator(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) : Iterator(nums), n(nums) &#123;</span><br><span class="line">        <span class="comment">// Initialize any member here.</span></span><br><span class="line">        <span class="comment">// **DO NOT** save a copy of nums and manipulate it directly.</span></span><br><span class="line">        <span class="comment">// You should only use the Iterator interface methods.</span></span><br><span class="line">        cpi = n.cbegin();</span><br><span class="line">        sentinel = n.cend();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Returns the next element in the iteration without advancing the iterator.</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> *cpi;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// hasNext() and next() should behave the same as in the Iterator interface.</span></span><br><span class="line">    <span class="comment">// Override them if needed.</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!hasNext()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> *cpi++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasNext</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cpi &lt; sentinel;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/12/542-01-Matrix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/12/542-01-Matrix/" itemprop="url">542. 01 Matrix</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-12T23:09:46+08:00">2019-12-12</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-12T23:11:45+08:00">2019-12-12</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="542-01-matrix"><a class="header-anchor" href="#542-01-matrix">¶</a><a href="https://leetcode.com/problems/01-matrix/" target="_blank" rel="noopener">542. 01 Matrix</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.</p>
+<p>The distance between two adjacent cells is 1.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[0,0,0],</span><br><span class="line"> [0,1,0],</span><br><span class="line"> [0,0,0]]</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">[[0,0,0],</span><br><span class="line"> [0,1,0],</span><br><span class="line"> [0,0,0]]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[0,0,0],</span><br><span class="line"> [0,1,0],</span><br><span class="line"> [1,1,1]]</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">[[0,0,0],</span><br><span class="line"> [0,1,0],</span><br><span class="line"> [1,2,1]]</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The number of elements of the given matrix will not exceed 10,000.</li>
+<li>There are at least one 0 in the given matrix.</li>
+<li>The cells are adjacent in only four directions: up, down, left and right.</li>
+</ol>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>Language: <strong>C++</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> optimization = []() &#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line">​</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Location</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">int</span> r;</span><br><span class="line">        <span class="keyword">int</span> c;</span><br><span class="line">        Location(<span class="keyword">int</span> r, <span class="keyword">int</span> c) &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;r = r;</span><br><span class="line">            <span class="keyword">this</span>-&gt;c = c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; updateMatrix(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;Location&gt; <span class="built_in">queue</span>;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">int</span> mr = matrix.size();</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">if</span> (mr == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> matrix;</span><br><span class="line">        &#125;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">int</span> mc = matrix[<span class="number">0</span>].size();</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">if</span> (mc == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> matrix;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">2147483647</span>;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; mr; r++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; mc; c++) &#123;</span><br><span class="line">                <span class="keyword">int</span> val = matrix[r][c];</span><br><span class="line">                <span class="keyword">if</span> (val == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="built_in">queue</span>.push(Location(r, c));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    matrix[r][c] = INF;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">​</span><br><span class="line">        <span class="keyword">int</span> r;</span><br><span class="line">        <span class="keyword">int</span> c;</span><br><span class="line">        <span class="keyword">int</span> d;</span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        <span class="keyword">int</span> y;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!<span class="built_in">queue</span>.empty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> size = <span class="built_in">queue</span>.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                Location loc = <span class="built_in">queue</span>.front();</span><br><span class="line">                r = loc.r;</span><br><span class="line">                c = loc.c;</span><br><span class="line">                d = matrix[r][c];</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (r &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    y = r - <span class="number">1</span>;</span><br><span class="line">                    x = c;</span><br><span class="line">                    <span class="keyword">if</span> (matrix[y][x] &gt; d + <span class="number">1</span>) &#123;</span><br><span class="line">                        matrix[y][x] = d + <span class="number">1</span>;</span><br><span class="line">                        <span class="built_in">queue</span>.push(Location(y, x));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (r &lt; mr - <span class="number">1</span>) &#123;</span><br><span class="line">                    y = r + <span class="number">1</span>;</span><br><span class="line">                    x = c;</span><br><span class="line">                    <span class="keyword">if</span> (matrix[y][x] &gt; d + <span class="number">1</span>) &#123;</span><br><span class="line">                        matrix[y][x] = d + <span class="number">1</span>;</span><br><span class="line">                        <span class="built_in">queue</span>.push(Location(y, x));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (c &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    y = r;</span><br><span class="line">                    x = c - <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (matrix[y][x] &gt; d + <span class="number">1</span>) &#123;</span><br><span class="line">                        matrix[y][x] = d + <span class="number">1</span>;</span><br><span class="line">                        <span class="built_in">queue</span>.push(Location(y, x));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (c &lt; mc - <span class="number">1</span>) &#123;</span><br><span class="line">                    y = r;</span><br><span class="line">                    x = c + <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (matrix[y][x] &gt; d + <span class="number">1</span>) &#123;</span><br><span class="line">                        matrix[y][x] = d + <span class="number">1</span>;</span><br><span class="line">                        <span class="built_in">queue</span>.push(Location(y, x));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="built_in">queue</span>.pop();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> matrix;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/12/525-Contiguous-Array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lidanyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/12/525-Contiguous-Array/" itemprop="url">525. Contiguous Array</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-12T17:07:13+08:00">2019-12-12</time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-12T17:07:23+08:00">2019-12-12</time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="525-contiguous-array"><a class="header-anchor" href="#525-contiguous-array">¶</a><a href="https://leetcode.com/problems/contiguous-array/" target="_blank" rel="noopener">525. Contiguous Array</a></h3>
+<p>Difficulty: <strong>Medium</strong></p>
+<p>Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [0,1]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: [0, 1] is the longest contiguous subarray with equal number of 0 and 1.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [0,1,0]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong> The length of the given binary array will not exceed 50,000.</p>
+<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
+<p>Language: <strong>C++</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> _=[]()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMaxLength</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> mn[nums.size()*<span class="number">2</span>+<span class="number">1</span>], ans=<span class="number">0</span>, sz=nums.size();</span><br><span class="line">        fill(mn, mn+<span class="number">2</span>*sz+<span class="number">1</span>, <span class="number">-2</span>);</span><br><span class="line">        </span><br><span class="line">        mn[sz]=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>, c0=<span class="number">0</span>, c1=<span class="number">0</span>;i&lt;sz;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==<span class="number">0</span>) ++c0;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]==<span class="number">1</span>) ++c1;</span><br><span class="line">            <span class="keyword">if</span>(mn[c1-c0+sz]==<span class="number">-2</span>) mn[c1-c0+sz]=i;</span><br><span class="line">            <span class="keyword">else</span> ans=max(i-mn[c1-c0+sz], ans);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/336-Palindrome-Pairs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1315,498 +1758,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/906-Super-Palindromes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/07/906-Super-Palindromes/" itemprop="url">906. Super Palindromes</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-07T01:57:00+08:00">2019-12-07</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-07T02:16:44+08:00">2019-12-07</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="906-super-palindromes"><a class="header-anchor" href="#906-super-palindromes">¶</a><a href="https://leetcode.com/problems/super-palindromes/" target="_blank" rel="noopener">906. Super Palindromes</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Let’s say a positive integer is a <em>superpalindrome</em> if it is a palindrome, and it is also the square of a palindrome.</p>
-<p>Now, given two positive integers <code>L</code> and <code>R</code> (represented as strings), return the number of superpalindromes in the inclusive range <code>[L, R]</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: L = &quot;4&quot;, R = &quot;1000&quot;</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: 4, 9, 121, and 484 are superpalindromes.</span><br><span class="line">Note that 676 is not a superpalindrome: 26 * 26 = 676, but 26 is not a palindrome.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>1 &lt;= len(L) &lt;= 18</code></li>
-<li><code>1 &lt;= len(R) &lt;= 18</code></li>
-<li><code>L</code> and <code>R</code> are strings representing integers in the range <code>[1, 10^18)</code>.</li>
-<li><code>int(L) &lt;= int(R)</code></li>
-</ol>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  此题主要考察用回文的root构造回文数。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Solution()&#123;</span><br><span class="line">        ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">        <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(LL N)</span></span>&#123;</span><br><span class="line">        LL re=<span class="number">0</span>, n=N;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            re=re*<span class="number">10</span>+n%<span class="number">10</span>;</span><br><span class="line">            n/=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> N==re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">LL <span class="title">gen</span><span class="params">(LL N, <span class="keyword">bool</span> odd)</span></span>&#123;</span><br><span class="line">        LL v=<span class="number">1</span>, ret=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(v &lt;= N/<span class="number">10</span>) v*=<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">for</span>(LL i=N;i&gt;<span class="number">0</span>;i/=<span class="number">10</span>)&#123;</span><br><span class="line">            ret=ret*<span class="number">10</span>+i%<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> odd? N / <span class="number">10</span> * v * <span class="number">10</span> + ret:N * v * <span class="number">10</span> + ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">superpalindromesInRange</span><span class="params">(<span class="built_in">string</span> L, <span class="built_in">string</span> R)</span> </span>&#123;</span><br><span class="line">        LL l=stol(L), r=stol(R);</span><br><span class="line">        <span class="comment">// static vector&lt;LL&gt; res;</span></span><br><span class="line">        <span class="comment">// if(res.empty())&#123;</span></span><br><span class="line">        <span class="comment">//     for(LL i=1;i&lt;25000;++i)&#123;</span></span><br><span class="line">        <span class="comment">//         LL a=gen(i, true),b=gen(i, false);</span></span><br><span class="line">        <span class="comment">//         if(a*a&lt;=100000000000000000&amp;&amp;a*a&gt;=1&amp;&amp;isPalindrome(a*a)) res.push_back(a*a);</span></span><br><span class="line">        <span class="comment">//         if(b*b&lt;=100000000000000000&amp;&amp;b*b&gt;=1&amp;&amp;isPalindrome(b*b)) res.push_back(b*b);</span></span><br><span class="line">        <span class="comment">//     &#125;</span></span><br><span class="line">        <span class="comment">//     sort(res.begin(), res.end());</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;LL&gt; res&#123;<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">121</span>,<span class="number">484</span>,<span class="number">10201</span>,<span class="number">12321</span>,<span class="number">14641</span>,<span class="number">40804</span>,<span class="number">44944</span>,<span class="number">1002001</span>,<span class="number">1234321</span>,<span class="number">4008004</span>,<span class="number">100020001</span>,<span class="number">102030201</span>,<span class="number">104060401</span>,<span class="number">121242121</span>,<span class="number">123454321</span>,<span class="number">125686521</span>,<span class="number">400080004</span>,<span class="number">404090404</span>,<span class="number">10000200001</span>,<span class="number">10221412201</span>,<span class="number">12102420121</span>,<span class="number">12345654321</span>,<span class="number">40000800004</span>,<span class="number">1000002000001</span>,<span class="number">1002003002001</span>,<span class="number">1004006004001</span>,<span class="number">1020304030201</span>,<span class="number">1022325232201</span>,<span class="number">1024348434201</span>,<span class="number">1210024200121</span>,<span class="number">1212225222121</span>,<span class="number">1214428244121</span>,<span class="number">1232346432321</span>,<span class="number">1234567654321</span>,<span class="number">4000008000004</span>,<span class="number">4004009004004</span>,<span class="number">100000020000001</span>,<span class="number">100220141022001</span>,<span class="number">102012040210201</span>,<span class="number">102234363432201</span>,<span class="number">121000242000121</span>,<span class="number">121242363242121</span>,<span class="number">123212464212321</span>,<span class="number">123456787654321</span>,<span class="number">400000080000004</span>,<span class="number">10000000200000001</span>,<span class="number">10002000300020001</span>,<span class="number">10004000600040001</span>,<span class="number">10020210401202001</span>,<span class="number">10022212521222001</span>,<span class="number">10024214841242001</span>,<span class="number">10201020402010201</span>,<span class="number">10203040504030201</span>,<span class="number">10205060806050201</span>,<span class="number">10221432623412201</span>,<span class="number">10223454745432201</span>,<span class="number">12100002420000121</span>,<span class="number">12102202520220121</span>,<span class="number">12104402820440121</span>,<span class="number">12122232623222121</span>,<span class="number">12124434743442121</span>,<span class="number">12321024642012321</span>,<span class="number">12323244744232321</span>,<span class="number">12343456865434321</span>,<span class="number">12345678987654321</span>,<span class="number">40000000800000004</span>,<span class="number">40004000900040004</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x:res) <span class="keyword">if</span>(x&gt;=l&amp;&amp;x&lt;=r) ++ans;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">superpalindromesInRange</span><span class="params">(<span class="built_in">string</span> L, <span class="built_in">string</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> l = stol(L);</span><br><span class="line">        <span class="keyword">long</span> r = stol(R);</span><br><span class="line">        <span class="keyword">int</span> kMaxVal = <span class="number">1e5</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; kMaxVal; ++i) &#123;</span><br><span class="line">            <span class="keyword">long</span> num = getEvenPalinNum(i);</span><br><span class="line">            num *= num;</span><br><span class="line">            <span class="keyword">if</span> (num &lt; l) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (num &gt; r) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (revertNumber(num) == num) &#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; kMaxVal; ++i) &#123;</span><br><span class="line">            <span class="keyword">long</span> num = getOddPalinNum(i);</span><br><span class="line">            num *= num;</span><br><span class="line">            <span class="keyword">if</span> (num &lt; l) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (num &gt; r) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (revertNumber(num) == num) &#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">getEvenPalinNum</span><span class="params">(<span class="keyword">long</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> res = num;</span><br><span class="line">        <span class="keyword">while</span> (num) &#123;</span><br><span class="line">            res = res * <span class="number">10</span> + num % <span class="number">10</span>;</span><br><span class="line">            num /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">getOddPalinNum</span><span class="params">(<span class="keyword">long</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> res = num;</span><br><span class="line">        num /= <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">while</span> (num) &#123;</span><br><span class="line">            res = res * <span class="number">10</span> + num % <span class="number">10</span>;</span><br><span class="line">            num /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">revertNumber</span><span class="params">(<span class="keyword">long</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (num) &#123;</span><br><span class="line">            res = <span class="number">10</span> * res + num % <span class="number">10</span>;</span><br><span class="line">            num /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/06/866-Prime-Palindrome/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/06/866-Prime-Palindrome/" itemprop="url">866. Prime Palindrome</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-06T17:08:55+08:00">2019-12-06</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-06T17:11:33+08:00">2019-12-06</time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="866-prime-palindrome"><a class="header-anchor" href="#866-prime-palindrome">¶</a><a href="https://leetcode.com/problems/prime-palindrome/" target="_blank" rel="noopener">866. Prime Palindrome</a></h3>
-<p>Difficulty: <strong>Medium</strong></p>
-<p>Find the smallest prime palindrome greater than or equal to <code>N</code>.</p>
-<p>Recall that a number is <em>prime</em> if it’s only divisors are 1 and itself, and it is greater than 1.</p>
-<p>For example, 2,3,5,7,11 and 13 are primes.</p>
-<p>Recall that a number is a <em>palindrome</em> if it reads the same from left to right as it does from right to left.</p>
-<p>For example, 12321 is a palindrome.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 6</span><br><span class="line">Output: 7</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 8</span><br><span class="line">Output: 11</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 13</span><br><span class="line">Output: 101</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>1 &lt;= N &lt;= 10^8</code></li>
-<li>The answer is guaranteed to exist and be less than <code>2 * 10^8</code>.</li>
-</ul>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  定义回文数的root:像12321这样的回文数的root是123，12421的root是124，即回文数的root是数的前半部分代表的数，root的大小代表了回文数的大小。</p>
-<p>  枚举回文数的root，用root构造回文数，找到第一个大于N的素数回文数即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">     <span class="function"><span class="keyword">int</span> <span class="title">primePalindrome</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 11 is the only even palindrome that doesn't work</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="number">8</span> &lt;= N &amp;&amp; N &lt;= <span class="number">11</span>) <span class="keyword">return</span> <span class="number">11</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">1</span>; x &lt; <span class="number">100000</span>; ++x) &#123; </span><br><span class="line">            <span class="comment">// we can start with first palindrome greater than N, but that won't improve much</span></span><br><span class="line">            <span class="keyword">auto</span> y = genOddPalindrome(x);</span><br><span class="line">            <span class="keyword">if</span> (y &gt;= N &amp;&amp; isPrime(y)) <span class="keyword">return</span> y;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">​</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// key: iteration over palindromes! (and only odd ones!)</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">genOddPalindrome</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> v = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(v &lt;= n / <span class="number">10</span>) v *= <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">auto</span> rev = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> val = n; val &gt; <span class="number">0</span>; val /= <span class="number">10</span>)</span><br><span class="line">            rev = rev * <span class="number">10</span> + val % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">return</span> (n / <span class="number">10</span>) * <span class="number">10</span> * v + rev;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPrime</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt;= <span class="number">2</span> || num % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">return</span> num == <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i * i &lt;= num; i += <span class="number">2</span>) <span class="keyword">if</span> (num % i == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/06/964-Least-Operators-to-Express-Number/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lidanyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/06/964-Least-Operators-to-Express-Number/" itemprop="url">964. Least Operators to Express Number</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-06T14:13:00+08:00">2019-12-06</time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-06T15:54:33+08:00">2019-12-06</time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="964-least-operators-to-express-number"><a class="header-anchor" href="#964-least-operators-to-express-number">¶</a><a href="https://leetcode.com/problems/least-operators-to-express-number/" target="_blank" rel="noopener">964. Least Operators to Express Number</a></h3>
-<p>Difficulty: <strong>Hard</strong></p>
-<p>Given a single positive integer <code>x</code>, we will write an expression of the form <code>x (op1) x (op2) x (op3) x ...</code> where each operator <code>op1</code>, <code>op2</code>, etc. is either addition, subtraction, multiplication, or division (<code>+</code>, <code>-</code>, <code>*</code>, or <code>/)</code>.  For example, with <code>x = 3</code>, we might write <code>3 * 3 / 3 + 3 - 3</code> which is a value of <font face="monospace" style="display: inline;">3</font>.</p>
-<p>When writing such an expression, we adhere to the following conventions:</p>
-<ol>
-<li>The division operator (<code>/</code>) returns rational numbers.</li>
-<li>There are no parentheses placed anywhere.</li>
-<li>We use the usual order of operations: multiplication and division happens before addition and subtraction.</li>
-<li>It’s not allowed to use the unary negation operator (<code>-</code>).  For example, “<code>x - x</code>” is a valid expression as it only uses subtraction, but “<code>-x + x</code>” is not because it uses negation.</li>
-</ol>
-<p>We would like to write an expression with the least number of operators such that the expression equals the given <code>target</code>.  Return the least number of operators used.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: x = 3, target = 19</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: 3 * 3 + 3 * 3 + 3 / 3\.  The expression contains 5 operations.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: x = 5, target = 501</span><br><span class="line">Output: 8</span><br><span class="line">Explanation: 5 * 5 * 5 * 5 - 5 * 5 * 5 + 5 / 5\.  The expression contains 8 operations.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: x = 100, target = 100000000</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: 100 * 100 * 100 * 100\.  The expression contains 3 operations.</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>2 &lt;= x &lt;= 100</code></li>
-<li><code>1 &lt;= target &lt;= 2 * 10^8</code></li>
-</ul>
-<h4 id="solution"><a class="header-anchor" href="#solution">¶</a>Solution</h4>
-<p>  如果target的x进制表示为(xnxn-1,…,x0)，那么第r位既可以用xr个x<sup>r的和表示，也可以用x</sup>(r+1)减去(x-xr)个x^r来表示，每一位依次类推取所需最少的操作符数即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; x_base, <span class="keyword">int</span> i, <span class="keyword">int</span> c, <span class="keyword">int</span> x, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; rec)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rec[i][c] &gt;= <span class="number">0</span>) <span class="keyword">return</span> rec[i][c];</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= x_base.size()) &#123;</span><br><span class="line">            <span class="keyword">return</span> rec[i][c] = c * i;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> rec[i][c] = min((x_base[i] + c) * i + search(x_base, i + <span class="number">1</span>, <span class="number">0</span>, x, rec), (x - x_base[i] - c) * i + search(x_base, i + <span class="number">1</span>, <span class="number">1</span>, x, rec));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastOpsExpressTarget</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; x_base;</span><br><span class="line">        <span class="keyword">while</span> (target) &#123;</span><br><span class="line">            x_base.push_back(target % x);</span><br><span class="line">            target /= x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; rec(x_base.size() + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">2</span>, <span class="number">-1</span>));</span><br><span class="line">        <span class="keyword">return</span> min(x_base[<span class="number">0</span>] * <span class="number">2</span> + search(x_base, <span class="number">1</span>, <span class="number">0</span>, x, rec), (x - x_base[<span class="number">0</span>]) * <span class="number">2</span> + search(x_base, <span class="number">1</span>, <span class="number">1</span>, x, rec)) - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>  还有on the fly的一边求各位数字一边求操作符数的解法如下:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastOpsExpressTarget</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp[<span class="number">2</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span>(target)&#123;</span><br><span class="line">            <span class="keyword">int</span> r = target % x;</span><br><span class="line">            target /= x;</span><br><span class="line">            <span class="keyword">int</span> m = (i == <span class="number">0</span>? <span class="number">2</span>: i);</span><br><span class="line">            ++i;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> dp0 = min(dp[<span class="number">0</span>] + r * m, dp[<span class="number">1</span>] + (r + <span class="number">1</span>) * m);</span><br><span class="line">            dp[<span class="number">1</span>] = min(dp[<span class="number">0</span>] + (x - r) * m, dp[<span class="number">1</span>] + (x - r - <span class="number">1</span>) * m);</span><br><span class="line">            dp[<span class="number">0</span>] = dp0;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">       <span class="keyword">return</span>  min(dp[<span class="number">0</span>], dp[<span class="number">1</span>] + i) - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>  同样的解法还有:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">leastOpsExpressTarget</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pos = <span class="number">0</span>, neg = <span class="number">0</span>, k, pos2, neg2, cur;</span><br><span class="line">        <span class="keyword">for</span> (k = <span class="number">0</span>; y &gt; <span class="number">0</span>; ++k, y /= x) &#123;</span><br><span class="line">            cur = y % x;</span><br><span class="line">            <span class="keyword">if</span> (k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                pos2 = min(cur * k + pos, (cur + <span class="number">1</span>) * k + neg);</span><br><span class="line">                neg2 = min((x - cur) * k + pos, (x - cur - <span class="number">1</span>) * k + neg);</span><br><span class="line">                pos = pos2, neg = neg2;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                pos = cur * <span class="number">2</span>;</span><br><span class="line">                neg = (x - cur) * <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> min(pos, k + neg) - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>此题还有如https://leetcode.com/problems/least-operators-to-express-number/solution/ 的解法，但是没有上面这个简洁易懂，里面有个if(i&gt;=39)的魔术判断显得解法有点不自然，而且效率也比上面的解法低，就不贴在这里了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1857,7 +1808,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">442</span>
+                  <span class="site-state-item-count">445</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1868,7 +1819,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1879,7 +1830,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
